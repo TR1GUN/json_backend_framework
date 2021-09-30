@@ -1,6 +1,4 @@
 
-print('lol')
-
 # iec60870
 
 # TODO this is HTTP stuff
@@ -155,24 +153,24 @@ def auth(env):
 
 handlers = [
         '/auth',
-        # // Авторизация - Не дописано !!!!!
+        # // Авторизация - Не дописано !!!!! +
         '/settings/proto/json/auth' ,
 
-        # // Переписал - Таблица Счетчиков - переделал
+        # // Переписал - Таблица Счетчиков - переделал +
         '/settings/meter/table',
 
-        # // переписал - Настройки СИМ Карты - переделал
+        # // переписал - Настройки СИМ Карты - переделал +
         '/settings/modem/sim',
 
-        # // Настройки линий питания - Переделал
+        # // Настройки линий питания - Переделал +
         '/settings/dout',
 
-        # // Состояние линий питания - Добивил !!!!
+        # // Состояние линий питания - Добивил !!!! +
         '/state/dout',
 
-        # // переписал Настройки ethernet
+        # // переписал Настройки ethernet +
         '/settings/ip',
-        # // Настройки локального времени - Переписал
+        # // Настройки локального времени - Переписал +
         '/settings/time/local',
 
         # // Сервера синхронизации времени - Переписал
@@ -186,16 +184,16 @@ handlers = [
         '/jrnl/time',
 
         # ///////////////////////////////////////////////////////
-        # // Настройки расписаний - Переделал
+        # // Настройки расписаний - Переделал +
         '/settings/events/schdl',
 
-        # // Опрос приборов учета по событиям - Переделал
+        # // Опрос приборов учета по событиям - Переделал +
         '/settings/actions/meter',
 
-        # // - Настройки - Настройка системы событий - Переписал
+        # // - Настройки - Настройка системы событий - Переписал +
         '/settings/events/manager' ,
 
-        # // - Настройки HTTP сервера - переписал
+        # // - Настройки HTTP сервера - переписал +
         '/settings/servers/tcp',
 
         # // Задание времени - Переделал
@@ -212,7 +210,7 @@ handlers = [
         '/jrnl/meter/answ',
         '/state/time',
         '/action/time/set',
-        '/action/restart' ,
+        # '/action/restart' ,
         '/settings/servers/mqtt',
         '/settings/charge/table',
         '/charge/data/arch',
@@ -228,21 +226,55 @@ handlers = [
         '/settings/iec60870/template_name',
         '/settings/iec60870/cot_types',
         '/settings/iec60870/type_id_types',
-        '/settings/iec60870/iec60870_settings' ,
-        '/settings/iec60870/iec60870_template' ,
+        '/settings/iec60870/iec60870_settings',
+        '/settings/iec60870/iec60870_template',
         '/settings/iec60870/iec60870_cot_values',
             ]
 # --
 
 from Service.Request_GET import GET
 
-print(len(handlers))
-i = 0
-for url in handlers :
+# print(len(handlers))
+# i = 0
+# for url in handlers:
+#
+#         result = GET(url=url).Result()
+#         if result.get("code") != 200:
+#
+#                 print(url, result)
+#                 i = i + 1
+#
+#         else:
+#                 print("Успешно", url)
+#
+# print(i)
 
-        result = GET(url=url).Result()
-        if result.get("code") != 200:
-                print(result)
-                i = i + 1
+ # /settings/servers/sntp -  Не существует /etc/chrony/uspd.conf
+# /settings/actions/sntp - Надо дописать
 
-print(i)
+url = "/settings/ip"
+result = GET(url=url).Result()
+print(result)
+
+
+# from genson import SchemaBuilder
+# import json
+#
+# builder = SchemaBuilder()
+#
+# # datastore = {"lol":"lol"}
+# # datastore = json.dumps(datastore)
+#
+# datastore = {"settings":[{"id":1,"name":"_name_"},{"id":2,"name":"_name_"}],"table":"COTTypes", "res":0}
+# datastore = json.dumps(datastore)
+#
+# builder.add_object(datastore)
+# #
+# # builder.to_schema()
+#
+# empty_schema = builder.to_schema()
+# print(json.dumps(empty_schema))
+
+# from jschon import JSONSchema
+# empty_schema = JSONSchema({"lol":"lol"})
+# print(empty_schema)
