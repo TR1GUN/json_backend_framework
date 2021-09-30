@@ -35,7 +35,7 @@ user_agent_val = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (
 Referer = 'http://192.168.0.1/login'
 headers = {
     'User-Agent': user_agent_val,
-    # 'Referer': 'http://192.168.0.1/login',
+    'Referer': 'http://192.168.0.1/login',
     'Host': '192.168.0.1',
     # 'Connection': keep-alive
     'Accept': '*/*',
@@ -65,10 +65,32 @@ json_text = json.dumps(json_text)
 # теперь убираем все пробелы
 
 
+# testing_url = 'http://192.168.202.143/'
+testing_url =  'http://192.168.0.1/'
+print('---->', testing_url + 'auth')
+
+# теперь убираем все пробелы
+
+import json
+# ----->
+json_text = {"password": "admin", "login": "admin"}
+json_text = json.dumps(json_text)
+
+json_text = json_text.replace(" ", '')
+
 response = requests.post(testing_url + 'auth', data=json_text, headers=headers)
 print(response)
 print(response.cookies)
 #
+# Забираем куку
+
+cookies = response.cookies
+tcp = 'settings/servers/tcp'
+
+response = requests.get(testing_url + 'state/network', cookies=cookies)
+
+print(response)
+print(response.text)
 # session = requests.Session()
 # r = session.get(Referer, headers = {
 #                 'User-Agent': user_agent_val})

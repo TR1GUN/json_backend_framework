@@ -14,28 +14,50 @@ class PUT(TemplateRequest):
     # Переменная результата
     _result = {}
 
-    def __init__(self, url: str, data: dict):
+    def __init__(self, url: str, data: str, cookies=None, headers=None, ip_device=None):
 
+        # обнуляем результат
         self._result = {}
+        # Если изменен айпишник - то задаем его тоже
+        if ip_device is not None:
+            self.ip_port = str(ip_device)
         # Запускаем наш класс запроса
-        response = self._Setup(url=url, data=data)
+        response = self._Setup(url=url, data=data, cookies=cookies, headers=headers)
+
+        # Переносим ответ в отдельное поле
+        self._response = response
 
         # Теперь разбираем ответ
         self._Parse_result_code(response=response)
         self._Parse_JSON(response=response)
 
-    def _Setup(self, url, data):
+    def _Setup(self, url, data, cookies=None, headers=None):
         """
         :param url: Url запроса
         :return: Возвращает результат запроса
         """
         # Получаем наш адрес запроса
-        url = self.http + self.machine_ip + str(url)
+        url = self._url_collector(url=url)
         import requests
         # print(url)
         # Запускаем
-        response = requests.put(url, data=data)
-
+        # --->
+        # ЕСли нет ни кук ни хедлесов
+        if (cookies is None) and (headers is None):
+            response = requests.put(url, data=data)
+        # Если есть куки
+        elif cookies is not None:
+            response = requests.put(url, data=data, cookies=cookies)
+        # Если есть хедлерс
+        elif headers is not None:
+            response = requests.put(url, data=data, headers=headers)
+        # Если есть и то и то
+        elif (cookies is not None) and (headers is not None):
+            response = requests.put(url, data=data, headers=headers, cookies=cookies)
+        # Иначе - отправляет просто
+        else:
+            response = requests.put(url, data=data)
+        # --->
         # print(response)
         # Возвращаем данные
         return response

@@ -15,7 +15,7 @@ def get_platform():
     # получаем нашу систему -
     platform_os = platform.system()
 
-    print(platform_os)
+    # print(platform_os)
 
     # if 'Windows' in platform_os:
     #     platform_os = 'Windows'
@@ -27,7 +27,7 @@ def get_platform():
 
 # получаем нашу систему -
 platform_os = get_platform()
-print(platform_os)
+# print(platform_os)
 
 
 
@@ -35,10 +35,10 @@ print(platform_os)
 # # ----------------------------------------------------------------------------
 # # path ='/'.join((os.path.abspath(__file__).replace('\\', '/')).split('/')[:-1])
 path = '/'.join((os.path.abspath(__file__).replace('\\', '/')).split('/')[:-1])
-print(path)
+# print(path)
 settings = '../settings.ini'
 path = os.path.join(path, settings)
-print(path)
+# print(path)
 # # настройки берем из конфига
 parser = configparser.ConfigParser()
 
@@ -56,4 +56,4 @@ machine_ip = parser['Test']['IP_address']
 # user_password = parser['Test']['user_password']
 # address_ssh = parser['Test']['address_ssh']
 # domain = parser['Test']['domain']
-print(machine_ip)
+# print(machine_ip)

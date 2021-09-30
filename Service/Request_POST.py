@@ -1,3 +1,4 @@
+
 from Service.TemplateRequest import TemplateRequest
 
 
@@ -14,28 +15,58 @@ class POST(TemplateRequest):
     # Переменная результата
     _result = {}
 
-    def __init__(self, url: str, data: dict):
+    def __init__(self, url: str, data: str, cookies=None, headers=None, ip_device=None):
 
+        # обнуляем результат
         self._result = {}
-        # Запускаем наш класс запроса
-        response = self._Setup(url=url, data=data)
+        # Если изменен айпишник - то задаем его тоже
+        if ip_device is not None:
+            self.ip_port = str(ip_device)
 
+        # Запускаем наш класс запроса
+        response = self._Setup(url=url, data=data, cookies=cookies, headers=headers)
+
+        # Переносим ответ в отдельное поле
+        self._response = response
         # Теперь разбираем ответ
         self._Parse_result_code(response=response)
         self._Parse_JSON(response=response)
 
-    def _Setup(self, url, data):
+    def _Setup(self, url, data, cookies=None, headers=None):
         """
+        Делаем сам запрос
+
         :param url: Url запроса
+        :param data: JSON - формат строка
+        :param cookies: Куки - если есть
+        :param headers:  Хеадресс - если есть
         :return: Возвращает результат запроса
         """
-        # Получаем наш адрес запроса
-        url = self.http + self.machine_ip + str(url)
+
         import requests
         # print(url)
-        # Запускаем
-        response = requests.post(url , data=data)
 
+        # Получаем наш адрес запроса
+        url = self._url_collector(url=url)
+
+        # Запускаем
+        # --->
+        # ЕСли нет ни кук ни хедлесов
+        if (cookies is None) and (headers is None):
+            response = requests.post(url, data=data)
+        # Если есть куки
+        elif cookies is not None:
+            response = requests.post(url, data=data, cookies=cookies)
+        # Если есть хедлерс
+        elif headers is not None:
+            response = requests.post(url, data=data, headers=headers)
+        # Если есть и то и то
+        elif (cookies is not None) and (headers is not None):
+            response = requests.post(url, data=data, headers=headers, cookies=cookies)
+        # Иначе - отправляет просто
+        else:
+            response = requests.post(url, data=data)
+        # --->
         # print(response)
         # Возвращаем данные
         return response
@@ -89,3 +120,4 @@ class POST(TemplateRequest):
         except Exception as e:
             self._result["info"] = str(e) + "\n Байтовых данных нет>"
             self._result["data"] = False
+

@@ -12,27 +12,52 @@ class GET(TemplateRequest):
     # Переменная результата
     _result = {}
 
-    def __init__(self, url: str):
+    def __init__(self, url: str, cookies=None, headers=None, ip_device=None):
 
+        # обнуляем результат
         self._result = {}
+        # Если изменен айпишник - то задаем его тоже
+        if ip_device is not None:
+            self.ip_port = str(ip_device)
+
         # Запускаем наш класс запроса
-        response = self._Setup(url=url)
+        response = self._Setup(url=url, cookies=cookies, headers=headers)
+
+        # Переносим ответ в отдельное поле
+        self._response = response
 
         # Теперь разбираем ответ
         self._Parse_result_code(response=response)
         self._Parse_JSON(response=response)
 
-    def _Setup(self, url):
+    def _Setup(self, url, cookies=None, headers=None):
         """
         :param url: Url запроса
         :return: Возвращает результат запроса
         """
         # Получаем наш адрес запроса
-        url = self.http + self.machine_ip + str(url)
+        url = self._url_collector(url=url)
         import requests
         # print(url)
         # Запускаем
-        response = requests.get(url)
+        # response = requests.get(url)
+        # --->
+        # ЕСли нет ни кук ни хедлесов
+        if (cookies is None) and (headers is None):
+            response = requests.get(url)
+        # Если есть куки
+        elif cookies is not None:
+            response = requests.get(url, cookies=cookies)
+        # Если есть хедлерс
+        elif headers is not None:
+            response = requests.get(url, headers=headers)
+        # Если есть и то и то
+        elif (cookies is not None) and (headers is not None):
+            response = requests.get(url, headers=headers, cookies=cookies)
+        # Иначе - отправляет просто
+        else:
+            response = requests.get(url)
+        # --->
 
         # print(response)
         # Возвращаем данные
