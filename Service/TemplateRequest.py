@@ -9,6 +9,8 @@ class TemplateRequest:
     _result = {}
     _response = None
 
+    _debug = True
+
     # Наш айпишник
     from Service.config import machine_ip
     ip_port = str(machine_ip)
@@ -149,4 +151,5 @@ class TemplateRequest:
         Возвращаем класс ответа - необходимо может быть для отдали
         :return:
         """
+
         return self._response

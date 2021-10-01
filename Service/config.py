@@ -52,6 +52,9 @@ parser.read(path)
 # IP_port = parser[platform_os]['dbpath']
 #
 machine_ip = parser['Test']['IP_address']
+USPD_login = parser['Test']['USPD_login']
+USPD_password = parser['Test']['USPD_password']
+
 # user_login = parser['Test']['user_login']
 # user_password = parser['Test']['user_password']
 # address_ssh = parser['Test']['address_ssh']

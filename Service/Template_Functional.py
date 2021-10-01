@@ -13,22 +13,23 @@ class TemplateFunctional:
 
     """
     # куки
-    cookies = None
+    _cookies = None
 
     # Сам айпишник железки
     from Service.config import machine_ip
-    testing_url = str(machine_ip)
+    _ip_address = str(machine_ip)
+
     # Путь url
-    path_url = ''
+    _path_url = ''
 
     # Клиент - Нужен для Хедерса
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
+    _user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
     # Страница с которой зашли - иногда нужно
-    Referer = 'http://192.168.0.1/login'
+    _Referer = 'http://192.168.0.1/login'
 
     # хедерс - Иногда нужен
-    headers = {
-        'User-Agent': user_agent,
+    _headers = {
+        'User-Agent': _user_agent,
         'Referer': 'http://192.168.0.1/login',
         'Host': '192.168.0.1',
         # 'Connection': keep-alive
@@ -73,7 +74,11 @@ class TemplateFunctional:
         # Первое - удаляем все пробелы из строки JSON
         JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
-        response = POST(url=self.path_url, data=JSON, cookies=self.cookies, headers=self.headers)
+        response = POST(url=self._path_url,
+                        data=JSON,
+                        cookies=self._cookies,
+                        headers=self._headers,
+                        ip_device=self._ip_address)
         # Получаем :
         # --->
         response_dict = self._parser_request(response=response)
@@ -92,7 +97,10 @@ class TemplateFunctional:
         # Первое - удаляем все пробелы из строки JSON
         JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
-        response = GET(url=self.path_url, cookies=self.cookies, headers=self.headers)
+        response = GET(url=self._path_url,
+                       cookies=self._cookies,
+                       headers=self._headers,
+                       ip_device=self._ip_address)
         # Получаем :
         # --->
         response_dict = self._parser_request(response=response)
@@ -111,7 +119,8 @@ class TemplateFunctional:
         # Первое - удаляем все пробелы из строки JSON
         JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
-        response = PUT(url=self.path_url, data=JSON, cookies=self.cookies, headers=self.headers)
+        response = PUT(url=self._path_url, data=JSON, cookies=self._cookies, headers=self._headers,
+                       ip_device=self._ip_address)
         # Получаем :
         # --->
         response_dict = self._parser_request(response=response)
@@ -130,7 +139,8 @@ class TemplateFunctional:
         # Первое - удаляем все пробелы из строки JSON
         JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
-        response = DELETE(url=self.path_url, data=JSON, cookies=self.cookies, headers=self.headers)
+        response = DELETE(url=self._path_url, data=JSON, cookies=self._cookies, headers=self._headers,
+                          ip_device=self._ip_address)
         # Получаем :
         # --->
         response_dict = self._parser_request(response=response)

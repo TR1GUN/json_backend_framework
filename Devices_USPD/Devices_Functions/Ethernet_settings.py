@@ -13,12 +13,12 @@ class EthernetSettings(TemplateFunctional):
     """
     # URL
     from Devices_USPD.settings import url_path
-    path_url = url_path.get("Ethernet_settings")
+    _path_url = url_path.get("Ethernet_settings")
 
     # хедерс - Иногда нужен
-    headers = None
+    _headers = None
     # куки
-    cookies = None
+    _cookies = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -28,9 +28,12 @@ class EthernetSettings(TemplateFunctional):
         :param headers:
         """
         if cookies is not None:
-            self.cookies = cookies
+            self._cookies = cookies
         if headers is not None:
-            self.headers = headers
+            self._headers = headers
+
+        if ip_address is not None:
+            self._ip_address = ip_address
 
         # print(self.headers)
         # print(self.cookies)
@@ -82,7 +85,7 @@ class EthernetSettings(TemplateFunctional):
         :return:
         """
         # Запаковываем
-        if data is not None :
+        if data is not None:
             data = self._coding(data=data)
 
             # делаем запрос - получаем ответ
@@ -95,5 +98,18 @@ class EthernetSettings(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-lol = EthernetSettings().delete_settings()
-print(lol)
+# lol = EthernetSettings().delete_settings()
+# print(lol)
+
+# lol = b''
+# lol = None
+# # print(lol)
+# # a = False
+# # print(bytes(a))
+#
+# lol = bool(lol)
+# print(lol)
+# if lol:
+#     print('lol')
+# else:
+#     print('asdsa')

@@ -32,6 +32,9 @@ class DELETE(TemplateRequest):
         self._Parse_result_code(response=response)
         self._Parse_JSON(response=response)
 
+        if self._debug:
+            print(self._result)
+
     def _Setup(self, url, data, cookies=None, headers=None):
         """
         :param url: Url запроса

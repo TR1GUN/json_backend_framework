@@ -232,49 +232,11 @@ handlers = [
             ]
 # --
 
-from Service.Request_GET import GET
 
-# print(len(handlers))
-# i = 0
-# for url in handlers:
-#
-#         result = GET(url=url).Result()
-#         if result.get("code") != 200:
-#
-#                 print(url, result)
-#                 i = i + 1
-#
-#         else:
-#                 print("Успешно", url)
-#
-# print(i)
-
- # /settings/servers/sntp -  Не существует /etc/chrony/uspd.conf
-# /settings/actions/sntp - Надо дописать
-
-url = "/settings/ip"
-result = GET(url=url).Result()
-print(result)
+from USPD import USPD
 
 
-# from genson import SchemaBuilder
-# import json
-#
-# builder = SchemaBuilder()
-#
-# # datastore = {"lol":"lol"}
-# # datastore = json.dumps(datastore)
-#
-# datastore = {"settings":[{"id":1,"name":"_name_"},{"id":2,"name":"_name_"}],"table":"COTTypes", "res":0}
-# datastore = json.dumps(datastore)
-#
-# builder.add_object(datastore)
-# #
-# # builder.to_schema()
-#
-# empty_schema = builder.to_schema()
-# print(json.dumps(empty_schema))
+Smart = USPD.UM_31_Smart(ip_address='http://192.168.0.1/')
 
-# from jschon import JSONSchema
-# empty_schema = JSONSchema({"lol":"lol"})
-# print(empty_schema)
+lol = Smart.Settings.Ethernet()
+
