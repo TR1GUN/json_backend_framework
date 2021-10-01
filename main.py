@@ -235,8 +235,14 @@ handlers = [
 
 from USPD import USPD
 
-
 Smart = USPD.UM_31_Smart(ip_address='http://192.168.0.1/')
 
-lol = Smart.Settings.Ethernet()
+lol = Smart.Settings.Ethernet.read_settings()
 
+print(lol)
+
+Smart40 = USPD.UM_40_Smart()
+
+lol = Smart40.Settings.Ethernet.read_settings()
+
+print(lol)

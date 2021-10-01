@@ -20,6 +20,10 @@ class Template_USPD:
     # IP Адрес
     _ip_address = None
 
+    # Поля Необходимые для доступа
+    # Настройки
+    Settings = None
+
     @staticmethod
     def _IP_address_from_config():
         """
@@ -29,6 +33,50 @@ class Template_USPD:
         from Service.config import machine_ip
 
         return str(machine_ip)
+
+    def _define_functionality(self):
+        """
+        Функция для получения доступа к Функционалу
+        :return:
+        """
+
+
+class Template_UM_XX_SMART_Settings:
+    """
+    Саб класс который работает с настройками УСПД
+    """
+
+    _cookies = None
+    _headers = None
+    _ip_address = None
+
+    # Функционал
+    Ethernet = None
+    Interface_Power_Line = None
+
+    def __init__(self, cookies=None, headers=None, ip_address=None):
+        self._cookies = cookies
+        self._headers = headers
+        self._ip_address = ip_address
+
+        # Теперь обновляем
+        self.Ethernet = self._Ethernet()
+        self.Interface_Power_Line = self._Interface_Power_Line()
+
+    def _Ethernet(self):
+        from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+
+        return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+
+    def _Interface_Power_Line(self):
+        from Devices_USPD.Devices_Functions.Interface_power_line_settings import InterfacePowerLine
+
+        return InterfacePowerLine(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+
+    def _Local_Time(self):
+        from Devices_USPD.Devices_Functions.Local_time_settings import LocalTime
+
+        return LocalTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -50,7 +98,9 @@ class UM_31_SMART(Template_USPD):
     # IP адрес УСПД
     _ip_address = 'localhost'
 
-    Settings = {}
+    # Поля Необходимые для доступа
+    # Настройки
+    Settings = None
 
     def __init__(self, Login: str = 'admin', Password: str = 'admin', ip_address=None):
         """
@@ -81,7 +131,14 @@ class UM_31_SMART(Template_USPD):
         self._Authorization()
 
         # И обновляем функционал
+        self._define_functionality()
 
+    def _define_functionality(self):
+        """
+        Функция для получения доступа к Функционалу
+        :return:
+        """
+        # Обновляем Настройки
         self._Settings()
 
     # АВТОРИАЗЦИЯ - должна происходить автоматически - при протухании кукис - перелогиниваться
@@ -113,7 +170,7 @@ class UM_31_SMART(Template_USPD):
         self.Settings = UM_31_SMART_Settings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
 
-class UM_31_SMART_Settings:
+class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
     """
     Саб класс который работает с настройками УСПД
     """
@@ -122,15 +179,21 @@ class UM_31_SMART_Settings:
     _headers = None
     _ip_address = None
 
-    def __init__(self, cookies=None, headers=None, ip_address=None):
-        self._cookies = cookies
-        self._headers = headers
-        self._ip_address = ip_address
+    # Функционал
+    Ethernet = None
 
-    def Ethernet(self):
-        from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+    # def __init__(self, cookies=None, headers=None, ip_address=None):
+    #     self._cookies = cookies
+    #     self._headers = headers
+    #     self._ip_address = ip_address
+    #
+    #     # Теперь обновляем
+    #     self.Ethernet = self._Ethernet()
 
-        return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+    # def _Ethernet(self):
+    #     from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+    #
+    #     return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -160,12 +223,46 @@ class UM_40_SMART(Template_USPD):
         else:
             self._ip_address = self._IP_address_from_config()
 
-    def Ethernet_settings(self):
-        """
-        Настройки Ethernet
+        # И обновляем функционал
+        self._define_functionality()
 
+    def _define_functionality(self):
+        """
+        Функция для получения доступа к Функционалу
         :return:
         """
-        from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+        # Обновляем Настройки
+        self._Settings()
 
-        return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+    def _Settings(self):
+        """
+        Получаем Класс который работает с настройками УСПД
+        :return:
+        """
+        self.Settings = UM_40_SMART_Settings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+
+
+class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
+    """
+    Саб класс который работает с настройками УСПД
+    """
+
+    _cookies = None
+    _headers = None
+    _ip_address = None
+
+    # Функционал
+    Ethernet = None
+
+    # def __init__(self, cookies=None, headers=None, ip_address=None):
+    #     self._cookies = cookies
+    #     self._headers = headers
+    #     self._ip_address = ip_address
+    #
+    #     # Теперь обновляем
+    #     self.Ethernet = self._Ethernet()
+    #
+    # def _Ethernet(self):
+    #     from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+    #
+    #     return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
