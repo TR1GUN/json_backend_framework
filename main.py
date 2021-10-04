@@ -235,14 +235,49 @@ handlers = [
 
 from USPD import USPD
 
-Smart = USPD.UM_31_Smart(ip_address='http://192.168.0.1/')
+# Smart = USPD.UM_31_Smart(ip_address='http://192.168.0.1/')
+
+Smart = USPD.UM_40_Smart()
 
 lol = Smart.Settings.Ethernet.read_settings()
 
 print(lol)
 
-Smart40 = USPD.UM_40_Smart()
-
-lol = Smart40.Settings.Ethernet.read_settings()
+lol = Smart.Settings.Schedule_settings.read_settings()
 
 print(lol)
+
+lol = Smart.Settings.SNTP_server.read_settings()
+
+print(lol)
+
+lol = Smart.Settings.TCP_server.read_settings()
+
+print(lol)
+
+
+
+
+
+
+
+
+
+#
+# Smart40 = USPD.UM_40_Smart()
+#
+# lol = Smart40.Settings.Ethernet.read_settings()
+#
+# print(lol)
+#
+# lol = Smart40.Settings.Ethernet.read_settings()
+#
+# print(lol)
+#
+# lol = Smart40.Settings.Ethernet.read_settings()
+#
+# print(lol)
+#
+# lol = Smart40.Settings.Ethernet.read_settings()
+#
+# print(lol)

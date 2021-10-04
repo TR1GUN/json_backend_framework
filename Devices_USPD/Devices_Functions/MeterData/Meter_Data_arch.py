@@ -78,38 +78,3 @@ class MeterDataArch(TemplateFunctional):
 
         return response
 
-    def delete_settings(self, data=None):
-        """
-        Удаляем данные - DELETE
-        :param data:
-        :return:
-        """
-        # Запаковываем
-        if data is not None:
-            data = self._coding(data=data)
-
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE(JSON=data)
-        else:
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE()
-
-        return response
-
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-# lol = EthernetSettings().delete_settings()
-# print(lol)
-
-# lol = b''
-# lol = None
-# # print(lol)
-# # a = False
-# # print(bytes(a))
-#
-# lol = bool(lol)
-# print(lol)
-# if lol:
-#     print('lol')
-# else:
-#     print('asdsa')
