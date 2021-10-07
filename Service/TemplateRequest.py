@@ -9,7 +9,7 @@ class TemplateRequest:
     _result = {}
     _response = None
 
-    _debug = True
+    _debug = False
 
     # Наш айпишник
     from Service.config import machine_ip

@@ -235,41 +235,45 @@ handlers = [
 
 from USPD import USPD
 
-# Smart = USPD.UM_31_Smart(ip_address='http://192.168.0.1/')
+# Smart = USPD.UM_31_Smart(ip_address='192.168.0.1/')
 
 Smart = USPD.UM_40_Smart()
+
 
 lol = Smart.Settings.Ethernet.read_settings()
 
 print(lol)
-
-lol = Smart.Settings.Schedule_settings.read_settings()
-
-print(lol)
-
-lol = Smart.Settings.SNTP_server.read_settings()
-
-print(lol)
-
-lol = Smart.Settings.TCP_server.read_settings()
-
-print(lol)
-
-
-
-
-
-
-
-
-
+# lol = Smart.Settings.TCP_server.rewrite_settings()
+# print(lol)
 #
+
+# lol = Smart.Settings.Schedule_settings.read_settings()
+#
+# print(lol)
+#
+# lol = Smart.Settings.SNTP_server.read_settings()
+#
+# print(lol)
+#
+# lol = Smart.Settings.TCP_server.read_settings()
+#
+# print(lol)
+
+
+
+
+
+
+
+
+
+
 # Smart40 = USPD.UM_40_Smart()
 #
 # lol = Smart40.Settings.Ethernet.read_settings()
 #
 # print(lol)
-#
+# #
 # lol = Smart40.Settings.Ethernet.read_settings()
 #
 # print(lol)
@@ -280,4 +284,118 @@ print(lol)
 #
 # lol = Smart40.Settings.Ethernet.read_settings()
 #
+# print(lol)
+
+from Service.Template_Functional import TemplateFunctional
+
+
+class Test(TemplateFunctional):
+    """
+    Настройки расписаний
+
+    """
+    # URL
+    from Devices_USPD.settings import url_path
+    _path_url = '/settings/actions/meter'
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+
+    def __init__(self, cookies=None, headers=None, ip_address=None, path = ''):
+        """
+        Настройки расписаний
+
+        :param cookies:
+        :param headers:
+        """
+        self._path_url = path
+
+        if cookies is not None:
+            self._cookies = cookies
+        if headers is not None:
+            self._headers = headers
+
+        if ip_address is not None:
+            self._ip_address = ip_address
+
+        # print(self.headers)
+        # print(self.cookies)
+
+    def read_settings(self):
+        """
+        Читаем данные - GET
+        :return:
+        """
+        # делаем запрос - получаем ответ
+        response = self._request_GET(JSON='')
+
+        return response
+
+    def write_settings(self, data):
+        """
+        Добавляем на запись данные  - POST
+
+        :param data:
+        :return:
+        """
+
+        # Запаковываем
+        data = self._coding(data=data)
+
+        # делаем запрос - получаем ответ
+        response = self._request_POST(JSON=data)
+
+        return response
+
+    def rewrite_settings(self, data):
+        """
+        Перезаписываем данные - PUT
+        :param data:
+        :return:
+        """
+        # Запаковываем
+        data = self._coding(data=data)
+
+        # делаем запрос - получаем ответ
+        response = self._request_PUT(JSON=data)
+
+        return response
+
+    def delete_settings(self, data=None):
+        """
+        Удаляем данные - DELETE
+        :param data:
+        :return:
+        """
+        # Запаковываем
+        if data is not None:
+            data = self._coding(data=data)
+
+            # делаем запрос - получаем ответ
+            response = self._request_DELETE(JSON=data)
+        else:
+            # делаем запрос - получаем ответ
+            response = self._request_DELETE()
+
+        return response
+
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+
+# for url in handlers :
+#
+#     lol = Test(path=url).read_settings()
+#     if (lol.get('code') != 200):
+#
+#     # if lol.get('code') == 423 :
+#         print('--------')
+#         print(lol.get('code'))
+#         print(url)
+
+
+# '/settings/action/smtp'
+# '/settings/email'
+# lol = Test(path='/settings/servers/mqtt').read_settings()
 # print(lol)
