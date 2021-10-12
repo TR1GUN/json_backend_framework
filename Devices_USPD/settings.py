@@ -77,7 +77,6 @@ url_path_smart40 = {
         'ChargeStationTable' : '/settings/charge/table',
         # # - Состояние зарядных станций - Переписал
         'ChargeStationArchData' : '/charge/data/arch',
-
         # ///////////////////////////////////////////////////////
 
         # ///////////////////////////////////////////////////////

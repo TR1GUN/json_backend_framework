@@ -222,7 +222,8 @@ class SettingsChargeStationTable(TemplateSettingsData):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-lol = ChargeStationTable()
-lol.Data_Settings.add_settings(Device_idx=1 , IP_address='223',IP_port=2323,ID_MQTT=232)
-print(lol.Data_Settings.get_settings())
+# #
+# lol = ChargeStationTable()
+# lol.Data_Settings.add_settings(Device_idx=1 , IP_address='223',IP_port=2323,ID_MQTT=232)
+# lol.rewrite_settings(data=None)
+# print(lol.read_settings())

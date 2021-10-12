@@ -160,7 +160,7 @@ class Template_UM_XX_SMART_Settings:
         return SNTP_server(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     def _Meter_Table(self):
-        from Devices_USPD.Devices_Functions.Settings.Metering_device_table import MeteringDeviceTable
+        from Devices_USPD.Devices_Functions.UM40.MeterDevice.MeterDevice_Table import MeteringDeviceTable
 
         return MeteringDeviceTable(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
