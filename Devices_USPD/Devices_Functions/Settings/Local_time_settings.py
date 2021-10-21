@@ -8,6 +8,7 @@ from Service.Template_Functional import TemplateFunctional
 
 class LocalTime(TemplateFunctional):
     """
+
     Настройки локального времени
 
     """
@@ -98,3 +99,11 @@ class LocalTime(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
+settings = LocalTime().read_settings()
+print(settings)
+settings = LocalTime().rewrite_settings({'tz': 3})
+
+print(settings)
+
+

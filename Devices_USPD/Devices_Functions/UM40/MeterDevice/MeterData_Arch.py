@@ -200,13 +200,13 @@ class MeterDataArchJournal(TemplateMeterArchData):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPower(self, ids: [None, list, int] = None,
+    def ElJrnlPwr(self, ids: [None, list, int] = None,
                     time_start: [int, None] = None,
                     time_end: [int, None] = None,
                     # tags: [None, list, str] = None
                     ):
         """
-        Чтение из БД Журнала ElJrnlPower - управление питанием
+        Чтение из БД Журнала ElJrnlPwr - управление питанием
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -217,7 +217,7 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlPower'
+        measure = 'ElJrnlPwr'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
@@ -288,13 +288,13 @@ class MeterDataArchJournal(TemplateMeterArchData):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlCons1init(self, ids: [None, list, int] = None,
+    def ElJrnlC1Init(self, ids: [None, list, int] = None,
                         time_start: [int, None] = None,
                         time_end: [int, None] = None,
                         # tags: [None, list, str] = None
                         ):
         """
-        Чтение из БД Журнала ElJrnlCons1init - инициализация первого массива профилей
+        Чтение из БД Журнала ElJrnlC1Init - инициализация первого массива профилей
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -305,17 +305,17 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlCons1init'
+        measure = 'ElJrnlC1Init'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlCons2init(self, ids: [None, list, int] = None,
+    def ElJrnlC2Init(self, ids: [None, list, int] = None,
                         time_start: [int, None] = None,
                         time_end: [int, None] = None,
                         # tags: [None, list, str] = None
                         ):
         """
-        Чтение из БД Журнала ElJrnlCons2init - инициализация второго массива профилей
+        Чтение из БД Журнала ElJrnlC2Init - инициализация второго массива профилей
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -326,7 +326,7 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlCons2init'
+        measure = 'ElJrnlC2Init'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
@@ -373,13 +373,13 @@ class MeterDataArchJournal(TemplateMeterArchData):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlUnauth(self, ids: [None, list, int] = None,
+    def ElJrnlUnAyth(self, ids: [None, list, int] = None,
                      time_start: [int, None] = None,
                      time_end: [int, None] = None,
                      # tags: [None, list, str] = None
                      ):
         """
-        Чтение из БД Журнала ElJrnlUnauth - неавторизованный доступ
+        Чтение из БД Журнала ElJrnlUnAyth - неавторизованный доступ
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -390,17 +390,17 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlUnauth'
+        measure = 'ElJrnlUnAyth'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPowerA(self, ids: [None, list, int] = None,
+    def ElJrnlPwrA(self, ids: [None, list, int] = None,
                      time_start: [int, None] = None,
                      time_end: [int, None] = None,
                      # tags: [None, list, str] = None
                      ):
         """
-        Чтение из БД Журнала ElJrnlPowerA - управление фазой А
+        Чтение из БД Журнала ElJrnlPwrA - управление фазой А
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -411,17 +411,17 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlPowerA'
+        measure = 'ElJrnlPwrA'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPowerB(self, ids: [None, list, int] = None,
+    def ElJrnlPwrB(self, ids: [None, list, int] = None,
                      time_start: [int, None] = None,
                      time_end: [int, None] = None,
                      # tags: [None, list, str] = None
                      ):
         """
-        Чтение из БД Журнала ElJrnlPowerB - управление фазой В
+        Чтение из БД Журнала ElJrnlPwrB - управление фазой В
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -432,17 +432,17 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlPowerB'
+        measure = 'ElJrnlPwrB'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPowerC(self, ids: [None, list, int] = None,
+    def ElJrnlPwrC(self, ids: [None, list, int] = None,
                      time_start: [int, None] = None,
                      time_end: [int, None] = None,
                      # tags: [None, list, str] = None
                      ):
         """
-        Чтение из БД Журнала ElJrnlPowerC - управление фазой С
+        Чтение из БД Журнала ElJrnlPwrC - управление фазой С
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -453,17 +453,17 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlPowerC'
+        measure = 'ElJrnlPwrC'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlProgramm(self, ids: [None, list, int] = None,
+    def ElJrnlProg(self, ids: [None, list, int] = None,
                        time_start: [int, None] = None,
                        time_end: [int, None] = None,
                        # tags: [None, list, str] = None
                        ):
         """
-        Чтение из БД Журнала ElJrnlProgramm - программирование
+        Чтение из БД Журнала ElJrnlProg - программирование
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -474,7 +474,7 @@ class MeterDataArchJournal(TemplateMeterArchData):
         :return:
         """
 
-        measure = 'ElJrnlProgramm'
+        measure = 'ElJrnlProg'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
 
     # -------------------------------------------------------------------------------------------------------------
@@ -1684,7 +1684,8 @@ class MeterArchData(TemplateMeterArchData):
 
         :return:
         """
-        measures = {'ElConfig': 'конфигурация электросчетчика',
+        measures = {
+                    'ElConfig': 'конфигурация электросчетчика',
                     'DigConfig': 'конфигурация модуля дискретных вводов/выводов',
                     'PlsConfig': 'конфигурация концентратора импульсных счетчиков',
                     'ElMomentEnergy': 'мгновенные показания энергии электросчетчика',
@@ -1700,19 +1701,19 @@ class MeterArchData(TemplateMeterArchData):
                     'PlsDayPulse': 'показания концентратора импульсных счетчиков на начало суток',
                     'PlsMonthPulse': 'показания концентратора импульсных счетчиков на начало месяца',
                     'PlsHourPulse': 'показания на начало часа концентратора импульсных счетчиков',
-                    'ElJrnlPower': 'управление питанием',
+                    'ElJrnlPwr': 'управление питанием',
                     'ElJrnlTimeCorr': 'коррекция времени электросчетчика',
                     'PlsJrnlTimeCorr': 'коррекция времени концентратора импульсных счетчиков',
                     'ElJrnlReset': 'сброс показаний',
-                    'ElJrnlCons1init': 'инициализация первого массива профилей',
-                    'ElJrnlCons2init': 'инициализация второго массива профилей',
+                    'ElJrnlC1Init': 'инициализация первого массива профилей',
+                    'ElJrnlC2Init': 'инициализация второго массива профилей',
                     'ElJrnlTrfCorr': 'коррекция тарификатора',
                     'ElJrnlOpen': 'открытие крышки',
-                    'ElJrnlUnauth': 'неавторизованный доступ',
-                    'ElJrnlPowerA': 'управление фазой А',
-                    'ElJrnlPowerB': 'управление фазой В',
-                    'ElJrnlPowerC': 'управление фазой С',
-                    'ElJrnlProgramm': 'программирование',
+                    'ElJrnlUnAyth': 'неавторизованный доступ',
+                    'ElJrnlPwrA': 'управление фазой А',
+                    'ElJrnlPwrB': 'управление фазой В',
+                    'ElJrnlPwrC': 'управление фазой С',
+                    'ElJrnlProg': 'программирование',
                     'ElJrnlRelay': 'управление реле',
                     'ElJrnlLimESumm': 'лимит суммарной энергии',
                     'ElJrnlLimETrf': 'потарифиный лимит энергии',
@@ -1741,7 +1742,8 @@ class MeterArchData(TemplateMeterArchData):
                     'ElJrnlLimPwrPP': 'ограничение прямой активной мощности',
                     'ElJrnlLimPwrPM': 'ограничение прямой реактивной мощности',
                     'ElJrnlLimPwrQP': 'ограничение обратной реактивной мощности',
-                    'ElJrnlReverce': 'реверс'}
+                    'ElJrnlReverce': 'реверс'
+        }
 
         return measures
 
@@ -1761,8 +1763,8 @@ class MeterArchData(TemplateMeterArchData):
         return response
 
 # -------------------------------------------------------------------------------------------------------------
-# Elconfig = MeterArchData().Electric.ElConfig()
-#
-# print(Elconfig)
+Elconfig = MeterArchData().Electric.ElConfig()
+
+print(Elconfig)
 
 

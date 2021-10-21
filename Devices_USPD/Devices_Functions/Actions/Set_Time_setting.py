@@ -38,15 +38,15 @@ class SetTimeSetting(TemplateFunctional):
         # print(self.headers)
         # print(self.cookies)
 
-    def read_settings(self):
-        """
-        Читаем данные - GET
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
-
-        return response
+    # def read_settings(self):
+    #     """
+    #     Читаем данные - GET
+    #     :return:
+    #     """
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_GET(JSON='')
+    #
+    #     return response
 
     def write_settings(self, data):
         """
@@ -64,10 +64,14 @@ class SetTimeSetting(TemplateFunctional):
 
         return response
 
-    def rewrite_settings(self, data):
+    def setup_JSON(self, data):
         """
         Перезаписываем данные - PUT
-        :param data:
+
+        Формат JSON
+        {"time": "2007-10-15T01:33:25+10:00"}
+
+        :param data: JSON На запись , который игнорирует
         :return:
         """
         # Запаковываем
@@ -78,23 +82,28 @@ class SetTimeSetting(TemplateFunctional):
 
         return response
 
-    def delete_settings(self, data=None):
-        """
-        Удаляем данные - DELETE
-        :param data:
-        :return:
-        """
-        # Запаковываем
-        if data is not None:
-            data = self._coding(data=data)
-
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE(JSON=data)
-        else:
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE()
-
-        return response
+    # def delete_settings(self, data=None):
+    #     """
+    #     Удаляем данные - DELETE
+    #     :param data:
+    #     :return:
+    #     """
+    #     # Запаковываем
+    #     if data is not None:
+    #         data = self._coding(data=data)
+    #
+    #         # делаем запрос - получаем ответ
+    #         response = self._request_DELETE(JSON=data)
+    #     else:
+    #         # делаем запрос - получаем ответ
+    #         response = self._request_DELETE()
+    #
+    #     return response
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+# lol = SetTimeSetting().rewrite_settings(data={"time": "2007-10-15T01:33:25+10:00"})
+# print(lol)
+
+lol = SetTimeSetting().read_settings()
+print(lol)

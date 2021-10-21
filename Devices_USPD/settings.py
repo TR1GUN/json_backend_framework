@@ -16,6 +16,7 @@ url_path = {
             "Interface_power_line_settings": '/settings/dout',
             # Настройки локального времени
             "Local_time_settings": '/settings/time/local',
+
             # Настройки SIM-карт (Pin, APN)
             "SIM_card_settings": '/settings/modem/sim',
 
@@ -60,9 +61,14 @@ url_path = {
             # Установка времени
             "Set_Time_setting": '/action/time/set',
 
+            # Перезагрузка устройства
+            'Device_Restart': '/action/restart',
+
+
                                     # Информация о состоянии изделия
             # Текущее время
             "Current_time": '/state/time',
+
 
 }
 
