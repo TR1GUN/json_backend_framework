@@ -3,6 +3,9 @@
 #                                         Настройки линий питания интерфейсов
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
+
+
 from Service.Template_Functional import TemplateFunctional
 
 
@@ -98,5 +101,6 @@ class SIM_card(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-# lol = SIM_card().read_settings()
-# print(lol)
+data = {'Settings': [{'id': 1, 'pin': '', 'addr': 'internet.beeline.ru', 'auth': False, 'login': 'beeline', 'password': 'beeline', 'enable': True}, {'id': 2, 'pin': '2527', 'addr': 'internet.beeline.ru', 'auth': True, 'login': 'beeline', 'password': 'beeline', 'enable': True}]}
+lol = SIM_card().write_settings(data=data)
+print(lol)

@@ -1,11 +1,4 @@
 
-# iec60870
-
-# TODO this is HTTP stuff
-def auth(env):
-    return '200 OK', ""
-
-
 # # ///
 # #     По УРЛ определяем наш запрос - Это важно
 #
@@ -233,16 +226,16 @@ handlers = [
 # --
 
 
-from USPD import USPD
-
-# Smart = USPD.UM_31_Smart(ip_address='192.168.0.1/')
-
-Smart = USPD.UM_40_Smart()
-
-
-lol = Smart.Settings.Ethernet.read_settings()
-
-print(lol)
+# from USPD import USPD
+#
+# # Smart = USPD.UM_31_Smart(ip_address='192.168.0.1/')
+#
+# Smart = USPD.UM_40_Smart()
+#
+#
+# lol = Smart.Settings.Ethernet.read_settings()
+#
+# print(lol)
 # lol = Smart.Settings.TCP_server.rewrite_settings()
 # print(lol)
 #
@@ -380,6 +373,25 @@ class Test(TemplateFunctional):
             response = self._request_DELETE()
 
         return response
+
+
+
+test = Test(path ='/settings/meter/table')
+
+
+a = test.read_settings()
+print("GET\n", a)
+#
+# a = test.write_settings(data={'Settings': []})
+# print("POST\n",a)
+#
+# a = test.rewrite_settings(data={'Settings': []})
+# print("PUT\n",a)
+
+# a = test.delete_settings(data={'Settings': []})
+# a = test.delete_settings()
+# print("DELETE\n",a)
+
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
