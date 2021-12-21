@@ -317,10 +317,11 @@ class SettingsMeterTable(TemplateSettingsData):
         data_ids = []
 
         # Перебираем все настройки
+
         for idx in self._data_ids:
             # Если айдишник не совпадает то добавляем в список
             if idx not in ids:
-                data_ids.append(settings)
+                data_ids.append(idx)
 
         self._data_ids = data_ids
 
@@ -385,38 +386,38 @@ class SettingsMeterTable(TemplateSettingsData):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-lol = MeterDeviceTable()
-# #
-# a = {'Meters': [{
-#                 'addr': '72',
-#                  'id': 6,
-#                  'ifaceCfg': '9600,8n1',
-#                  'ifaceName': 'Iface1',
-#                  'index': 1,
-#                  'pId': 0,
-#                  'passRd': '010101010101',
-#                  'passWr': '020202020202',
-#                  'rtuFider': 1,
-#                  'rtuObjNum': 2,
-#                  'rtuObjType': 3,
-#                  'type': 3,
-#                  'typeName': 'Mercury23x'
-#                 }]}
-# print(lol.read_settings())
-
-data = {'Ids':[1,3]}
-print(lol.delete_settings(data))
+# lol = MeterDeviceTable()
+# # #
+# # a = {'Meters': [{
+# #                 'addr': '72',
+# #                  'id': 6,
+# #                  'ifaceCfg': '9600,8n1',
+# #                  'ifaceName': 'Iface1',
+# #                  'index': 1,
+# #                  'pId': 0,
+# #                  'passRd': '010101010101',
+# #                  'passWr': '020202020202',
+# #                  'rtuFider': 1,
+# #                  'rtuObjNum': 2,
+# #                  'rtuObjType': 3,
+# #                  'type': 3,
+# #                  'typeName': 'Mercury23x'
+# #                 }]}
+# # print(lol.read_settings())
 #
-a = {'Meters': [
-    {'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'},
-    {'addr': '72', 'id': 2, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 2, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'},
-    {'addr': '72', 'id': 5, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 3, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]}
-
-# print(lol.write_settings(a))
-# print(lol.rewrite_settings(a))
-
-# lol.Data_Settings.add_settings(MeterId=1, )
-
-# url = '_settings_meter_table'
-# url_path = url[1:]
-# print(url_path)
+# data = {'Ids':[1,3]}
+# print(lol.delete_settings(data))
+# #
+# a = {'Meters': [
+#     {'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'},
+#     {'addr': '72', 'id': 2, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 2, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'},
+#     {'addr': '72', 'id': 5, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 3, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]}
+#
+# # print(lol.write_settings(a))
+# # print(lol.rewrite_settings(a))
+#
+# # lol.Data_Settings.add_settings(MeterId=1, )
+#
+# # url = '_settings_meter_table'
+# # url_path = url[1:]
+# # print(url_path)
