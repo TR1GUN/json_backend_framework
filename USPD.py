@@ -11,13 +11,23 @@ class USPD:
         Пока работает через статик методы
         """
 
+    # @staticmethod
+    # def UM_40_Smart(ip_address=None):
+    #     """
+    #      Работа с Функционалом УМ-40 SMART
+    #     :return:
+    #     """
+    #     from Devices_USPD.Devices import UM_40_SMART
+    #
+    #     return UM_40_SMART(ip_address=ip_address)
+
     @staticmethod
     def UM_40_Smart(ip_address=None):
         """
          Работа с Функционалом УМ-40 SMART
         :return:
         """
-        from Devices_USPD.Devices import UM_40_SMART
+        from Devices_USPD.UM40.USPD import UM_40_SMART
 
         return UM_40_SMART(ip_address=ip_address)
 
