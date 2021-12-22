@@ -132,9 +132,9 @@ class EthernetSettings(TemplateFunctional):
                 Settings = response['Settings']
                 # Теперь перебираем все это
                 for eth in Settings :
-                    if eth.get('iface') == 'eth0' :
+                    if eth.get('iface') == 'eth0':
                         self._eth0 = eth
-                    if eth.get('iface') == 'eth1' :
+                    if eth.get('iface') == 'eth1':
                         self._eth1 = eth
 
         except Exception as e:
@@ -283,5 +283,5 @@ class SettingsEthernet:
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-# lol = EthernetSettings().read_settings()
-# print(lol)
+
+

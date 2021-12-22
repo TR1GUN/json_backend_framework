@@ -41,6 +41,7 @@ class UM_40_SMART(Template_USPD):
     def _define_functionality(self):
         """
         Функция для получения доступа к Функционалу
+
         :return:
         """
         # Обновляем Настройки
@@ -57,3 +58,4 @@ class UM_40_SMART(Template_USPD):
 
         # self.USPD = UM_40_SMART_USPD(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
         # self.MeterDevices = UM_40_SMART_Meter(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+

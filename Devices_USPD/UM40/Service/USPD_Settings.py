@@ -18,14 +18,15 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
     # Функционал
     # Таблица приборов учета , Настройки хранения архивных данных приборов учета
     Meter = None
-
     # # Настройки Ethernet
-    # Ethernet = None
+    Ethernet = None
+    # Настройки модема
+    Modem = None
     # # Настройки линий питания интерфейсов
     # Interface_power_line = None
     # # Настройки локального времени
     # Local_time = None
-    # # Настройки SIM-карт (Pin, APN)
+    # Настройки SIM-карт (Pin, APN)
     # SIM_card = None
     #
     # # Клиенты и серверы
@@ -64,6 +65,8 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
         """
 
         self.Meter = self._Settings_Meter()
+        self.Ethernet = self._Settings_Ethernet()
+        self.Modem = self._Settings_Modem()
 
     def _Settings_Meter(self):
         """
@@ -78,3 +81,32 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
             ip_address=self._ip_address
         )
         return Settings_Meter
+
+    def _Settings_Ethernet(self):
+        """
+
+        Настройки Ethernet
+
+        """
+        from Devices_USPD.UM40.Functional.Settings.Ethernet_settings import EthernetSettings
+        # Определяем настройки
+        Ethernet_Settings = EthernetSettings(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return Ethernet_Settings
+
+    def _Settings_Modem(self):
+        """
+        Таблица приборов учета
+
+        """
+        from Devices_USPD.UM40.Service.Settings.Modem import SettingsModem
+        # Определяем настройки
+        Modem = SettingsModem(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return Modem
