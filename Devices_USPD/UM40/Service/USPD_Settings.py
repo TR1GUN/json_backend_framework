@@ -22,6 +22,9 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
     Ethernet = None
     # Настройки модема
     Modem = None
+
+    # Настройки серверов
+
     # # Настройки линий питания интерфейсов
     # Interface_power_line = None
     # # Настройки локального времени
@@ -99,7 +102,7 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
 
     def _Settings_Modem(self):
         """
-        Таблица приборов учета
+        Настройки Модема
 
         """
         from Devices_USPD.UM40.Service.Settings.Modem import SettingsModem
@@ -110,3 +113,19 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
             ip_address=self._ip_address
         )
         return Modem
+
+    def _Settings_Servers(self):
+        """
+
+        Настройки Сервера
+
+        :return:
+        """
+        from Devices_USPD.UM40.Service.Settings.Servers import SettingsServers
+        # Определяем настройки
+        Servers = SettingsServers(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return Servers
