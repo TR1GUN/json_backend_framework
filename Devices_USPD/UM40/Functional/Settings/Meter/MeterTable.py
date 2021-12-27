@@ -13,7 +13,7 @@ class MeterDeviceTable(TemplateDeviceFunctions):
 
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Metering_device_table")
+    _path_url = url_path.get("MaterTable")
 
     # хедерс - Иногда нужен
     _headers = None

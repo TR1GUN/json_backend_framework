@@ -20,8 +20,8 @@ class MeterArchInfo(TemplateFunctional):
     """
     # URL
     from Devices_USPD.settings import url_path
-    # _path_url = url_path.get("Meter_Arch_Info_settings")
-    _path_url = "/settings/meter/arch"
+    _path_url = url_path.get("MeterArchInfo")
+    # _path_url = "/settings/meter/arch"
     # хедерс - Иногда нужен
     _headers = None
     # куки

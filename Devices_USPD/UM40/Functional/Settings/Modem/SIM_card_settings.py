@@ -123,7 +123,7 @@ class SIM_card(TemplateFunctional):
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("SIM_card_settings")
+    _path_url = url_path.get("Settings_SIM")
 
     # хедерс - Иногда нужен
     _headers = None

@@ -305,7 +305,7 @@ class Ethernet(TemplateFunctional):
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Ethernet_settings")
+    _path_url = url_path.get("Settings_Ethernet")
 
     # хедерс - Иногда нужен
     _headers = None

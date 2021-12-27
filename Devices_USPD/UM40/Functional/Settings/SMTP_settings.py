@@ -14,8 +14,8 @@ class SMTP(TemplateFunctional):
     """
     # URL
     from Devices_USPD.settings import url_path
-    # _path_url = url_path.get("Meter_Arch_Info_settings")
-    _path_url = "/settings/smtp"
+    _path_url = url_path.get("Servers_SMTP_settings")
+    # _path_url = "/settings/smtp"
     # хедерс - Иногда нужен
     _headers = None
     # куки
