@@ -2,317 +2,255 @@
 
 # ---------------------------------- Различные URL пути - Общие----------------------------------
 url_path = {
-                                    # Авторизация
+    # //-------------------------------------------------------------------------------//
+    #                                     Авторизация
+    # //-------------------------------------------------------------------------------//
+    # /auth	Авторизация
+    "Authorization": '/auth',
 
-           "Authorization": '/auth'	,
+    # /logoff	Отключение
+    "Disconnection": '/logoff',
 
-                                    # Настройки
+    # //-------------------------------------------------------------------------------//
+    #                                     Настройки
+    # //-------------------------------------------------------------------------------//
 
-                        # Настройки устройства
+    # ================================ Настройки авторизации ==============================
 
-            # Настройки Ethernet
-            "Ethernet_settings": '/settings/ip',
-            # Настройки линий питания интерфейсов
-            "Interface_power_line_settings": '/settings/dout',
-            # Настройки локального времени
-            "Local_time_settings": '/settings/time/local',
+    # Настройки http авторизации
+    "Protocol_JSON_auth": '/settings/proto/json/auth',
+    # Настройки авторизации текстового протокола
+    "Protocol_TEXT_auth": '/settings/proto/text/auth',
+    # Настройки авторизации протокола RTU-327
+    "Protocol_RTU_auth": '/settings/proto/rtu/auth',
+    # Настройки выдачи данных текстового протокола
+    "Protocol_TEXT_data": '/settings/proto/text/data',
+    # Настройка почтовых сообщений текстового протокола
+    "Protocol_TEXT_mail": '/settings/proto/text/mail',
 
-            # Настройки SIM-карт (Pin, APN)
-            "SIM_card_settings": '/settings/modem/sim',
+    # ================================ Настройки устройства ==============================
 
-                        # Клиенты и серверы
-            # Настройки TCP-серверов
-            "TCP_server_settings": '/settings/servers/tcp',
-            # Настройки SNTP-серверов
-            "SNTP_server_settings": '/settings/servers/sntp',
+    # Настройки Ethernet
+    "Settings_Ethernet": '/settings/ip',
+    # Настройки последовательных интерфейсов(UART)
+    "Settings_UART": '/settings/uart',
+    # Настройки дискретных входов
+    "Settings_Din": '/settings/din',
+    # Настройки линий питания интерфейсов
+    "Settings_Dout": '/settings/dout',
+    # Настройки локального времени
+    "Settings_TimeZone": '/settings/time/local',
+    # Настройки доступа к файловой системе
+    "Settings_FileSystem": '/settings/file_system/access',
+    # Настройки модема
+    "Settings_Modem": '/settings/modem',
+    # Настройки APN(точки доступа)
+    "Settings_APN": '/settings/modem/apn',
+    # Настройки CSD(PPP-сервер)
+    "Settings_CSD": '/settings/modem/csd',
+    # Настройки SIM-карт (Pin, APN)
+    "Settings_SIM": '/settings/modem/sim',
 
-                        # Приборы учета
-            # Таблица приборов учета
-            "Metering_device_table": '/settings/meter/table',
+    # ================================Клиенты и серверы ==============================
 
-                        # Система событий
-            # Настройки менеджера системы событий
-            "Event_Manager_Settings": '/settings/events/manager',
-            # Настройки шаблонов приборов учета
-            "Metering_device_templates_settings": '/settings/templates/meter',
-            # Настройки шаблонов данных приборов учета
-            "Settings_for_metering_devices_data_templates": '/settings/templates/arch',
-            # Настройки расписаний
-            "Schedule_settings": '/settings/events/schdl',
-            # Настройки регулярного опроса приборов учета
-            "Settings_for_regular_polling_of_metering_devices": '/settings/actions/meter',
+    # Настройки TCP-серверов
+    "Servers_TCP": '/settings/servers/tcp',
+    # Настройки SMTP-серверов
+    "Servers_SMTP": '/settings/servers/smtp',
+    # Настройки SMTP-серверов
+    "Servers_SMTP_settings": '/settings/smtp',
+    # Настройки SNTP-серверов
+    "Servers_SNTP": '/settings/servers/sntp',
+    # Настройки MQTT-серверов
+    "Servers_MQTT": '/settings/servers/mqtt',
+    # Адресная книга
+    "Settings_Address": '/settings/address',
+    # Сообщения пользователя
+    "Settings_MessagesCustom": '/settings/messages/custom',
+    # Сообщения с данными приборов учета
+    "Settings_MessagesMeter": '/settings/messages/meter',
 
-                                    # Опрос приборов учета
+    # ================================ Приборы учета ==============================
 
-            # Опрос приборов учета
-            "Meter_Data_arch": '/meter/data/arch',
+    # Настройки хранения архивных данных приборов учета
+    "MeterArchInfo": '/settings/meter/arch',
+    # Таблица приборов учета
+    "MaterTable": '/settings/meter/table',
+    # ================================ Система событий  ==============================
 
-            "Meter_Data_moment": '/meter/data/moment',
+    # Настройки событий изменений дискретных входов
+    "Events_Din": '/settings/events/din',
+    # Настройки событий календаря
+    "Events_Calendar": '/settings/events/calendar',
+    # Настройки расписаний
+    "Events_Schedule": '/settings/events/schdl',
+    # Настройки менеджера системы событий
+    "Events_Manager": '/settings/events/manager',
+    # Настройки шаблонов приборов учета
+    "Templates_Meter": '/settings/templates/meter',
+    # Настройки шаблонов данных приборов учета
+    "Templates_Meter_Data": '/settings/templates/arch',
+    # Настройки шаблонов сообщений
+    "Template_Messages": '/settings/templates/messages',
+    # Шаблоны Email адресов
+    "Template_Email": '/settings/templates/email',
+    # Настройки регулярного опроса приборов учета
+    "Actions_Meter_Poller": '/settings/actions/meter',
+    # Настройки регулярной отправки почтовых сообщений
+    "Actions_SMTP": '/settings/actions/smtp',
+    # Настройки регулярной синхронизации времени
+    "Actions_SNTP": '/settings/actions/sntp',
+    # Настройки регулярной отправки sms сообщений
+    "Actions_SMS": '/settings/actions/sms',
+    # Настройки регулярной публикации mqtt сообщений
+    "Actions_": '/settings/actions/mqtt',
+    # Настройки имени устройства
+    "Settings_Name": '/settings/name',
 
+    # ================================ Протокол МЭК IEC60870 - 5–104 ==============================
 
-                                    # Управление приборами учета
+    # Работа с таблицей MapIOA
+    "MapIOA": '/settings/iec60870_5_104/mapioa',
+    # Работа с таблицей ValueDescription
+    "ValueDescription": '/settings/iec60870_5_104/value_description',
+    # Работа с таблицей TemplateName
+    "TemplateName": '/settings/iec60870_5_104/template_name',
+    # Работа с таблицей COTTypes
+    "COTTypes": '/settings/iec60870_5_104/cot_types',
+    # Работа с таблицей TypeIDTypes
+    "TypeIDTypes": '/settings/iec60870_5_104/type_id_types',
+    # Работа с таблицей Settings
+    "IEC60870Settings": '/settings/iec60870_5_104/iec60870_settings',
+    # Работа с таблицей IEC60870Template
+    "IEC60870Template": '/settings/iec60870_5_104/iec60870_template',
+    # Работа с таблицей COTValues
+    "COTValues": '/settings/iec60870_5_104/iec60870_cot_values',
 
-            # Установка времени
-            "Time_setting": '/meter/settings/time',
-            # Управление реле
-            "Relay_control": '/meter/settings/relay',
+    # //-------------------------------------------------------------------------------//
+    #                            Опрос приборов учета
+    # //-------------------------------------------------------------------------------//
+    # 	Опрос приборов учета
+    "MeterData": '/meter/data',
+    # Опрос приборов учета – Архивные записи
+    "MeterData_Arch": '/meter/data/arch',
+    # Опрос приборов учета – Моментные показатели
+    "MeterData_Moment": '/meter/data/moment',
 
-                                    # Действия
-            # Установка времени
-            "Set_Time_setting": '/action/time/set',
+    # //-------------------------------------------------------------------------------//
+    #                                Управление приборами учета
+    # //-------------------------------------------------------------------------------//
 
-            # Перезагрузка устройства
-            'Device_Restart': '/action/restart',
+    # Установка времени – Системное время счетчика
+    "Meter_Time": '/meter/settings/time',
+    # Управление реле
+    "Meter_Relay": '/meter/settings/relay',
 
+    # //-------------------------------------------------------------------------------//
+    #                                    Действия
+    # //-------------------------------------------------------------------------------//
 
-                                    # Информация о состоянии изделия
-            # Текущее время
-            "Current_time": '/state/time',
+    # Синхронизация времени (SNTP)
+    "Time_synchronization": '/action/time/sync',
+    # Поверка внешних ЧРВ
+    "Time_check": '/action/time/check',
+    # Перезагрузка
+    "Restart": '/action/restart',
+    # Обновление загрузчика
+    "Update_loader": '/action/update/loader',
+    # Очистка логического диска
+    "Disk_clear": '/action/disk/clear',
+    # Установка времени – Системное время устройства
+    "Set_time": '/action/time/set',
+    # Синхронизация хранилища данных приборов учета
+    "Storage_synchronization": '/action/storage/sync',
 
+    # //-------------------------------------------------------------------------------//
+    #                                 Журналы изделия
+    # //-------------------------------------------------------------------------------//
+
+    # Журнал изменения времени
+    "Journal_time": '/jrnl/time',
+    # Журнал сетевых подключений
+    "Journal_SRV_connections": '/jrnl/srvconn',
+    # Журнал подключений PPP клиента (GPRS)
+    "Journal_PPP_connections": '/jrnl/ppp/clconn',
+    # Журнал поднятия PPP-сервера (CSD)
+    "Journal_PPP_SRV_connections": '/jrnl/ppp/srvconn',
+    # Журнал входящих вызовов (CSD)
+    "Journal_CSD": '/jrnl/call',
+    # Журнал изменения состояния дискретных входов
+    "Journal_Sens": '/jrnl/din/sens',
+
+    "Journal_PowerLine": '/jrnl/din/pwrline',
+
+    "Journal_Power": '/jrnl/din/power',
+
+    "Journal_Charge": '/jrnl/din/charge',
+
+    "Journal_Din_Open": '/jrnl/din/open',
+    # Журнал авторизации (HTTP-сервер)
+    "Journal_Auth_JSON": '/jrnl/auth/json',
+    # Журнал перезагрузок
+    "Journal_reset": '/jrnl/reset',
+    # Журнал хранилища почтовых сообщений
+    "Journal_Mail_message": '/jrnl/mail/msg',
+    # Журнал отправки почтовых сообщений
+    "Journal_Mail_send": '/jrnl/mail/send',
+    # Журнал изменения версии ВПО изделия
+    "Journal_Update_version": '/jrnl/update/version',
+    # Журнал обновления ВПО загрузчика изделия
+    "Journal_Update_loader": '/jrnl/update/loader',
+    # Журнал фиксации ответов приборов учета
+    "Journal_Meter_ANSW": '/jrnl/meter/answ',
+    # Журнал хранилища исходящих SMS сообщений
+    "Journal_SMS_message": '/jrnl/sms/msg',
+    # Журнал отправки SMS сообщений
+    "Journal_SMS_send": '/jrnl/sms/send',
+    # Журнал приема SMS сообщений
+    "Journal_SMS_get": '/jrnl/sms/get',
+    # Журнал установки связи с MQTT брокером
+    "Journal_MQTT_connect": '/jrnl/mqtt/connect',
+    # Журнал обмена сообщениями с MQTT брокером
+    "Journal_MQTT_message": '/jrnl/mqtt/message',
+    # //-------------------------------------------------------------------------------//
+    #                     Информация о состоянии изделия
+    # //-------------------------------------------------------------------------------//
+
+    # Состояние линий питания интерфейсов
+    "State_Dout": '/state/dout',
+    # Состояние дискретных входов
+    "State_Din": '/state/din',
+    # Состояние аналоговых входов
+    "State_Ain": '/state/ain',
+    # Ожидаемое время срабатывания расписаний
+    "State_Schedule": '/state/schdl',
+    # Состояние последовательных интерфейсов
+    "State_UART": '/state/uart',
+    # Состояние сетевых подключений
+    "State_Network": '/state/network',
+    # Состояние сокетов
+    "State_Socket": '/state/socket',
+    # Состояние микросхем памяти
+    "State_DataFlash": '/state/dataflash',
+    # Состояние файловой системы
+    "State_FileSystem": '/state/file_system',
+    # Состояние модема
+    "State_Modem": '/state/modem',
+    # Состояние операционной системы
+    "State_OS": '/state/os',
+    # Состояние таблицы приборов учета
+    "State_MeterTable": '/state/meter_table',
+    # Текущее время
+    "State_Time": '/state/time',
+    # Информация о конфигурации системы
+    "State_System": '/state/system',
+
+    # //-------------------------------------------------------------------------------//
+    #                                 Загрузка файлов
+    # //-------------------------------------------------------------------------------//
+    # Загрузка файлов обновления ВПО
+    "Upload_firmware": '/upload/firmware',
+    #       Загрузка файлов обновления ВПО
+    "Upload_loader": '/upload/loader',
 
 }
-
-
-            # ///////////////////////////////////////////////////////////
-            #                Добавлено  в 40 СМАРТ
-            # ///////////////////////////////////////////////////////////
-url_path_smart40 = {
-
-        # ///////////////////////////Зарядные станции//////////////////////////////////
-        # -Таблица зарядных станций - Переписал
-        'ChargeStationTable' : '/settings/charge/table',
-        # # - Состояние зарядных станций - Переписал
-        'ChargeStationArchData' : '/charge/data/arch',
-        # ///////////////////////////////////////////////////////
-
-        # ///////////////////////////////////////////////////////
-        # Пока не завезено во фронтенд
-
-        # // - таблица MeterMessages в БД системы событий - Переписал
-        'MeterMessages' : '/settings/templates/messages',
-
-        # // - таблица MQTTMeterMessages в БД системы событий - Переписал
-        'MQTTMeterMessages' : '/settings/action/mqtt',
-
-        # // - таблица Calendar в БД системы событий - Переписал
-        'Calendar' : '/settings/events/calendar' ,
-
-        # // - Таблица аккаунтов SMTP - Переписал
-        'AccountSMTP' : '/settings/smtp',
-        # // -  таблица SMTPMeterMessages в БД системы событий - Переписал
-        'SMTPMeterMessages' : '/settings/action/smtp' ,
-
-        # // -  таблица Email в БД системы событий - Переписал
-        'settingsEmail' : '/settings/email',
-
-        # ///////////////////// iec60870 ///////////////////////////
-
-        # // - iec60870 - Работа с таблицей MapIOA - Переписал
-         "MapIOA": '/settings/iec60870/mapioa',
-
-        # // - iec60870 - работа с таблицей ValueDescription - переписал
-        "ValueDescription": '/settings/iec60870/value_description',
-        # // - iec60870 - работа с таблицей TemplateName - переписал
-               "TemplateName"  : '/settings/iec60870/template_name',
-        # // - iec60870 - работа с таблицей COTTypes - переписал
-        'COTTypes'   : '/settings/iec60870/cot_types',
-        # // - iec60870 - работа с таблицей TypeIDTypes - переписал
-        'TypeIDTypes' : '/settings/iec60870/type_id_types',
-        # // - iec60870 - работа с таблицей Settings - Переписал
-        'IEC60870Settings'   : '/settings/iec60870/iec60870_settings',
-        # // - iec60870 - работа с таблицей IEC60870Template - Переписал
-         'IEC60870Template': '/settings/iec60870/iec60870_template',
-        # // - iec60870 - работа с таблицей IEC60870Template - Переписал
-        'IEC60870COTValues' : '/settings/iec60870/iec60870_cot_values',
-           }
-
-
-# ------------------------------------------------------------------------------------------------------
-
-# //-------------------------------------------------------------------------------//
-#URI path	Краткое описание
-# //-------------------------------------------------------------------------------//
-#                                     Авторизация
-# //-------------------------------------------------------------------------------//
-# Авторизация
-'/auth'
-# Отключение
-'/logoff'
-# //-------------------------------------------------------------------------------//
-#                                       Настройки
-# //-------------------------------------------------------------------------------//
-# Настройки http авторизации
-'/settings/proto/json/auth'
-# Настройки авторизации текстового протокола
-'/settings/proto/text/auth'
-# Настройки авторизации протокола RTU-327
-'/settings/proto/rtu/auth'
-# Настройки выдачи данных текстового протокола
-'/settings/proto/text/data'
-# Настройка почтовых сообщений текстового протокола
-'/settings/proto/text/mail'
-# Настройки Ethernet
-'/settings/ip'
-# Настройки последовательных интерфейсов(UART)
-'/settings/uart'
-# Настройки дискретных входов
-'/settings/din'
-# Настройки линий питания интерфейсов
-'/settings/dout'
-# Настройки локального времени
-'/settings/time/local'
-# Настройки доступа к файловой системе
-'/settings/file_system/access'
-# Настройки модема
-'/settings/modem'
-# Настройки APN(точки доступа)
-'/settings/modem/apn'
-# Настройки CSD(PPP-сервер)
-'/settings/modem/csd'
-# Настройки TCP-серверов
-'/settings/servers/tcp'
-# Настройки SMTP-серверов
-'/settings/servers/smtp'
-# Настройки SNTP-серверов
-'/settings/servers/sntp'
-# Настройки MQTT-серверов
-'/settings/servers/mqtt'
-# Адресная книга
-'/settings/address'
-# Сообщения пользователя
-'/settings/messages/custom'
-# Сообщения с данными приборов учета
-'/settings/messages/meter'
-# Настройки хранения архивных данных приборов учета
-'/settings/meter/arch'
-# Таблица приборов учета
-'/settings/meter/table'
-# Настройки событий изменений дискретных входов
-'/settings/events/din'
-# Настройки расписаний
-'/settings/events/schdl'
-# Настройки регулярной отправки почтовых сообщений
-'/settings/actions/smtp'
-# Настройки регулярной синхронизации времени # Настройки SNTP-серверов
-'/settings/actions/sntp'
-# Настройки регулярного опроса приборов учета
-'/settings/actions/meter'
-# Настройки регулярной отправки sms сообщений
-'/settings/actions/sms'
-# Настройки регулярной публикации mqtt сообщений
-'/settings/actions/mqtt'
-# Настройки имени устройства
-'/settings/name'
-# //-------------------------------------------------------------------------------//
-# Опрос приборов учета
-# //-------------------------------------------------------------------------------//
-# Опрос приборов учета
-'/meter/data'
-# //-------------------------------------------------------------------------------//
-# Управление приборами учета
-# //-------------------------------------------------------------------------------//
-# Установка времени
-'/meter/settings/time'
-# Управление реле
-'/meter/settings/relay'
-# //-------------------------------------------------------------------------------//
-# Действия
-# //-------------------------------------------------------------------------------//
-# Синхронизация времени (SNTP)
-'/action/time/sync'
-# Поверка внешних ЧРВ
-'/action/time/check'
-# Перезагрузка
-'/action/restart'
-# Обновление загрузчика
-'/action/update/loader'
-# Очистка логического диска
-'/action/disk/clear'
-# Установка времени
-'/action/time/set'
-# Синхронизация хранилища данных приборов учета
-'/action/storage/sync'
-# //-------------------------------------------------------------------------------//
-# Журналы изделия
-# //-------------------------------------------------------------------------------//
-# Журнал изменения времени
-'/jrnl/time'
-# Журнал сетевых подключений
-'/jrnl/srvconn'
-# Журнал подключений PPP клиента (GPRS)
-'/jrnl/ppp/clconn'
-# Журнал поднятия PPP-сервера (CSD)
-'/jrnl/ppp/srvconn'
-# Журнал входящих вызовов (CSD)
-'/jrnl/call'
-# Журнал изменения состояния дискретных входов
-'/jrnl/din/sens'
-
-'/jrnl/din/pwrline'
-'/jrnl/din/power'
-'/jrnl/din/charge'
-'/jrnl/din/open'
-# Журнал авторизации (HTTP-сервер)
-'/jrnl/auth/json'
-# Журнал перезагрузок
-'/jrnl/reset'
-# Журнал хранилища почтовых сообщений
-'/jrnl/mail/msg'
-# Журнал отправки почтовых сообщений
-'/jrnl/mail/send'
-# Журнал изменения версии ВПО изделия
-'/jrnl/update/version'
-# Журнал обновления ВПО загрузчика изделия
-'/jrnl/update/loader'
-# Журнал фиксации ответов приборов учета
-'/jrnl/meter/answ'
-# Журнал хранилища исходящих SMS сообщений
-'/jrnl/sms/msg'
-# Журнал отправки SMS сообщений
-'/jrnl/sms/send'
-# Журнал приема SMS сообщений
-'/jrnl/sms/get'
-# Журнал установки связи с MQTT брокером
-'/jrnl/mqtt/connect'
-# Журнал обмена сообщениями с MQTT брокером
-'/jrnl/mqtt/message'
-# //-------------------------------------------------------------------------------//
-# Информация о состоянии изделия
-# //-------------------------------------------------------------------------------//
-# Состояние линий питания интерфейсов
-'/state/dout'
-# Состояние дискретных входов
-'/state/din'
-# Состояние аналоговых входов
-'/state/ain'
-# Ожидаемое время срабатывания расписаний
-'/state/schdl'
-# Состояние последовательных интерфейсов
-'/state/uart'
-# Состояние сетевых подключений
-'/state/network'
-# Состояние сокетов
-'/state/socket'
-# Состояние микросхем памяти
-'/state/dataflash'
-# Состояние файловой системы
-'/state/file_system'
-# Состояние модема
-'/state/modem'
-# Состояние операционной системы
-'/state/os'
-# Состояние таблицы приборов учета
-'/state/meter_table'
-# Текущее время
-'/state/time'
-# Информация о конфигурации системы
-'/state/system'
-# //-------------------------------------------------------------------------------//
-# Загрузка файлов
-# //-------------------------------------------------------------------------------//
-# Загрузка файлов обновления ВПО
-'/upload/firmware'
-
-'/upload/loader'
-# //-------------------------------------------------------------------------------//
-
