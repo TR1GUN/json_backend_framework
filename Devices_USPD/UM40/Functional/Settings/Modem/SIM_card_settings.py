@@ -111,19 +111,18 @@ class SettingsSim:
 # -------------------------------------------------------------------------------------------------------------
 #                                         Настройки СИМ карт
 # -------------------------------------------------------------------------------------------------------------
+# from Service.Template_Functional import TemplateFunctional
+from Devices_USPD.Devices_Functions.Settings.Modem.SIM_card_settings import TemplateSIM
 # -------------------------------------------------------------------------------------------------------------
 
-from Service.Template_Functional import TemplateFunctional
-
-
-class SIM_card(TemplateFunctional):
+class SIM_card(TemplateSIM):
     """
     Настройки SIM-карт (Pin, APN)
 
     """
     # URL
-    from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Settings_SIM")
+    # from Devices_USPD.settings import url_path
+    # _path_url = url_path.get("Settings_SIM")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -155,81 +154,6 @@ class SIM_card(TemplateFunctional):
 
         if ip_address is not None:
             self._ip_address = ip_address
-
-        # print(self.headers)
-        # print(self.cookies)
-
-        # Обьявляем наш класс настроек
-        # self.SettingsSim = SettingsSim()
-
-    def read_settings(self):
-        """
-        Читаем данные - GET
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
-
-        return response
-
-    def write_settings(self, data=None):
-        """
-        Добавляем на запись данные  - POST
-
-        :param data:
-        :return:
-        """
-
-        if data is None:
-            data_settings = self._getting_settings()
-            data = {'Settings': data_settings}
-
-        # Запаковываем
-        data = self._coding(data=data)
-
-        # делаем запрос - получаем ответ
-        response = self._request_POST(JSON=data)
-
-        return response
-
-    def rewrite_settings(self, data):
-        """
-        Перезаписываем данные - PUT
-        :param data:
-        :return:
-        """
-        if data is None:
-            data_settings = self._getting_settings()
-            data = {'Settings': data_settings}
-
-        # Запаковываем
-        data = self._coding(data=data)
-
-        # делаем запрос - получаем ответ
-        response = self._request_PUT(JSON=data)
-
-        return response
-
-    def delete_settings(self, data=None):
-        """
-        Удаляем данные - DELETE
-        :param data:
-        :return:
-        """
-        # Запаковываем
-        if data is not None:
-            data = self._coding(data=data)
-
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE(JSON=data)
-        else:
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE()
-
-        return response
-
-    # Здесь расположим сервисные функции
-    # Первое - Получаем настройки что уже есть
 
     def _getting_settings(self):
 

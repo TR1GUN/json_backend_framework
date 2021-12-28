@@ -105,7 +105,7 @@ url_path = {
     # Настройки регулярной отправки sms сообщений
     "Actions_SMS": '/settings/actions/sms',
     # Настройки регулярной публикации mqtt сообщений
-    "Actions_": '/settings/actions/mqtt',
+    "Actions_MQTT": '/settings/actions/mqtt',
     # Настройки имени устройства
     "Settings_Name": '/settings/name',
 
