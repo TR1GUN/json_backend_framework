@@ -1,20 +1,21 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                      Шаблон настроек СИМ карт
+#                                      Шаблон Настройки модема
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+# ЗДЕСЬ ОЧЕНЬ ВААЖНО - тут не используется поле Settings
 
 from Service.Template_Functional import TemplateFunctional
 
 
-class TemplateSIM(TemplateFunctional):
+class TemplateModem(TemplateFunctional):
     """
-    Настройки SIM-карт (Pin, APN)
+    Настройки модема
 
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Settings_SIM")
+    _path_url = url_path.get("Settings_Modem")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -22,7 +23,7 @@ class TemplateSIM(TemplateFunctional):
     _cookies = None
 
     # Имя поля настроек
-    _Settings_name = 'Settings'
+    _Settings_name = None
 
     # Настройки по умолчанию
 
@@ -45,8 +46,7 @@ class TemplateSIM(TemplateFunctional):
         """
 
         if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)
@@ -63,8 +63,7 @@ class TemplateSIM(TemplateFunctional):
         :return:
         """
         if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)
@@ -98,9 +97,7 @@ class TemplateSIM(TemplateFunctional):
     def _getting_settings(self):
 
         """
-
-        В Классе шаблоне метод получения настроек отвечает за встравку GET запроса
-
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
 
         """
         data = self._request_setting()
@@ -112,7 +109,7 @@ class TemplateSIM(TemplateFunctional):
         Здесь запрашиваем нужные нам настройки
 
         """
-        data = []
+        data = {}
         try:
             # делаем запрос - получаем ответ
             response = self.read_settings()
@@ -121,9 +118,7 @@ class TemplateSIM(TemplateFunctional):
                 answer_setting = response.get('data')
                 # Теперь заполянем наши переменные
                 if answer_setting is not None:
-                    Settings = answer_setting[self._Settings_name]
-                    if Settings is not None :
-                        data = Settings
+                    data = answer_setting
         except Exception as e:
 
             print("При считывании параметров возникла ошибка - " + str(e))
