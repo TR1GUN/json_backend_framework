@@ -1,43 +1,33 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         # Настройки локального времени
+#                              Шаблон Настройки локального времени  -
+#                          Разрешение на смену сезона(Зима/лето) + Часовой Пояс
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
+# ЗДЕСЬ ОЧЕНЬ ВААЖНО - тут не используется поле Settings
+
 from Service.Template_Functional import TemplateFunctional
 
 
-class LocalTime(TemplateFunctional):
+class TemplateLocalTimeZone(TemplateFunctional):
     """
-
-    Настройки локального времени
+    Шаблон Настройки локального времени
 
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Local_time_settings")
+    _path_url = url_path.get("Settings_TimeZone")
 
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
 
-    def __init__(self, cookies=None, headers=None, ip_address=None):
-        """
-        Настройки локального времени
+    # Имя поля настроек
+    _Settings_name = None
 
-        :param cookies:
-        :param headers:
-        """
-        if cookies is not None:
-            self._cookies = cookies
-        if headers is not None:
-            self._headers = headers
-
-        if ip_address is not None:
-            self._ip_address = ip_address
-
-        # print(self.headers)
-        # print(self.cookies)
+    # Настройки по умолчанию
 
     def read_settings(self):
         """
@@ -49,13 +39,16 @@ class LocalTime(TemplateFunctional):
 
         return response
 
-    def write_settings(self, data):
+    def write_settings(self, data=None):
         """
         Добавляем на запись данные  - POST
 
         :param data:
         :return:
         """
+
+        if data is None:
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)
@@ -71,6 +64,9 @@ class LocalTime(TemplateFunctional):
         :param data:
         :return:
         """
+        if data is None:
+            data = self._getting_settings()
+
         # Запаковываем
         data = self._coding(data=data)
 
@@ -97,13 +93,47 @@ class LocalTime(TemplateFunctional):
 
         return response
 
+    # Здесь расположим сервисные функции
+    # Первое - Получаем настройки что уже есть
+
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+
+        """
+        data = self._request_setting()
+        return data
+
+    # Запрос настроек
+    def _request_setting(self):
+        """
+        Здесь запрашиваем нужные нам настройки
+
+        """
+        data = {}
+        try:
+            # делаем запрос - получаем ответ
+            response = self.read_settings()
+            # Теперь вытаскиваем нужное
+            if response.get('code') == int(200):
+                answer_setting = response.get('data')
+                # Теперь заполянем наши переменные
+                if answer_setting is not None:
+                    data = answer_setting
+        except Exception as e:
+
+            print("При считывании параметров возникла ошибка - " + str(e))
+
+        return data
+
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
-settings = LocalTime().read_settings()
-print(settings)
-settings = LocalTime().rewrite_settings({'tz': 3})
-
-print(settings)
+# settings = LocalTime().read_settings()
+# print(settings)
+# settings = LocalTime().rewrite_settings({'tz': 3})
+#
+# print(settings)
 
 
