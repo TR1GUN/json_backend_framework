@@ -56,7 +56,7 @@ class TemplateModem(TemplateFunctional):
 
         return response
 
-    def rewrite_settings(self, data):
+    def rewrite_settings(self, data=None):
         """
         Перезаписываем данные - PUT
         :param data:
