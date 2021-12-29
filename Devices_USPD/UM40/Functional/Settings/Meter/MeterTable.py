@@ -5,126 +5,6 @@
 # -------------------------------------------------------------------------------------------------------------
 from Service.TemplateDeviceFunctions import TemplateDeviceFunctions, TemplateSettingsData
 
-
-#
-# class MeterDeviceTable(TemplateDeviceFunctions):
-#     """
-#      Таблица приборов учета
-#     """
-#
-#     # URL
-#     from Devices_USPD.settings import url_path
-#     _path_url = url_path.get("MaterTable")
-#
-#     # хедерс - Иногда нужен
-#     _headers = None
-#     # куки
-#     _cookies = None
-#
-#     def __init__(self, cookies=None, headers=None, ip_address=None):
-#         """
-#          Таблица приборов учета
-#
-#         :param cookies:
-#         :param headers:
-#         """
-#         if cookies is not None:
-#             self._cookies = cookies
-#         if headers is not None:
-#             self._headers = headers
-#
-#         if ip_address is not None:
-#             self._ip_address = ip_address
-#
-#         # print(self.headers)
-#         # print(self.cookies)
-#         self._define_settings_ids()
-#
-#     def _define_settings_ids(self):
-#
-#         """
-#         Переопределяем Наши настройки
-#         :return:
-#         """
-#
-#         self.Data_Settings = SettingsMeterTable()
-#
-#     def read_settings(self):
-#         """
-#         Читаем данные - GET
-#         :return:
-#         """
-#         # делаем запрос - получаем ответ
-#         response = self._request_GET(JSON='')
-#
-#         return response
-#
-#     def write_settings(self, data=None):
-#         """
-#         Добавляем на запись данные  - POST
-#
-#         :param data: Данные в Формате JSON - Если None - то используем добавленные данные
-#         :return:
-#         """
-#         if data is None:
-#             data_settings = self.Data_Settings.get_settings()
-#             data = {'Meters': data_settings}
-#
-#         # Запаковываем
-#         data = self._coding(data=data)
-#
-#         # делаем запрос - получаем ответ
-#         response = self._request_POST(JSON=data)
-#
-#         return response
-#
-#     def rewrite_settings(self, data):
-#         """
-#         Перезаписываем данные - PUT
-#         :param data: Данные в Формате JSON - Если None - то используем добавленные данные
-#         :return:
-#         """
-#         if data is None:
-#             data_settings = self.Data_Settings.get_settings()
-#             data = {'Meters': data_settings}
-#
-#         # Запаковываем
-#         data = self._coding(data=data)
-#
-#         # делаем запрос - получаем ответ
-#         response = self._request_PUT(JSON=data)
-#
-#         return response
-#
-#     def delete_settings(self, data=None):
-#         """
-#         Удаляем данные - DELETE
-#         :param data:
-#         :return:
-#         """
-#
-#         if data is None:
-#
-#             data_settings = self.Data_Settings.get_ids()
-#
-#             if len(data_settings) > 0:
-#                 data = {'Meters': data_settings}
-#             else:
-#                 data = None
-#
-#         # Запаковываем
-#         if data is not None:
-#             data = self._coding(data=data)
-#
-#             # делаем запрос - получаем ответ
-#             response = self._request_DELETE(JSON=data)
-#         else:
-#             # делаем запрос - получаем ответ
-#             response = self._request_DELETE()
-#
-#         return response
-
-
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                  Настройки Таблица приборов учета
@@ -390,14 +270,15 @@ class SettingsMeterTable(TemplateSettingsData):
 
 from Devices_USPD.Devices_Functions.Settings.MeterDevice.MeterTable_settings import TemplateMeterTable
 
-
 # -------------------------------------------------------------------------------------------------------------
+
 
 class MeterTable(TemplateMeterTable):
     """
     Таблица приборов учета
 
     """
+    from Service.TemplateDecorator import print_log_use_GET_data
     # хедерс - Иногда нужен
     _headers = None
     # куки
@@ -406,9 +287,9 @@ class MeterTable(TemplateMeterTable):
     # Общие настройки
     Settings = SettingsMeterTable()
 
-    # Настройки по умолчанию
+    # Массив из счетчиков
+    _Meters = [{'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]
 
-    # Настройки сим карт
     # _Sim1 = {'id': 1, 'pin': '', 'addr': 'internet.beeline.ru', 'auth': False, 'login': 'beeline',
     #          'password': 'beeline', 'enable': True}
     # _Sim2 = {'id': 2, 'pin': '2527', 'addr': 'internet.beeline.ru', 'auth': True, 'login': 'beeline',
@@ -428,6 +309,50 @@ class MeterTable(TemplateMeterTable):
 
         if ip_address is not None:
             self._ip_address = ip_address
+
+    # Пункт Первый - Переделываем ВСЕ параметры
+    def _getting_settings(self):
+
+        """
+
+        В Классе шаблоне метод получения настроек отвечает за встравку GET запроса
+
+
+        """
+        # Смотрим - есть ли добавленые счетчики
+        data  = self.Settings.get_settings()
+        # Теперь если у нас есть данные - Считываем их
+
+        data = self._request_setting()
+        return data
+
+    # Запрос настроек
+
+    @print_log_use_GET_data
+    def _request_setting(self):
+        """
+        Здесь запрашиваем нужные нам настройки
+
+        """
+
+        data = []
+        try:
+            # делаем запрос - получаем ответ
+            response = self.read_settings()
+            # Теперь вытаскиваем нужное
+            if response.get('code') == int(200):
+                answer_setting = response.get('data')
+                # Теперь заполянем наши переменные
+                if answer_setting is not None:
+                    Settings = answer_setting[self._Settings_name]
+                    if Settings is not None :
+                        data = Settings
+        except Exception as e:
+
+            print("При считывании параметров возникла ошибка - " + str(e))
+
+        return data
+
 
     # def _getting_settings(self):
     #
@@ -497,9 +422,7 @@ class MeterTable(TemplateMeterTable):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-lol = MeterTable().rewrite_settings()
 
-print(lol)
 # # #
 # # a = {'Meters': [{
 # #                 'addr': '72',
@@ -534,3 +457,4 @@ print(lol)
 # # url = '_settings_meter_table'
 # # url_path = url[1:]
 # # print(url_path)
+
