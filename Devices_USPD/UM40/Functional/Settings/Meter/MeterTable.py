@@ -268,7 +268,7 @@ class SettingsMeterTable(TemplateSettingsData):
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Devices_USPD.Devices_Functions.Settings.MeterDevice.MeterTable_settings import TemplateMeterTable
+from Devices_USPD.Devices_Functions.Settings.MeterDevice.Template_MeterTable_settings import TemplateMeterTable
 
 # -------------------------------------------------------------------------------------------------------------
 
