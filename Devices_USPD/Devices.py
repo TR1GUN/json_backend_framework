@@ -152,7 +152,7 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
     #     self.Ethernet = self._Ethernet()
 
     # def _Ethernet(self):
-    #     from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+    #     from Devices_USPD.Template_Devices_Functions.Ethernet_settings import EthernetSettings
     #
     #     return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
@@ -258,7 +258,7 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
     #     self.Ethernet = self._Ethernet()
     #
     # def _Ethernet(self):
-    #     from Devices_USPD.Devices_Functions.Ethernet_settings import EthernetSettings
+    #     from Devices_USPD.Template_Devices_Functions.Ethernet_settings import EthernetSettings
     #
     #     return EthernetSettings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
