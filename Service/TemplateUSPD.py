@@ -171,12 +171,12 @@ class Template_UM_XX_SMART_Meter:
 
 
     def _Meter_data_arch(self):
-        from Devices_USPD.Devices_Functions.MeterData.Meter_Data_arch import MeterDataArch
+        from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_arch import MeterDataArch
 
         return MeterDataArch(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     def _Meter_data_moment(self):
-        from Devices_USPD.Devices_Functions.MeterData.Meter_Data_moment import MeterDataMoment
+        from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_moment import MeterDataMoment
 
         return MeterDataMoment(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
