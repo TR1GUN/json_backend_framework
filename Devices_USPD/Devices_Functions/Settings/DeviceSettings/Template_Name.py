@@ -1,42 +1,31 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки регулярного опроса приборов учета
+#                                      Шаблон Настройки имени устройства
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+# ЗДЕСЬ ОЧЕНЬ ВААЖНО - тут не используется поле Settings
+
 from Service.Template_Functional import TemplateFunctional
 
 
-class SettingsForRegularPollingOfMeteringDevices(TemplateFunctional):
+class TemplateName(TemplateFunctional):
     """
-    Настройки регулярного опроса приборов учета
+    Настройки имени устройства
 
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Settings_for_regular_polling_of_metering_devices")
+    _path_url = url_path.get("Settings_Name")
 
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
 
-    def __init__(self, cookies=None, headers=None, ip_address=None):
-        """
-        Настройки регулярного опроса приборов учета
+    # Имя поля настроек
+    _Settings_name = None
 
-        :param cookies:
-        :param headers:
-        """
-        if cookies is not None:
-            self._cookies = cookies
-        if headers is not None:
-            self._headers = headers
-
-        if ip_address is not None:
-            self._ip_address = ip_address
-
-        # print(self.headers)
-        # print(self.cookies)
+    # Настройки по умолчанию
 
     def read_settings(self):
         """
@@ -48,13 +37,16 @@ class SettingsForRegularPollingOfMeteringDevices(TemplateFunctional):
 
         return response
 
-    def write_settings(self, data):
+    def write_settings(self, data=None):
         """
         Добавляем на запись данные  - POST
 
         :param data:
         :return:
         """
+
+        if data is None:
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)
@@ -64,12 +56,15 @@ class SettingsForRegularPollingOfMeteringDevices(TemplateFunctional):
 
         return response
 
-    def rewrite_settings(self, data):
+    def rewrite_settings(self, data=None):
         """
         Перезаписываем данные - PUT
         :param data:
         :return:
         """
+        if data is None:
+            data = self._getting_settings()
+
         # Запаковываем
         data = self._coding(data=data)
 
@@ -96,20 +91,39 @@ class SettingsForRegularPollingOfMeteringDevices(TemplateFunctional):
 
         return response
 
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-# lol = EthernetSettings().delete_settings()
-# print(lol)
+    # Здесь расположим сервисные функции
+    # Первое - Получаем настройки что уже есть
 
-# lol = b''
-# lol = None
-# # print(lol)
-# # a = False
-# # print(bytes(a))
-#
-# lol = bool(lol)
-# print(lol)
-# if lol:
-#     print('lol')
-# else:
-#     print('asdsa')
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+
+        """
+        data = self._request_setting()
+        return data
+
+    # Запрос настроек
+    def _request_setting(self):
+        """
+        Здесь запрашиваем нужные нам настройки
+
+        """
+        data = {}
+        try:
+            # делаем запрос - получаем ответ
+            response = self.read_settings()
+            # Теперь вытаскиваем нужное
+            if response.get('code') == int(200):
+                answer_setting = response.get('data')
+                # Теперь заполянем наши переменные
+                if answer_setting is not None:
+                    data = answer_setting
+        except Exception as e:
+
+            print("При считывании параметров возникла ошибка - " + str(e))
+
+        return data
+
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
