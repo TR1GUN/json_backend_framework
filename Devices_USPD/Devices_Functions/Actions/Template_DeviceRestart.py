@@ -1,27 +1,27 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Шаблон Установки времени
+#                                        Шаблон для перезагрузки
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
 from Service.Template_Functional import TemplateFunctional
 
 
-class TemplateTimeSetting(TemplateFunctional):
+class TemplateDeviceRestart(TemplateFunctional):
     """
-    Шаблон Установки времени
+    Шаблон для перезагрузки
 
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Meter_Time")
+    _path_url = url_path.get("Restart")
 
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
 
-    def request_set(self, data):
+    def restart(self):
         """
         Запросить данные - POST
 
@@ -30,8 +30,8 @@ class TemplateTimeSetting(TemplateFunctional):
         """
 
         # Запаковываем
-        data = self._coding(data=data)
-
+        # data = self._coding(data=data)
+        data = ''
         # делаем запрос - получаем ответ
         response = self._request_POST(JSON=data)
 
@@ -39,3 +39,5 @@ class TemplateTimeSetting(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
+
