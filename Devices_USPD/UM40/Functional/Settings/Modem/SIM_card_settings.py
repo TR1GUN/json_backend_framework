@@ -113,7 +113,7 @@ class SettingsSim:
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Devices_USPD.Devices_Functions.Settings.Modem.Template_SIM_card_settings import TemplateSIM
+from Service.Template_Devices_Functions.Settings.Modem.Template_SIM_card_settings import TemplateSIM
 
 # -------------------------------------------------------------------------------------------------------------
 

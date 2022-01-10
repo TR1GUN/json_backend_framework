@@ -1,20 +1,20 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                      Шаблон  - Текущее время
+#                                      Шаблон состояния линий питания интерфейсов
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
 from Service.Template_Functional import TemplateFunctional
 
 
-class TemplateStateTime(TemplateFunctional):
+class TemplateStateDOut(TemplateFunctional):
     """
-     Шаблон  - Текущее время
+    Шаблон состояния линий питания интерфейсов
 
     """
     # URL
     from Devices_USPD.settings import url_path
-    _path_url = url_path.get("State_Time")
+    _path_url = url_path.get("State_Dout")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -23,12 +23,12 @@ class TemplateStateTime(TemplateFunctional):
 
     # Настройки по умолчанию
 
-    def read_settings(self):
+    def _read_settings(self):
         """
         Читаем данные - GET
         :return:
         """
         # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
+        response = self._request_GET()
 
         return response

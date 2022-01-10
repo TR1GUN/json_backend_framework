@@ -59,3 +59,10 @@ class UM_40_SMART(Template_USPD):
         # self.USPD = UM_40_SMART_USPD(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
         # self.MeterDevices = UM_40_SMART_Meter(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
+    def _StateInfo(self):
+        """
+        Получаем Класс который работает с Информация о состоянии УСПД
+        :return:
+        """
+        from Devices_USPD.UM40.Service.USPD_StateInfo import UM_40_SMART_StateInfo
+        self.StateInfo = UM_40_SMART_StateInfo(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)

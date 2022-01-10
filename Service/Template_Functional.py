@@ -85,17 +85,16 @@ class TemplateFunctional:
         # --->
         return response_dict
 
-    def _request_GET(self, JSON: str = ''):
+    def _request_GET(self):
         """
         Использование Метода GET
 
-        :param JSON:
         :return:
         """
         from Service.Request_GET import GET
 
         # Первое - удаляем все пробелы из строки JSON
-        JSON = JSON.replace(" ", '')
+        # JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
         response = GET(url=self._path_url,
                        cookies=self._cookies,

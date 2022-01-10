@@ -25,9 +25,17 @@ class Template_USPD:
     # Поля Необходимые для доступа
     # Настройки
     Settings = None
-    # Actions = None
+    # Действия
+    Action = None
+
     # USPD = None
     # MeterDevices = None
+
+    # Информация о состоянии изделия
+    StateInfo = None
+    # Журналы изделия
+    Journal = None
+
 
     @staticmethod
     def _IP_address_from_config():
@@ -136,6 +144,53 @@ class Template_UM_XX_SMART_Settings:
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+#                                            ШАБЛОН Графы НАСТРОЕК у прибора учета
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+
+class Template_UM_XX_SMART_State:
+    """
+    Саб класс который работает с разделом УСПД :  Информация о состоянии изделия
+    """
+
+    _cookies = None
+    _headers = None
+    _ip_address = None
+
+    # Функционал
+
+    #   Состояние линий питания интерфейсов
+    DOut = None
+    #   Состояние дискретных входов
+    DIn = None
+    #   Состояние аналоговых входов
+    AIn = None
+    # Ожидаемое время срабатывания расписаний
+    Scheduler = None
+    # 	Состояние последовательных интерфейсов
+    UART = None
+    #   Состояние сетевых подключений
+    Network = None
+    # 	Состояние сокетов
+    Socket = None
+    # 	Состояние микросхем памяти
+    DataFlash = None
+    # 	Состояние файловой системы
+    FileSystem = None
+    # 	Состояние модема
+    Modem = None
+    # 	Состояние операционной системы
+    OS = None
+    # 	Состояние таблицы приборов учета
+    MeterTable = None
+    # 	Текущее время
+    Time = None
+    # Информация о конфигурации системы
+    System = None
+
+
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
 #                                            ШАБЛОН Графы данных счетчика
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
@@ -169,7 +224,6 @@ class Template_UM_XX_SMART_Meter:
         self.Meter_RelayControl = self._RelayControl()
         self.Meter_TimeSetting = self._TimeSetting()
 
-
     def _Meter_data_arch(self):
         from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_arch import MeterDataArch
 
@@ -198,7 +252,6 @@ class Template_UM_XX_SMART_Meter:
 # -------------------------------------------------------------------------------------------------------------
 
 
-
 class Template_UM_XX_SMART_USPD:
     """
     Саб класс который работает с данными счетчиков УСПД
@@ -224,12 +277,10 @@ class Template_UM_XX_SMART_USPD:
 
         self.Current_Time = self._Current_Time()
 
-
     def _Current_Time(self):
         from Devices_USPD.Devices_Functions.StatusInformation.Current_time import CurrentTime
 
         return CurrentTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-
 
     def _Set_Time(self):
         from Devices_USPD.Devices_Functions.Actions.Set_Time_setting import SetTimeSetting
