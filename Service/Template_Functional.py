@@ -96,6 +96,7 @@ class TemplateFunctional:
         # Первое - удаляем все пробелы из строки JSON
         # JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
+
         response = GET(url=self._path_url,
                        cookies=self._cookies,
                        headers=self._headers,

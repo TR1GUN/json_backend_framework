@@ -1,18 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                         Получение Журнала фиксации ответов приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from Service.Template_Devices_Functions.Journal.Template_Journal_Meter_answer import TemplateJournalMeterAnswer
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class JournalMeterAnswer(TemplateJournalMeterAnswer):
     """
-
-    Состояние линий питания интерфейсов УСПД
+    Получение Журнала фиксации ответов приборов учета
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +21,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Текущие время УСПД
+        Журнал фиксации ответов приборов учета
 
         :param cookies:
         :param headers:
@@ -35,21 +34,9 @@ class StateDOut(TemplateStateDOut):
         if ip_address is not None:
             self._ip_address = ip_address
 
-    def State_read(self):
-        """
-        Чтение текущего времени на УСПД
-        """
-
-        return self._read_settings()
 
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
-# data = {'State': [
-#                   {'addr': '/dev/ttyUSB3', 'state': 'toggle'},
-#                   {'addr': '/dev/ttyUSB2', 'state': 'toggle'},
-#                   {'addr': '/dev/ttyUSB1', 'state': 'toggle'},
-#                   {'addr': '/dev/ttyUSB0', 'state': 'toggle'}
-#                   ]
-#         }
+
 # -------------------------------------------------------------------------------------------------------------

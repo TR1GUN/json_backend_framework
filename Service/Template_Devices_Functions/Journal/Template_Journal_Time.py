@@ -22,12 +22,12 @@ class TemplateJournalTime(TemplateFunctional):
 
     # Настройки по умолчанию
 
-    def read_settings(self):
+    def read_Journal(self):
         """
         Читаем данные - GET
         :return:
         """
         # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
+        response = self._request_GET()
 
         return response
