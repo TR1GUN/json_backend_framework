@@ -3,18 +3,14 @@
 #                                         # Перезагрузка устройства
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from Service.Template_Functional import TemplateFunctional
+from Service.Template_Devices_Functions.Actions.Template_DeviceRestart import TemplateDeviceRestart
 
 
-class DeviceRestart(TemplateFunctional):
+class DeviceRestart(TemplateDeviceRestart):
     """
     Перезагрузка устройства
 
     """
-    # URL
-    from Devices_USPD.settings import url_path
-    _path_url = url_path.get("Device_Restart")
-
     # хедерс - Иногда нужен
     _headers = None
     # куки
@@ -22,7 +18,7 @@ class DeviceRestart(TemplateFunctional):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки локального времени
+        Перезагрузка устройства
 
         :param cookies:
         :param headers:
@@ -38,19 +34,9 @@ class DeviceRestart(TemplateFunctional):
         # print(self.headers)
         # print(self.cookies)
 
-    def Restart(self):
-        """
-        Берем и перезагружаем устройство
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
-
-        return response
-
-
 
 # -------------------------------------------------------------------------------------------------------------
+#                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
 
 

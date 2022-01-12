@@ -9,6 +9,7 @@ from Service.Template_Functional import TemplateFunctional
 
 class TemplateDeviceRestart(TemplateFunctional):
     """
+
     Шаблон для перезагрузки
 
     """
@@ -21,19 +22,13 @@ class TemplateDeviceRestart(TemplateFunctional):
     # куки
     _cookies = None
 
-    def restart(self):
+    def Restart(self):
         """
-        Запросить данные - POST
-
-        :param data:
+        Берем и перезагружаем устройство
         :return:
         """
-
-        # Запаковываем
-        # data = self._coding(data=data)
-        data = ''
         # делаем запрос - получаем ответ
-        response = self._request_POST(JSON=data)
+        response = self._request_GET()
 
         return response
 

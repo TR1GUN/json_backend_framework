@@ -3,12 +3,12 @@
 #                                            УМ - 40 СМАРТ - Поле Actions
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from Service.TemplateUSPD import Template_UM_XX_SMART_Journal
+from Service.TemplateUSPD import Template_UM_XX_SMART_Actions
 
 
-class UM_40_SMART_Actions(Template_UM_XX_SMART_Journal):
+class UM_40_SMART_Actions(Template_UM_XX_SMART_Actions):
     """
-    Саб класс который работает с разделом УСПД :  : Журналы
+    Саб класс который работает с разделом УСПД :  : Действия
     """
 
     _cookies = None
@@ -16,10 +16,10 @@ class UM_40_SMART_Actions(Template_UM_XX_SMART_Journal):
     _ip_address = None
 
     # Функционал
-    # Журнал изменения времени
-    Time = None
-    # Журнал фиксации ответов приборов учета
-    Meter_answer = None
+    # Перезагрузка
+    Restart = None
+    # Установка времени – Системное время устройства
+    Set_Time = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         self._cookies = cookies
@@ -31,33 +31,35 @@ class UM_40_SMART_Actions(Template_UM_XX_SMART_Journal):
 
     def _define_functionality(self):
         """
+
         Получение функционала
+
         """
 
-        self.Meter_answer = self._Journal_Meter_answer()
-        self.Time = self._Journal_Time()
+        self.Restart = self._Actions_Restart()
+        self.Set_Time = self._Actions_Set_Time()
 
-    def _Journal_Time(self):
+    def _Actions_Set_Time(self):
         """
         Состояние линий питания интерфейсов
         """
-        from Devices_USPD.UM40.Functional.Journal.Journal_Time import JournalTime
-        Time = JournalTime(
+        from Devices_USPD.UM40.Functional.Action.Set_Time_setting import SetTime
+        Time = SetTime(
             cookies=self._cookies,
             headers=self._headers,
             ip_address=self._ip_address
         )
         return Time
 
-    def _Journal_Meter_answer(self):
+    def _Actions_Restart(self):
         """
         Текущее время
 
         """
-        from Devices_USPD.UM40.Functional.Journal.Journal_Meter_answer import JournalMeterAnswer
-        MeterAnswer = JournalMeterAnswer(
+        from Devices_USPD.UM40.Functional.Action.Device_Restart import DeviceRestart
+        Restart = DeviceRestart(
             cookies=self._cookies,
             headers=self._headers,
             ip_address=self._ip_address
         )
-        return MeterAnswer
+        return Restart

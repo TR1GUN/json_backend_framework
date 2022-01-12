@@ -48,6 +48,7 @@ class UM_40_SMART(Template_USPD):
         self._Settings()
         self._StateInfo()
         self._Journal()
+        self._Actions()
 
     def _Settings(self):
         """
@@ -80,9 +81,15 @@ class UM_40_SMART(Template_USPD):
 
         self.Journal = UM_40_SMART_Journal(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
-
     # Действия
+    def _Actions(self):
 
+        """
+        Получаем класс который работает с Действия УСПД
+        """
+        from Devices_USPD.UM40.Service.USPD_Actions import UM_40_SMART_Actions
+
+        self.Action = UM_40_SMART_Actions(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # Управление Приборами учета
 

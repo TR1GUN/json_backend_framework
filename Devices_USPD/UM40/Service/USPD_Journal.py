@@ -39,7 +39,7 @@ class UM_40_SMART_Journal(Template_UM_XX_SMART_Journal):
 
     def _Journal_Time(self):
         """
-        Состояние линий питания интерфейсов
+        Журнал изменения времени
         """
         from Devices_USPD.UM40.Functional.Journal.Journal_Time import JournalTime
         Time = JournalTime(
@@ -51,7 +51,7 @@ class UM_40_SMART_Journal(Template_UM_XX_SMART_Journal):
 
     def _Journal_Meter_answer(self):
         """
-        Текущее время
+        Журнал Ответов счетчика
 
         """
         from Devices_USPD.UM40.Functional.Journal.Journal_Meter_answer import JournalMeterAnswer
