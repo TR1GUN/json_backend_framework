@@ -49,6 +49,8 @@ class UM_40_SMART(Template_USPD):
         self._StateInfo()
         self._Journal()
         self._Actions()
+        self._MeterDeviceManagement()
+        self._MeterData()
 
     def _Settings(self):
         """
@@ -92,5 +94,27 @@ class UM_40_SMART(Template_USPD):
         self.Action = UM_40_SMART_Actions(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # Управление Приборами учета
+    def _MeterDeviceManagement(self):
+
+        """
+        Получаем класс который работает с Действия УСПД
+        """
+        from Devices_USPD.UM40.Service.USPD_MeterDeviceManagement import UM_40_SMART_MeterDeviceManagement
+
+        self.MeterDeviceManagement = UM_40_SMART_MeterDeviceManagement(
+                                                                        cookies=self._cookies,
+                                                                        headers=self._headers,
+                                                                        ip_address=self._ip_address
+                                                                       )
 
     # Опрос Приборов Учета
+    def _MeterData(self):
+
+        """
+
+        Получаем класс который работает с Действия УСПД
+
+        """
+        from Devices_USPD.UM40.Service.USPD_MeterData import UM_40_SMART_MeterData
+
+        self.MeterData = UM_40_SMART_MeterData(cookies=self._cookies, headers=self._headers,ip_address=self._ip_address)

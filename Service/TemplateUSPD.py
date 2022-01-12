@@ -36,6 +36,11 @@ class Template_USPD:
     # Журналы изделия
     Journal = None
 
+    # Управление приборами учетa
+    MeterDeviceManagement = None
+
+    # Опрос приборов учета - данные приборов учета
+    MeterData = None
 
     @staticmethod
     def _IP_address_from_config():
@@ -140,6 +145,29 @@ class Template_UM_XX_SMART_Settings:
     #     self.Schedule_settings = self._Schedule_settings()
     #     # Настройки регулярного опроса приборов учета
     #     self.Polling_of_meter_device = self._Polling_of_meter_device()
+
+
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+#                                            ШАБЛОН Опрос Приборов Учета
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+class Template_UM_XX_SMART_MeterData:
+    """
+    Саб класс который работает с разделом УСПД :  Опрос Приборов Учета
+    """
+
+    _cookies = None
+    _headers = None
+    _ip_address = None
+
+    # Функционал
+    # Опрос приборов учета
+    MeterData = None
+    # Опрос приборов учета – Архивные записи
+    MeterData_Arch = None
+    # Опрос приборов учета – Моментные показатели
+    MeterData_Moment = None
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -252,100 +280,100 @@ class Template_UM_XX_SMART_State:
     System = None
 
 
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-#                                            ШАБЛОН Графы данных счетчика
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-
-class Template_UM_XX_SMART_Meter:
-    """
-    Саб класс который работает с данными счетчиков УСПД
-    """
-
-    _cookies = None
-    _headers = None
-    _ip_address = None
-
-    # Функционал
-
-    MeterData_Arch = None
-    MeterData_Moment = None
-
-    Meter_RelayControl = None
-    Meter_TimeSetting = None
-
-    def __init__(self, cookies=None, headers=None, ip_address=None):
-        self._cookies = cookies
-        self._headers = headers
-        self._ip_address = ip_address
-
-        # Теперь обновляем
-        self.MeterData_Arch = self._Meter_data_arch()
-        self.MeterData_Moment = self._Meter_data_moment()
-
-        self.Meter_RelayControl = self._RelayControl()
-        self.Meter_TimeSetting = self._TimeSetting()
-
-    def _Meter_data_arch(self):
-        from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_arch import MeterDataArch
-
-        return MeterDataArch(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-
-    def _Meter_data_moment(self):
-        from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_moment import MeterDataMoment
-
-        return MeterDataMoment(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-
-    def _RelayControl(self):
-        from Devices_USPD.Devices_Functions.MeterManagement.Relay_control import RelayControl
-
-        return RelayControl(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-
-    def _TimeSetting(self):
-        from Devices_USPD.Devices_Functions.MeterManagement.Time_setting import TimeSetting
-
-        return TimeSetting(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-
-
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-#                                            ШАБЛОН управления УСПД
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-
-
-class Template_UM_XX_SMART_USPD:
-    """
-    Саб класс который работает с данными счетчиков УСПД
-    """
-
-    _cookies = None
-    _headers = None
-    _ip_address = None
-
-    # Функционал
-
-    Set_Time = None
-    Current_Time = None
-
-    def __init__(self, cookies=None, headers=None, ip_address=None):
-        self._cookies = cookies
-        self._headers = headers
-        self._ip_address = ip_address
-
-        # Теперь обновляем
-
-        self.Set_Time = self._Set_Time()
-
-        self.Current_Time = self._Current_Time()
-
-    def _Current_Time(self):
-        from Devices_USPD.Devices_Functions.StatusInformation.Current_time import CurrentTime
-
-        return CurrentTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-
-    def _Set_Time(self):
-        from Devices_USPD.Devices_Functions.Actions.Set_Time_setting import SetTimeSetting
-
-        return SetTimeSetting(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+# # -------------------------------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------------------------------
+# #                                            ШАБЛОН Графы данных счетчика
+# # -------------------------------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------------------------------
+#
+# class Template_UM_XX_SMART_Meter:
+#     """
+#     Саб класс который работает с данными счетчиков УСПД
+#     """
+#
+#     _cookies = None
+#     _headers = None
+#     _ip_address = None
+#
+#     # Функционал
+#
+#     MeterData_Arch = None
+#     MeterData_Moment = None
+#
+#     Meter_RelayControl = None
+#     Meter_TimeSetting = None
+#
+#     def __init__(self, cookies=None, headers=None, ip_address=None):
+#         self._cookies = cookies
+#         self._headers = headers
+#         self._ip_address = ip_address
+#
+#         # Теперь обновляем
+#         self.MeterData_Arch = self._Meter_data_arch()
+#         self.MeterData_Moment = self._Meter_data_moment()
+#
+#         self.Meter_RelayControl = self._RelayControl()
+#         self.Meter_TimeSetting = self._TimeSetting()
+#
+#     def _Meter_data_arch(self):
+#         from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_arch import MeterDataArch
+#
+#         return MeterDataArch(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+#
+#     def _Meter_data_moment(self):
+#         from Devices_USPD.Devices_Functions.MeterData.Template_Meter_Data_moment import MeterDataMoment
+#
+#         return MeterDataMoment(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+#
+#     def _RelayControl(self):
+#         from Devices_USPD.Devices_Functions.MeterManagement.Relay_control import RelayControl
+#
+#         return RelayControl(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+#
+#     def _TimeSetting(self):
+#         from Devices_USPD.Devices_Functions.MeterManagement.Time_setting import TimeSetting
+#
+#         return TimeSetting(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+#
+#
+# # -------------------------------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------------------------------
+# #                                            ШАБЛОН управления УСПД
+# # -------------------------------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------------------------------
+#
+#
+# class Template_UM_XX_SMART_USPD:
+#     """
+#     Саб класс который работает с данными счетчиков УСПД
+#     """
+#
+#     _cookies = None
+#     _headers = None
+#     _ip_address = None
+#
+#     # Функционал
+#
+#     Set_Time = None
+#     Current_Time = None
+#
+#     def __init__(self, cookies=None, headers=None, ip_address=None):
+#         self._cookies = cookies
+#         self._headers = headers
+#         self._ip_address = ip_address
+#
+#         # Теперь обновляем
+#
+#         self.Set_Time = self._Set_Time()
+#
+#         self.Current_Time = self._Current_Time()
+#
+#     def _Current_Time(self):
+#         from Devices_USPD.Devices_Functions.StatusInformation.Current_time import CurrentTime
+#
+#         return CurrentTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+#
+#     def _Set_Time(self):
+#         from Devices_USPD.Devices_Functions.Actions.Set_Time_setting import SetTimeSetting
+#
+#         return SetTimeSetting(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)

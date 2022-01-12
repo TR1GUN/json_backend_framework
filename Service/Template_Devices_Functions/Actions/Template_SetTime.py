@@ -147,22 +147,3 @@ class TemplateSetTime(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-{"time": "2007-10-15T01:33:25+10:00"}
-
-import re
-date_string = "2007-10-15T01:33:25+10:00"
-# date_line = re.findall('\d{4}-\d{2}-\d{2}|\d{2}.\d{2}.\d{4}|\d{2}.\d{2}.\d{2}',date_string)
-
-date_line = re.findall('\d{4}|\d{2}|\d{2}|\d{2}|\d{2}|\d{2}|\d{2}|\d{2}',date_string)
-# Теперь получаем все данные
-Device_Time = {}
-Device_Time['Year'] = date_line[0]
-Device_Time['Month'] = date_line[1]
-Device_Time['Day']= date_line[2]
-Device_Time['Hour']= date_line[3]
-Device_Time['Minute'] = date_line[4]
-Device_Time['Second'] = date_line[5]
-Device_Time['Time_Zone'] = "+"+ date_line[6] + ":" + date_line[7]
-
-
-print(Device_Time)

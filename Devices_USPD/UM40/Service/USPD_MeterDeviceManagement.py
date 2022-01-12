@@ -1,14 +1,16 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                            УМ - 40 СМАРТ - Поле Actions
+#                                            УМ - 40 СМАРТ - Поле MeterDeviceManagement
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from Service.TemplateUSPD import Template_UM_XX_SMART_Actions
+from Service.TemplateUSPD import Template_UM_XX_SMART_MeterDeviceManagement
 
 
-class UM_40_SMART_Actions(Template_UM_XX_SMART_Actions):
+class UM_40_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManagement):
     """
-    Саб класс который работает с разделом УСПД :  : Действия
+
+    Саб класс который работает с разделом УСПД :  Управление приборами учета
+
     """
 
     _cookies = None
@@ -16,10 +18,10 @@ class UM_40_SMART_Actions(Template_UM_XX_SMART_Actions):
     _ip_address = None
 
     # Функционал
-    # Перезагрузка
-    Restart = None
-    # Установка времени – Системное время устройства
-    Set_Time = None
+    # Управление реле
+    Relay = None
+    # Установка времени – Системное время счетчика
+    Set_Time_Meter = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         self._cookies = cookies
@@ -37,10 +39,11 @@ class UM_40_SMART_Actions(Template_UM_XX_SMART_Actions):
 
         """
 
-        self.Restart = self._Actions_Restart()
-        self.Set_Time = self._Actions_Set_Time()
+        self.Relay = self._RelayControl()
+        self.Set_Time_Meter = self._MeterTimeControl()
 
-    def _Actions_Set_Time(self):
+    # ----->
+    def _RelayControl(self):
         """
         Состояние линий питания интерфейсов
         """
@@ -52,9 +55,9 @@ class UM_40_SMART_Actions(Template_UM_XX_SMART_Actions):
                       )
         return Time
 
-    def _Actions_Restart(self):
+    def _MeterTimeControl(self):
         """
-        Текущее время
+        Текущее время СЧЕТЧИКА
 
         """
         from Devices_USPD.UM40.Functional.Action.Device_Restart import DeviceRestart
