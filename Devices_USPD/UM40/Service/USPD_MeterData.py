@@ -51,13 +51,13 @@ class UM_40_SMART_MeterData(Template_UM_XX_SMART_MeterData):
         """
         Опрос приборов учета
         """
-        from Devices_USPD.UM40.Functional.Action.Set_Time_setting import SetTime
-        Time = SetTime(
+        from Devices_USPD.UM40.Functional.MeterData.MeterData import MeterData
+        MeterData_read = MeterData(
                         cookies=self._cookies,
                         headers=self._headers,
                         ip_address=self._ip_address
                       )
-        return Time
+        return MeterData_read
 
     def _MeterData_Arch(self):
         """
