@@ -20,7 +20,7 @@ class TemplateRelayControl(TemplateFunctional):
     # куки
     _cookies = None
 
-    def request_set(self, data):
+    def _Set_relay(self, data):
         """
         Запросить данные - POST
 

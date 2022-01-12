@@ -47,23 +47,23 @@ class UM_40_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
         """
         Состояние линий питания интерфейсов
         """
-        from Devices_USPD.UM40.Functional.Action.Set_Time_setting import SetTime
-        Time = SetTime(
+        from Devices_USPD.UM40.Functional.MeterDeviceManagement.RelayControl import RelayControl
+        Relay = RelayControl(
                         cookies=self._cookies,
                         headers=self._headers,
                         ip_address=self._ip_address
                       )
-        return Time
+        return Relay
 
     def _MeterTimeControl(self):
         """
         Текущее время СЧЕТЧИКА
 
         """
-        from Devices_USPD.UM40.Functional.Action.Device_Restart import DeviceRestart
-        Restart = DeviceRestart(
+        from Devices_USPD.UM40.Functional.MeterDeviceManagement.MeterTime import TimeMeterSetting
+        TimeMeter = TimeMeterSetting(
                                 cookies=self._cookies,
                                 headers=self._headers,
                                 ip_address=self._ip_address
                                )
-        return Restart
+        return TimeMeter

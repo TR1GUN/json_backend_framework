@@ -7,7 +7,7 @@
 from Service.Template_Functional import TemplateFunctional
 
 
-class TemplateTimeSetting(TemplateFunctional):
+class TemplateTimeMeterSetting(TemplateFunctional):
     """
     Шаблон Установки времени
 
@@ -21,7 +21,7 @@ class TemplateTimeSetting(TemplateFunctional):
     # куки
     _cookies = None
 
-    def request_set(self, data):
+    def _request_set_id(self, data):
         """
         Запросить данные - POST
 
