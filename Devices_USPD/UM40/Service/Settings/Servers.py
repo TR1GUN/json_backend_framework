@@ -21,16 +21,49 @@ class SettingsServers:
         self._headers = headers
         self._ip_address = ip_address
 
-        self.SIM = self._Generate_SIM_card()
+        self.TCP = self._Generate_TCP()
+        self.SMTP = self._Generate_SMTP()
+        self.SNTP = self._Generate_SNTP()
+        self.MQTT = self._Generate_MQTT()
 
     # Здесь генерируем сам функционал :
 
-    # ГЕНЕРИРУЕМ Таблица приборов учета
-    def _Generate_SIM_card(self):
-        from Devices_USPD.UM40.Functional.Settings.Modem.SIM_card_settings import SIM_card
-        SIM_card = SIM_card(
+    # Настройки TCP-серверов
+    def _Generate_TCP(self):
+        from Devices_USPD.UM40.Functional.Settings.Servers.Server_TCP import ServerTCP
+        TCP = ServerTCP(
             cookies=self._cookies,
             headers=self._headers,
             ip_address=self._ip_address
         )
-        return SIM_card
+        return TCP
+
+    # Настройки SMTP-серверов
+    def _Generate_SMTP(self):
+        from Devices_USPD.UM40.Functional.Settings.Servers.Server_SMTP import ServerSMTP
+        SMTP = ServerSMTP(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return SMTP
+
+    # Настройки SТTP-серверов
+    def _Generate_SNTP(self):
+        from Devices_USPD.UM40.Functional.Settings.Servers.Server_SNTP import ServerSNTP
+        SNTP = ServerSNTP(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return SNTP
+
+    # Настройки MQTT-серверов
+    def _Generate_MQTT(self):
+        from Devices_USPD.UM40.Functional.Settings.Servers.Server_MQTT import ServerMQTT
+        MQTT = ServerMQTT(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return MQTT
