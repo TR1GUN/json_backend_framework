@@ -1,22 +1,20 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки TCP-серверов
+#                                         Настройки последовательных интерфейсов(UART)
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
-    TemplateServer_TCP
-
+from Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_UART_settings import TemplateInterface_UART
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class ServerTCP(TemplateServer_TCP):
+class Interface_UART(TemplateInterface_UART):
     """
+    Настройки последовательных интерфейсов(UART)
 
-    Настройки TCP-серверов
+
     """
-
     # хедерс - Иногда нужен
     _headers = None
     # куки
@@ -29,7 +27,7 @@ class ServerTCP(TemplateServer_TCP):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Настройки последовательных интерфейсов(UART)
 
         :param cookies:
         :param headers:

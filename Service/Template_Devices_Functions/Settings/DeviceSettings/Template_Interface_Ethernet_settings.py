@@ -25,7 +25,9 @@ class TemplateInterface_Ethernet(TemplateFunctional):
     _cookies = None
 
     # Имя поля настроек
-    _Settings_name = None
+    Ethernet_Settings = None
+
+    _settings_to_send = {}
 
     # Настройки по умолчанию
 
@@ -35,7 +37,7 @@ class TemplateInterface_Ethernet(TemplateFunctional):
         :return:
         """
         # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
+        response = self._request_GET()
 
         return response
 

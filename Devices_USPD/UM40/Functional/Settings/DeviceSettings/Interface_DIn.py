@@ -1,20 +1,20 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки TCP-серверов
+#                                         Настройки дискретных входов
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
-    TemplateServer_TCP
+from Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_DIn_settings import \
+    TemplateInterface_DIn_DiscreteInput
 
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class ServerTCP(TemplateServer_TCP):
+class Interface_DIn_DiscreteInput(TemplateInterface_DIn_DiscreteInput):
     """
+    Настройки дискретных входов
 
-    Настройки TCP-серверов
     """
 
     # хедерс - Иногда нужен
@@ -29,7 +29,7 @@ class ServerTCP(TemplateServer_TCP):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Настройки дискретных входов
 
         :param cookies:
         :param headers:

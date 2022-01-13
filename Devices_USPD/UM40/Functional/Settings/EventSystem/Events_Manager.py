@@ -1,20 +1,20 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки TCP-серверов
+#                                         Настройки менеджера системы событий
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
-    TemplateServer_TCP
+from Service.Template_Devices_Functions.Settings.Event_System.Template_Events_Manager_Settings import \
+    TemplateEventManager
 
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class ServerTCP(TemplateServer_TCP):
+class EventManager(TemplateEventManager):
     """
+    Настройки менеджера системы событий
 
-    Настройки TCP-серверов
     """
 
     # хедерс - Иногда нужен
@@ -29,7 +29,7 @@ class ServerTCP(TemplateServer_TCP):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Настройки менеджера системы событий
 
         :param cookies:
         :param headers:

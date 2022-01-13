@@ -1,20 +1,20 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки TCP-серверов
+#                                         Настройки шаблонов сообщений
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
-    TemplateServer_TCP
+from Service.Template_Devices_Functions.Settings.Event_System.Template_TemplatesMessages_settings import \
+    TemplateTemplatesMessages
 
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class ServerTCP(TemplateServer_TCP):
+class TemplatesMessages(TemplateTemplatesMessages):
     """
+    Настройки шаблонов сообщений
 
-    Настройки TCP-серверов
     """
 
     # хедерс - Иногда нужен
@@ -29,7 +29,7 @@ class ServerTCP(TemplateServer_TCP):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Настройки шаблонов сообщений
 
         :param cookies:
         :param headers:

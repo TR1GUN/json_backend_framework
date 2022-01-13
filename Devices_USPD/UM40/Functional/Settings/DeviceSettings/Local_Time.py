@@ -1,21 +1,22 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки TCP-серверов
+#                                         Настройки локального времени(Часовой пояс)
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
-    TemplateServer_TCP
-
+from Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Local_time_settings import TemplateLocalTimeZone
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class ServerTCP(TemplateServer_TCP):
+class TimeZone(TemplateLocalTimeZone):
     """
+    Настройки локального времени(Часовой пояс)
 
-    Настройки TCP-серверов
     """
+    # URL
+    # from Devices_USPD.settings import url_path
+    # _path_url = url_path.get("Settings_SIM")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -29,7 +30,7 @@ class ServerTCP(TemplateServer_TCP):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Настройки локального времени(Часовой пояс)
 
         :param cookies:
         :param headers:

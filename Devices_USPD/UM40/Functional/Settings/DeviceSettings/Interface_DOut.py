@@ -1,20 +1,20 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки TCP-серверов
+#                                         Настройки линий питания интерфейсов
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
-    TemplateServer_TCP
+from Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_DOut_settings import \
+    TemplateInterface_DOut_PowerLine
 
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class ServerTCP(TemplateServer_TCP):
+class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
     """
+    Настройки линий питания интерфейсов
 
-    Настройки TCP-серверов
     """
 
     # хедерс - Иногда нужен
@@ -29,7 +29,7 @@ class ServerTCP(TemplateServer_TCP):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Настройки линий питания интерфейсов
 
         :param cookies:
         :param headers:

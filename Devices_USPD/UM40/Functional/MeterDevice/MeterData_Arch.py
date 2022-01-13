@@ -1765,9 +1765,6 @@ class MeterArchData(TemplateMeterArchData):
         return response
 
 # -------------------------------------------------------------------------------------------------------------
-Elconfig = MeterArchData().Electric.ElConfig(ids=1, time_end=10000 , time_start=1 , tags=['pId'])
 
-
-print(Elconfig)
 
 
