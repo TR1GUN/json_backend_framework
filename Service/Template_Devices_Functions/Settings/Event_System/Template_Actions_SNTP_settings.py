@@ -32,7 +32,7 @@ class TemplateActionsSNTP(TemplateFunctional):
         :return:
         """
         # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
+        response = self._request_GET()
 
         return response
 
