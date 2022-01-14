@@ -11,3 +11,12 @@ def print_log_use_GET_data(fn):
         return fn(self, *args, **kwargs)
 
     return debug
+
+
+def read_USPD_Time_Request(fn):
+
+    def debug(self, *args, **kwargs):
+        print("Для чтения данных используем Специальный метод")
+        return fn(self, *args, **kwargs)
+
+    return debug

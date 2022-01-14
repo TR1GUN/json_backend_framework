@@ -118,7 +118,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
     Настройки Ethernet
 
     """
-
+    from Service.TemplateDecorator import print_log_use_GET_data
     # хедерс - Иногда нужен
     _headers = None
     # куки
@@ -156,11 +156,11 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         Здесь переопределяем
 
         """
-        data = self._getting_settings()
+        data = self._getting_settings_Ethernet()
         data = {'Settings': data}
         return data
 
-    def _getting_settings(self):
+    def _getting_settings_Ethernet(self):
 
         """
         Получение настроек что задали
@@ -188,11 +188,11 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
                     Ethernet2 = _Ethernet2
 
         # Теперь формируем нужный JSON
-        # JSON = {"Settings" : [SIM1, SIM2]}
         JSON = [Ethernet1, Ethernet2]
         return JSON
 
     # Запрос настроек
+    @print_log_use_GET_data
     def _request_setting(self):
         """
         Здесь запрашиваем нужные нам настройки

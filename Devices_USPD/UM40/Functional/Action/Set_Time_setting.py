@@ -297,6 +297,8 @@ class SetTime(TemplateSetTime):
     Установка времени
 
     """
+    from Service.TemplateDecorator import read_USPD_Time_Request
+
     # URL
     from Devices_USPD.settings import url_path
     _path_url = url_path.get("Set_time")
@@ -360,6 +362,7 @@ class SetTime(TemplateSetTime):
 
         return data
 
+    @read_USPD_Time_Request
     def _read_Time_to_Device(self):
 
         """

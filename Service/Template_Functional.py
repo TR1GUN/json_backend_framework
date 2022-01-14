@@ -12,6 +12,7 @@ class TemplateFunctional:
     Здесь будут задействованы основные запросы
 
     """
+
     # куки
     _cookies = None
 

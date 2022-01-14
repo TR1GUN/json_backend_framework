@@ -15,6 +15,8 @@ class TemplateInterface_Ethernet(TemplateFunctional):
     Настройки Ethernet
 
     """
+    from Service.TemplateDecorator import print_log_use_GET_data
+
     # URL
     from Devices_USPD.settings import url_path
     _path_url = url_path.get("Settings_Ethernet")
@@ -108,6 +110,7 @@ class TemplateInterface_Ethernet(TemplateFunctional):
         return data
 
     # Запрос настроек
+    @print_log_use_GET_data
     def _request_setting(self):
         """
         Здесь запрашиваем нужные нам настройки
