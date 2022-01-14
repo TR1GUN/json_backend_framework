@@ -35,7 +35,7 @@ class TemplateLocalTimeZone(TemplateFunctional):
         :return:
         """
         # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
+        response = self._request_GET()
 
         return response
 
@@ -129,11 +129,4 @@ class TemplateLocalTimeZone(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-# settings = LocalTime().read_settings()
-# print(settings)
-# settings = LocalTime().rewrite_settings({'tz': 3})
-#
-# print(settings)
-
 
