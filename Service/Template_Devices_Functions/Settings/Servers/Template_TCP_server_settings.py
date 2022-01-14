@@ -64,6 +64,7 @@ class TemplateServer_TCP(TemplateFunctional):
         """
         if data is None:
             data_settings = self._getting_settings()
+
             data = {self._Settings_name: data_settings}
 
         # Запаковываем
@@ -122,7 +123,7 @@ class TemplateServer_TCP(TemplateFunctional):
                 # Теперь заполянем наши переменные
                 if answer_setting is not None:
                     Settings = answer_setting[self._Settings_name]
-                    if Settings is not None :
+                    if Settings is not None:
                         data = Settings
         except Exception as e:
 

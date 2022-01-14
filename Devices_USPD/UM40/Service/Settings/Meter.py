@@ -24,8 +24,8 @@ class SettingsMeter:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_Table(self):
-        from Devices_USPD.UM40.Functional.Settings.Meter.MeterTable import MeterDeviceTable
-        Table = MeterDeviceTable(
+        from Devices_USPD.UM40.Functional.Settings.Meter.MeterTable import MeterTable
+        Table = MeterTable(
             cookies=self._cookies,
             headers=self._headers,
             ip_address=self._ip_address

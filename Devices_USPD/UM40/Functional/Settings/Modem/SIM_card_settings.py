@@ -193,6 +193,7 @@ class SIM_card(TemplateSIM):
         return JSON
 
     # Запрос настроек
+
     def _request_setting(self):
         """
         Здесь запрашиваем нужные нам настройки

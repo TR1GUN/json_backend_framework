@@ -3,7 +3,7 @@
 #                                           Таблица приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from Service.TemplateDeviceFunctions import TemplateDeviceFunctions, TemplateSettingsData
+from Service.TemplateDeviceFunctions import TemplateSettingsData
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
@@ -268,8 +268,8 @@ class SettingsMeterTable(TemplateSettingsData):
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from Devices_USPD.Devices_Functions.Settings.MeterDevice.Template_MeterTable_settings import TemplateMeterTable
 
+from Service.Template_Devices_Functions.Settings.MeterDevice.Template_MeterTable_settings import TemplateMeterTable
 # -------------------------------------------------------------------------------------------------------------
 
 

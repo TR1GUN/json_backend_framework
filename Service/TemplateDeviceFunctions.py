@@ -202,7 +202,7 @@ class TemplateSettingsData:
         for idx in self._data_ids:
             # Если айдишник не совпадает то добавляем в список
             if idx not in ids:
-                data_ids.append(settings)
+                data_ids.append(idx)
 
         self._data_ids = data_ids
 
