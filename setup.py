@@ -20,7 +20,6 @@ setuptools.setup(
     # long_description=long_description, <<---README.md
     packages=setuptools.find_packages(),
 
-
     install_requires=[
         'requests==2.25.1',
     ]
