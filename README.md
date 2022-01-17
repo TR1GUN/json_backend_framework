@@ -9,14 +9,14 @@
 - Для 40 СМАРТ :
 
 ```python
-from JSON_Backend_framework.USPD import USPD
+from JSON_Backend_framework import USPD
 
 SMART = USPD.UM_40_Smart()
 ```
 - Для 31 СМАРТ :
 
 ```python
-from JSON_Backend_framework.USPD import USPD
+from JSON_Backend_framework import USPD
 
 SMART = USPD.UM_31_Smart(Login='login', Password="password", ip_address='192.168.0.1')
 ```
@@ -50,7 +50,7 @@ SMART = USPD.UM_31_Smart(Login='login', Password="password", ip_address='192.168
 
 ```python
 
-from JSON_Backend_framework.USPD import USPD
+from JSON_Backend_framework import USPD
 
 SMART = USPD.UM_40_Smart()
 SMART.Settings
@@ -277,7 +277,7 @@ SMART.Settings
 
 ```python
 
-from JSON_Backend_framework.USPD import USPD
+from JSON_Backend_framework import USPD
 
 SMART = USPD.UM_40_Smart()
 MeterTable = SMART.Settings.Meter.ArchInfo
@@ -402,7 +402,7 @@ MeterTable = SMART.Settings.Meter.ArchInfo
 
 ```python
 
-from JSON_Backend_framework.USPD import USPD
+from JSON_Backend_framework import USPD
 
 SMART = USPD.UM_40_Smart()
 MeterTable = SMART.Settings.Meter.ArchInfo

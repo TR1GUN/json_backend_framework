@@ -9,7 +9,7 @@ from JSON_Backend_framework.Service.Template_Functional import TemplateFunctiona
 class TemplateDeviceFunctions(TemplateFunctional):
     """
 
-    Шаблон работы с функционалом USPD
+    Шаблон работы с функционалом JSON_Backend_framework
 
     """
     # URL

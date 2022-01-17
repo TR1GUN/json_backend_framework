@@ -61,7 +61,7 @@ class UM_40_SMART(Template_USPD):
         from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_Settings import UM_40_SMART_Settings
         self.Settings = UM_40_SMART_Settings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
-        # self.USPD = UM_40_SMART_USPD(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        # self.JSON_Backend_framework = UM_40_SMART_USPD(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
         # self.MeterDevices = UM_40_SMART_Meter(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # Состояние Изделия

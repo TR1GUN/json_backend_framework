@@ -16,7 +16,7 @@ setuptools.setup(
     version="0.1",
     author="Buslin Nicolay",
     author_email="n.Buslin@allmonitoring.ru",
-    description="Package to eaZZZy work with USPD.",
+    description="Package to eaZZZy work with JSON_Backend_framework.",
     # long_description=long_description, <<---README.md
     packages=setuptools.find_packages(),
 
