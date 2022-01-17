@@ -1,6 +1,9 @@
 # from USPD import USPD
+
+
+# from JSON_Backend_framework import USPD
 #
-# SMART = USPD.UM_40_Smart()
+# SMART = USPD.USPD.UM_40_Smart()
 # //-------------------------------------------------------------------
 # SMART = USPD.UM_31_Smart(Login='login', Password="password", ip_address='192.168.0.1')
 # lol = SMART.Settings.Meter.Table.read_settings()
@@ -21,7 +24,7 @@
 # //-------------------------------------------------------------------
 # //---------------------- Общие настройки ----------------------------
 # DeviceSettings = SMART.Settings.DeviceSettings
-# Настройки Ethernet
+# # Настройки Ethernet
 # print('read...')
 # request = DeviceSettings.Interface_Ethernet.read_settings()
 # print(request)

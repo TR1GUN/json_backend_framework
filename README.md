@@ -9,14 +9,14 @@
 - Для 40 СМАРТ :
 
 ```python
-from USPD import USPD
+from JSON_Backend_framework.USPD import USPD
 
 SMART = USPD.UM_40_Smart()
 ```
 - Для 31 СМАРТ :
 
 ```python
-from USPD import USPD
+from JSON_Backend_framework.USPD import USPD
 
 SMART = USPD.UM_31_Smart(Login='login', Password="password", ip_address='192.168.0.1')
 ```
@@ -46,10 +46,11 @@ SMART = USPD.UM_31_Smart(Login='login', Password="password", ip_address='192.168
 -----------
 ##                                              Settings - Настройки
 
-Поле настроек 
+Поле настроек
+
 ```python
 
-from USPD import USPD
+from JSON_Backend_framework.USPD import USPD
 
 SMART = USPD.UM_40_Smart()
 SMART.Settings
@@ -273,9 +274,10 @@ SMART.Settings
 
 Таблица приборов учета
 Пример:
+
 ```python
 
-from USPD import USPD
+from JSON_Backend_framework.USPD import USPD
 
 SMART = USPD.UM_40_Smart()
 MeterTable = SMART.Settings.Meter.ArchInfo
@@ -397,9 +399,10 @@ MeterTable = SMART.Settings.Meter.ArchInfo
 
 Таблица приборов учета
 Пример:
+
 ```python
 
-from USPD import USPD
+from JSON_Backend_framework.USPD import USPD
 
 SMART = USPD.UM_40_Smart()
 MeterTable = SMART.Settings.Meter.ArchInfo
