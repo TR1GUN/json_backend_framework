@@ -31,7 +31,9 @@ class Authorization(TemplateFunctional):
     def __init__(self, Login: str = None, Password: str = None, ip_address: str = None):
 
         # Первое - Получаем айпишник
-        ip_address = self._define_IP_address(ip_address=ip_address)
+        # ip_address = self._define_IP_address(ip_address=ip_address)
+
+        self._ip_address = str(ip_address)
 
         # Второе - Парсим логин и пароль
         self._parse_Login_and_password(Login=Login, Password=Password)
@@ -44,22 +46,22 @@ class Authorization(TemplateFunctional):
         # заходим
         self._result = self._Autorization()
 
-    def _define_IP_address(self, ip_address):
-        """
-        Определяем IP адрес железки
-
-        :param ip_address:
-        :return:
-        """
-        from JSON_Backend_framework.Service.config import machine_ip
-        if ip_address is None:
-            ip_address = machine_ip
-
-        ip_address = str(ip_address)
-
-        self._ip_address = ip_address
-
-        return ip_address
+    # def _define_IP_address(self, ip_address):
+    #     """
+    #     Определяем IP адрес железки
+    #
+    #     :param ip_address:
+    #     :return:
+    #     """
+    #     from JSON_Backend_framework.Service.config import machine_ip
+    #     if ip_address is None:
+    #         ip_address = machine_ip
+    #
+    #     ip_address = str(ip_address)
+    #
+    #     self._ip_address = ip_address
+    #
+    #     return ip_address
 
     def _parse_Login_and_password(self, Login, Password):
         """
@@ -70,11 +72,9 @@ class Authorization(TemplateFunctional):
         :return:
         """
         # Пункт первый - если у нас логин и пароль стоит в None то парсим из конфига
-        from JSON_Backend_framework.Service.config import USPD_password, USPD_login
-        if Login is None:
-            Login = USPD_login
-        if Password is None:
-            Password = USPD_password
+
+        self._Login = Login ,
+        self._Password = Password
 
         # Теперь вставляем в наши данные для авториазции
         self._data_Authorization['login'] = str(Login)
@@ -126,6 +126,8 @@ class Authorization(TemplateFunctional):
 
 
 
+
+# МУСОР КОТОРЫЙ НАДО БУДЕТ РАЗОБРАТЬ ПОТОМ
 # Authorization(ip_address='http://192.168.0.1/')
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------

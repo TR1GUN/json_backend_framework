@@ -15,16 +15,6 @@ class USPD:
         Пока работает через статик методы
         """
 
-    # @staticmethod
-    # def UM_40_Smart(ip_address=None):
-    #     """
-    #      Работа с Функционалом УМ-40 SMART
-    #     :return:
-    #     """
-    #     from Devices_USPD.Devices import UM_40_SMART
-    #
-    #     return UM_40_SMART(ip_address=ip_address)
-
     @staticmethod
     def UM_40_Smart(ip_address=None):
         """
@@ -45,7 +35,7 @@ class USPD:
         :param ip_address: IP адресс - По умолчанию адрес берется из конфига
         :return:
         """
-        from JSON_Backend_framework.Devices_USPD.Devices import UM_31_SMART
+        from JSON_Backend_framework.Devices_USPD.UM31.USPD import UM_31_SMART
 
         return UM_31_SMART(Login=Login, Password=Password, ip_address=ip_address)
 

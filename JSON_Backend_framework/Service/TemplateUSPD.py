@@ -42,16 +42,6 @@ class Template_USPD:
     # Опрос приборов учета - данные приборов учета
     MeterData = None
 
-    @staticmethod
-    def _IP_address_from_config():
-        """
-        Получаем IP адрес из конфига .ini
-        :return:
-        """
-        from JSON_Backend_framework.Service.config import machine_ip
-
-        return str(machine_ip)
-
     def _define_functionality(self):
         """
         Функция для получения доступа к Функционалу
@@ -79,7 +69,6 @@ class Template_UM_XX_SMART_Settings:
     # Настройки протокола
     Proto = None
 
-
     # Файловая система
     DeviceSettings = None
 
@@ -95,22 +84,6 @@ class Template_UM_XX_SMART_Settings:
 
     # Настройки Серверов
     Servers = None
-
-    # # Настройки Ethernet
-    # Ethernet = None
-    # # Настройки последовательных интерфейсов(UART)
-    # Uart = None
-    # # Настройки дискретных входов
-    # Din = None
-    # # Настройки линий питания интерфейсов
-    # Dout = None
-    #
-    # # Настройки локального времени
-    # Local_time = None
-
-    #
-
-
 
 
 # -------------------------------------------------------------------------------------------------------------
