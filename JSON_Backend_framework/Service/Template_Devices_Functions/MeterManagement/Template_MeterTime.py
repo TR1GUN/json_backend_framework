@@ -20,7 +20,8 @@ class TemplateTimeMeterSetting(TemplateFunctional):
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     def _request_set_id(self, data):
         """
         Запросить данные - POST

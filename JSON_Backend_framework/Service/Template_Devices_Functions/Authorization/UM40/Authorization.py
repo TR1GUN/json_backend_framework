@@ -15,7 +15,8 @@ class Authorization_UM40(Authorization):
     # URL
     from JSON_Backend_framework.Devices_USPD.settings import url_path
     _path_url = url_path.get("Authorization")
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # хедерс - Иногда нужен
     _headers = None
     # куки

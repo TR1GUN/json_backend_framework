@@ -20,7 +20,8 @@ class TemplateStateDOut(TemplateFunctional):
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # Настройки по умолчанию
 
     def _read_settings(self):

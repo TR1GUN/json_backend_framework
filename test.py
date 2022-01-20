@@ -1,5 +1,6 @@
 # from JSON_Backend_framework import JSON_Backend_framework
-#
+
+import JSON_Backend_framework
 # SMART = JSON_Backend_framework.UM_40_Smart()
 # //-------------------------------------------------------------------
 # SMART = JSON_Backend_framework.UM_31_Smart(Login='login', Password="password", ip_address='192.168.0.1')
@@ -12,7 +13,11 @@
 #
 # print(lol)
 
+USPD = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.202.143')
 
+
+print(USPD.StateInfo.Time.url_path)
+print(USPD.StateInfo.Time.Time_USPD_Read())
 # //-------------------------------------------------------------------
 # Здесь расположим временные тестовые прогоны
 # //-------------------------------------------------------------------

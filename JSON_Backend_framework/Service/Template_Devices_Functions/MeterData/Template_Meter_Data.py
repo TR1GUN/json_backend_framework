@@ -19,7 +19,8 @@ class TemplateMeterData(TemplateFunctional):
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # Доступные типы данных
     _measures = [
         'ElConfig',

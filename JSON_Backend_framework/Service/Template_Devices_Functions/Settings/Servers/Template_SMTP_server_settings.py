@@ -5,7 +5,7 @@
 # -------------------------------------------------------------------------------------------------------------
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateServer_SMTP(TemplateFunctional):
     """
@@ -13,14 +13,15 @@ class TemplateServer_SMTP(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Servers_SMTP_settings")
 
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # Имя поля настроек
     _Settings_name = 'Settings'
 

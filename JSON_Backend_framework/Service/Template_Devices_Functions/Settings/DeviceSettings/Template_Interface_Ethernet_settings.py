@@ -25,7 +25,8 @@ class TemplateInterface_Ethernet(TemplateFunctional):
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # Имя поля настроек
     Ethernet_Settings = None
 

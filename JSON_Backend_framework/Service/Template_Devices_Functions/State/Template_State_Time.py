@@ -3,7 +3,7 @@
 #                                      Шаблон  - Текущее время
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 
 
@@ -13,7 +13,6 @@ class TemplateStateTime(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
     _path_url = url_path.get("State_Time")
 
     # хедерс - Иногда нужен
@@ -21,6 +20,8 @@ class TemplateStateTime(TemplateFunctional):
     # куки
     _cookies = None
 
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # Настройки по умолчанию
 
     def _read_settings(self):

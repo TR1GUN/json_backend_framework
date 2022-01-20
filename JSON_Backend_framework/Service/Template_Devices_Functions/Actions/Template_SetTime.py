@@ -20,7 +20,8 @@ class TemplateSetTime(TemplateFunctional):
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     _Time_Set_dict = {}
 
     def _date_time_now(self):

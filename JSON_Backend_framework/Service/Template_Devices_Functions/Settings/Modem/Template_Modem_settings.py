@@ -21,7 +21,8 @@ class TemplateModem(TemplateFunctional):
     _headers = None
     # куки
     _cookies = None
-
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
     # Имя поля настроек
     _Settings_name = None
 

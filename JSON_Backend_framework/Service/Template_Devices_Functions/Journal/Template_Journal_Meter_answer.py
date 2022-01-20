@@ -22,6 +22,8 @@ class TemplateJournalMeterAnswer(TemplateFunctional):
     _cookies = None
 
     # Настройки по умолчанию
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
 
     def read_Journal(self):
         """
