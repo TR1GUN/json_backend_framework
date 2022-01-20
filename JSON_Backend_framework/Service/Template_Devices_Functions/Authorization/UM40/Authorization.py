@@ -1,6 +1,6 @@
 # Здесь опишем класс Авторизации
 from JSON_Backend_framework.Devices_USPD.Authorization import Authorization
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ class Authorization_UM40(Authorization):
     # Шаблон JSON для авторизации
     _data_Authorization = {'login': "admin", 'password': "admin"}
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Authorization")
     # Переопределяем чтоб можно было достать
     path_url = _path_url

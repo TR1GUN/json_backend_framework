@@ -7,13 +7,13 @@
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
+
 class TemplateAddress(TemplateFunctional):
     """
     Адресная книга
 
     """
     # URL
-
     _path_url = url_path.get("Settings_Address")
 
     # хедерс - Иногда нужен

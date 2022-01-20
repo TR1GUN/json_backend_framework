@@ -5,7 +5,7 @@
 # -------------------------------------------------------------------------------------------------------------
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateTemplatesMessages(TemplateFunctional):
     """
@@ -13,7 +13,7 @@ class TemplateTemplatesMessages(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Template_Messages")
 
     # хедерс - Иногда нужен

@@ -8,7 +8,7 @@
 # ЗДЕСЬ ОЧЕНЬ ВААЖНО - тут не используется поле Settings
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateLocalTimeZone(TemplateFunctional):
     """
@@ -16,7 +16,7 @@ class TemplateLocalTimeZone(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Settings_TimeZone")
 
     # хедерс - Иногда нужен

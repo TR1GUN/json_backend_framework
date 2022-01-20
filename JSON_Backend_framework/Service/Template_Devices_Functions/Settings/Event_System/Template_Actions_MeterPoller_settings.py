@@ -5,7 +5,7 @@
 # -------------------------------------------------------------------------------------------------------------
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateActionsMeterPoller(TemplateFunctional):
     """
@@ -13,7 +13,7 @@ class TemplateActionsMeterPoller(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Actions_Meter_Poller")
 
     # хедерс - Иногда нужен

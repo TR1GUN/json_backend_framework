@@ -5,7 +5,7 @@
 # -------------------------------------------------------------------------------------------------------------
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateInterface_DIn_DiscreteInput (TemplateFunctional):
     """
@@ -13,7 +13,7 @@ class TemplateInterface_DIn_DiscreteInput (TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Settings_Din")
 
     # хедерс - Иногда нужен

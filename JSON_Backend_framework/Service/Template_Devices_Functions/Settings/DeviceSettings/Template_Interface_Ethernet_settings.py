@@ -8,7 +8,7 @@
 # в 31 через простой список
 #
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateInterface_Ethernet(TemplateFunctional):
     """
@@ -18,7 +18,7 @@ class TemplateInterface_Ethernet(TemplateFunctional):
     from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Settings_Ethernet")
 
     # хедерс - Иногда нужен

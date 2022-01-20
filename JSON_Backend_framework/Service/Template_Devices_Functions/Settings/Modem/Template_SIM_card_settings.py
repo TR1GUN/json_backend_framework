@@ -13,7 +13,6 @@ class TemplateSIM(TemplateFunctional):
 
     """
     # URL
-
     _path_url = url_path.get("Settings_SIM")
 
     # хедерс - Иногда нужен

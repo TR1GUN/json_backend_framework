@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateMeterDataMoment(TemplateFunctional):
     """
@@ -12,7 +12,7 @@ class TemplateMeterDataMoment(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Meter_Data_moment")
 
     # хедерс - Иногда нужен

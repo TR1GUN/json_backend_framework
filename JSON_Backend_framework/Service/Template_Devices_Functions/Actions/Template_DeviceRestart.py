@@ -5,7 +5,7 @@
 # -------------------------------------------------------------------------------------------------------------
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateDeviceRestart(TemplateFunctional):
     """
@@ -14,7 +14,7 @@ class TemplateDeviceRestart(TemplateFunctional):
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Restart")
 
     # хедерс - Иногда нужен
@@ -23,6 +23,7 @@ class TemplateDeviceRestart(TemplateFunctional):
     _cookies = None
     # Переопределяем чтоб можно было достать
     path_url = _path_url
+
     def Restart(self):
         """
         Берем и перезагружаем устройство

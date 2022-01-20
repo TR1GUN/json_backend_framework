@@ -1,7 +1,7 @@
 # Здесь опишем класс Авторизации
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                         Авторизация
@@ -13,7 +13,7 @@ class Authorization(TemplateFunctional):
     # Шаблон JSON для авторизации
     _data_Authorization = {'login': "admin", 'password': "admin"}
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Authorization")
 
     # хедерс - Иногда нужен
@@ -73,7 +73,7 @@ class Authorization(TemplateFunctional):
         """
         # Пункт первый - если у нас логин и пароль стоит в None то парсим из конфига
 
-        self._Login = Login ,
+        self._Login = Login
         self._Password = Password
 
         # Теперь вставляем в наши данные для авториазции
