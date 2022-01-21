@@ -6,6 +6,7 @@
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
+
 class TemplateJournalTime(TemplateFunctional):
     """
     Шаблон Журнала изменения времени

@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions, TemplateSettingsData
-
+from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class MeterDeviceTable(TemplateDeviceFunctions):
     """
@@ -12,7 +12,7 @@ class MeterDeviceTable(TemplateDeviceFunctions):
     """
 
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Metering_device_table")
 
     # хедерс - Иногда нужен

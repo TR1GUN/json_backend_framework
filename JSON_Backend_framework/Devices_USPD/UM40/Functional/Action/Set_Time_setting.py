@@ -11,7 +11,6 @@
 
 # ГОД
 class SETYear:
-
     """
     ГОД
     """
@@ -37,7 +36,6 @@ class SETYear:
         self._Year = None
 
     def get_Year(self):
-
         """
         Берем Год
 
@@ -282,13 +280,19 @@ class SETTimeZone:
         """
         return self._TimeZone
 
+
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                         Установка времени
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
-
 from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_SetTime import TemplateSetTime
+
+from JSON_Backend_framework.Devices_USPD.settings import url_path
+
+from JSON_Backend_framework.Service.TemplateDecorator import read_USPD_Time_Request
+
+
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -297,10 +301,9 @@ class SetTime(TemplateSetTime):
     Установка времени
 
     """
-    from JSON_Backend_framework.Service.TemplateDecorator import read_USPD_Time_Request
 
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path
+
     _path_url = url_path.get("Set_time")
 
     # хедерс - Иногда нужен

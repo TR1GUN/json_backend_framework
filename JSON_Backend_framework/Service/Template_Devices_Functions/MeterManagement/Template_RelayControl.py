@@ -7,6 +7,7 @@ from JSON_Backend_framework.Service.Template_Functional import TemplateFunctiona
 
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
+
 class TemplateRelayControl(TemplateFunctional):
     """
     Шаблон Управления реле
@@ -22,6 +23,7 @@ class TemplateRelayControl(TemplateFunctional):
     _cookies = None
     # Переопределяем чтоб можно было достать
     path_url = _path_url
+
     def _Set_relay(self, data):
         """
         Запросить данные - POST

@@ -7,6 +7,7 @@
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
+
 class TemplateTimeMeterSetting(TemplateFunctional):
     """
     Шаблон Установки времени
@@ -22,6 +23,7 @@ class TemplateTimeMeterSetting(TemplateFunctional):
     _cookies = None
     # Переопределяем чтоб можно было достать
     path_url = _path_url
+
     def _request_set_id(self, data):
         """
         Запросить данные - POST

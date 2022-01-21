@@ -102,7 +102,7 @@ class Template_UM_XX_SMART_MeterData:
 
     # Функционал
     # Опрос приборов учета
-    MeterData = None
+    # MeterData = None
     # Опрос приборов учета – Архивные записи
     MeterData_Arch = None
     # Опрос приборов учета – Моментные показатели

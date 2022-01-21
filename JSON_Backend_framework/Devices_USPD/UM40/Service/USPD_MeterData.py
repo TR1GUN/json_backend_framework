@@ -19,7 +19,7 @@ class UM_40_SMART_MeterData(Template_UM_XX_SMART_MeterData):
 
     # Функционал
     # Опрос приборов учета
-    MeterData = None
+    # MeterData = None
     # Опрос приборов учета – Архивные записи
     MeterData_Arch = None
     # Опрос приборов учета – Моментные показатели
@@ -41,44 +41,44 @@ class UM_40_SMART_MeterData(Template_UM_XX_SMART_MeterData):
 
         """
 
-        self.MeterData = self._MeterData()
+        # self.MeterData = self._MeterData()
         self.MeterData_Arch = self._MeterData_Arch()
         self.MeterData_Moment = self._MeterData_Moment()
 
     # ----->
 
-    def _MeterData(self):
-        """
-        Опрос приборов учета
-        """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData import MeterData
-        MeterData_read = MeterData(
-                        cookies=self._cookies,
-                        headers=self._headers,
-                        ip_address=self._ip_address
-                      )
-        return MeterData_read
+    # def _MeterData(self):
+    #     """
+    #     Опрос приборов учета
+    #     """
+    #     from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData import MeterData
+    #     MeterData_read = MeterData(
+    #                     cookies=self._cookies,
+    #                     headers=self._headers,
+    #                     ip_address=self._ip_address
+    #                   )
+    #     return MeterData_read
 
     def _MeterData_Arch(self):
         """
         Опрос приборов учета – Архивные записи
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Action.Set_Time_setting import SetTime
-        Time = SetTime(
-                        cookies=self._cookies,
-                        headers=self._headers,
-                        ip_address=self._ip_address
-                      )
-        return Time
+        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData_Arch import MeterDataArch
+        MeterDataArch_read = MeterDataArch(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return MeterDataArch_read
 
     def _MeterData_Moment(self):
         """
         Опрос приборов учета – Моментные показатели
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Action.Set_Time_setting import SetTime
-        Time = SetTime(
-                        cookies=self._cookies,
-                        headers=self._headers,
-                        ip_address=self._ip_address
-                      )
-        return Time
+        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData_Moment import MeterDataMoment
+        MeterDataMoment_read = MeterDataMoment(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return MeterDataMoment_read

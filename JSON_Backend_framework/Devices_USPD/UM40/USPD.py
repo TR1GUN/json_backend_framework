@@ -103,7 +103,7 @@ class UM_40_SMART(Template_USPD):
                                                                         headers=self._headers,
                                                                         ip_address=self._ip_address
                                                                        )
-    # Опрос Приборов Учета
+    # Опрос Приборов Учета - Данные приборов учета
     def _MeterData(self):
 
         """
