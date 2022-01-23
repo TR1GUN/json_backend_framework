@@ -290,10 +290,6 @@ class MeterTable(TemplateMeterTable):
     # Массив из счетчиков
     _Meters = [{'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]
 
-    # _Sim1 = {'id': 1, 'pin': '', 'addr': 'internet.beeline.ru', 'auth': False, 'login': 'beeline',
-    #          'password': 'beeline', 'enable': True}
-    # _Sim2 = {'id': 2, 'pin': '2527', 'addr': 'internet.beeline.ru', 'auth': True, 'login': 'beeline',
-    #          'password': 'beeline', 'enable': True}
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """

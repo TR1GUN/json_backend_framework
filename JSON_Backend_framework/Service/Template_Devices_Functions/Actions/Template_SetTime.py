@@ -116,7 +116,7 @@ class TemplateSetTime(TemplateFunctional):
         return data
 
     # ОСНОВНОЙ МЕТОД КОТОРЫЙ ТОРЧИТ СНАРУЖИ
-    def rewrite_Time(self, data=None):
+    def Set(self, data=None):
         """
         Перезаписываем данные - PUT
 

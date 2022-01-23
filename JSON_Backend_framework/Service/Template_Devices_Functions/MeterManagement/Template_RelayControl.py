@@ -24,7 +24,7 @@ class TemplateRelayControl(TemplateFunctional):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
 
-    def _Set_relay(self, data):
+    def Set(self, data):
         """
         Запросить данные - POST
 
