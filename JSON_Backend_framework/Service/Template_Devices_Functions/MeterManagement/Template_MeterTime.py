@@ -24,7 +24,7 @@ class TemplateTimeMeterSetting(TemplateFunctional):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
 
-    def _request_set_id(self, data):
+    def Sync(self, data):
         """
         Запросить данные - POST
 
