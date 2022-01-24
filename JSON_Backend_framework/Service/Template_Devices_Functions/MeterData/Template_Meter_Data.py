@@ -6,6 +6,7 @@
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
+
 class TemplateMeterData(TemplateFunctional):
     """
     Шаблон Опроса приборов учета
@@ -164,7 +165,23 @@ class TemplateMeterData(TemplateFunctional):
 
         return response
 
+    # Основной метод который торчит наружу
 
+    def Read(self, data):
+        """
+        Функция для прямой отправки JSON
+
+        :param data: JSON
+        :return:
+        """
+
+        # Запаковываем бэк
+
+        data = self._coding(data=data)
+        # делаем запрос - получаем ответ
+        response = self._request_POST(JSON=data)
+
+        return response
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                   Шаблон Опроса приборов учета - С общими методами
@@ -187,7 +204,7 @@ class TemplateMeterDataRead(TemplateMeterData):
     # Электросчетчики
     Electric = None
 
-    def read(self, data):
+    def Read(self, data):
         """
         Функция для прямой отправки JSON
 

@@ -18,15 +18,6 @@ class MeterDataArchJournal(TemplateMeterData):
     Чтение Журналов
     """
 
-    # # URL
-    # from Devices_USPD.settings import url_path
-    # _path_url = url_path.get("Meter_Data_arch")
-    # # _path_url ="/charge/data/arch"
-    # # хедерс - Иногда нужен
-    # _headers = None
-    # # куки
-    # _cookies = None
-
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
