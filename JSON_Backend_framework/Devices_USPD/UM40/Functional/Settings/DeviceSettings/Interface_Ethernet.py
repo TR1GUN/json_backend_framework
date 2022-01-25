@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки для Ethernet
+#                                         Настройки для   Ethernet
 # -------------------------------------------------------------------------------------------------------------
 
 class SettingsEthernet:
@@ -109,7 +109,7 @@ class SettingsEthernet:
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_Ethernet_settings import TemplateInterface_Ethernet
-
+from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -118,14 +118,14 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
     Настройки Ethernet
 
     """
-    from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
+
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
 
     # Общие настройки
-    SettingsEthernet = SettingsEthernet()
+    Settings = SettingsEthernet()
 
     # Настройки по умолчанию
 
@@ -167,8 +167,8 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         """
 
         # Пункт первый -  читаем какие настройки у нас есть
-        Ethernet1 = self.SettingsEthernet.settings_Eth_0()
-        Ethernet2 = self.SettingsEthernet.settings_Eth_1()
+        Ethernet1 = self.Settings.settings_Eth_0()
+        Ethernet2 = self.Settings.settings_Eth_1()
 
         # ТЕПЕРЬ, если у нас оба сейтинга не заданы , запрашиваем :
         if (Ethernet1 is None) or (Ethernet2 is None):

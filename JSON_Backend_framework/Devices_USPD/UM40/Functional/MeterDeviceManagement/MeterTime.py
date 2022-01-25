@@ -15,7 +15,7 @@ class SettingsMeterTimeSync:
     def __init__(self):
         self._Setting_MeterTimeSync = None
 
-    def set_Relay(self, MeterIdx: int):
+    def set_Meter(self, MeterIdx: int):
         """
         Установка положения реле на счетчике по его MeterIdx
 

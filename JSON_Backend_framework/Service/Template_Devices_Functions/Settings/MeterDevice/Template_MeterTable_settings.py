@@ -5,6 +5,8 @@
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
+
 
 class TemplateMeterTable(TemplateFunctional):
     """
@@ -107,6 +109,7 @@ class TemplateMeterTable(TemplateFunctional):
         return data
 
     # Запрос настроек
+    @print_log_use_GET_data
     def _request_setting(self):
         """
         Здесь запрашиваем нужные нам настройки

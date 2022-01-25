@@ -78,7 +78,7 @@ class RelayControl(TemplateRelayControl):
             data = {}
         return data
 
-    def Set(self, data):
+    def SetRelay(self, data):
         """
         Запросить данные - POST
 

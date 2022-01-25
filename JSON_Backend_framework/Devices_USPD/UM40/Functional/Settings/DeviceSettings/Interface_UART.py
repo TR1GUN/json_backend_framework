@@ -9,6 +9,8 @@ from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSe
 
 
 # -------------------------------------------------------------------------------------------------------------
+
+
 class SettingsUART:
     """
 
@@ -36,7 +38,6 @@ class SettingsUART:
         }
         self._Settings.append(setting)
 
-
     def add_Iface2(self, line: int, br: int, size: int, parity: int, stop: int):
 
         """
@@ -53,7 +54,6 @@ class SettingsUART:
         }
         self._Settings.append(setting)
 
-
     def add_Iface3(self, line: int, br: int, size: int, parity: int, stop: int):
 
         """
@@ -69,7 +69,6 @@ class SettingsUART:
             "stop": stop
         }
         self._Settings.append(setting)
-
 
     def add_Iface4(self, line: int, br: int, size: int, parity: int, stop: int):
 
@@ -114,6 +113,11 @@ class SettingsUART:
         Получаем наш список настроек
         """
         return self._Settings
+
+# -------------------------------------------------------------------------------------------------------------
+#
+# -------------------------------------------------------------------------------------------------------------
+
 
 class Interface_UART(TemplateInterface_UART):
     """

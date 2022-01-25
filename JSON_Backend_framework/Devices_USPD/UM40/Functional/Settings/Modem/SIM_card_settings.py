@@ -114,7 +114,7 @@ class SettingsSim:
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Modem.Template_SIM_card_settings import TemplateSIM
-
+from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -133,7 +133,7 @@ class SIM_card(TemplateSIM):
     _cookies = None
 
     # Общие настройки
-    SettingsSim = SettingsSim()
+    Settings = SettingsSim()
 
     # Настройки по умолчанию
 
@@ -167,8 +167,8 @@ class SIM_card(TemplateSIM):
         """
 
         # Пункт первый -  читаем какие настройки у нас есть
-        SIM1 = self.SettingsSim.settings_Sim_1()
-        SIM2 = self.SettingsSim.settings_Sim_2()
+        SIM1 = self.Settings.settings_Sim_1()
+        SIM2 = self.Settings.settings_Sim_2()
 
         # ТЕПЕРЬ, если у нас оба сейтинга не заданы , запрашиваем :
         if (SIM1 is None) or (SIM2 is None):
@@ -193,7 +193,7 @@ class SIM_card(TemplateSIM):
         return JSON
 
     # Запрос настроек
-
+    @print_log_use_GET_data
     def _request_setting(self):
         """
         Здесь запрашиваем нужные нам настройки

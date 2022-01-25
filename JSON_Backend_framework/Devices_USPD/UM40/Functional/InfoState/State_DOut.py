@@ -35,7 +35,7 @@ class StateDOut(TemplateStateDOut):
         if ip_address is not None:
             self._ip_address = ip_address
 
-    def read_State(self):
+    def Read(self):
         """
         Чтение текущего времени на УСПД
         """

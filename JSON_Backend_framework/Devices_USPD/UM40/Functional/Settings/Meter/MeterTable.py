@@ -82,23 +82,6 @@ class SettingsMeterTable(TemplateSettingsData):
         self._list_permissible_Interface = list(self._Name_Interface.values())
         self._list_permissible_Name_Interface = list(self._Name_Interface.keys())
 
-    # {
-    #     "Meters": [
-    #         {
-    #             "id": 1,
-    #             "pId": 0,
-    #             "typeName": "Mercury23x",
-    #             "addr": "72",
-    #             "passRd": "010101010101",
-    #             "passWr": "020202020202",
-    #             "ifaceName": "Iface1",
-    #             "ifaceCfg": "9600,8n1",
-    #             "rtuObjType": 3,
-    #             "rtuObjNum": 2,
-    #             "rtuFider": 1
-    #         }
-    #     ]
-    # }
     def add_settings(self, MeterId: int, typeName_Meter: str, Interface: str,
                      address: str, password_to_read: str, password_to_write: str,
                      ParentId: int = 0, ifaceConfig: str = '9600,8n1',
@@ -179,41 +162,41 @@ class SettingsMeterTable(TemplateSettingsData):
 
         return self._data_settings
 
-    def add_ids(self, ids: int):
-        """
-        Добавляем Device_id для запроса данных или удаления
-
-        :param ids:
-        :return:
-        """
-
-        self._data_ids.append(ids)
-
-    def remove_ids(self, ids: [int, list]):
-        """
-        Удаление добавленной записи ids для получения/удаления записей
-        :param ids: - list or int
-        :return:
-        """
-        data_ids = []
-
-        # Перебираем все настройки
-
-        for idx in self._data_ids:
-            # Если айдишник не совпадает то добавляем в список
-            if idx not in ids:
-                data_ids.append(idx)
-
-        self._data_ids = data_ids
-
-    def get_ids(self):
-        """
-        Получаем добавленные ids
-
-        :return:
-        """
-
-        return self._data_ids
+    # def add_ids(self, ids: int):
+    #     """
+    #     Добавляем Device_id для запроса данных или удаления
+    #
+    #     :param ids:
+    #     :return:
+    #     """
+    #
+    #     self._data_ids.append(ids)
+    #
+    # def remove_ids(self, ids: [int, list]):
+    #     """
+    #     Удаление добавленной записи ids для получения/удаления записей
+    #     :param ids: - list or int
+    #     :return:
+    #     """
+    #     data_ids = []
+    #
+    #     # Перебираем все настройки
+    #
+    #     for idx in self._data_ids:
+    #         # Если айдишник не совпадает то добавляем в список
+    #         if idx not in ids:
+    #             data_ids.append(idx)
+    #
+    #     self._data_ids = data_ids
+    #
+    # def get_ids(self):
+    #     """
+    #     Получаем добавленные ids
+    #
+    #     :return:
+    #     """
+    #
+    #     return self._data_ids
 
     def get_permissible_meters(self):
         """
@@ -221,33 +204,6 @@ class SettingsMeterTable(TemplateSettingsData):
 
         :return:
         """
-        # ["Меркурий200","Mercury200"],
-        # ["Меркурий203","Mercury203"],
-        # ["Меркурий206","Mercury206"],
-        # ["Меркурий23x","Mercury23x"],
-        # ["Меркурий234 СПОДЭС","SPODES"],
-        # ["СЕ102","SE102"],
-        # ["СЕ102М","SE102M"],
-        # ["СЕ301","SE301"],
-        # ["СЕ303","SE303"],
-        # ["СЭБ2А","SEB2a"],
-        # ["СЭТ4ТМ","SETxTM"],
-        # ["ПСЧхТМ","PSCHxTM"],
-        # ["Альфа1140","A1140"],
-        # ["ТОПАЗ","TOPAZ"],
-        # ["НЕВА1xx","NEVA1xx"],
-        # ["НЕВА3xx","NEVA3xx"],
-        # ["МИЛУР IC","MILUR IC"],
-        # ["Милур10x","MILUR10x"],
-        # ["Милур30x","MILUR30x"],
-        # ["СОЭ55/215","SOE55_215"],
-        # ["СОЭ55/217","SOE55_217"],
-        # ["СОЭ55/415","SOE55_415"],
-        # ["СТЭ561","STE561"],
-        # ["ИНТЕГРА10х","INTEGRA10x"],
-        # ["УМТВ10","UMTV10"],
-        # ["Пульсар","Pulsar"],
-        # ["ST410","ST410"]
 
         return self._Name_Meters
 
@@ -256,20 +212,13 @@ class SettingsMeterTable(TemplateSettingsData):
         Получаем разрешенные интерфейсы
         :return:
         """
-        # ["Интерфейс 1", "Iface1"],
-        # ["Интерфейс 2", "Iface2"],
-        # ["Интерфейс 3", "Iface3"],
-        # ["Интерфейс 4", "Iface4"],
-        # ["Ethernet", "Ethernet"],
-        # ["Интерфейс концентратора", "Hub"]
         return self._Name_Interface
 
 
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
-
-
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.MeterDevice.Template_MeterTable_settings import TemplateMeterTable
+from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -278,7 +227,7 @@ class MeterTable(TemplateMeterTable):
     Таблица приборов учета
 
     """
-    from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
+
     # хедерс - Иногда нужен
     _headers = None
     # куки
@@ -290,10 +239,9 @@ class MeterTable(TemplateMeterTable):
     # Массив из счетчиков
     _Meters = [{'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]
 
-
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки SIM-карт (Pin, APN)
+       Настройки - Таблица Счетчиков
 
         :param cookies:
         :param headers:
@@ -316,10 +264,11 @@ class MeterTable(TemplateMeterTable):
 
         """
         # Смотрим - есть ли добавленые счетчики
-        data  = self.Settings.get_settings()
-        # Теперь если у нас есть данные - Считываем их
+        data = self.Settings.get_settings()
+        if len(data) == 0 :
+            # Теперь если у нас есть данные - Считываем их
 
-        data = self._request_setting()
+            data = self._request_setting()
         return data
 
     # Запрос настроек
@@ -350,107 +299,22 @@ class MeterTable(TemplateMeterTable):
         return data
 
 
-    # def _getting_settings(self):
-    #
-    #     """
-    #
-    #     Получение настроек что задали
-    #
-    #     """
-    #
-    #     # Пункт первый -  читаем какие настройки у нас есть
-    #     SIM1 = self.SettingsSim.settings_Sim_1()
-    #     SIM2 = self.SettingsSim.settings_Sim_2()
-    #
-    #     # ТЕПЕРЬ, если у нас оба сейтинга не заданы , запрашиваем :
-    #     if (SIM1 is None) or (SIM2 is None):
-    #         _Sim1, _Sim2 = self._request_setting()
-    #         # Теперь смотрим точно что необходимо переназначить
-    #         if SIM1 is None:
-    #             # Теперь смотрим что считали
-    #             if _Sim1 is None:
-    #                 SIM1 = self._Sim1
-    #             else:
-    #                 SIM1 = _Sim1
-    #         if SIM2 is None:
-    #             # Теперь смотрим что считали
-    #             if _Sim2 is None:
-    #                 SIM2 = self._Sim2
-    #             else:
-    #                 SIM2 = _Sim2
-    #
-    #     # Теперь формируем нужный JSON
-    #     # JSON = {"Settings" : [SIM1, SIM2]}
-    #     JSON = [SIM1, SIM2]
-    #     return JSON
-    #
-    # # Запрос настроек
-    # def _request_setting(self):
-    #     """
-    #     Здесь запрашиваем нужные нам настройки
-    #
-    #     """
-    #     _Sim1 = None
-    #     _Sim2 = None
-    #     try:
-    #         # делаем запрос - получаем ответ
-    #         response = self.read_settings()
-    #         # Теперь вытаскиваем нужное
-    #         if response.get('code') == int(200):
-    #             sim_setting = response.get('data')
-    #             # Теперь заполянем наши переменные
-    #             if sim_setting is not None:
-    #
-    #                 print(sim_setting)
-    #                 Settings = sim_setting['Settings']
-    #                 # Теперь перебираем все это
-    #                 for idx in Settings:
-    #                     if idx.get('id') == 1:
-    #                         _Sim1 = idx
-    #                     if idx.get('id') == 2:
-    #                         _Sim2 = idx
-    #
-    #     except Exception as e:
-    #
-    #         print("При считывании параметров возникла ошибка - " + str(e))
-    #
-    #     return _Sim1, _Sim2
-
 # -------------------------------------------------------------------------------------------------------------
+#                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-
-# # #
-# # a = {'Meters': [{
-# #                 'addr': '72',
-# #                  'id': 6,
-# #                  'ifaceCfg': '9600,8n1',
-# #                  'ifaceName': 'Iface1',
-# #                  'index': 1,
-# #                  'pId': 0,
-# #                  'passRd': '010101010101',
-# #                  'passWr': '020202020202',
-# #                  'rtuFider': 1,
-# #                  'rtuObjNum': 2,
-# #                  'rtuObjType': 3,
-# #                  'type': 3,
-# #                  'typeName': 'Mercury23x'
-# #                 }]}
-# # print(lol.read_settings())
-#
-# data = {'Ids':[1,3]}
-# print(lol.delete_settings(data))
-# #
-# a = {'Meters': [
-#     {'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'},
-#     {'addr': '72', 'id': 2, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 2, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'},
-#     {'addr': '72', 'id': 5, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 3, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]}
-#
-# # print(lol.write_settings(a))
-# # print(lol.rewrite_settings(a))
-#
-# # lol.Data_Settings.add_settings(MeterId=1, )
-#
-# # url = '_settings_meter_table'
-# # url_path = url[1:]
-# # print(url_path)
-
+# data= {'Meters': [{
+#                 'addr': '72',
+#                  'id': 6,
+#                  'ifaceCfg': '9600,8n1',
+#                  'ifaceName': 'Iface1',
+#                  'index': 1,
+#                  'pId': 0,
+#                  'passRd': '010101010101',
+#                  'passWr': '020202020202',
+#                  'rtuFider': 1,
+#                  'rtuObjNum': 2,
+#                  'rtuObjType': 3,
+#                  'type': 3,
+#                  'typeName': 'Mercury23x'
+#                 }]}
+# -------------------------------------------------------------------------------------------------------------

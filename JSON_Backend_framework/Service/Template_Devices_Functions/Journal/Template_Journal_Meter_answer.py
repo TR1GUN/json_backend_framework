@@ -26,7 +26,7 @@ class TemplateJournalMeterAnswer(TemplateFunctional):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
 
-    def read_Journal(self):
+    def Read_Journal(self):
         """
         Читаем данные - GET
         :return:

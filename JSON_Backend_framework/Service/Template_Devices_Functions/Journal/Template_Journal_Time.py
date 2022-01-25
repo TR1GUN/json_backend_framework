@@ -24,7 +24,7 @@ class TemplateJournalTime(TemplateFunctional):
     path_url = _path_url
     # Настройки по умолчанию
 
-    def read_Journal(self):
+    def Read_Journal(self):
         """
         Читаем данные - GET
         :return:
