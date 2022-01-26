@@ -13,7 +13,7 @@ import setuptools
 
 setuptools.setup(
     name="JSON_Backend_Framework",
-    version="0.2",
+    version="0.3.0",
     author="Buslin Nicolay",
     author_email="n.Buslin@allmonitoring.ru",
     description="Package to eaZZZy work with JSON_Backend_framework.",
