@@ -3,7 +3,6 @@
 #                                      Шаблон настроек СИМ карт
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
@@ -99,10 +98,7 @@ class TemplateSIM(TemplateFunctional):
     def _getting_settings(self):
 
         """
-
         В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
-
-
         """
         data = self._request_setting()
         return data

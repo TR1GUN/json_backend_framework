@@ -1,120 +1,12 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-# Настройки сим карт - Добавление
-class SettingsSim:
-    """
-
-    Итак - Здесь заполняем настройки
-
-    """
-
-    _Setting_Sim1 = None
-    _Setting_Sim2 = None
-
-    _Settings = None
-
-    def __init__(self):
-        self._Setting_Sim1 = None
-        self._Setting_Sim2 = None
-
-    def added_SIM_1(self, pin: int = 1234, enable: bool = True, address: str = 'e.rustatic.beelin', auth: bool = True,
-                    login: str = 'beeline', password: str = 'beeline'):
-        """
-        Настройки SIM 1
-
-        :param pin: - int - PIN-код SIM-карты, 4 цифры
-        :param enable: - bool - Разрешение подключения к точке доступа
-        :param address: - str - Адрес точки доступа
-        :param auth: - bool - Необходимость авторизации
-        :param login: - str - Логин
-        :param password: - str - Пароль
-        :return:
-        """
-
-        _Setting_Sim1 = \
-            {
-                "id": 1,
-                "pin": pin,
-                "enable": enable,
-                "addr": address,
-                "auth": auth,
-                "login": login,
-                "password": password
-            }
-
-        self._Setting_Sim1 = _Setting_Sim1
-
-    def remove_Sim_1(self):
-        """
-        Удаление настроек Sim1, что ввели
-        :return:
-        """
-
-        self._Setting_Sim1 = None
-
-    def settings_Sim_1(self):
-        """
-        Получить настройки Sim1
-        :return:
-        """
-
-        return self._Setting_Sim1
-
-    def added_SIM_2(self, pin: int = 1234, enable: bool = True, address: str = 'e.rustatic.beelin', auth: bool = True,
-                    login: str = 'beeline', password: str = 'beeline'):
-        """
-        Настройки SIM 2
-
-        :param pin: - int - PIN-код SIM-карты, 4 цифры
-        :param enable: - bool - Разрешение подключения к точке доступа
-        :param address: - str - Адрес точки доступа
-        :param auth: - bool - Необходимость авторизации
-        :param login: - str - Логин
-        :param password: - str - Пароль
-        :return:
-        """
-
-        _Setting_Sim2 = \
-            {
-                "id": 2,
-                "pin": pin,
-                "enable": enable,
-                "addr": address,
-                "auth": auth,
-                "login": login,
-                "password": password
-            }
-
-        self._Setting_Sim2 = _Setting_Sim2
-
-    def remove_Sim_2(self):
-        """
-        Удаление настроек Sim2, что ввели
-        :return:
-        """
-
-        self._Setting_Sim2 = None
-
-    def settings_Sim_2(self):
-        """
-        Получить настройки Sim2
-        :return:
-        """
-
-        return self._Setting_Sim2
-
-
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
 #                                         Настройки СИМ карт
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Modem.Template_SIM_card_settings import TemplateSIM
 from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
+from JSON_Backend_framework.FormJSON.UM40.Settings.Modem.JSON_Construct_Settings_SIM import SettingsSim
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -167,8 +59,16 @@ class SIM_card(TemplateSIM):
         """
 
         # Пункт первый -  читаем какие настройки у нас есть
-        SIM1 = self.Settings.settings_Sim_1()
-        SIM2 = self.Settings.settings_Sim_2()
+        SIM = self.Settings.get_settings_Sim()
+
+        SIM1 = None
+        SIM2 = None
+        SIM = SIM.get(self._Settings_name)
+        for i in SIM:
+            if i.get('id') == 1:
+                SIM1 = i
+            if i.get('id') == 2:
+                SIM2 = i
 
         # ТЕПЕРЬ, если у нас оба сейтинга не заданы , запрашиваем :
         if (SIM1 is None) or (SIM2 is None):
@@ -209,9 +109,7 @@ class SIM_card(TemplateSIM):
                 sim_setting = response.get('data')
                 # Теперь заполянем наши переменные
                 if sim_setting is not None:
-
-                    print(sim_setting)
-                    Settings = sim_setting['Settings']
+                    Settings = sim_setting[self._Settings_name]
                     # Теперь перебираем все это
                     for idx in Settings:
                         if idx.get('id') == 1:

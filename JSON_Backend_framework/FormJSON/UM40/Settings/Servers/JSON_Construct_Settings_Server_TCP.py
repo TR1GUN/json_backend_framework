@@ -2,16 +2,19 @@
 #                                              Шаблон Формирования JSON
 #                                               Настройки TCP-серверов
 # -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Form_JSON.Settings.Servers.Template_JSON_Construct_Settings_Server_TCP import TemplateSettingsServer
+# -------------------------------------------------------------------------------------------------------------
+
 
 # Класс для добавления своих серверов
-class TemplateSettingsServer:
+class SettingsServer(TemplateSettingsServer):
 
     _Server_list = None
 
     # Сервера что возможны :
 
-    # def __init__(self):
-    #     self._Server_list = []
+    def __init__(self):
+        self._Server_list = []
 
     def add_RTU327(self, port: int):
         """
@@ -67,25 +70,3 @@ class TemplateSettingsServer:
         server_settings = {'type': 'iface4', 'port': int(port)}
         # Добавляем
         self._Server_list.append(server_settings)
-
-    def get_servers(self):
-        """
-        Отдаем наши введенные порты
-
-        """
-        return self._Server_list
-
-    def delete_server_for_port(self, ports:(int, list)):
-
-        if type(ports) is int:
-            ports = [ports]
-
-        # Образовываем новый список
-        Server_list = []
-        # Теперь проходимся по нашему списку и удаляем если есть соответствия
-        for setting in self._Server_list:
-            if setting.get('port') not in ports:
-                Server_list.append(setting)
-
-        # Переопредлеляем
-        self._Server_list = Server_list

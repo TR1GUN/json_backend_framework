@@ -3,98 +3,12 @@
 #                                         Настройки TCP-серверов
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
-
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Servers.Template_TCP_server_settings import \
     TemplateServer_TCP
 
-
+# Импортируем шаблон Настроек
+from JSON_Backend_framework.FormJSON.UM40.Settings.Servers.JSON_Construct_Settings_Server_TCP import SettingsServer
 # -------------------------------------------------------------------------------------------------------------
-# Класс для добавления своих серверов
-class Server:
-
-    _Server_list = None
-
-    # Сервера что возможны :
-
-    def __init__(self):
-        self._Server_list = []
-
-    def add_RTU327(self, port: int):
-        """
-        Добавление сервера RTU327
-        :param port: - `int` - Номер порта
-
-        """
-        # Формируем шаблон
-        server_settings = {'type': 'rtu327', 'port': int(port)}
-        # Добавляем
-        self._Server_list.append(server_settings)
-
-    def add_IFace1(self, port: int):
-        """
-        Добавление сервера IFace1
-        :param port: - `int` - Номер порта
-
-        """
-        # Формируем шаблон
-        server_settings = {'type': 'iface1', 'port': int(port)}
-        # Добавляем
-        self._Server_list.append(server_settings)
-
-    def add_IFace2(self, port: int):
-        """
-        Добавление сервера IFace2
-        :param port: - `int` - Номер порта
-
-        """
-        # Формируем шаблон
-        server_settings = {'type': 'iface2', 'port': int(port)}
-        # Добавляем
-        self._Server_list.append(server_settings)
-
-    def add_IFace3(self, port: int):
-        """
-        Добавление сервера IFace3
-        :param port: - `int` - Номер порта
-
-        """
-        # Формируем шаблон
-        server_settings = {'type': 'iface3', 'port': int(port)}
-        # Добавляем
-        self._Server_list.append(server_settings)
-
-    def add_IFace4(self, port: int):
-        """
-        Добавление сервера IFace4
-        :param port: - `int` - Номер порта
-
-        """
-        # Формируем шаблон
-        server_settings = {'type': 'iface4', 'port': int(port)}
-        # Добавляем
-        self._Server_list.append(server_settings)
-
-    def get_servers(self):
-        """
-        Отдаем наши введенные порты
-
-        """
-        return self._Server_list
-
-    def delete_server_for_port(self, ports:(int, list)):
-
-        if type(ports) is int:
-            ports = [ports]
-
-        # Образовываем новый список
-        Server_list = []
-        # Теперь проходимся по нашему списку и удаляем если есть соответствия
-        for setting in self._Server_list:
-            if setting.get('port') not in ports:
-                Server_list.append(setting)
-
-        # Переопредлеляем
-        self._Server_list = Server_list
 
 
 class ServerTCP(TemplateServer_TCP):
@@ -109,7 +23,7 @@ class ServerTCP(TemplateServer_TCP):
     _cookies = None
 
     # Общие настройки
-    Settings = Server()
+    Settings = SettingsServer()
 
     # Настройки по умолчанию
 
@@ -140,11 +54,15 @@ class ServerTCP(TemplateServer_TCP):
 
         """
         # Сначала получаем наши данные что ввели
-        server_list = self.Settings.get_servers()
-
+        servers_data = self.Settings.get_servers()
+        # Теперь что делаем - смотрим что в дата таге
+        servers_list = servers_data.get(self._Settings_name)
         # Если НИЧЕГО НЕ ДОБАВЛЯЛИ , используем из GET запроса
-        if len(server_list) > 0:
-            data = server_list
+        if servers_list is not None:
+            if len(servers_list) > 0:
+                data = servers_list
+            else:
+                data = self._request_setting()
         else:
             data = self._request_setting()
 
@@ -153,7 +71,7 @@ class ServerTCP(TemplateServer_TCP):
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-# data =  {'Settings': [{'type': 'rtu327', 'por t': '7777'}]}
+# data =  {'Settings': [{'type': 'rtu327', 'port': '7777'}]}
 # -------------------------------------------------------------------------------------------------------------
 
 

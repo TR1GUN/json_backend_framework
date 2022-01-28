@@ -1,115 +1,12 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки для   Ethernet
-# -------------------------------------------------------------------------------------------------------------
-
-class SettingsEthernet:
-    """
-
-    Итак - Здесь заполняем настройки
-
-    """
-
-    _Setting_Eth0 = None
-    _Setting_Eth1 = None
-
-    def __init__(self):
-        self._Setting_Eth0 = None
-        self._Setting_Eth1 = None
-
-    def added_Eth_0(self, dhcp: bool, ip: str, netmask: str, gateway: str, dns1: str, dns2: str):
-        """
-        Настройки интерфейса Ethernet 1
-
-        :param dhcp: - bool - Настройки DHCP
-        :param ip: - str - Настройки IP адреса
-        :param netmask: - str - Маска подсети
-        :param gateway: - str - Шлюз
-        :param dns1: - str - DNS Первичный Сервер
-        :param dns2: - str - DNS Вторичный Сервер
-        :return:
-        """
-
-        _Setting_Eth0 = \
-            {
-                'iface': 'eth0',
-                'dhcp': bool(dhcp),
-                'ip': ip,
-                'netmask': netmask,
-                'gw': gateway,
-                'dns1': dns1,
-                'dns2': dns2,
-            }
-
-        self._Setting_Eth0 = _Setting_Eth0
-
-    def remove_Eth_0(self):
-        """
-        Удаление настроек интерфейса Ethernet 1, что ввели
-        :return:
-        """
-
-        self._Setting_Eth0 = None
-
-    def added_Eth_1(self, dhcp: bool, ip: str, netmask: str, gateway: str, dns1: str, dns2: str):
-        """
-        Настройки интерфейса Ethernet 2
-
-        :param dhcp: - bool - Настройки DHCP
-        :param ip: - str - Настройки IP адреса
-        :param netmask: - str - Маска подсети
-        :param gateway: - str - Шлюз
-        :param dns1: - str - DNS Первичный Сервер
-        :param dns2: - str - DNS Вторичный Сервер
-        :return:
-        """
-
-        _Setting_Eth1 = \
-            {
-                'iface': 'eth1',
-                'dhcp': bool(dhcp),
-                'ip': ip,
-                'netmask': netmask,
-                'gw': gateway,
-                'dns1': dns1,
-                'dns2': dns2,
-            }
-
-        self._Setting_Eth1 = _Setting_Eth1
-
-    def remove_Eth_1(self):
-        """
-        Удаление настроек интерфейса Ethernet 2, что ввели
-        :return:
-        """
-
-        self._Setting_Eth1 = None
-
-    def settings_Eth_0(self):
-        """
-        Получить настройки Ethernet 0
-        :return:
-        """
-
-        return self._Setting_Eth0
-
-    def settings_Eth_1(self):
-        """
-        Получить настройки Ethernet 1
-        :return:
-        """
-
-        return self._Setting_Eth1
-
-
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
 #                                         Настройки Ethernet
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_Ethernet_settings import TemplateInterface_Ethernet
 from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
+from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_Ethernet import SettingsEthernet
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -126,7 +23,8 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
 
     # Общие настройки
     Settings = SettingsEthernet()
-
+    # Имя поля настроек
+    _Settings_name = 'Settings'
     # Настройки по умолчанию
 
     # Настройки Ethernet
@@ -157,7 +55,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
 
         """
         data = self._getting_settings_Ethernet()
-        data = {'Settings': data}
+        data = {self._Settings_name: data}
         return data
 
     def _getting_settings_Ethernet(self):
@@ -167,8 +65,16 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         """
 
         # Пункт первый -  читаем какие настройки у нас есть
-        Ethernet1 = self.Settings.settings_Eth_0()
-        Ethernet2 = self.Settings.settings_Eth_1()
+        settings_Ethernet = self.Settings.get_settings_Ethernet()
+
+        Ethernet1 = None
+        Ethernet2 = None
+        Ethernet = settings_Ethernet.get(self._Settings_name)
+        for i in Ethernet:
+            if i.get('iface') == 'eth0':
+                Ethernet1 = i
+            if i.get('iface') == 'eth1':
+                Ethernet2 = i
 
         # ТЕПЕРЬ, если у нас оба сейтинга не заданы , запрашиваем :
         if (Ethernet1 is None) or (Ethernet2 is None):
@@ -210,7 +116,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
                 if sim_setting is not None:
 
                     # print(sim_setting)
-                    Settings = sim_setting['Settings']
+                    Settings = sim_setting[self._Settings_name]
                     # Теперь перебираем все это
                     for idx in Settings:
                         if idx.get('iface') == 'eth0':

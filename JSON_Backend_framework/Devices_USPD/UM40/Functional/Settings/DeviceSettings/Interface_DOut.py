@@ -6,97 +6,8 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_DOut_settings import \
     TemplateInterface_DOut_PowerLine
-
-
+from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_DOut import SettingsDOut
 # -------------------------------------------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------------------------------------------
-class SettingsDOut:
-    """
-
-    Класс настроек для линий питания интерфейсов
-
-    """
-    _Settings = None
-
-    def __init__(self):
-        self._Settings = []
-
-    def add_State_Iface1(self, state: int):
-
-        """
-        Добавление настроек для Интерфейса 1
-        """
-        setting = {
-            "id": 0,
-            'addr': '/dev/ttyUSB3',
-            'state': state
-        }
-        self._Settings.append(setting)
-
-    def add_State_Iface2(self, state: int):
-
-        """
-        Добавление настроек для Интерфейса 2
-        """
-        setting = {
-            "id": 1,
-            'addr': '/dev/ttyUSB2',
-            'state': state
-        }
-        self._Settings.append(setting)
-
-    def add_State_Iface3(self, state: int):
-
-        """
-        Добавление настроек для Интерфейса 3
-        """
-        setting = {
-            "id": 2,
-            'addr': '/dev/ttyUSB1',
-            'state': state
-        }
-        self._Settings.append(setting)
-
-    def add_State_Iface4(self, state: int):
-
-        """
-        Добавление настроек для Интерфейса 4
-        """
-        setting = {
-            "id": 3,
-            'addr': '/dev/ttyUSB0',
-            'state': state
-        }
-        self._Settings.append(setting)
-
-    def remove_State_Iface(self, Iface: int):
-
-        """
-        Удаляем интерфес , что добавили
-        """
-
-        if type(Iface) is int:
-            Iface = [Iface]
-
-        for iface_int in Iface:
-            iface_int = iface_int - 1
-
-        # Образовываем новый список
-        _Settings = []
-        # Теперь проходимся по нашему списку и удаляем если есть соответствия
-        for setting in self._Settings:
-            if setting.get('id') not in Iface:
-                _Settings.append(setting)
-
-        # Переопредлеляем
-        self._Settings = _Settings
-
-    def get_settings(self):
-        """
-        Получаем наш список настроек
-        """
-        return self._Settings
 
 
 class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
@@ -144,8 +55,8 @@ class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
 
         """
         # Читаем что задали
-        SettingsDOut_list = self.Settings.get_settings()
-
+        SettingsDOut_dict = self.Settings.get_settings()
+        SettingsDOut_list = SettingsDOut_dict.get(self._Settings_name)
         # Если НИЧЕГО НЕ ДОБАВЛЯЛИ , используем из GET запроса
         StateDOut1 = None
         StateDOut2 = None
@@ -174,8 +85,6 @@ class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
                     for i in data_request:
                         # Ищем соответсвия по их адресу
                         if i.get('addr') == self.DOut_name[NumberUart + 1]:
-
-
                             state_dict[NumberUart] = i
 
         data = []

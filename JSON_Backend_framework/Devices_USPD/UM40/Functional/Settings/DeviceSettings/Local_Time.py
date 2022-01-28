@@ -6,49 +6,8 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Local_time_settings import \
     TemplateLocalTimeZone
-
-
+from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Local_Time import SettingsTimeZone
 # -------------------------------------------------------------------------------------------------------------
-class TZ:
-    """
-    Настройки часового пояса
-
-    """
-    _TZ = None
-
-    def __init__(self):
-        self._TZ = None
-
-    # Добавляем часовой пояс
-    def add_TimeZone(self, TimeZone):
-        self._TZ = TimeZone
-
-    def remove_TimeZone(self):
-        self._TZ = None
-
-    def get_TimeZone(self):
-        return self._TZ
-
-
-class DST:
-    """
-    Настройки перевода часов
-
-    """
-    _DST = None
-
-    def __init__(self):
-        self._DST = None
-
-    # Добавляем часовой пояс
-    def add_DST(self, DST):
-        self._DST = bool(DST)
-
-    def remove_DST(self):
-        self._DST = None
-
-    def get_DST(self):
-        return self._DST
 
 
 class TimeZone(TemplateLocalTimeZone):
@@ -63,9 +22,7 @@ class TimeZone(TemplateLocalTimeZone):
     _cookies = None
 
     # Общие настройки
-    TimeZone = TZ()
-
-    DST = DST()
+    Settings = SettingsTimeZone()
 
     # Настройки по умолчанию
 
@@ -90,7 +47,9 @@ class TimeZone(TemplateLocalTimeZone):
         Определяем данные что отдаем
 
         """
-        tz = self.TimeZone.get_TimeZone()
+        data_Settings = self.Settings.get_TimeZone()
+        tz = data_Settings.get("tz")
+        dst = data_Settings.get("dst")
 
         if tz is None:
 
@@ -98,8 +57,6 @@ class TimeZone(TemplateLocalTimeZone):
 
         else:
             data = {"tz": tz}
-
-        dst = self.DST.get_DST()
 
         if dst is not None:
             data['dst'] = dst
