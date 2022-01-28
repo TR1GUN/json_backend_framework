@@ -4,7 +4,10 @@
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData, TemplateMeterDataRead
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData, \
+    TemplateMeterDataRead
+
+from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -17,6 +20,8 @@ class MeterDataArchJournal(TemplateMeterData):
     """
     Чтение Журналов
     """
+
+
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
@@ -1113,15 +1118,6 @@ class MeterDataArchDigital(TemplateMeterData):
     Чтение Дискретных данных счетчиков
     """
 
-    # # URL
-    # from Devices_USPD.settings import url_path
-    # _path_url = url_path.get("Meter_Data_arch")
-    # # _path_url ="/charge/data/arch"
-    # # хедерс - Иногда нужен
-    # _headers = None
-    # # куки
-    # _cookies = None
-
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -1217,15 +1213,6 @@ class MeterDataArchElectric(TemplateMeterData):
     """
     Чтение значений Электросчетчиков
     """
-
-    # # URL
-    # from Devices_USPD.settings import url_path
-    # _path_url = url_path.get("Meter_Data_arch")
-    # # _path_url ="/charge/data/arch"
-    # # хедерс - Иногда нужен
-    # _headers = None
-    # # куки
-    # _cookies = None
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
@@ -1425,6 +1412,7 @@ class MeterDataArchElectric(TemplateMeterData):
         """
 
         measure = 'ElConfig'
+
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
 
@@ -1455,6 +1443,9 @@ class MeterData(TemplateMeterDataRead):
     Digital = None
     # Электросчетчики
     Electric = None
+
+    # Настройки
+    Request_MeterData = FormJSON_MeterData()
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -1495,67 +1486,85 @@ class MeterData(TemplateMeterDataRead):
         :return:
         """
         measures = {
-                    'ElConfig': 'конфигурация электросчетчика',
-                    'DigConfig': 'конфигурация модуля дискретных вводов/выводов',
-                    'PlsConfig': 'конфигурация концентратора импульсных счетчиков',
-                    'ElMomentEnergy': 'мгновенные показания энергии электросчетчика',
-                    'ElMomentQuality': 'мгновенные ПКЭ',
-                    'ElDayEnergy': 'показания электросчетчика на начало суток',
-                    'ElDayConsEnergy': 'потребление электросчетчика за сутки',
-                    'ElMonthEnergy': 'показания электросчетчика на начало месяца',
-                    'ElMonthConsEnergy': 'потребление электросчетчика за месяц',
-                    'ElArr1ConsPower': 'профили мощности первого массива профилей мощности электросчетчика',
-                    'DigMomentState': 'мгновенные показания модуля дискретных вводов/выводов',
-                    'DigJournalState': 'архив изменения состояний модуля дискретных вводов/выводов',
-                    'PlsMomentPulse': 'мгновенные показания энергии концентратора импульсных счетчиков',
-                    'PlsDayPulse': 'показания концентратора импульсных счетчиков на начало суток',
-                    'PlsMonthPulse': 'показания концентратора импульсных счетчиков на начало месяца',
-                    'PlsHourPulse': 'показания на начало часа концентратора импульсных счетчиков',
-                    'ElJrnlPwr': 'управление питанием',
-                    'ElJrnlTimeCorr': 'коррекция времени электросчетчика',
-                    'PlsJrnlTimeCorr': 'коррекция времени концентратора импульсных счетчиков',
-                    'ElJrnlReset': 'сброс показаний',
-                    'ElJrnlC1Init': 'инициализация первого массива профилей',
-                    'ElJrnlC2Init': 'инициализация второго массива профилей',
-                    'ElJrnlTrfCorr': 'коррекция тарификатора',
-                    'ElJrnlOpen': 'открытие крышки',
-                    'ElJrnlUnAyth': 'неавторизованный доступ',
-                    'ElJrnlPwrA': 'управление фазой А',
-                    'ElJrnlPwrB': 'управление фазой В',
-                    'ElJrnlPwrC': 'управление фазой С',
-                    'ElJrnlProg': 'программирование',
-                    'ElJrnlRelay': 'управление реле',
-                    'ElJrnlLimESumm': 'лимит суммарной энергии',
-                    'ElJrnlLimETrf': 'потарифиный лимит энергии',
-                    'ElJrnlLimETrf1': 'лимит энергии тарифа 1',
-                    'ElJrnlLimETrf2': 'лимит энергии тарифа 2',
-                    'ElJrnlLimETrf3': 'лимит энергии тарифа 3',
-                    'ElJrnlLimETrf4': 'лимит энергии тарифа 4',
-                    'ElJrnlLimUAMax': 'ограничение максимального напряжения фазы А',
-                    'ElJrnlLimUAMin': 'ограничение минимального напряжения фазы А',
-                    'ElJrnlLimUBMax': 'ограничение максимального напряжения фазы В',
-                    'ElJrnlLimUBMin': 'ограничение минимального напряжения фазы В',
-                    'ElJrnlLimUCMax': 'ограничение максимального напряжения фазы С',
-                    'ElJrnlLimUCMin': 'ограничение минимального напряжения фазы С',
-                    'ElJrnlLimUABMax': 'ограничение максимального расхождения напряжения фаз А и В',
-                    'ElJrnlLimUABMin': 'ограничение минимального расхождения напряжения фаз А и В',
-                    'ElJrnlLimUBCMax': 'ограничение максимального расхождения напряжения фаз В и С',
-                    'ElJrnlLimUBCMin': 'ограничение минимального расхождения напряжения фаз В и С',
-                    'ElJrnlLimUCAMax': 'ограничение максимального расхождения напряжения фаз С и А',
-                    'ElJrnlLimUCAMin': 'ограничение минимального расхождения напряжения фаз С и А',
-                    'ElJrnlLimIAMax': 'ограничение максимального тока фазы А',
-                    'ElJrnlLimIBMax': 'ограничение максимального тока фазы В',
-                    'ElJrnlLimICMax': 'ограничение максимального тока фазы С',
-                    'ElJrnlLimFreqMax': 'ограничение максимальной частоты сети',
-                    'ElJrnlLimFreqMin': 'ограничение минимальной частоты сети',
-                    'ElJrnlLimPwr': 'ограничение мощности',
-                    'ElJrnlLimPwrPP': 'ограничение прямой активной мощности',
-                    'ElJrnlLimPwrPM': 'ограничение прямой реактивной мощности',
-                    'ElJrnlLimPwrQP': 'ограничение обратной реактивной мощности',
-                    'ElJrnlReverce': 'реверс'
+            'ElConfig': 'конфигурация электросчетчика',
+            'DigConfig': 'конфигурация модуля дискретных вводов/выводов',
+            'PlsConfig': 'конфигурация концентратора импульсных счетчиков',
+            'ElMomentEnergy': 'мгновенные показания энергии электросчетчика',
+            'ElMomentQuality': 'мгновенные ПКЭ',
+            'ElDayEnergy': 'показания электросчетчика на начало суток',
+            'ElDayConsEnergy': 'потребление электросчетчика за сутки',
+            'ElMonthEnergy': 'показания электросчетчика на начало месяца',
+            'ElMonthConsEnergy': 'потребление электросчетчика за месяц',
+            'ElArr1ConsPower': 'профили мощности первого массива профилей мощности электросчетчика',
+            'DigMomentState': 'мгновенные показания модуля дискретных вводов/выводов',
+            'DigJournalState': 'архив изменения состояний модуля дискретных вводов/выводов',
+            'PlsMomentPulse': 'мгновенные показания энергии концентратора импульсных счетчиков',
+            'PlsDayPulse': 'показания концентратора импульсных счетчиков на начало суток',
+            'PlsMonthPulse': 'показания концентратора импульсных счетчиков на начало месяца',
+            'PlsHourPulse': 'показания на начало часа концентратора импульсных счетчиков',
+            'ElJrnlPwr': 'управление питанием',
+            'ElJrnlTimeCorr': 'коррекция времени электросчетчика',
+            'PlsJrnlTimeCorr': 'коррекция времени концентратора импульсных счетчиков',
+            'ElJrnlReset': 'сброс показаний',
+            'ElJrnlC1Init': 'инициализация первого массива профилей',
+            'ElJrnlC2Init': 'инициализация второго массива профилей',
+            'ElJrnlTrfCorr': 'коррекция тарификатора',
+            'ElJrnlOpen': 'открытие крышки',
+            'ElJrnlUnAyth': 'неавторизованный доступ',
+            'ElJrnlPwrA': 'управление фазой А',
+            'ElJrnlPwrB': 'управление фазой В',
+            'ElJrnlPwrC': 'управление фазой С',
+            'ElJrnlProg': 'программирование',
+            'ElJrnlRelay': 'управление реле',
+            'ElJrnlLimESumm': 'лимит суммарной энергии',
+            'ElJrnlLimETrf': 'потарифиный лимит энергии',
+            'ElJrnlLimETrf1': 'лимит энергии тарифа 1',
+            'ElJrnlLimETrf2': 'лимит энергии тарифа 2',
+            'ElJrnlLimETrf3': 'лимит энергии тарифа 3',
+            'ElJrnlLimETrf4': 'лимит энергии тарифа 4',
+            'ElJrnlLimUAMax': 'ограничение максимального напряжения фазы А',
+            'ElJrnlLimUAMin': 'ограничение минимального напряжения фазы А',
+            'ElJrnlLimUBMax': 'ограничение максимального напряжения фазы В',
+            'ElJrnlLimUBMin': 'ограничение минимального напряжения фазы В',
+            'ElJrnlLimUCMax': 'ограничение максимального напряжения фазы С',
+            'ElJrnlLimUCMin': 'ограничение минимального напряжения фазы С',
+            'ElJrnlLimUABMax': 'ограничение максимального расхождения напряжения фаз А и В',
+            'ElJrnlLimUABMin': 'ограничение минимального расхождения напряжения фаз А и В',
+            'ElJrnlLimUBCMax': 'ограничение максимального расхождения напряжения фаз В и С',
+            'ElJrnlLimUBCMin': 'ограничение минимального расхождения напряжения фаз В и С',
+            'ElJrnlLimUCAMax': 'ограничение максимального расхождения напряжения фаз С и А',
+            'ElJrnlLimUCAMin': 'ограничение минимального расхождения напряжения фаз С и А',
+            'ElJrnlLimIAMax': 'ограничение максимального тока фазы А',
+            'ElJrnlLimIBMax': 'ограничение максимального тока фазы В',
+            'ElJrnlLimICMax': 'ограничение максимального тока фазы С',
+            'ElJrnlLimFreqMax': 'ограничение максимальной частоты сети',
+            'ElJrnlLimFreqMin': 'ограничение минимальной частоты сети',
+            'ElJrnlLimPwr': 'ограничение мощности',
+            'ElJrnlLimPwrPP': 'ограничение прямой активной мощности',
+            'ElJrnlLimPwrPM': 'ограничение прямой реактивной мощности',
+            'ElJrnlLimPwrQP': 'ограничение обратной реактивной мощности',
+            'ElJrnlReverce': 'реверс'
         }
 
         return measures
+
+    # Основной метод который торчит наружу
+    def Read(self, data=None):
+        """
+        Функция для прямой отправки JSON
+
+        :param data: JSON
+        :return:
+        """
+
+        # Если данных не спустили , то  определяем их
+        if data is None:
+            data = self.Request_MeterData.get_settings()
+
+        response = self._Read(data=data)
+
+        return response
+
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
