@@ -86,16 +86,16 @@ class TemplateMeterData(TemplateFunctional):
         'PlsJrnlTimeCorr'
     ]
 
-    def Read(self, data):
-        """
-        Функция для прямой отправки JSON
-
-        :param data: JSON
-        :return:
-        """
-        response = self._Read(data=data)
-
-        return response
+    # def Read(self, data):
+    #     """
+    #     Функция для прямой отправки JSON
+    #
+    #     :param data: JSON
+    #     :return:
+    #     """
+    #     response = self._Read(data=data)
+    #
+    #     return response
 
     def _Read(self, data):
         """

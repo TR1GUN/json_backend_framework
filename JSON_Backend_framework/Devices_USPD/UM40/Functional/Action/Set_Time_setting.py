@@ -36,15 +36,15 @@ class SetTime(TemplateSetTime):
 
     _Time_Set_dict = {}
 
-    Year = SETYear()
-    Month = SETMonth()
-    Day = SETDay()
+    Year = None
+    Month = None
+    Day = None
 
-    Hour = SETHour()
-    Minute = SETMinute()
-    Second = SETSecond()
+    Hour = None
+    Minute = None
+    Second = None
 
-    TimeZone = SETTimeZone()
+    TimeZone = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -64,6 +64,22 @@ class SetTime(TemplateSetTime):
         self._Time_Set_dict = {}
 
         # Запрос настроек
+        self._define_settings()
+
+    def _define_settings(self):
+        """
+        Определяем наш JSON
+
+        """
+        self.Year = SETYear()
+        self.Month = SETMonth()
+        self.Day = SETDay()
+
+        self.Hour = SETHour()
+        self.Minute = SETMinute()
+        self.Second = SETSecond()
+
+        self.TimeZone = SETTimeZone()
 
     def _request_setting(self):
         """
@@ -98,7 +114,7 @@ class SetTime(TemplateSetTime):
 
         from JSON_Backend_framework.Devices_USPD.UM40.Functional.InfoState.Time import StateTime
 
-        Time = StateTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address).Time_USPD_Read()
+        Time = StateTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address).read()
 
         return Time
 
@@ -164,6 +180,9 @@ class SetTime(TemplateSetTime):
 
         data = self._Create_JSON_data()
         # Запращиваем данные
+
+        self._define_settings()
+
         return data
 
 # -------------------------------------------------------------------------------------------------------------

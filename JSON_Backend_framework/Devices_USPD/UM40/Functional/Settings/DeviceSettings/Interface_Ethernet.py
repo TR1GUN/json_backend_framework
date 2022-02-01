@@ -108,7 +108,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         _Eth1 = None
         try:
             # делаем запрос - получаем ответ
-            response = self.read_settings()
+            response = self.Read_settings()
             # Теперь вытаскиваем нужное
             if response.get('code') == int(200):
                 sim_setting = response.get('data')

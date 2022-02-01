@@ -281,6 +281,9 @@ class SETTimeZone:
         """
         return self._TimeZone
 
+# -------------------------------------------------------------------------------------------------------------
+#                                         Основной класс
+# -------------------------------------------------------------------------------------------------------------
 
 
 class SettingsSetTime:
@@ -334,7 +337,7 @@ class SettingsSetTime:
             Time_Zone = Time_Zone[:3] + ':' + Time_Zone[3:]
         self._Time_Set_dict['Time_Zone'] = str(Time_Zone)
 
-    def get_TimeZone(self):
+    def get_Time(self):
 
         """
         Получаем собранный JSON

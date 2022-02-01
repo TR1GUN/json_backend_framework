@@ -24,21 +24,21 @@ class TemplateRelayControl(TemplateFunctional):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
 
-    def Set(self, data):
-        """
-        Запросить данные - POST
-
-        :param data:
-        :return:
-        """
-
-        # Запаковываем
-        data = self._coding(data=data)
-
-        # делаем запрос - получаем ответ
-        response = self._request_POST(JSON=data)
-
-        return response
+    # def Set(self, data):
+    #     """
+    #     Запросить данные - POST
+    #
+    #     :param data:
+    #     :return:
+    #     """
+    #
+    #     # Запаковываем
+    #     data = self._coding(data=data)
+    #
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_POST(JSON=data)
+    #
+    #     return response
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------

@@ -1486,7 +1486,7 @@ class MeterDataMoment(TemplateMeterDataMoment):
     _cookies = None
 
     # Настройки
-    MeterData = FormJSON_MeterData()
+    MeterData = None
 
     # Запрорс Отдельных Measures
 
@@ -1508,6 +1508,9 @@ class MeterDataMoment(TemplateMeterDataMoment):
             self._ip_address = ip_address
 
         self.Measures = MeterDataMoment_MeasureRead(cookies=cookies, headers=headers, ip_address=ip_address)
+
+        # Сбрасываем настройки JSON
+        self._define_JSON()
 
     @staticmethod
     def get_measures():
@@ -1582,7 +1585,7 @@ class MeterDataMoment(TemplateMeterDataMoment):
         return measures
 
     # Основной метод который торчит наружу
-    def Read(self, data=None):
+    def Read_MeterData(self, data=None):
         """
         Функция для прямой отправки JSON
 
@@ -1593,10 +1596,19 @@ class MeterDataMoment(TemplateMeterDataMoment):
         # Если данных не спустили , то  определяем их
         if data is None:
             data = self.MeterData.get_settings()
+            # Сбрасываем настройки JSON
+            self._define_JSON()
 
         response = self._Read(data=data)
 
         return response
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.MeterData = FormJSON_MeterData()
 
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON
