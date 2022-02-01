@@ -4,8 +4,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData, \
-    TemplateMeterDataRead
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData , TemplateMeterData_Read_Measure
 
 from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
 
@@ -16,12 +15,10 @@ from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import Fo
 #                                  Чтение Журналов
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterDataArchJournal(TemplateMeterData):
+class MeterData_Journal(TemplateMeterData_Read_Measure):
     """
     Чтение Журналов
     """
-
-
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
@@ -959,7 +956,7 @@ class MeterDataArchJournal(TemplateMeterData):
 #                                  Чтение Импульсных значений
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterDataArchPulse(TemplateMeterData):
+class MeterData_Pulse(TemplateMeterData_Read_Measure):
     """
     Чтение импульсных данных счетчиков
     """
@@ -1113,7 +1110,7 @@ class MeterDataArchPulse(TemplateMeterData):
 #                                  Чтение Дискретных значений
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterDataArchDigital(TemplateMeterData):
+class MeterData_Digital(TemplateMeterData_Read_Measure):
     """
     Чтение Дискретных данных счетчиков
     """
@@ -1209,7 +1206,7 @@ class MeterDataArchDigital(TemplateMeterData):
 #                                  Чтение значений Электросчетчиков
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterDataArchElectric(TemplateMeterData):
+class MeterData_Electric(TemplateMeterData_Read_Measure):
     """
     Чтение значений Электросчетчиков
     """
@@ -1423,8 +1420,7 @@ class MeterDataArchElectric(TemplateMeterData):
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
-
-class MeterData(TemplateMeterDataRead):
+class MeterData_MeasureRead:
     """
     Чтение Данных счетчиков
 
@@ -1435,6 +1431,7 @@ class MeterData(TemplateMeterDataRead):
     # куки
     _cookies = None
 
+    _ip_address =None
     # Журналы
     Journal = None
     # Импульсные
@@ -1443,9 +1440,6 @@ class MeterData(TemplateMeterDataRead):
     Digital = None
     # Электросчетчики
     Electric = None
-
-    # Настройки
-    Request_MeterData = FormJSON_MeterData()
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -1471,10 +1465,49 @@ class MeterData(TemplateMeterDataRead):
         :return:
         """
 
-        self.Journal = MeterDataArchJournal(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-        self.Digital = MeterDataArchDigital(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-        self.Pulse = MeterDataArchPulse(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-        self.Electric = MeterDataArchElectric(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.Journal = MeterData_Journal(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.Digital = MeterData_Digital(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.Pulse = MeterData_Pulse(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.Electric = MeterData_Electric(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+
+
+# -------------------------------------------------------------------------------------------------------------
+#                 Основной класс с конструктором JSON в зависимости от того что мы читаем
+# -------------------------------------------------------------------------------------------------------------
+class MeterData(TemplateMeterData):
+    """
+    Чтение Данных счетчиков
+
+    """
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+
+    # Настройки
+    MeterData = FormJSON_MeterData()
+
+    # Запрорс Отдельных Measures
+
+    Measures = None
+
+    def __init__(self, cookies=None, headers=None, ip_address=None):
+        """
+        Чтение Данных счетчиков
+
+        :param cookies:
+        :param headers:
+        """
+        if cookies is not None:
+            self._cookies = cookies
+        if headers is not None:
+            self._headers = headers
+
+        if ip_address is not None:
+            self._ip_address = ip_address
+
+        self.Measures = MeterData_MeasureRead(cookies=cookies, headers=headers, ip_address=ip_address)
 
     @staticmethod
     def get_measures():
@@ -1559,7 +1592,7 @@ class MeterData(TemplateMeterDataRead):
 
         # Если данных не спустили , то  определяем их
         if data is None:
-            data = self.Request_MeterData.get_settings()
+            data = self.MeterData.get_settings()
 
         response = self._Read(data=data)
 

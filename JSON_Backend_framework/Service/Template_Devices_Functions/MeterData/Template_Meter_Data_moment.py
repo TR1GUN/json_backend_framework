@@ -1,10 +1,11 @@
-# -------------------------------------------------------------------------------------------------------------
+ # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                         Шаблон Опроса приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+
 
 class TemplateMeterDataMoment(TemplateFunctional):
     """
@@ -21,17 +22,90 @@ class TemplateMeterDataMoment(TemplateFunctional):
     _cookies = None
     # Переопределяем чтоб можно было достать
     path_url = _path_url
-    def request_settings(self, data):
-        """
-        Запросить данные - POST
+    # Доступные типы данных
+    _measures = [
+        'ElConfig',
+        'PlsConfig',
+        'DigConfig',
 
-        :param data:
+        'ElMomentEnergy',
+        'ElDayEnergy',
+        'ElMonthEnergy',
+        'ElDayConsEnergy',
+        'ElMonthConsEnergy',
+        'ElMomentQuality',
+        'ElArr1ConsPower',
+        'PlsMomentPulse',
+        'PlsDayPulse',
+        'PlsMonthPulse',
+        'PlsHourPulse',
+        'DigMomentState',
+        'DigJournalState',
+        'ElJrnlPwr',
+        'ElJrnlTimeCorr',
+        'ElJrnlReset',
+        'ElJrnlC1Init',
+        'ElJrnlC2Init',
+        'ElJrnlTrfCorr',
+        'ElJrnlOpen',
+        'ElJrnlUnAyth',
+        'ElJrnlPwrA',
+        'ElJrnlPwrB',
+        'ElJrnlPwrC',
+        'ElJrnlProg',
+        'ElJrnlRelay',
+        'ElJrnlLimESumm',
+        'ElJrnlLimETrf',
+        'ElJrnlLimETrf1',
+        'ElJrnlLimETrf2',
+        'ElJrnlLimETrf3',
+        'ElJrnlLimETrf4',
+        'ElJrnlLimUAMax',
+        'ElJrnlLimUAMin',
+        'ElJrnlLimUBMax',
+        'ElJrnlLimUBMin',
+        'ElJrnlLimUCMax',
+        'ElJrnlLimUCMin',
+        'ElJrnlLimUABMax',
+        'ElJrnlLimUABMin',
+        'ElJrnlLimUBCMax',
+        'ElJrnlLimUBCMin',
+        'ElJrnlLimUCAMax',
+        'ElJrnlLimUCAMin',
+        'ElJrnlLimIAMax',
+        'ElJrnlLimIBMax',
+        'ElJrnlLimICMax',
+        'ElJrnlLimFreqMax',
+        'ElJrnlLimFreqMin',
+        'ElJrnlLimPwr',
+        'ElJrnlLimPwrPP',
+        'ElJrnlLimPwrPM',
+        'ElJrnlLimPwrQP',
+        'ElJrnlLimPwrQM',
+        'ElJrnlReverce',
+        'PlsJrnlTimeCorr'
+    ]
+
+    def Read(self, data):
+        """
+        Функция для прямой отправки JSON
+
+        :param data: JSON
         :return:
         """
+        response = self._Read(data=data)
 
-        # Запаковываем
+        return response
+
+    def _Read(self, data):
+        """
+        Функция для прямой отправки JSON
+
+        :param data: JSON
+        :return:
+        """
+        # Запаковываем бэк
         data = self._coding(data=data)
-
         # делаем запрос - получаем ответ
         response = self._request_POST(JSON=data)
 
@@ -40,4 +114,36 @@ class TemplateMeterDataMoment(TemplateFunctional):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+#                                  Класс шаблон для чтения необходимых Measures
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+class TemplateMeterDataMoment_Read_Measure(TemplateMeterDataMoment):
 
+    # Основной метод
+    def _read_settings(self, measure, ids, time_start, time_end, tags):
+        """
+        Функция для прямой отправки JSON
+
+        :param data: JSON
+        :return:
+        """
+        from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
+        # Формируем наш конструктор
+        MeterData_JSON_settings = FormJSON_MeterData()
+
+        MeterData_JSON_settings.add_settings(measure=measure,
+                                             ids=ids,
+                                             time_start=time_start,
+                                             time_end=time_end,
+                                             tags=tags)
+
+        MeterData_JSON = MeterData_JSON_settings.get_settings()
+        # Если данных не спустили , то  определяем их
+
+        response = self._Read(data=MeterData_JSON)
+
+        return response
+
+
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
