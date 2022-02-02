@@ -34,12 +34,12 @@ class StateTime(TemplateStateTime):
         if ip_address is not None:
             self._ip_address = ip_address
 
-    def Read(self):
-        """
-        Чтение текущего времени на УСПД
-        """
-
-        return self._read_settings()
+    # def Read(self):
+    #     """
+    #     Чтение текущего Пока
+    #     """
+    #
+    #     return self._read_settings()
 
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение

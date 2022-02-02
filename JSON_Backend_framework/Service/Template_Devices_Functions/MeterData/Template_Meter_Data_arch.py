@@ -7,9 +7,9 @@
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_MeterData
 
-
-class TemplateMeterDataArch(TemplateFunctional):
+class TemplateMeterDataArch(TemplateDeviceFunctions_MeterData):
     """
     Шаблон Опроса приборов учета
 
@@ -99,19 +99,19 @@ class TemplateMeterDataArch(TemplateFunctional):
     #
     #     return response
 
-    def _Read(self, data):
-        """
-        Функция для прямой отправки JSON
-
-        :param data: JSON
-        :return:
-        """
-        # Запаковываем бэк
-        data = self._coding(data=data)
-        # делаем запрос - получаем ответ
-        response = self._request_POST(JSON=data)
-
-        return response
+    # def _Read(self, data):
+    #     """
+    #     Функция для прямой отправки JSON
+    #
+    #     :param data: JSON
+    #     :return:
+    #     """
+    #     # Запаковываем бэк
+    #     data = self._coding(data=data)
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_POST(JSON=data)
+    #
+    #     return response
 
 
 # -------------------------------------------------------------------------------------------------------------

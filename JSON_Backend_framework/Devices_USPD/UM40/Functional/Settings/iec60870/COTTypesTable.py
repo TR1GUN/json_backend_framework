@@ -3,17 +3,18 @@
 #                                  Таблица данных зарядных станций
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions, TemplateSettingsData
+
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings
 
 
-class COTTypesTable(TemplateDeviceFunctions):
+class COTTypesTable(TemplateDeviceFunctions_Settings):
     """
     Таблица зарядных станций
 
     """
     # URL
-    from JSON_Backend_framework.Devices_USPD.settings import url_path_smart40
-    _path_url = url_path_smart40.get("ChargeStationArchData")
+    # from JSON_Backend_framework.Devices_USPD.settings import url_path_smart40
+    # _path_url = url_path_smart40.get("ChargeStationArchData")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -127,7 +128,7 @@ class COTTypesTable(TemplateDeviceFunctions):
 # -------------------------------------------------------------------------------------------------------------
 
 
-class SettingsCOTTypesTable(TemplateSettingsData):
+class SettingsCOTTypesTable():
 
     """
 
@@ -222,8 +223,3 @@ class SettingsCOTTypesTable(TemplateSettingsData):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-lol = COTTypesTable()
-
-
-print(lol.read_settings())

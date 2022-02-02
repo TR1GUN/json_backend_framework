@@ -6,9 +6,9 @@
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_MeterManagement
 
-
-class TemplateTimeMeterSetting(TemplateFunctional):
+class TemplateTimeMeterSetting(TemplateDeviceFunctions_MeterManagement):
     """
     Шаблон Установки времени
 

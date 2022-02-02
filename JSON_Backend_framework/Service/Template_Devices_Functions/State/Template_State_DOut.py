@@ -6,9 +6,9 @@
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_InfoState
 
-
-class TemplateStateDOut(TemplateFunctional):
+class TemplateStateDOut(TemplateDeviceFunctions_InfoState):
     """
     Шаблон состояния линий питания интерфейсов
 
@@ -25,12 +25,12 @@ class TemplateStateDOut(TemplateFunctional):
     path_url = _path_url
     # Настройки по умолчанию
 
-    def _read_settings(self):
-        """
-        Читаем данные - GET
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET()
-
-        return response
+    # def _read_settings(self):
+    #     """
+    #     Читаем данные - GET
+    #     :return:
+    #     """
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_GET()
+    #
+    #     return response

@@ -5,9 +5,9 @@
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Journal
 
-
-class TemplateJournalTime(TemplateFunctional):
+class TemplateJournalTime(TemplateDeviceFunctions_Journal):
     """
     Шаблон Журнала изменения времени
 
@@ -24,13 +24,4 @@ class TemplateJournalTime(TemplateFunctional):
     path_url = _path_url
     # Настройки по умолчанию
 
-    def Read_Journal(self):
-        """
-        Читаем данные - GET
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET()
-
-        return response
 
