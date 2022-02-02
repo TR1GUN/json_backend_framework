@@ -17,8 +17,7 @@ class TemplateFunctional:
     _cookies = None
 
     # Сам айпишник железки
-    from JSON_Backend_framework.Service.config import machine_ip
-    _ip_address = str(machine_ip)
+    _ip_address = '192.168.0.1'
 
     # Путь url
     _path_url = ''

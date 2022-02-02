@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                  Шаблон работы с Функционалом УСПД
+#                                  Шаблон работы с Функционалом УСПД - Можно вырезать
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
@@ -22,24 +22,6 @@ class TemplateDeviceFunctions(TemplateFunctional):
 
     Data_Settings = None
 
-    # def __init__(self, cookies=None, headers=None, ip_address=None):
-    #     """
-    #
-    #
-    #     :param cookies:
-    #     :param headers:
-    #     """
-    #     if cookies is not None:
-    #         self._cookies = cookies
-    #     if headers is not None:
-    #         self._headers = headers
-    #
-    #     if ip_address is not None:
-    #         self._ip_address = ip_address
-    #
-    #     self._data_settings = []
-    #     self._data_ids = []
-    # print(self.cookies)
     def _define_settings_ids(self):
         """
 
@@ -50,17 +32,17 @@ class TemplateDeviceFunctions(TemplateFunctional):
 
         self.Data_Settings = TemplateSettingsData()
 
-    def read_settings(self):
+    def _Read(self):
         """
         Читаем данные - GET
         :return:
         """
         # делаем запрос - получаем ответ
-        response = self._request_GET(JSON='')
+        response = self._request_GET()
 
         return response
 
-    def write_settings(self, data=None):
+    def _Write(self, data=None):
         """
         Добавляем на запись данные  - POST
 
