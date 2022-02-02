@@ -28,7 +28,7 @@ class TemplateTemplatesMeterData(TemplateFunctional):
 
     # Настройки по умолчанию
 
-    def read_settings(self):
+    def Read_Settings(self):
         """
         Читаем данные - GET
         :return:
@@ -38,7 +38,7 @@ class TemplateTemplatesMeterData(TemplateFunctional):
 
         return response
 
-    def write_settings(self, data=None):
+    def Write_Settings(self, data=None):
         """
         Добавляем на запись данные  - POST
 
@@ -58,7 +58,7 @@ class TemplateTemplatesMeterData(TemplateFunctional):
 
         return response
 
-    def rewrite_settings(self, data=None):
+    def Rewrite_Settings(self, data=None):
         """
         Перезаписываем данные - PUT
         :param data:
@@ -76,7 +76,7 @@ class TemplateTemplatesMeterData(TemplateFunctional):
 
         return response
 
-    def delete_settings(self, data=None):
+    def Delete_Settings(self, data=None):
         """
         Удаляем данные - DELETE
         :param data:
@@ -118,7 +118,7 @@ class TemplateTemplatesMeterData(TemplateFunctional):
         data = []
         try:
             # делаем запрос - получаем ответ
-            response = self.read_settings()
+            response = self.Read_Settings()
             # Теперь вытаскиваем нужное
             if response.get('code') == int(200):
                 answer_setting = response.get('data')

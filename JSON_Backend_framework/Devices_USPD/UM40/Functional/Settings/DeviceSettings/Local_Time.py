@@ -22,7 +22,7 @@ class TimeZone(TemplateLocalTimeZone):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsTimeZone()
+    Settings = None
 
     # Настройки по умолчанию
 
@@ -40,6 +40,16 @@ class TimeZone(TemplateLocalTimeZone):
 
         if ip_address is not None:
             self._ip_address = ip_address
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsTimeZone()
+
 
     def _getting_settings(self):
 
@@ -50,6 +60,8 @@ class TimeZone(TemplateLocalTimeZone):
         data_Settings = self.Settings.get_TimeZone()
         tz = data_Settings.get("tz")
         dst = data_Settings.get("dst")
+        # Обнуляем
+        self._define_JSON()
 
         if tz is None:
 

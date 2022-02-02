@@ -17,7 +17,7 @@ class RelayControl(TemplateRelayControl):
 
     """
     # Общие настройки
-    Relay = SettingsRelay()
+    Relay = None
 
     # хедерс - Иногда нужен
     _headers = None
@@ -39,12 +39,24 @@ class RelayControl(TemplateRelayControl):
         if ip_address is not None:
             self._ip_address = ip_address
 
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Relay = SettingsRelay()
+
     def _getting_settings(self):
 
         """ Проверяем значение реле"""
 
         data = self.Relay.get_Relay_settings()
 
+        # Обнуляем
+        self._define_JSON()
         if data is None:
             data = {}
         return data

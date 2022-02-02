@@ -22,7 +22,7 @@ class MeterTable(TemplateMeterTable):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsMeterTable()
+    Settings = None
 
     # Массив из счетчиков
     _Meters = [{'addr': '72', 'id': 1, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface1', 'index': 1, 'pId': 0, 'passRd': '010101010101', 'passWr': '020202020202', 'rtuFider': 1, 'rtuObjNum': 2, 'rtuObjType': 3, 'type': 3, 'typeName': 'Mercury23x'}]
@@ -41,6 +41,15 @@ class MeterTable(TemplateMeterTable):
 
         if ip_address is not None:
             self._ip_address = ip_address
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsMeterTable()
 
     # Пункт Первый - Переделываем ВСЕ параметры
     def _getting_settings(self):
@@ -54,10 +63,15 @@ class MeterTable(TemplateMeterTable):
         # Смотрим - есть ли добавленые счетчики
         data = self.Settings.get_settings()
         data = data.get(self._Settings_name)
+
+        # Обнуляем
+        self._define_JSON()
+
         if len(data) == 0 :
             # Теперь если у нас есть данные - Считываем их
 
             data = self._request_setting()
+
         return data
 
     # Запрос настроек

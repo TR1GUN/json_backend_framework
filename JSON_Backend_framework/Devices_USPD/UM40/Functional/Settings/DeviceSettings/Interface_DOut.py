@@ -22,7 +22,7 @@ class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsDOut()
+    Settings = None
 
     # Таблица соответствий
     DOut_name = {
@@ -46,6 +46,15 @@ class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
 
         if ip_address is not None:
             self._ip_address = ip_address
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsDOut()
 
     def _getting_settings(self):
 
@@ -90,6 +99,8 @@ class Interface_DOut_PowerLine(TemplateInterface_DOut_PowerLine):
         data = []
         for i in state_dict :
             data.append(state_dict[i])
+
+        self._define_JSON()
         return data
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON

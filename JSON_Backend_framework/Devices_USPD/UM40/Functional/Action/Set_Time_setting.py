@@ -114,7 +114,7 @@ class SetTime(TemplateSetTime):
 
         from JSON_Backend_framework.Devices_USPD.UM40.Functional.InfoState.Time import StateTime
 
-        Time = StateTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address).read()
+        Time = StateTime(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address).Read()
 
         return Time
 

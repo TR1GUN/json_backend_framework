@@ -23,7 +23,7 @@ class TimeMeterSetting(TemplateTimeMeterSetting):
     # куки
     _cookies = None
 
-    Meter = SettingsMeterTimeSync()
+    Meter = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -40,6 +40,9 @@ class TimeMeterSetting(TemplateTimeMeterSetting):
         if ip_address is not None:
             self._ip_address = ip_address
 
+        # Обнуляем конструктор
+        self._define_JSON()
+
     def _getting_settings(self):
 
         """ Проверяем значение реле"""
@@ -48,23 +51,18 @@ class TimeMeterSetting(TemplateTimeMeterSetting):
 
         if data is None:
             data = {}
+
+        # Обнуляем конструктор
+        self._define_JSON()
+
         return data
 
-    def Sync(self, data=None):
+    def _define_JSON(self):
         """
-        Синхронизация времени на счетчике по его MeterIdx
-
+        Здесь Сбрасываем настройки
         """
-        if data is None:
-            data = self._getting_settings()
-
-        # Запаковываем
-        data = self._coding(data=data)
-
-        # делаем запрос - получаем ответ
-        response = self._request_POST(JSON=data)
-
-        return response
+        # Сбрасываем настройки
+        self.Meter = SettingsMeterTimeSync()
 
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON

@@ -22,7 +22,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsEthernet()
+    Settings = None
     # Имя поля настроек
     _Settings_name = 'Settings'
     # Настройки по умолчанию
@@ -46,6 +46,15 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
 
         if ip_address is not None:
             self._ip_address = ip_address
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsEthernet()
 
     def _getting_settings(self):
 
@@ -70,6 +79,9 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         Ethernet1 = None
         Ethernet2 = None
         Ethernet = settings_Ethernet.get(self._Settings_name)
+
+
+
         for i in Ethernet:
             if i.get('iface') == 'eth0':
                 Ethernet1 = i
@@ -93,6 +105,8 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
                 else:
                     Ethernet2 = _Ethernet2
 
+        # Обнуляем
+        self._define_JSON()
         # Теперь формируем нужный JSON
         JSON = [Ethernet1, Ethernet2]
         return JSON
@@ -108,7 +122,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         _Eth1 = None
         try:
             # делаем запрос - получаем ответ
-            response = self.Read_settings()
+            response = self.Read_Settings()
             # Теперь вытаскиваем нужное
             if response.get('code') == int(200):
                 sim_setting = response.get('data')

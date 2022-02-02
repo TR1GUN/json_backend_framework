@@ -23,7 +23,7 @@ class ServerTCP(TemplateServer_TCP):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsServer()
+    Settings = None
 
     # Настройки по умолчанию
 
@@ -42,6 +42,15 @@ class ServerTCP(TemplateServer_TCP):
         if ip_address is not None:
             self._ip_address = ip_address
 
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsServer()
     # Здесь расположим сервисные функции
     # Первое - Получаем настройки что уже есть
 
@@ -61,6 +70,10 @@ class ServerTCP(TemplateServer_TCP):
         if servers_list is not None:
             if len(servers_list) > 0:
                 data = servers_list
+
+                # Обнуляем
+                self._define_JSON()
+
             else:
                 data = self._request_setting()
         else:

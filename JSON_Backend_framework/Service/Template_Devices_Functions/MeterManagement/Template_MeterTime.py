@@ -24,13 +24,19 @@ class TemplateTimeMeterSetting(TemplateFunctional):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
 
-    def Sync(self, data):
+    def _getting_settings(self):
         """
-        Запросить данные - POST
+        Проверяем значение реле
+        """
+        return {}
 
-        :param data:
-        :return:
+    def Sync(self, data=None):
         """
+        Синхронизация времени на счетчике по его MeterIdx
+
+        """
+        if data is None:
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)

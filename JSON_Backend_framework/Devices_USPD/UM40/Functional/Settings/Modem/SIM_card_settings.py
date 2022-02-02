@@ -25,7 +25,7 @@ class SIM_card(TemplateSIM):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsSim()
+    Settings = None
 
     # Настройки по умолчанию
 
@@ -49,6 +49,15 @@ class SIM_card(TemplateSIM):
 
         if ip_address is not None:
             self._ip_address = ip_address
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsSim()
 
     def _getting_settings(self):
 
@@ -86,7 +95,8 @@ class SIM_card(TemplateSIM):
                     SIM2 = self._Sim2
                 else:
                     SIM2 = _Sim2
-
+        # Обнуляем
+        self._define_JSON()
         # Теперь формируем нужный JSON
         # JSON = {"Settings" : [SIM1, SIM2]}
         JSON = [SIM1, SIM2]
@@ -103,7 +113,7 @@ class SIM_card(TemplateSIM):
         _Sim2 = None
         try:
             # делаем запрос - получаем ответ
-            response = self.read_settings()
+            response = self.Read_Settings()
             # Теперь вытаскиваем нужное
             if response.get('code') == int(200):
                 sim_setting = response.get('data')

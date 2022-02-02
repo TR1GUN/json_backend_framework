@@ -24,7 +24,7 @@ class Interface_UART(TemplateInterface_UART):
     _cookies = None
 
     # Общие настройки
-    Settings = SettingsUART()
+    Settings = None
 
     # Настройки по умолчанию
 
@@ -42,6 +42,15 @@ class Interface_UART(TemplateInterface_UART):
 
         if ip_address is not None:
             self._ip_address = ip_address
+        # Обнуляем
+        self._define_JSON()
+
+    def _define_JSON(self):
+        """
+        Здесь Сбрасываем настройки
+        """
+        # Сбрасываем настройки
+        self.Settings = SettingsUART()
 
     def _getting_settings(self):
 
@@ -53,6 +62,8 @@ class Interface_UART(TemplateInterface_UART):
         # Читаем что задали
         SettingsUART_JSON = self.Settings.get_settings()
         UART = SettingsUART_JSON.get(self._Settings_name)
+        # Обнуляем
+        self._define_JSON()
 
         if UART is not None:
             # Если НИЧЕГО НЕ ДОБАВЛЯЛИ , используем из GET запроса
