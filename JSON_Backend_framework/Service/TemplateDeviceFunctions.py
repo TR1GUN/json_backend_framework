@@ -4,35 +4,33 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
+from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 
+# -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ Settings
+# -------------------------------------------------------------------------------------------------------------
 
-class TemplateDeviceFunctions(TemplateFunctional):
+class TemplateDeviceFunctions_Settings(TemplateFunctional):
     """
-
-    Шаблон работы с функционалом JSON_Backend_framework
+    ШАБЛОН Настройки регулярного опроса приборов учета
 
     """
     # URL
+
     _path_url = ''
 
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+    # Имя поля настроек
+    _Settings_name = ''
 
-    Data_Settings = None
+    # Настройки по умолчанию
 
-    def _define_settings_ids(self):
-        """
-
-        Здесь обновляем Поля настроек
-
-        :return:
-        """
-
-        self.Data_Settings = TemplateSettingsData()
-
-    def _Read(self):
+    def Read_Settings(self):
         """
         Читаем данные - GET
         :return:
@@ -42,17 +40,17 @@ class TemplateDeviceFunctions(TemplateFunctional):
 
         return response
 
-    def _Write(self, data=None):
+    def Write_Settings(self, data=None):
         """
         Добавляем на запись данные  - POST
 
-        :param data: Данные в Формате JSON - Если None - то используем добавленные данные
+        :param data:
         :return:
         """
-        if data is None:
 
-            data_settings = self.Data_Settings.get_settings()
-            data = {'settings': data_settings}
+        if data is None:
+            data_settings = self._getting_settings()
+            data = {self._Settings_name: data_settings}
 
         # Запаковываем
         data = self._coding(data=data)
@@ -62,15 +60,15 @@ class TemplateDeviceFunctions(TemplateFunctional):
 
         return response
 
-    def rewrite_settings(self, data):
+    def Rewrite_Settings(self, data=None):
         """
         Перезаписываем данные - PUT
-        :param data: Данные в Формате JSON - Если None - то используем добавленные данные
+        :param data:
         :return:
         """
         if data is None:
-            data_settings = self.Data_Settings.get_settings()
-            data = {'settings': data_settings}
+            data_settings = self._getting_settings()
+            data = {self._Settings_name: data_settings}
 
         # Запаковываем
         data = self._coding(data=data)
@@ -80,22 +78,12 @@ class TemplateDeviceFunctions(TemplateFunctional):
 
         return response
 
-    def delete_settings(self, data=None):
+    def Delete_Settings(self, data=None):
         """
         Удаляем данные - DELETE
         :param data:
         :return:
         """
-
-        if data is None:
-
-            data_settings = self.Data_Settings.get_ids()
-
-            if len(data_settings) > 0:
-                data = {'settings': data_settings}
-            else:
-                data = None
-
         # Запаковываем
         if data is not None:
             data = self._coding(data=data)
@@ -108,91 +96,206 @@ class TemplateDeviceFunctions(TemplateFunctional):
 
         return response
 
+    # Здесь расположим сервисные функции
+    # Первое - Получаем настройки что уже есть
+
+    def _getting_settings(self):
+
+        """
+
+        В Классе шаблоне метод получения настроек отвечает за встравку GET запроса
+
+
+        """
+        data = self._request_setting()
+        return data
+
+    # Запрос настроек
+    @print_log_use_GET_data
+    def _request_setting(self):
+        """
+        Здесь запрашиваем нужные нам настройки
+
+        """
+        data = []
+        try:
+            # делаем запрос - получаем ответ
+            response = self.Read_Settings()
+            # Теперь вытаскиваем нужное
+            if response.get('code') == int(200):
+                answer_setting = response.get('data')
+                # Теперь заполянем наши переменные
+                if answer_setting is not None:
+                    Settings = answer_setting[self._Settings_name]
+                    if Settings is not None :
+                        data = Settings
+        except Exception as e:
+
+            print("При считывании параметров возникла ошибка - " + str(e))
+
+        return data
+# -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ MeterData
+# -------------------------------------------------------------------------------------------------------------
+
+class TemplateDeviceFunctions_MeterData(TemplateFunctional):
+    """
+    Шаблон Опроса приборов учета
+
+    """
+    # URL
+
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+    # Доступные типы данных
+    _measures = []
+
+    def _Read(self, data):
+        """
+        Функция для прямой отправки JSON
+
+        :param data: JSON
+        :return:
+        """
+        # Запаковываем бэк
+        data = self._coding(data=data)
+        # делаем запрос - получаем ответ
+        response = self._request_POST(JSON=data)
+
+        return response
 
 # -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ MeterManagement
 # -------------------------------------------------------------------------------------------------------------
-#                                  Шаблон работы с Функционалом УСПД
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
+class TemplateDeviceFunctions_MeterManagement(TemplateFunctional):
+    """
+    Шаблон Управления счетчиком
 
-class TemplateSettingsData:
+    """
+    # URL
+
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+
+# -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ Actions
+# -------------------------------------------------------------------------------------------------------------
+class TemplateDeviceFunctions_Actions(TemplateFunctional):
     """
 
-    Класс Шаблон Для поля Settings
+    Шаблон для действий
 
     """
-    _data_settings = []
-    _data_ids = []
-    # def __init__(self):
-    #
-    #     self._data_settings = []
+    # URL
 
-    def add_settings(self,*args, **kwargs):
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+
+    def Set(self, data=None):
         """
-        Добавление настроек для записи
+        Перезаписываем данные - PUT
 
+        Формат JSON
+
+        :param data: JSON На запись , который игнорирует
+
+        """
+        # Если мы дали пустоту , то определяем значения что заданы
+        if data is None:
+            data = self._define_data_set()
+        # Запаковываем
+        data = self._coding(data=data)
+
+        # делаем запрос - получаем ответ
+        response = self._request_PUT(JSON=data)
+
+        return response
+
+    def _define_data_set(self):
+        """
+        В этом методе определяем данные что будем отправлять
+        """
+
+        # Поскольку здесь нельзя задать никакие данные , вставляем данные что будем считывать
+        data = {}
+
+        return data
+# -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ InfoState
+# -------------------------------------------------------------------------------------------------------------
+class TemplateDeviceFunctions_InfoState(TemplateFunctional):
+    """
+     Шаблон  - Чтение состояния
+
+    """
+    # URL
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+    # Настройки по умолчанию
+
+    def _read_settings(self):
+        """
+        Читаем данные - GET
         :return:
         """
-        settings = {}
+        # делаем запрос - получаем ответ
+        response = self._request_GET()
 
-        self._data_settings.append(settings)
+        return response
 
-    def remove_settings(self, idx: [int, list]):
+# -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ Journal
+# -------------------------------------------------------------------------------------------------------------
+
+
+class TemplateDeviceFunctions_Journal(TemplateFunctional):
+    """
+    Шаблон Журнала
+
+    """
+    # URL
+
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+    # Настройки по умолчанию
+
+    def Read_Journal(self):
         """
-        Удаление добавленной записи settings для записи по ID
-        :param idx: - list or int
+        Читаем данные - GET
         :return:
         """
-        data_settings = []
+        # делаем запрос - получаем ответ
+        response = self._request_GET()
 
-        # Перебираем все настройки
-        for settings in self._data_settings:
-            # Если айдишник не совпадает то добавляем в список
-            if settings.get('id') not in idx:
-                data_settings.append(settings)
-
-        self._data_settings = data_settings
-
-    def get_settings(self):
-        """
-        Получаем добавленные settings
-
-        :return:
-        """
-
-        return self._data_settings
-
-    def add_ids(self, ids: int):
-        """
-        Добавляем Device_id для запроса данных или удаления
-
-        :param ids:
-        :return:
-        """
-
-        self._data_ids.append(ids)
-
-    def remove_ids(self, ids: [int, list]):
-        """
-        Удаление добавленной записи ids для получения/удаления записей
-        :param ids: - list or int
-        :return:
-        """
-        data_ids = []
-
-        # Перебираем все настройки
-        for idx in self._data_ids:
-            # Если айдишник не совпадает то добавляем в список
-            if idx not in ids:
-                data_ids.append(idx)
-
-        self._data_ids = data_ids
-
-    def get_ids(self):
-        """
-        Получаем добавленные settings
-
-        :return:
-        """
-
-        return self._data_ids
+        return response

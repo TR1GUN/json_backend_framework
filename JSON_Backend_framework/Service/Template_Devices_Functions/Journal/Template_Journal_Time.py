@@ -33,3 +33,4 @@ class TemplateJournalTime(TemplateFunctional):
         response = self._request_GET()
 
         return response
+

@@ -11,9 +11,8 @@ class TemplateRequest:
 
     _debug = False
 
-    # Наш айпишник
-    from JSON_Backend_framework.Service.config import machine_ip
-    ip_port = str(machine_ip)
+
+    ip_port = '192.168.0.1'
 
     def Result(self):
         """
