@@ -10,7 +10,7 @@ from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_d
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings
 
 
-class TemplateInterface_DOut_PowerLine(TemplateFunctional):
+class TemplateInterface_DOut_PowerLine(TemplateDeviceFunctions_Settings):
     """
     Настройки линий питания интерфейсов
 
