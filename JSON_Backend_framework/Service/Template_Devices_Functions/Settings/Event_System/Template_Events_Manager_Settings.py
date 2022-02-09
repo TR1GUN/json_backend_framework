@@ -17,7 +17,7 @@ class TemplateEventManager(TemplateDeviceFunctions_Settings):
     """
     # URL
 
-    _path_url = url_path.get("Event_Manager_Settings")
+    _path_url = url_path.get("Events_Manager")
 
     # хедерс - Иногда нужен
     _headers = None

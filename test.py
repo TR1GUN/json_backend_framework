@@ -1,7 +1,11 @@
-# from JSON_Backend_framework import JSON_Backend_framework
+
 
 # import JSON_Backend_framework
-# SMART = JSON_Backend_framework.UM_40_Smart()
+# SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.202.143')
+#
+# lol = SMART.Settings.EventSystem.Manager.Read_Settings()
+#
+# print(lol)
 # //-------------------------------------------------------------------
 # SMART = JSON_Backend_framework.UM_31_Smart(Login='login', Password="password", ip_address='192.168.0.1')
 # lol = SMART.Settings.Meter.Table.read_settings()
