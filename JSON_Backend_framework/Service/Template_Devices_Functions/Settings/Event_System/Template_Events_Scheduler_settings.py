@@ -17,7 +17,7 @@ class TemplateSchedule(TemplateDeviceFunctions_Settings):
     """
     # URL
 
-    _path_url = url_path.get("Schedule_settings")
+    _path_url = url_path.get("Events_Schedule")
 
     # хедерс - Иногда нужен
     _headers = None
