@@ -60,7 +60,7 @@ url_path = {
     # Настройки SMTP-серверов
     "Servers_SMTP": '/settings/servers/smtp',
     # Настройки SMTP-серверов
-    "Servers_SMTP_settings": '/settings/smtp',
+    "Servers_SNTP_settings": '/settings/smtp',
     # Настройки SNTP-серверов
     "Servers_SNTP": '/settings/servers/sntp',
     # Настройки MQTT-серверов

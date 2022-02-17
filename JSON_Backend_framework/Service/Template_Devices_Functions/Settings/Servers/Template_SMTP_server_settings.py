@@ -17,7 +17,7 @@ class TemplateServer_SMTP(TemplateDeviceFunctions_Settings):
     """
     # URL
 
-    _path_url = url_path.get("Servers_SMTP_settings")
+    _path_url = url_path.get("Servers_SMTP")
 
     # хедерс - Иногда нужен
     _headers = None
