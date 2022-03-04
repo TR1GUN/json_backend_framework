@@ -1,14 +1,7 @@
 
-
-import JSON_Backend_framework
-SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.202.143')
-
-
-JSON = {"Settings":[{"emailFromId":1,"emailToId":1,"id":1,"meterMessageId":1}]}
-lol = SMART.Settings.EventSystem.SMTP.Read_Settings()
-
-print(lol)
-
+#
+# import JSON_Backend_framework
+# SMART = JSON_Backend_framework
 # //-------------------------------------------------------------------
 # SMART = JSON_Backend_framework.UM_31_Smart(Login='login', Password="password", ip_address='192.168.0.1')
 # lol = SMART.Settings.Meter.Table.read_settings()
