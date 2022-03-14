@@ -28,40 +28,23 @@ class Authorization(TemplateFunctional):
 
     _result = None
 
-    def __init__(self, Login: str = None, Password: str = None, ip_address: str = None):
+    def __init__(self, Login: str = None, Password: str = None, ip_address: str = None, headers = None):
 
-        # Первое - Получаем айпишник
-        # ip_address = self._define_IP_address(ip_address=ip_address)
-
+        # Первое - Получаем айпишник и хедерс
         self._ip_address = str(ip_address)
+        self._headers = headers
 
         # Второе - Парсим логин и пароль
         self._parse_Login_and_password(Login=Login, Password=Password)
 
         # Третье - Производим авторизацию
+
         # Обнуляем куки
         self._result = None
         self._cookies = None
         self._cookies_to_authorization = None
         # заходим
         self._result = self._Autorization()
-
-    # def _define_IP_address(self, ip_address):
-    #     """
-    #     Определяем IP адрес железки
-    #
-    #     :param ip_address:
-    #     :return:
-    #     """
-    #     from JSON_Backend_framework.Service.config import machine_ip
-    #     if ip_address is None:
-    #         ip_address = machine_ip
-    #
-    #     ip_address = str(ip_address)
-    #
-    #     self._ip_address = ip_address
-    #
-    #     return ip_address
 
     def _parse_Login_and_password(self, Login, Password):
         """

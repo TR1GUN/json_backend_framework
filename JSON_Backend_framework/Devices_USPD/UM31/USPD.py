@@ -74,20 +74,30 @@ class UM_31_SMART(Template_USPD):
         Метод Авторизации - для УМ 31 смарт
         :return:
         """
-        from JSON_Backend_framework.Devices_USPD.Authorization import Authorization
+        from JSON_Backend_framework.Service.Template_Cookies import UM_Cookies
 
-        Authorization_cookie = Authorization(Login=str(self._Login),
-                                             Password=str(self._Password),
-                                             ip_address=str(self._ip_address))
-
-        # Если авториазия была успешна
-
-        if Authorization_cookie.result_code == 200:
-            self._cookies = Authorization_cookie.get_cookies()
-        else:
-            print('Авторизация - не выполнено')
-
-            assert Authorization_cookie.result_code == 200, Authorization_cookie.get_result()
+        self._cookies = UM_Cookies(
+                                        Login=self._Login,
+                                        Password=self._Password,
+                                        IP_address=self._ip_address,
+                                        Headers=self._headers,
+                                        Auth=True
+                                    )
+        # # Теперь проверяем что успешно прошли авторизацию
+        # from JSON_Backend_framework.Devices_USPD.Authorization import Authorization
+        #
+        # Authorization_cookie = Authorization(Login=str(self._Login),
+        #                                      Password=str(self._Password),
+        #                                      ip_address=str(self._ip_address))
+        #
+        # # Если авториазия была успешна
+        #
+        # if Authorization_cookie.result_code == 200:
+        #     self._cookies = Authorization_cookie.get_cookies()
+        # else:
+        #     print('Авторизация - не выполнено')
+        #
+        #     assert Authorization_cookie.result_code == 200, Authorization_cookie.get_result()
 
     def _define_functionality(self):
         """
@@ -123,7 +133,6 @@ class UM_31_SMART(Template_USPD):
 
     # ЖУРАНЛЫ
     def _Journal(self):
-
         """
         Получаем класс который работает с Журналами УСПД
         """
@@ -133,7 +142,6 @@ class UM_31_SMART(Template_USPD):
 
     # Действия
     def _Actions(self):
-
         """
         Получаем класс который работает с Действия УСПД
         """
@@ -143,7 +151,6 @@ class UM_31_SMART(Template_USPD):
 
     # Управление Приборами учета
     def _MeterDeviceManagement(self):
-
         """
         Получаем класс который работает с Действия УСПД
         """
@@ -158,7 +165,6 @@ class UM_31_SMART(Template_USPD):
 
     # Опрос Приборов Учета
     def _MeterData(self):
-
         """
 
         Получаем класс который работает с Действия УСПД

@@ -24,12 +24,27 @@ class PUT(TemplateRequest):
 
         # Вытаскиваем Хэдерс
         if headers:
-            _headers_dict = headers.Get_headers()
+            try:
+                _headers_dict = headers.Get_headers()
+            except Exception as e :
+                print("Exception :", e)
+                _headers_dict = None
         else:
             _headers_dict = None
 
+        # Вытаскиваем Куки
+        if cookies :
+
+            try:
+                _cookie = cookies.Get_cookie()
+            except Exception as e:
+                print("Exception :", e)
+                _cookie = None
+        else:
+            _cookie = None
+
         # Запускаем наш класс запроса
-        response = self._Setup(url=url, data=data, cookies=cookies, headers=_headers_dict)
+        response = self._Setup(url=url, data=data, cookies=_cookie, headers=_headers_dict)
 
         # Переносим ответ в отдельное поле
         self._response = response
