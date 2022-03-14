@@ -15,6 +15,11 @@ class Template_USPD:
     # Пароль
     _Password = ''
 
+    # Имя хэдера отвечающего за тип проткола - Поддерживаемые значения -int -  40 и 31
+    Name_Protocol_USPD = "X-Protocol-USPD"
+    # Имя хэдера отвечающего за версию протокола - Поддерживаемые значения - float -
+    Name_Protocol_Version = "X-Protocol-Version"
+
     # Куки
     _cookies = None
     # headers - заголовки

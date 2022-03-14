@@ -24,4 +24,18 @@ Type_Protocol_Headers_dict = {
     "UM31": headers_protocol_UM31,
 }
 # =================================================================
+# Клиент - Нужен для Хедерса
 
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
+
+# САМ хедерс
+headers = {
+        'User-Agent': user_agent,
+        'Referer': 'http://192.168.0.1/login',
+        'Host': '192.168.0.1',
+        # 'Connection': keep-alive
+        'Accept': '*/*',
+        'Content-type': 'application/json',
+        'Origin': 'http://192.168.0.1',
+        # 'Cookie': 'sessionid=16349148992619061200'
+    }

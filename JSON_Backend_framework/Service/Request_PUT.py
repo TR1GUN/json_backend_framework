@@ -21,8 +21,15 @@ class PUT(TemplateRequest):
         # Если изменен айпишник - то задаем его тоже
         if ip_device is not None:
             self.ip_port = str(ip_device)
+
+        # Вытаскиваем Хэдерс
+        if headers:
+            _headers_dict = headers.Get_headers()
+        else:
+            _headers_dict = None
+
         # Запускаем наш класс запроса
-        response = self._Setup(url=url, data=data, cookies=cookies, headers=headers)
+        response = self._Setup(url=url, data=data, cookies=cookies, headers=_headers_dict)
 
         # Переносим ответ в отдельное поле
         self._response = response

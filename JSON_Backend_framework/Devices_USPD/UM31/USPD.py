@@ -7,6 +7,8 @@
 
 from JSON_Backend_framework.Service.TemplateUSPD import Template_USPD
 
+from JSON_Backend_framework.Service.config import headers_protocol_UM31
+
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
@@ -41,7 +43,8 @@ class UM_31_SMART(Template_USPD):
         """
         # Куки - Перед началом работы обнуляем их
         self._cookies = None
-
+        # Состравояем хедерс - необходим для указания протокола
+        self._Define_Headers()
         # Определяем логин
         self._Login = str(Login)
         # Определяем пароль
@@ -55,6 +58,15 @@ class UM_31_SMART(Template_USPD):
 
         # И обновляем функционал
         self._define_functionality()
+
+    # Абгрейд хедерса - указываем протокол в котором работам
+    def _Define_Headers(self):
+        """
+        Это очень важный метод
+        """
+        from JSON_Backend_framework.Service.Template_Headers import UM_Headers
+        self._headers = UM_Headers(UM_Protocol=headers_protocol_UM31.get(self.Name_Protocol_USPD),
+                                   Version=headers_protocol_UM31.get(self.Name_Protocol_Version))
 
     # АВТОРИАЗЦИЯ - должна происходить автоматически - при протухании кукис - перелогиниваться
     def _Authorization(self):
@@ -106,7 +118,8 @@ class UM_31_SMART(Template_USPD):
         :return:
         """
         from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_StateInfo import UM_31_SMART_StateInfo
-        self.StateInfo = UM_31_SMART_StateInfo(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.StateInfo = UM_31_SMART_StateInfo(cookies=self._cookies, headers=self._headers,
+                                               ip_address=self._ip_address)
 
     # ЖУРАНЛЫ
     def _Journal(self):
@@ -134,13 +147,14 @@ class UM_31_SMART(Template_USPD):
         """
         Получаем класс который работает с Действия УСПД
         """
-        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_MeterDeviceManagement import UM_31_SMART_MeterDeviceManagement
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_MeterDeviceManagement import \
+            UM_31_SMART_MeterDeviceManagement
 
         self.MeterDeviceManagement = UM_31_SMART_MeterDeviceManagement(
-                                                                        cookies=self._cookies,
-                                                                        headers=self._headers,
-                                                                        ip_address=self._ip_address
-                                                                       )
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
 
     # Опрос Приборов Учета
     def _MeterData(self):
@@ -153,4 +167,5 @@ class UM_31_SMART(Template_USPD):
 
         from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_MeterData import UM_31_SMART_MeterData
 
-        self.MeterData = UM_31_SMART_MeterData(cookies=self._cookies, headers=self._headers,ip_address=self._ip_address)
+        self.MeterData = UM_31_SMART_MeterData(cookies=self._cookies, headers=self._headers,
+                                               ip_address=self._ip_address)

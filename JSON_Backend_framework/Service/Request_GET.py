@@ -13,15 +13,26 @@ class GET(TemplateRequest):
     _result = {}
 
     def __init__(self, url: str, cookies=None, headers=None, ip_device=None):
-
+        """
+        Метод GET
+        :param url: URL по которому шлем запрос
+        :param cookies: Куки
+        :param headers: Хэдерс - ОБЬЕКТ ХЭДЕРСА
+        :param ip_device: Айпишник УСПД
+        """
         # обнуляем результат
         self._result = {}
         # Если изменен айпишник - то задаем его тоже
         if ip_device is not None:
             self.ip_port = str(ip_device)
 
+        # Вытаскиваем Хэдерс
+        if headers:
+            _headers_dict = headers.Get_headers()
+        else:
+            _headers_dict = None
         # Запускаем наш класс запроса
-        response = self._Setup(url=url, cookies=cookies, headers=headers)
+        response = self._Setup(url=url, cookies=cookies, headers=_headers_dict)
 
         # Переносим ответ в отдельное поле
         self._response = response

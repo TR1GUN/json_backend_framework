@@ -93,6 +93,8 @@ class TemplateFunctional:
         """
         from JSON_Backend_framework.Service.Request_GET import GET
 
+        print(self._cookies , id(self._cookies))
+        print(self._headers, id(self._headers))
         # Первое - удаляем все пробелы из строки JSON
         # JSON = JSON.replace(" ", '')
         # Делаем запрос - получаем ответ - возвращаем
