@@ -96,9 +96,8 @@ class UM_31_SMART(Template_USPD):
         Получаем Класс который работает с настройками УСПД
         :return:
         """
-        pass
-        # from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_Settings import UM_40_SMART_Settings
-        # self.Settings = UM_40_SMART_Settings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_Settings import UM_31_SMART_Settings
+        self.Settings = UM_31_SMART_Settings(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # Состояние Изделия
     def _StateInfo(self):
@@ -106,9 +105,8 @@ class UM_31_SMART(Template_USPD):
         Получаем Класс который работает с Информация о состоянии УСПД
         :return:
         """
-        pass
-        # from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_StateInfo import UM_40_SMART_StateInfo
-        # self.StateInfo = UM_40_SMART_StateInfo(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_StateInfo import UM_31_SMART_StateInfo
+        self.StateInfo = UM_31_SMART_StateInfo(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # ЖУРАНЛЫ
     def _Journal(self):
@@ -116,10 +114,9 @@ class UM_31_SMART(Template_USPD):
         """
         Получаем класс который работает с Журналами УСПД
         """
-        pass
-        # from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_Journal import UM_40_SMART_Journal
-        #
-        # self.Journal = UM_40_SMART_Journal(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_Journal import UM_31_SMART_Journal
+
+        self.Journal = UM_31_SMART_Journal(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # Действия
     def _Actions(self):
@@ -127,10 +124,9 @@ class UM_31_SMART(Template_USPD):
         """
         Получаем класс который работает с Действия УСПД
         """
-        pass
-        # from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_Actions import UM_40_SMART_Actions
-        #
-        # self.Action = UM_40_SMART_Actions(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_Actions import UM_31_SMART_Actions
+
+        self.Action = UM_31_SMART_Actions(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
     # Управление Приборами учета
     def _MeterDeviceManagement(self):
@@ -138,15 +134,13 @@ class UM_31_SMART(Template_USPD):
         """
         Получаем класс который работает с Действия УСПД
         """
-        pass
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_MeterDeviceManagement import UM_31_SMART_MeterDeviceManagement
 
-        # from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_MeterDeviceManagement import UM_40_SMART_MeterDeviceManagement
-        #
-        # self.MeterDeviceManagement = UM_40_SMART_MeterDeviceManagement(
-        #                                                                 cookies=self._cookies,
-        #                                                                 headers=self._headers,
-        #                                                                 ip_address=self._ip_address
-        #                                                                )
+        self.MeterDeviceManagement = UM_31_SMART_MeterDeviceManagement(
+                                                                        cookies=self._cookies,
+                                                                        headers=self._headers,
+                                                                        ip_address=self._ip_address
+                                                                       )
 
     # Опрос Приборов Учета
     def _MeterData(self):
@@ -156,8 +150,7 @@ class UM_31_SMART(Template_USPD):
         Получаем класс который работает с Действия УСПД
 
         """
-        pass
 
-        # from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_MeterData import UM_40_SMART_MeterData
-        #
-        # self.MeterData = UM_40_SMART_MeterData(cookies=self._cookies, headers=self._headers,ip_address=self._ip_address)
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_MeterData import UM_31_SMART_MeterData
+
+        self.MeterData = UM_31_SMART_MeterData(cookies=self._cookies, headers=self._headers,ip_address=self._ip_address)
