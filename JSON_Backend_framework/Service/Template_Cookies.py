@@ -50,7 +50,9 @@ class UM_Cookies:
 
         Authorization_cookie = Authorization(Login=str(self.Login),
                                              Password=str(self.Password),
-                                             ip_address=str(self.IP_address))
+                                             ip_address=str(self.IP_address),
+                                             headers = self.Headers
+                                             )
 
         # Если авториазия была успешна
 

@@ -75,23 +75,31 @@ class POST(TemplateRequest):
 
         # Запускаем
         # --->
+        print("POST")
+        print("cookies", cookies)
+        print("headers : ", headers)
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):
+
             response = requests.post(url, data=data)
-        # Если есть куки
-        elif cookies is not None:
+        # Если есть куки но нет хэдерса
+        elif (cookies is not None) and (headers is None) :
+
             response = requests.post(url, data=data, cookies=cookies)
         # Если есть хедлерс
-        elif headers is not None:
+        elif (headers is not None) and (cookies is None) :
+
             response = requests.post(url, data=data, headers=headers)
         # Если есть и то и то
+
         elif (cookies is not None) and (headers is not None):
+
             response = requests.post(url, data=data, headers=headers, cookies=cookies)
         # Иначе - отправляет просто
         else:
             response = requests.post(url, data=data)
         # --->
-        # print(response)
+        print(response)
         # Возвращаем данные
         return response
 

@@ -7,12 +7,13 @@
 
 from JSON_Backend_framework.Service.TemplateUSPD import Template_USPD
 
-
+from JSON_Backend_framework.Service.config import headers_protocol_UM40
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                            УМ - 40 СМАРТ
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
 class UM_40_SMART(Template_USPD):
     """
     Функционал УМ - 40 СМАРТ
@@ -26,17 +27,64 @@ class UM_40_SMART(Template_USPD):
         Получаем функционал доступный в УМ-40 СМАРТ
 
         """
-        # Устанавливаем IP адрес
+        Login = 'admin'
+        Password= 'admin'
 
+        # Куки - Перед началом работы обнуляем их
+        self._cookies = None
+        # Состравояем хедерс - необходим для указания протокола
+        self._Define_Headers()
+        # Определяем логин
+        self._Login = str(Login)
+        # Определяем пароль
+        self._Password = str(Password)
+
+        # Устанавливаем IP адрес
         self._ip_address = str(ip_address)
 
-        # Логин
-        self._Login = ''
-        # Пароль
-        self._Password = ''
+        # А Теперь - авторизуемся
+        self._Authorization()
 
         # И обновляем функционал
         self._define_functionality()
+        #
+        #
+        # # Устанавливаем IP адрес
+        #
+        # self._ip_address = str(ip_address)
+        #
+        # # Логин
+        # self._Login = ''
+        # # Пароль
+        # self._Password = ''
+        #
+        # # И обновляем функционал
+        # self._define_functionality()
+
+    # Абгрейд хедерса - указываем протокол в котором работам
+    def _Define_Headers(self):
+        """
+        Это очень важный метод
+        """
+        from JSON_Backend_framework.Service.Template_Headers import UM_Headers
+        self._headers = UM_Headers(UM_Protocol=headers_protocol_UM40.get(self.Name_Protocol_USPD),
+                                   Version=headers_protocol_UM40.get(self.Name_Protocol_Version))
+
+    # АВТОРИАЗЦИЯ - должна происходить автоматически - при протухании кукис - перелогиниваться
+    def _Authorization(self):
+        """
+        Метод Авторизации - для УМ 31 смарт
+        :return:
+        """
+        from JSON_Backend_framework.Service.Template_Cookies import UM_Cookies
+
+        self._cookies = UM_Cookies(
+                                        Login=self._Login,
+                                        Password=self._Password,
+                                        IP_address=self._ip_address,
+                                        Headers=self._headers,
+                                        Auth=True
+                                    )
 
     def _define_functionality(self):
         """

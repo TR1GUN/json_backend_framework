@@ -71,10 +71,10 @@ class PUT(TemplateRequest):
         if (cookies is None) and (headers is None):
             response = requests.put(url, data=data)
         # Если есть куки
-        elif cookies is not None:
+        elif (cookies is not None) and (headers is None):
             response = requests.put(url, data=data, cookies=cookies)
         # Если есть хедлерс
-        elif headers is not None:
+        elif (headers is not None) and (cookies is None):
             response = requests.put(url, data=data, headers=headers)
         # Если есть и то и то
         elif (cookies is not None) and (headers is not None):

@@ -72,14 +72,17 @@ class GET(TemplateRequest):
         # Запускаем
         # response = requests.get(url)
         # --->
+        print("GET" )
+        print("cookies", cookies)
+        print("headers : ", headers)
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):
             response = requests.get(url)
         # Если есть куки
-        elif cookies is not None:
+        elif (cookies is not None) and (headers is None):
             response = requests.get(url, cookies=cookies)
         # Если есть хедлерс
-        elif headers is not None:
+        elif (headers is not None) and (cookies is None):
             response = requests.get(url, headers=headers)
         # Если есть и то и то
         elif (cookies is not None) and (headers is not None):

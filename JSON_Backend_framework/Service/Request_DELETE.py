@@ -73,10 +73,10 @@ class DELETE(TemplateRequest):
             if (cookies is None) and (headers is None):
                 response = requests.delete(url, data=data)
             # Если есть куки
-            elif cookies is not None:
+            elif (cookies is not None) and (headers is None):
                 response = requests.delete(url, data=data, cookies=cookies)
             # Если есть хедлерс
-            elif headers is not None:
+            elif (headers is not None) and (cookies is None) :
                 response = requests.delete(url, data=data, headers=headers)
             # Если есть и то и то
             elif (cookies is not None) and (headers is not None):
@@ -92,10 +92,10 @@ class DELETE(TemplateRequest):
             if (cookies is None) and (headers is None):
                 response = requests.delete(url)
             # Если есть куки
-            elif cookies is not None:
+            elif (cookies is not None) and (headers is None):
                 response = requests.delete(url, cookies=cookies)
             # Если есть хедлерс
-            elif headers is not None:
+            elif (headers is not None) and (cookies is None):
                 response = requests.delete(url, headers=headers)
             # Если есть и то и то
             elif (cookies is not None) and (headers is not None):

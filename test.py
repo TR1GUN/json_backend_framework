@@ -1,18 +1,32 @@
-
 #
 import JSON_Backend_framework
 
 # //-------------------------------------------------------------------
-SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address='192.168.205.22')
-lol = SMART.Settings.Meter.ArchInfo.Read_Settings()
-
-# SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.205.22')
-# lol = SMART.Settings.Meter.Table.Read_Settings()
-print(lol)
-
-
+ip_smart_31 = '192.168.205.22'
+ip_smart_40 = '192.168.202.176'
+SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
 lol = SMART.Settings.Meter.Table.Read_Settings()
 print(lol)
+
+SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
+lol = SMART.Settings.Meter.Table.Read_Settings()
+print(lol)
+
+SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
+lol = SMART.MeterData.MeterData.Read_MeterData(data={"ids":[100],"tags":[],"time":[],"measures":["aCfg"]})
+print(lol)
+#
+# print(lol)
+#
+# lol = SMART.Settings.Meter.Table.Read_Settings()
+# print(lol)
+#
+#
+# SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.202.176')
+# lol = SMART.Settings.Meter.Table.Read_Settings()
+# print(lol)
+
+
 # lol = SMART.Settings.Meter.ArchInfo.read_settings()
 # print(lol)
 #

@@ -19,11 +19,11 @@ class UM_31_SMART_MeterData(Template_UM_XX_SMART_MeterData):
 
     # Функционал
     # Опрос приборов учета
-    # MeterData = None
-    # Опрос приборов учета – Архивные записи
-    MeterData_Arch = None
-    # Опрос приборов учета – Моментные показатели
-    MeterData_Moment = None
+    MeterData = None
+    # Опрос приборов учета – Архивные записи - Здесь нет их
+    # MeterData_Arch = None
+    # Опрос приборов учета – Моментные показатели - Здесь нет их
+    # MeterData_Moment = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         self._cookies = cookies
@@ -41,32 +41,20 @@ class UM_31_SMART_MeterData(Template_UM_XX_SMART_MeterData):
 
         """
 
-        # self.MeterData = self._MeterData()
+        self.MeterData = self._MeterData()
         # self.MeterData_Arch = self._MeterData_Arch()
         # self.MeterData_Moment = self._MeterData_Moment()
 
     # ----->
 
-    def _MeterData_Arch(self):
+    def _MeterData(self):
         """
-        Опрос приборов учета – Архивные записи
+        Опрос приборов учета – Архивные записи/Моментные показатели
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData_Arch import MeterDataArch
-        MeterDataArch_read = MeterDataArch(
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterData.MeterData import MeterData
+        MeterData_read = MeterData(
             cookies=self._cookies,
             headers=self._headers,
             ip_address=self._ip_address
         )
-        return MeterDataArch_read
-
-    def _MeterData_Moment(self):
-        """
-        Опрос приборов учета – Моментные показатели
-        """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData_Moment import MeterDataMoment
-        MeterDataMoment_read = MeterDataMoment(
-            cookies=self._cookies,
-            headers=self._headers,
-            ip_address=self._ip_address
-        )
-        return MeterDataMoment_read
+        return MeterData_read

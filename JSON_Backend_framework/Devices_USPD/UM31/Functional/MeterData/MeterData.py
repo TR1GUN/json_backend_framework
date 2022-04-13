@@ -4,7 +4,9 @@
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData , TemplateMeterData_Read_Measure
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data_arch import \
+    TemplateMeterDataArch, TemplateMeterDataArch_Read_Measure
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData, TemplateMeterData_Read_Measure
 
 from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
 
@@ -15,7 +17,7 @@ from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import Fo
 #                                  Чтение Журналов
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Journal(TemplateMeterData_Read_Measure):
+class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
     """
     Чтение Журналов
     """
@@ -37,13 +39,13 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPwr(self, ids: [None, list, int] = None,
-                  time_start: [int, None] = None,
-                  time_end: [int, None] = None,
-                  # tags: [None, list, str] = None
-                  ):
+    def jrnlPwr(self, ids: [None, list, int] = None,
+                time_start: [int, None] = None,
+                time_end: [int, None] = None,
+                tags: [None, list, str] = None
+                ):
         """
-        Чтение из БД Журнала ElJrnlPwr - управление питанием
+        Чтение из БД Журнала jrnlPwr - управление питанием
 
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
         :param time_end: - int/None - Время конца считывания .
@@ -54,15 +56,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlPwr'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlPwr'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlTimeCorr(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlTimeCorr(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlTimeCorr - коррекция времени электросчетчика
 
@@ -76,37 +78,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlTimeCorr'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def PlsJrnlTimeCorr(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
-        """
-        Чтение из БД Журнала PlsJrnlTimeCorr - коррекция времени концентратора импульсных счетчиков
-
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'PlsJrnlTimeCorr'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlTimeCorr'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlReset(self, ids: [None, list, int] = None,
-                    time_start: [int, None] = None,
-                    time_end: [int, None] = None,
-                    # tags: [None, list, str] = None
-                    ):
+    def jrnlReset(self, ids: [None, list, int] = None,
+                  time_start: [int, None] = None,
+                  time_end: [int, None] = None,
+                  tags: [None, list, str] = None
+                  ):
         """
         Чтение из БД Журнала ElJrnlReset - сброс показаний
 
@@ -120,16 +101,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlReset'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlReset'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlC1Init(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
-                     # tags: [None, list, str] = None
-                     ):
+    def jrnlC1Init(self, ids: [None, list, int] = None,
+                   time_start: [int, None] = None,
+                   time_end: [int, None] = None,
+                   tags: [None, list, str] = None
+                   ):
         """
         Чтение из БД Журнала ElJrnlC1Init - инициализация первого массива профилей
 
@@ -142,15 +123,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlC1Init'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlC1Init'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlC2Init(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
-                     # tags: [None, list, str] = None
-                     ):
+    def jrnlC2Init(self, ids: [None, list, int] = None,
+                   time_start: [int, None] = None,
+                   time_end: [int, None] = None,
+                   tags: [None, list, str] = None
+                   ):
         """
         Чтение из БД Журнала ElJrnlC2Init - инициализация второго массива профилей
 
@@ -163,15 +144,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlC2Init'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlC2Init'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlTrfCorr(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
-                      # tags: [None, list, str] = None
-                      ):
+    def jrnlTrfCorr(self, ids: [None, list, int] = None,
+                    time_start: [int, None] = None,
+                    time_end: [int, None] = None,
+                    tags: [None, list, str] = None
+                    ):
         """
         Чтение из БД Журнала ElJrnlTrfCorr - коррекция тарификатора
 
@@ -184,15 +165,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlTrfCorr'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlTrfCorr'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlOpen(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
-                   # tags: [None, list, str] = None
-                   ):
+    def jrnlOpen(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None
+                 ):
         """
         Чтение из БД Журнала ElJrnlOpen - открытие крышки
 
@@ -205,16 +186,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlOpen'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlOpen'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlUnAyth(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
-                     # tags: [None, list, str] = None
-                     ):
+    def jrnlUnAyth(self, ids: [None, list, int] = None,
+                   time_start: [int, None] = None,
+                   time_end: [int, None] = None,
+                   tags: [None, list, str] = None
+                   ):
         """
         Чтение из БД Журнала ElJrnlUnAyth - неавторизованный доступ
 
@@ -227,15 +208,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlUnAyth'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlUnAyth'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPwrA(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
-                   # tags: [None, list, str] = None
-                   ):
+    def jrnlPwrA(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None
+                 ):
         """
         Чтение из БД Журнала ElJrnlPwrA - управление фазой А
 
@@ -248,15 +229,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlPwrA'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlPwrA'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPwrB(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
-                   # tags: [None, list, str] = None
-                   ):
+    def jrnlPwrB(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None
+                 ):
         """
         Чтение из БД Журнала ElJrnlPwrB - управление фазой В
 
@@ -269,15 +250,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlPwrB'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlPwrB'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlPwrC(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
-                   # tags: [None, list, str] = None
-                   ):
+    def jrnlPwrC(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None
+                 ):
         """
         Чтение из БД Журнала ElJrnlPwrC - управление фазой С
 
@@ -290,15 +271,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlPwrC'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlPwrC'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlProg(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
-                   # tags: [None, list, str] = None
-                   ):
+    def jrnlProg(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None
+                 ):
         """
         Чтение из БД Журнала ElJrnlProg - программирование
 
@@ -311,15 +292,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlProg'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlProg'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlRelay(self, ids: [None, list, int] = None,
-                    time_start: [int, None] = None,
-                    time_end: [int, None] = None,
-                    # tags: [None, list, str] = None
-                    ):
+    def jrnlRelay(self, ids: [None, list, int] = None,
+                  time_start: [int, None] = None,
+                  time_end: [int, None] = None,
+                  tags: [None, list, str] = None
+                  ):
         """
         Чтение из БД Журнала ElJrnlRelay - управление реле
 
@@ -332,15 +313,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlRelay'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlRelay'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimESumm(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimESumm(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimESumm - лимит суммарной энергии
 
@@ -353,15 +334,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimESumm'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimESumm'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimETrf(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
-                      # tags: [None, list, str] = None
-                      ):
+    def jrnlLimETrf(self, ids: [None, list, int] = None,
+                    time_start: [int, None] = None,
+                    time_end: [int, None] = None,
+                    tags: [None, list, str] = None
+                    ):
         """
         Чтение из БД Журнала ElJrnlLimETrf - потарифиный лимит энергии
 
@@ -374,15 +355,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimETrf'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimETrf'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimETrf1(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimETrf1(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimETrf1 - лимит энергии тарифа 1
 
@@ -396,15 +377,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimETrf1'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimETrf1'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimETrf2(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimETrf2(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimETrf2 - лимит энергии тарифа 2
 
@@ -417,15 +398,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimETrf2'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimETrf2'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimETrf3(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimETrf3(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimETrf3 - лимит энергии тарифа 3
 
@@ -438,16 +419,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimETrf3'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimETrf3'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlLimETrf4(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimETrf4(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimETrf4 - лимит энергии тарифа 4
 
@@ -460,16 +441,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimETrf4'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimETrf4'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlLimUAMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimUAMax(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimUAMax - ограничение максимального напряжения фазы А
 
@@ -482,15 +463,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUAMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUAMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUAMin(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimUAMin(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimUAMin - ограничение минимального напряжения фазы А
 
@@ -503,16 +484,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUAMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUAMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlLimUBMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimUBMax(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimUBMax - ограничение максимального напряжения фазы В
 
@@ -525,15 +506,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUBMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUBMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUBMin(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimUBMin(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimUBMin - ограничение минимального напряжения фазы В
 
@@ -546,15 +527,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUBMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUBMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUCMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimUCMax(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimUCMax - ограничение максимального напряжения фазы С
 
@@ -567,15 +548,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUCMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUCMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUCMin(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimUCMin(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimUCMin - ограничение минимального напряжения фазы С
 
@@ -588,15 +569,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUCMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUCMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUABMax(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
+    def jrnlLimUABMax(self, ids: [None, list, int] = None,
+                      time_start: [int, None] = None,
+                      time_end: [int, None] = None,
+                      tags: [None, list, str] = None
+                      ):
         """
         Чтение из БД Журнала ElJrnlLimUABMax - ограничение максимального расхождения напряжения фаз А и В
 
@@ -609,15 +590,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUABMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUABMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUABMin(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
+    def jrnlLimUABMin(self, ids: [None, list, int] = None,
+                      time_start: [int, None] = None,
+                      time_end: [int, None] = None,
+                      tags: [None, list, str] = None
+                      ):
         """
         Чтение из БД Журнала ElJrnlLimUABMin - ограничение минимального расхождения напряжения фаз А и В
 
@@ -630,15 +611,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUABMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUABMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUBCMax(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
+    def jrnlLimUBCMax(self, ids: [None, list, int] = None,
+                      time_start: [int, None] = None,
+                      time_end: [int, None] = None,
+                      tags: [None, list, str] = None
+                      ):
         """
         Чтение из БД Журнала ElJrnlLimUBCMax - ограничение максимального расхождения напряжения фаз В и С
 
@@ -651,15 +632,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUBCMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUBCMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUBCMin(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
+    def jrnlLimUBCMin(self, ids: [None, list, int] = None,
+                      time_start: [int, None] = None,
+                      time_end: [int, None] = None,
+                      tags: [None, list, str] = None
+                      ):
         """
         Чтение из БД Журнала ElJrnlLimUBCMin - ограничение минимального расхождения напряжения фаз В и С
 
@@ -672,15 +653,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUBCMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUBCMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUCAMax(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
+    def jrnlLimUCAMax(self, ids: [None, list, int] = None,
+                      time_start: [int, None] = None,
+                      time_end: [int, None] = None,
+                      tags: [None, list, str] = None
+                      ):
         """
         Чтение из БД Журнала ElJrnlLimUCAMax - ограничение максимального расхождения напряжения фаз С и А
 
@@ -693,15 +674,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUCAMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUCAMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimUCAMin(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        # tags: [None, list, str] = None
-                        ):
+    def jrnlLimUCAMin(self, ids: [None, list, int] = None,
+                      time_start: [int, None] = None,
+                      time_end: [int, None] = None,
+                      tags: [None, list, str] = None
+                      ):
         """
         Чтение из БД Журнала ElJrnlLimUCAMin - ограничение минимального расхождения напряжения фаз С и А
 
@@ -714,15 +695,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimUCAMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimUCAMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimIAMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimIAMax(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimIAMax - ограничение максимального тока фазы А
 
@@ -735,15 +716,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimIAMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimIAMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimIBMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimIBMax(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimIBMax - ограничение максимального тока фазы В
 
@@ -756,15 +737,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimIBMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimIBMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimICMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimICMax(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimICMax - ограничение максимального тока фазы С
         :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
@@ -776,15 +757,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimICMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimICMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimFreqMax(self, ids: [None, list, int] = None,
-                         time_start: [int, None] = None,
-                         time_end: [int, None] = None,
-                         # tags: [None, list, str] = None
-                         ):
+    def jrnlLimFreqMax(self, ids: [None, list, int] = None,
+                       time_start: [int, None] = None,
+                       time_end: [int, None] = None,
+                       tags: [None, list, str] = None
+                       ):
         """
         Чтение из БД Журнала ElJrnlLimFreqMax - ограничение максимальной частоты сети
 
@@ -797,15 +778,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimFreqMax'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimFreqMax'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimFreqMin(self, ids: [None, list, int] = None,
-                         time_start: [int, None] = None,
-                         time_end: [int, None] = None,
-                         # tags: [None, list, str] = None
-                         ):
+    def jrnlLimFreqMin(self, ids: [None, list, int] = None,
+                       time_start: [int, None] = None,
+                       time_end: [int, None] = None,
+                       tags: [None, list, str] = None
+                       ):
         """
         Чтение из БД Журнала ElJrnlLimFreqMin - ограничение минимальной частоты сети
 
@@ -818,16 +799,16 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimFreqMin'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimFreqMin'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def ElJrnlLimPwr(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
-                     # tags: [None, list, str] = None
-                     ):
+    def jrnlLimPwr(self, ids: [None, list, int] = None,
+                   time_start: [int, None] = None,
+                   time_end: [int, None] = None,
+                   tags: [None, list, str] = None
+                   ):
         """
         Чтение из БД Журнала ElJrnlLimPwr - ограничение мощности
 
@@ -840,15 +821,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimPwr'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimPwr'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimPwrPP(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimPwrPP(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimPwrPP - ограничение прямой активной мощности
 
@@ -861,15 +842,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimPwrPP'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimPwrPP'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimPwrPM(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimPwrPM(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimPwrPM - ограничение прямой реактивной мощности
 
@@ -882,17 +863,17 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimPwrPM'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimPwrPM'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimPwrQP(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimPwrQP(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimPwrQP - ограничение обратной активной мощности
 
@@ -905,15 +886,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimPwrQP'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimPwrQP'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlLimPwrQM(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       # tags: [None, list, str] = None
-                       ):
+    def jrnlLimPwrQM(self, ids: [None, list, int] = None,
+                     time_start: [int, None] = None,
+                     time_end: [int, None] = None,
+                     tags: [None, list, str] = None
+                     ):
         """
         Чтение из БД Журнала ElJrnlLimPwrQM - ограничение обратной реактивной мощности
 
@@ -926,15 +907,15 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlLimPwrQM'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlLimPwrQM'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElJrnlReverce(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
-                      # tags: [None, list, str] = None
-                      ):
+    def jrnlRvr(self, ids: [None, list, int] = None,
+                time_start: [int, None] = None,
+                time_end: [int, None] = None,
+                tags: [None, list, str] = None
+                ):
         """
         Чтение из БД Журнала ElJrnlReverce - реверс
 
@@ -947,172 +928,18 @@ class MeterData_Journal(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElJrnlReverce'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=None)
+        measure = 'jrnlRvr'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                  Чтение Импульсных значений
+#                                  Чтение значений Электросчетчиков - Текущие
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Pulse(TemplateMeterData_Read_Measure):
+class MeterData_Moment(TemplateMeterDataArch_Read_Measure):
     """
-    Чтение импульсных данных счетчиков
-    """
-
-    # # URL
-    # from Devices_USPD.settings import url_path
-    # _path_url = url_path.get("Meter_Data_arch")
-    # # _path_url ="/charge/data/arch"
-    # # хедерс - Иногда нужен
-    # _headers = None
-    # # куки
-    # _cookies = None
-
-    # Поскольку мы наследуемся, то делаем конструктор
-    def __init__(self, cookies=None, headers=None, ip_address=None):
-        """
-        Опрос зарядных станций
-
-        :param cookies:
-        :param headers:
-        """
-        if cookies is not None:
-            self._cookies = cookies
-        if headers is not None:
-            self._headers = headers
-
-        if ip_address is not None:
-            self._ip_address = ip_address
-
-    # -------------------------------------------------------------------------------------------------------------
-    # -------------------------------------------------------------------------------------------------------------
-    def PlsHourPulse(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
-                     tags: [None, list, str] = None):
-        """
-        Чтение из БД параметра PlsHourPulse - Показания на начало часа
-
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве.
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'PlsHourPulse'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def PlsMomentPulse(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       tags: [None, list, str] = None):
-        """
-        Чтение из БД параметра PlsMomentPulse - Моментные показания
-
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве.
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания.
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'PlsMomentPulse'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def PlsDayPulse(self, ids: [None, list, int] = None,
-                    time_start: [int, None] = None,
-                    time_end: [int, None] = None,
-                    tags: [None, list, str] = None):
-        """
-        Чтение из БД параметра PlsDayPulse - Импульсные значения на начало дня
-
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве.
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'PlsDayPulse'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def PlsMonthPulse(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
-                      tags: [None, list, str] = None):
-        """
-        Чтение из БД параметра PlsMonthPulse - Импульсные значения на начало месяца
-
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве.
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'PlsMonthPulse'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def PlsConfig(self, ids: [None, list, int] = None,
-                  time_start: [int, None] = None,
-                  time_end: [int, None] = None,
-                  tags: [None, list, str] = None):
-        """
-        Чтение из БД параметра PlsConfig - Конфиг импульсного счетчика
-
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве.
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'PlsConfig'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-
-
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-#                                  Чтение Дискретных значений
-# -------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
-class MeterData_Digital(TemplateMeterData_Read_Measure):
-    """
-    Чтение Дискретных данных счетчиков
+    Чтение значений Электросчетчиков - Текущие
     """
 
     # Поскольку мы наследуемся, то делаем конструктор
@@ -1132,13 +959,12 @@ class MeterData_Digital(TemplateMeterData_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    # -------------------------------------------------------------------------------------------------------------
-    def DigJournalState(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        tags: [None, list, str] = None):
+    def mRelay(self, ids: [None, list, int] = None,
+               time_start: [int, None] = None,
+               time_end: [int, None] = None,
+               tags: [None, list, str] = None):
         """
-        Чтение из БД параметра DigJournalState - Архивы показаний дискретных модулей ввода/вывода
+        Чтение из БД параметра mRelay - Текущее показание реле
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -1152,38 +978,16 @@ class MeterData_Digital(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'DigJournalState'
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    def DigConfig(self, ids: [None, list, int] = None,
-                  time_start: [int, None] = None,
-                  time_end: [int, None] = None,
-                  tags: [None, list, str] = None):
-        """
-        Чтение из БД параметра DigConfig - Моментная энергия
-
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве.
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
-        :return:
-        """
-
-        measure = 'DigConfig'
+        measure = 'mRelay'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def DigMomentState(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       tags: [None, list, str] = None):
+    def mQual(self, ids: [None, list, int] = None,
+              time_start: [int, None] = None,
+              time_end: [int, None] = None,
+              tags: [None, list, str] = None):
         """
-        Чтение из БД параметра DigMomentState - Текущие показания дискретных модулей ввода/вывода
+        Чтение из БД параметра mQual - текущие ПКЭ
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -1197,18 +1001,43 @@ class MeterData_Digital(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'DigMomentState'
+        measure = 'mQual'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
+    # -------------------------------------------------------------------------------------------------------------
+    def mEng(self, ids: [None, list, int] = None,
+             time_start: [int, None] = None,
+             time_end: [int, None] = None,
+             tags: [None, list, str] = None):
+        """
+        Чтение из БД параметра mEng - текущие показания энергии
+
+        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
+                                        если строка - то тэг что указан в строке,
+                                        если список , то список тэгов что указан в массиве.
+        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
+        :param time_end: - int/None - Время конца считывания .
+        Если None - и задано время старта - то ставиться текущая дата  + 1000.
+        Если время старта не задано то поле time не формируется
+        :param time_start:- int/None - Время старта считывания .
+        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :return:
+        """
+
+        measure = 'mEng'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
+
+    # -------------------------------------------------------------------------------------------------------------
+
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                  Чтение значений Электросчетчиков
+#                                  Чтение значений Электросчетчиков - Архивные
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Electric(TemplateMeterData_Read_Measure):
+class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
     """
-    Чтение значений Электросчетчиков
+    Чтение значений Электросчетчиков - Архивные
     """
 
     # Поскольку мы наследуемся, то делаем конструктор
@@ -1228,10 +1057,10 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElMomentEnergy(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
-                       tags: [None, list, str] = None):
+    def aEng(self, ids: [None, list, int] = None,
+             time_start: [int, None] = None,
+             time_end: [int, None] = None,
+             tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMomentEnergy - Моментная энергия
 
@@ -1247,14 +1076,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElMomentEnergy'
+        measure = 'aEng'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElDayEnergy(self, ids: [None, list, int] = None,
-                    time_start: [int, None] = None,
-                    time_end: [int, None] = None,
-                    tags: [None, list, str] = None):
+    def aDay(self, ids: [None, list, int] = None,
+             time_start: [int, None] = None,
+             time_end: [int, None] = None,
+             tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElDayEnergy -  Энергия на начало дня
 
@@ -1270,14 +1099,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElDayEnergy'
+        measure = 'aDay'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElMonthEnergy(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
-                      tags: [None, list, str] = None):
+    def aMonth(self, ids: [None, list, int] = None,
+               time_start: [int, None] = None,
+               time_end: [int, None] = None,
+               tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMonthEnergy -  Энергия на начало месяца
 
@@ -1293,14 +1122,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElMonthEnergy'
+        measure = 'aMonth'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElDayConsEnergy(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        tags: [None, list, str] = None):
+    def aDayCons(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElDayConsEnergy -  Потребленная энергия на начало суток.
 
@@ -1316,14 +1145,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElDayConsEnergy'
+        measure = 'aDayCons'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElMonthConsEnergy(self, ids: [None, list, int] = None,
-                          time_start: [int, None] = None,
-                          time_end: [int, None] = None,
-                          tags: [None, list, str] = None):
+    def aMonthCons(self, ids: [None, list, int] = None,
+                   time_start: [int, None] = None,
+                   time_end: [int, None] = None,
+                   tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMonthConsEnergy -  Энергия потребленная на начало месяца
 
@@ -1339,14 +1168,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElMonthConsEnergy'
+        measure = 'aMonthCons'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElMomentQuality(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        tags: [None, list, str] = None):
+    def aQual(self, ids: [None, list, int] = None,
+              time_start: [int, None] = None,
+              time_end: [int, None] = None,
+              tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMomentQuality - Показатели качества сети
 
@@ -1362,14 +1191,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElMomentQuality'
+        measure = 'aQual'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElArr1ConsPower(self, ids: [None, list, int] = None,
-                        time_start: [int, None] = None,
-                        time_end: [int, None] = None,
-                        tags: [None, list, str] = None):
+    def aCons(self, ids: [None, list, int] = None,
+              time_start: [int, None] = None,
+              time_end: [int, None] = None,
+              tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElArr1ConsPower - Профиль мощности
 
@@ -1385,14 +1214,14 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElArr1ConsPower'
+        measure = 'aCons'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElConfig(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
-                 tags: [None, list, str] = None):
+    def aCfg(self, ids: [None, list, int] = None,
+             time_start: [int, None] = None,
+             time_end: [int, None] = None,
+             tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElConfig - Конфиг
 
@@ -1408,7 +1237,31 @@ class MeterData_Electric(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElConfig'
+        measure = 'aCfg'
+
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
+
+    # -------------------------------------------------------------------------------------------------------------
+    def aHour(self, ids: [None, list, int] = None,
+              time_start: [int, None] = None,
+              time_end: [int, None] = None,
+              tags: [None, list, str] = None):
+        """
+        Чтение из БД параметра aHour - Показания на начало часа
+
+        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
+                                        если строка - то тэг что указан в строке,
+                                        если список , то список тэгов что указан в массиве.
+        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
+        :param time_end: - int/None - Время конца считывания .
+        Если None - и задано время старта - то ставиться текущая дата  + 1000.
+        Если время старта не задано то поле time не формируется
+        :param time_start:- int/None - Время старта считывания .
+        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :return:
+        """
+
+        measure = 'aHour'
 
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
@@ -1431,15 +1284,14 @@ class MeterData_MeasureRead:
     # куки
     _cookies = None
 
-    _ip_address =None
+    _ip_address = None
     # Журналы
     Journal = None
-    # Импульсные
-    Pulse = None
-    # Дискретные
-    Digital = None
-    # Электросчетчики
-    Electric = None
+
+    # Данные со счетчика - Моментные показатели
+    MeterData_Moment = None
+    # Данные со счетчика - Архивные показатели
+    MeterData_Arch = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -1466,9 +1318,9 @@ class MeterData_MeasureRead:
         """
 
         self.Journal = MeterData_Journal(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-        self.Digital = MeterData_Digital(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-        self.Pulse = MeterData_Pulse(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
-        self.Electric = MeterData_Electric(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.MeterData_Moment = MeterData_Moment(cookies=self._cookies, headers=self._headers,
+                                                 ip_address=self._ip_address)
+        self.MeterData_Arch = MeterData_Arch(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -1488,9 +1340,32 @@ class MeterData(TemplateMeterData):
     # Настройки
     MeterData = None
 
-    # Запрос Отдельных Measures
+    # Запрорс Отдельных Measures
 
     Measures = None
+
+    # Доступные типы данных
+    _measures = [
+        'mRelay',
+        'mQual',
+        'mEng',
+        'aCfg',
+        'aEng',
+        'aQual',
+        'aDay',
+        'aDayCons',
+        'aMonth',
+        'aMonthCons',
+        'aCons',
+         'aHour', 'jrnlPwr', 'jrnlTimeCorr', 'jrnlReset', 'jrnlC1Init', 'jrnlC2Init', 'jrnlTrfCorr', 'jrnlOpen',
+         'jrnlUnAyth', 'jrnlPwrA', 'jrnlPwrB', 'jrnlPwrC', 'jrnlProg', 'jrnlRelay', 'jrnlLimESumm', 'jrnlLimETrf',
+         'jrnlLimETrf1', 'jrnlLimETrf2', 'jrnlLimETrf3', 'jrnlLimETrf4', 'jrnlLimUAMax', 'jrnlLimUAMin', 'jrnlLimUBMax',
+         'jrnlLimUBMin', 'jrnlLimUCMax', 'jrnlLimUCMin', 'jrnlLimUABMax', 'jrnlLimUABMin', 'jrnlLimUBCMax',
+         'jrnlLimUBCMin', 'jrnlLimUCAMax', 'jrnlLimUCAMin', 'jrnlLimIAMax', 'jrnlLimIBMax', 'jrnlLimICMax',
+         'jrnlLimFreqMax', 'jrnlLimFreqMin', 'jrnlLimPwr', 'jrnlLimPwrPP', 'jrnlLimPwrPM', 'jrnlLimPwrQP',
+         'jrnlLimPwrQM', 'jrnlRvr'
+
+    ]
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -1522,64 +1397,60 @@ class MeterData(TemplateMeterData):
         :return:
         """
         measures = {
-            'ElConfig': 'конфигурация электросчетчика',
-            'DigConfig': 'конфигурация модуля дискретных вводов/выводов',
-            'PlsConfig': 'конфигурация концентратора импульсных счетчиков',
-            'ElMomentEnergy': 'мгновенные показания энергии электросчетчика',
-            'ElMomentQuality': 'мгновенные ПКЭ',
-            'ElDayEnergy': 'показания электросчетчика на начало суток',
-            'ElDayConsEnergy': 'потребление электросчетчика за сутки',
-            'ElMonthEnergy': 'показания электросчетчика на начало месяца',
-            'ElMonthConsEnergy': 'потребление электросчетчика за месяц',
-            'ElArr1ConsPower': 'профили мощности первого массива профилей мощности электросчетчика',
-            'DigMomentState': 'мгновенные показания модуля дискретных вводов/выводов',
-            'DigJournalState': 'архив изменения состояний модуля дискретных вводов/выводов',
-            'PlsMomentPulse': 'мгновенные показания энергии концентратора импульсных счетчиков',
-            'PlsDayPulse': 'показания концентратора импульсных счетчиков на начало суток',
-            'PlsMonthPulse': 'показания концентратора импульсных счетчиков на начало месяца',
-            'PlsHourPulse': 'показания на начало часа концентратора импульсных счетчиков',
-            'ElJrnlPwr': 'управление питанием',
-            'ElJrnlTimeCorr': 'коррекция времени электросчетчика',
-            'PlsJrnlTimeCorr': 'коррекция времени концентратора импульсных счетчиков',
-            'ElJrnlReset': 'сброс показаний',
-            'ElJrnlC1Init': 'инициализация первого массива профилей',
-            'ElJrnlC2Init': 'инициализация второго массива профилей',
-            'ElJrnlTrfCorr': 'коррекция тарификатора',
-            'ElJrnlOpen': 'открытие крышки',
-            'ElJrnlUnAyth': 'неавторизованный доступ',
-            'ElJrnlPwrA': 'управление фазой А',
-            'ElJrnlPwrB': 'управление фазой В',
-            'ElJrnlPwrC': 'управление фазой С',
-            'ElJrnlProg': 'программирование',
-            'ElJrnlRelay': 'управление реле',
-            'ElJrnlLimESumm': 'лимит суммарной энергии',
-            'ElJrnlLimETrf': 'потарифиный лимит энергии',
-            'ElJrnlLimETrf1': 'лимит энергии тарифа 1',
-            'ElJrnlLimETrf2': 'лимит энергии тарифа 2',
-            'ElJrnlLimETrf3': 'лимит энергии тарифа 3',
-            'ElJrnlLimETrf4': 'лимит энергии тарифа 4',
-            'ElJrnlLimUAMax': 'ограничение максимального напряжения фазы А',
-            'ElJrnlLimUAMin': 'ограничение минимального напряжения фазы А',
-            'ElJrnlLimUBMax': 'ограничение максимального напряжения фазы В',
-            'ElJrnlLimUBMin': 'ограничение минимального напряжения фазы В',
-            'ElJrnlLimUCMax': 'ограничение максимального напряжения фазы С',
-            'ElJrnlLimUCMin': 'ограничение минимального напряжения фазы С',
-            'ElJrnlLimUABMax': 'ограничение максимального расхождения напряжения фаз А и В',
-            'ElJrnlLimUABMin': 'ограничение минимального расхождения напряжения фаз А и В',
-            'ElJrnlLimUBCMax': 'ограничение максимального расхождения напряжения фаз В и С',
-            'ElJrnlLimUBCMin': 'ограничение минимального расхождения напряжения фаз В и С',
-            'ElJrnlLimUCAMax': 'ограничение максимального расхождения напряжения фаз С и А',
-            'ElJrnlLimUCAMin': 'ограничение минимального расхождения напряжения фаз С и А',
-            'ElJrnlLimIAMax': 'ограничение максимального тока фазы А',
-            'ElJrnlLimIBMax': 'ограничение максимального тока фазы В',
-            'ElJrnlLimICMax': 'ограничение максимального тока фазы С',
-            'ElJrnlLimFreqMax': 'ограничение максимальной частоты сети',
-            'ElJrnlLimFreqMin': 'ограничение минимальной частоты сети',
-            'ElJrnlLimPwr': 'ограничение мощности',
-            'ElJrnlLimPwrPP': 'ограничение прямой активной мощности',
-            'ElJrnlLimPwrPM': 'ограничение прямой реактивной мощности',
-            'ElJrnlLimPwrQP': 'ограничение обратной реактивной мощности',
-            'ElJrnlReverce': 'реверс'
+            'mRelay': 'текущие состояния реле',
+            'mQual': 'текущие ПКЭ',
+            'mEng': 'текущие показания энергии',
+            'aCfg': 'конфигурация',
+            'aEng': 'срезы показаний энергии',
+            'aQual': 'срезы ПКЭ',
+            'aDay': 'показания на начало суток',
+            'aDayCons': 'потребление за сутки',
+            'aMonth': 'показания на начало месяца',
+            'aMonthCons': 'потребление за месяц',
+            'aCons': 'профили мощности',
+            'aHour': 'Показания на начало часа',
+            'jrnlPwr': 'журнал управление питанием',
+            'jrnlTimeCorr': 'журнал коррекция времени',
+            'jrnlReset': 'журнал сброс показаний',
+            'jrnlC1Init': 'журнал инициализация первого массива профилей',
+            'jrnlC2Init': 'журнал инициализация второго массива профилей',
+            'jrnlTrfCorr': 'журнал коррекция тарификатора',
+            'jrnlOpen': 'журнал открытие крышки',
+            'jrnlUnAyth': 'журнал неавторизованный доступ',
+            'jrnlPwrA': 'журнал управление фазой А',
+            'jrnlPwrB': 'журнал управление фазой В',
+            'jrnlPwrC': 'журнал управление фазой С',
+            'jrnlProg': 'журнал программирование',
+            'jrnlRelay': 'журнал управление реле',
+            'jrnlLimESumm': 'журнал лимит суммарной энергии',
+            'jrnlLimETrf': 'журнал потарифный лимит энергии',
+            'jrnlLimETrf1': 'журнал лимит энергии тарифа 1',
+            'jrnlLimETrf2': 'журнал лимит энергии тарифа 2',
+            'jrnlLimETrf3': 'журнал лимит энергии тарифа 3',
+            'jrnlLimETrf4': 'журнал лимит энергии тарифа 4',
+            'jrnlLimUAMax': 'журнал ограничение максимального напряжения фазы А',
+            'jrnlLimUAMin': 'журнал ограничение минимального напряжения фазы А',
+            'jrnlLimUBMax': 'журнал ограничение максимального напряжения фазы В',
+            'jrnlLimUBMin': 'журнал ограничение минимального напряжения фазы В',
+            'jrnlLimUCMax': 'журнал ограничение максимального напряжения фазы С',
+            'jrnlLimUCMin': 'журнал ограничение минимального напряжения фазы С',
+            'jrnlLimUABMax': 'журнал ограничение максимального расхождения напряжения фаз А и В',
+            'jrnlLimUABMin': 'журнал ограничение минимального расхождения напряжения фаз А и В',
+            'jrnlLimUBCMax': 'журнал ограничение максимального расхождения напряжения фаз В и С',
+            'jrnlLimUBCMin': 'журнал ограничение минимального расхождения напряжения фаз В и С',
+            'jrnlLimUCAMax': 'журнал ограничение максимального расхождения напряжения фаз С и А',
+            'jrnlLimUCAMin': 'журнал ограничение минимального расхождения напряжения фаз С и А',
+            'jrnlLimIAMax': 'журнал ограничение максимального тока фазы А',
+            'jrnlLimIBMax': 'журнал ограничение максимального тока фазы В',
+            'jrnlLimICMax': 'журнал ограничение максимального тока фазы С',
+            'jrnlLimFreqMax': 'журнал ограничение максимальной частоты сети',
+            'jrnlLimFreqMin': 'журнал ограничение минимальной частоты сети',
+            'jrnlLimPwr': 'ограничение мощности',
+            'jrnlLimPwrPP': 'журнал ограничение прямой активной мощности',
+            'jrnlLimPwrPM': 'журнал ограничение прямой реактивной мощности',
+            'jrnlLimPwrQP': 'журнал ограничение обратной активной мощности',
+            'jrnlLimPwrQM': 'журнал ограничение обратной реактивной мощности',
+            'jrnlRvr': 'журнал реверс',
         }
 
         return measures

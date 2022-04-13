@@ -11,6 +11,8 @@ class TemplateRequest:
 
     _debug = False
 
+    # Статсусы кодов , которые требуют ре авторизации
+    _ReAuth_Status_Code_list = [404]
 
     ip_port = '192.168.0.1'
 
@@ -152,3 +154,12 @@ class TemplateRequest:
         """
 
         return self._response
+
+    def ReAuth(self, _cookie):
+        """
+        Здесь попробуем сделать РЕАвторизацию
+        :return:
+        """
+
+        if _cookie:
+            _cookie.Authorization()

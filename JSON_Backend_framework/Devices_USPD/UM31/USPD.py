@@ -56,6 +56,7 @@ class UM_31_SMART(Template_USPD):
         # А Теперь - авторизуемся
         self._Authorization()
 
+        # self._headers = None
         # И обновляем функционал
         self._define_functionality()
 

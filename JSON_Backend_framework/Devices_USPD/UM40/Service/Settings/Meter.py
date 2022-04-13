@@ -24,7 +24,7 @@ class SettingsMeter:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_Table(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Meter.MeterTable import MeterTable
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Meter.MeterTable import MeterTable
         Table = MeterTable(
             cookies=self._cookies,
             headers=self._headers,
@@ -34,7 +34,7 @@ class SettingsMeter:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_Arch(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Meter.MeterArchInfo import MeterArchInfo
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Meter.MeterArchInfo import MeterArchInfo
 
         ArchInfo = MeterArchInfo(
             cookies=self._cookies,
