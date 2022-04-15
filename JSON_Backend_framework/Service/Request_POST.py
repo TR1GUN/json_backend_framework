@@ -78,6 +78,8 @@ class POST(TemplateRequest):
         print("POST")
         print("cookies", cookies)
         print("headers : ", headers)
+        print("url : ", url)
+        print("data : ", data)
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):
 

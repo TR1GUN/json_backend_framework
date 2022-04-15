@@ -1,20 +1,21 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Шаблон Управления реле
+#                                         Шаблон Сезонный профиль тарифного расписания
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_MeterManagement
 
 
-class TemplateRelayControl(TemplateDeviceFunctions_MeterManagement):
+class TemplateCalendarSeason(TemplateDeviceFunctions_MeterManagement):
     """
-    Шаблон Управления реле
+    Шаблон Сезонный профиль тарифного расписания
 
     """
     # URL
 
-    _path_url = url_path.get("Meter_Relay")
+    _path_url = url_path.get("Set_Calendar_Season")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -25,5 +26,3 @@ class TemplateRelayControl(TemplateDeviceFunctions_MeterManagement):
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-

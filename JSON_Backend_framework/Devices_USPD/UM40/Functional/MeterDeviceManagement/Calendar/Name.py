@@ -1,22 +1,21 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Управление реле
+#                                      Имя календаря тарифного расписания
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterManagement.Template_RelayControl import TemplateRelayControl
-from JSON_Backend_framework.FormJSON.UM40.MeterDeviceManagement.JSON_Construct_Management_RelayControl import SettingsRelay
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterManagement.Calendar.Template_Name import \
+    TemplateCalendarName
+
 
 # -------------------------------------------------------------------------------------------------------------
 
-
-class RelayControl(TemplateRelayControl):
+class CalendarName(TemplateCalendarName):
     """
-     Управление реле
-
+     Имя календаря тарифного расписания
     """
     # Общие настройки
-    Relay = None
+    Calendar = None
 
     # хедерс - Иногда нужен
     _headers = None
@@ -46,21 +45,20 @@ class RelayControl(TemplateRelayControl):
         Здесь Сбрасываем настройки
         """
         # Сбрасываем настройки
-        self.Relay = SettingsRelay()
+        self.Calendar = {}
 
     def _getting_settings(self):
 
-        """ Проверяем значение реле"""
+        """ Проверяем значение JSON """
 
-        data = self.Relay.get_Relay_settings()
-
+        data = None
         # Обнуляем
         self._define_JSON()
         if data is None:
             data = {}
         return data
 
-    def Set_Relay(self, data):
+    def Set_Calendar(self, data: None):
         """
         Запросить данные - POST
 
@@ -77,7 +75,8 @@ class RelayControl(TemplateRelayControl):
 
         return response
 # -------------------------------------------------------------------------------------------------------------
-#                                     ПРИМЕР JSON
+# ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-# data = { "id": 1, "relayId": 1, "relayState": 1 }
+# data = {"id":1, "type": "Active", "settings":[{"CalendarName":"44656661756C74"}]}
+# data = {"id":1, "type": "Passive", "settings":[{"CalendarName":"44656661756C74"}]}
 # -------------------------------------------------------------------------------------------------------------

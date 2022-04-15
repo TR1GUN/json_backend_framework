@@ -14,7 +14,7 @@ class TemplateMeterDataMoment(TemplateDeviceFunctions_MeterData):
     """
     # URL
 
-    _path_url = url_path.get("Meter_Data_moment")
+    _path_url = url_path.get("MeterData_Moment")
 
     # хедерс - Иногда нужен
     _headers = None

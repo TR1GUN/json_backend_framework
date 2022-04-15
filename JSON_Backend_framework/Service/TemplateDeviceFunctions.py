@@ -6,6 +6,7 @@
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 
+
 # -------------------------------------------------------------------------------------------------------------
 #                                         ПОЛЕ Settings
 # -------------------------------------------------------------------------------------------------------------
@@ -127,13 +128,15 @@ class TemplateDeviceFunctions_Settings(TemplateFunctional):
                 # Теперь заполянем наши переменные
                 if answer_setting is not None:
                     Settings = answer_setting[self._Settings_name]
-                    if Settings is not None :
+                    if Settings is not None:
                         data = Settings
         except Exception as e:
 
             print("При считывании параметров возникла ошибка - " + str(e))
 
         return data
+
+
 # -------------------------------------------------------------------------------------------------------------
 #                                         ПОЛЕ MeterData
 # -------------------------------------------------------------------------------------------------------------
@@ -170,6 +173,7 @@ class TemplateDeviceFunctions_MeterData(TemplateFunctional):
 
         return response
 
+
 # -------------------------------------------------------------------------------------------------------------
 #                                         ПОЛЕ MeterManagement
 # -------------------------------------------------------------------------------------------------------------
@@ -188,6 +192,7 @@ class TemplateDeviceFunctions_MeterManagement(TemplateFunctional):
     _cookies = None
     # Переопределяем чтоб можно было достать
     path_url = _path_url
+
 
 # -------------------------------------------------------------------------------------------------------------
 #                                         ПОЛЕ Actions
@@ -238,6 +243,8 @@ class TemplateDeviceFunctions_Actions(TemplateFunctional):
         data = {}
 
         return data
+
+
 # -------------------------------------------------------------------------------------------------------------
 #                                         ПОЛЕ InfoState
 # -------------------------------------------------------------------------------------------------------------
@@ -256,6 +263,7 @@ class TemplateDeviceFunctions_InfoState(TemplateFunctional):
 
     # Переопределяем чтоб можно было достать
     path_url = _path_url
+
     # Настройки по умолчанию
 
     def _read_settings(self):
@@ -296,6 +304,7 @@ class TemplateDeviceFunctions_Journal(TemplateFunctional):
     _cookies = None
     # Переопределяем чтоб можно было достать
     path_url = _path_url
+
     # Настройки по умолчанию
 
     def Read_Journal(self):

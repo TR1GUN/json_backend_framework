@@ -263,5 +263,25 @@ url_path = {
     'ChargeStationTable': '/settings/charge/table',
     # # - Состояние зарядных станций - Переписал
     'ChargeStationArchData': '/charge/data/arch',
+    # //-------------------------------------------------------------------------------//
+    #                                     Тарифное расписание
+    # //-------------------------------------------------------------------------------//
+    # // Активация тарифного расписания
+    "Set_Calendar_Activate": '/meter/settings/calendar/activate',
+
+    # // Имя календаря тарифного расписания
+    "Set_Calendar_Name": '/meter/settings/calendar/name',
+
+    # // Сезонный профиль тарифного расписания
+    "Set_Calendar_Season": '/meter/settings/calendar/season',
+
+    # // Недельный профиль тарифного расписания
+    "Set_Calendar_Week": '/meter/settings/calendar/week',
+
+    # // Суточный профиль тарифного расписания
+    "Set_Calendar_Day": '/meter/settings/calendar/day',
+
+    # // Дата активации тарифного расписания
+    "Set_Calendar_Time": '/meter/settings/calendar/time',
 
 }

@@ -23,6 +23,9 @@ class UM_40_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
     # Установка времени – Системное время счетчика
     Set_Time_Meter = None
 
+    # Tарифное расписание
+    Calendar = None
+
     def __init__(self, cookies=None, headers=None, ip_address=None):
         self._cookies = cookies
         self._headers = headers
@@ -41,6 +44,7 @@ class UM_40_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
 
         self.Relay = self._RelayControl()
         self.Set_Time_Meter = self._MeterTimeControl()
+        self.Calendar = self._Calendar()
 
     # ----->
     def _RelayControl(self):
@@ -67,3 +71,16 @@ class UM_40_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
                                 ip_address=self._ip_address
                                )
         return TimeMeter
+
+    def _Calendar(self):
+        """
+        Тарифное расписание
+
+        """
+        from JSON_Backend_framework.Devices_USPD.UM40.Service.Calendar.Calendar import MeterDeviceManagementCalendar
+        Calendar = MeterDeviceManagementCalendar(
+                                cookies=self._cookies,
+                                headers=self._headers,
+                                ip_address=self._ip_address
+                               )
+        return Calendar

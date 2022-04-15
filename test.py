@@ -4,18 +4,46 @@ import JSON_Backend_framework
 # //-------------------------------------------------------------------
 ip_smart_31 = '192.168.205.22'
 ip_smart_40 = '192.168.202.176'
-SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
-lol = SMART.Settings.Meter.Table.Read_Settings()
+# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
+# lol = SMART.Settings.Meter.Table.Read_Settings()
+# print(lol)
+
+# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
+# lol = SMART.Settings.Meter.Table.Read_Settings()
+# print(lol)
+
+
+# lol = SMART.Settings.Meter.Table.Write_Settings()
+# print(lol)
+
+
+data = {
+  "ids": [3],
+  "tags": [],
+  "measures": [
+    "ElMomentEnergy", "ElCalendarNameActive"
+  ]
+}
+
+
+SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+
+# lol = SMART.Settings.Meter.Table.Read_Settings()
+# print(lol)
+#
+# lol = SMART.Settings.Meter.Table.Rewrite_Settings()
+# print(lol)
+
+lol = SMART.MeterData.MeterData_Arch.Read_MeterData(data=data)
 print(lol)
 
-SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
-lol = SMART.Settings.Meter.Table.Read_Settings()
+lol = SMART.MeterData.MeterData_Moment.Read_MeterData(data=data)
 print(lol)
-#
+
 # # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
 # lol = SMART.MeterData.MeterData.Read_MeterData(data={"ids":[],"tags":[],"time":[],"measures":["mEng"]})
 # print(lol)
-
+#
 # print(lol)
 
 # lol = SMART.Settings.Meter.Table.Read_Settings()

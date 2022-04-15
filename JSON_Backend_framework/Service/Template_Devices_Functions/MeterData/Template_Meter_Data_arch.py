@@ -16,7 +16,7 @@ class TemplateMeterDataArch(TemplateDeviceFunctions_MeterData):
     """
     # URL
 
-    _path_url = url_path.get("Meter_Data_arch")
+    _path_url = url_path.get("MeterData_Arch")
 
     # хедерс - Иногда нужен
     _headers = None
