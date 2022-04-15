@@ -11,13 +11,13 @@ print(lol)
 SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
 lol = SMART.Settings.Meter.Table.Read_Settings()
 print(lol)
-
-SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
-lol = SMART.MeterData.MeterData.Read_MeterData(data={"ids":[100],"tags":[],"time":[],"measures":["aCfg"]})
-print(lol)
 #
+# # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
+# lol = SMART.MeterData.MeterData.Read_MeterData(data={"ids":[],"tags":[],"time":[],"measures":["mEng"]})
 # print(lol)
-#
+
+# print(lol)
+
 # lol = SMART.Settings.Meter.Table.Read_Settings()
 # print(lol)
 #
