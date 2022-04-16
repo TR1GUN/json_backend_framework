@@ -22,6 +22,8 @@ class UM_31_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
     Relay = None
     # Установка времени – Системное время счетчика
     Set_Time_Meter = None
+    # Tарифное расписание
+    Calendar = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         self._cookies = cookies
@@ -39,15 +41,16 @@ class UM_31_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
 
         """
 
-        # self.Relay = self._RelayControl()
-        # self.Set_Time_Meter = self._MeterTimeControl()
+        self.Relay = self._RelayControl()
+        self.Set_Time_Meter = self._MeterTimeControl()
+        self.Calendar = self._Calendar()
 
     # ----->
     def _RelayControl(self):
         """
         Состояние линий питания интерфейсов
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterDeviceManagement.RelayControl import RelayControl
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.RelayControl import RelayControl
         Relay = RelayControl(
                         cookies=self._cookies,
                         headers=self._headers,
@@ -60,10 +63,23 @@ class UM_31_SMART_MeterDeviceManagement(Template_UM_XX_SMART_MeterDeviceManageme
         Текущее время СЧЕТЧИКА
 
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterDeviceManagement.MeterTime import TimeMeterSetting
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.MeterTime import TimeMeterSetting
         TimeMeter = TimeMeterSetting(
                                 cookies=self._cookies,
                                 headers=self._headers,
                                 ip_address=self._ip_address
                                )
         return TimeMeter
+
+    def _Calendar(self):
+        """
+        Тарифное расписание
+
+        """
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.Calendar.Calendar import MeterDeviceManagementCalendar
+        Calendar = MeterDeviceManagementCalendar(
+                                cookies=self._cookies,
+                                headers=self._headers,
+                                ip_address=self._ip_address
+                               )
+        return Calendar

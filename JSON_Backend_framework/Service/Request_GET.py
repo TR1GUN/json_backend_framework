@@ -70,11 +70,6 @@ class GET(TemplateRequest):
         import requests
         # print(url)
         # Запускаем
-        # response = requests.get(url)
-        # --->
-        print("GET" )
-        print("cookies", cookies)
-        print("headers : ", headers)
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):
             response = requests.get(url)

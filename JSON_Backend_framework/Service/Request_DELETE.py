@@ -124,11 +124,13 @@ class DELETE(TemplateRequest):
         :param response: Результат опроса - тип данных - HTTPResponse
         :return:
         """
-
+        import json
         try:
             self._result["data"] = response.json()
 
         # ЕСЛИ у нас ошибка - пытаемся вытащить текстовый файл
+        except json.JSONDecodeError:
+            self._Parse_text(response)
         except Exception as e:
             self._result["info"] = e
             self._Parse_text(response)

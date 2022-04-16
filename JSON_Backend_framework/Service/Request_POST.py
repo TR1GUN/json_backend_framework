@@ -74,12 +74,7 @@ class POST(TemplateRequest):
         url = self._url_collector(url=url)
 
         # Запускаем
-        # --->
-        print("POST")
-        print("cookies", cookies)
-        print("headers : ", headers)
-        print("url : ", url)
-        print("data : ", data)
+
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):
 
@@ -101,7 +96,6 @@ class POST(TemplateRequest):
         else:
             response = requests.post(url, data=data)
         # --->
-        print(response)
         # Возвращаем данные
         return response
 
@@ -121,11 +115,13 @@ class POST(TemplateRequest):
         :param response: Результат опроса - тип данных - HTTPResponse
         :return:
         """
-
+        import json
         try:
             self._result["data"] = response.json()
 
         # ЕСЛИ у нас ошибка - пытаемся вытащить текстовый файл
+        except json.JSONDecodeError:
+            self._Parse_text(response)
         except Exception as e:
             self._result["info"] = e
             self._Parse_text(response)

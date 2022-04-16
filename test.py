@@ -12,61 +12,140 @@ ip_smart_40 = '192.168.202.176'
 # lol = SMART.Settings.Meter.Table.Read_Settings()
 # print(lol)
 
+# //-------------------------------------------------------------------
+#                         Тарифное расписание
+# //-------------------------------------------------------------------
+# Данные что запускаем
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElMomentEnergy"
+#   ]
+# }
+# Имя календаря тарифного расписания
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarNameActive"
+#   ]
+# }
 
-# lol = SMART.Settings.Meter.Table.Write_Settings()
-# print(lol)
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarNamePassive"
+#   ]
+# }
+# # Сезонный профиль тарифного расписания
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarSeasonActive"
+#   ]
+# }
+
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarSeasonPassive"
+#   ]
+# }
+# # Недельный профиль тарифного расписания
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarWeekActive"
+#   ]
+# }
+
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarWeekPassive"
+#   ]
+# }
+# Суточный профиль тарифного расписания
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarDayActive"
+#   ]
+# }
+
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarDayPassive"
+#   ]
+# }
+
+# # Дата активации тарифного расписания
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarActivateTime"
+#   ]
+# }
+
+data_Day  = {"id":3, "type": "Passive",
+"settings":[{"dayId":2, "ScriptName":"00000A0064FF", "ScriptSelector":2, "hour":14,"minute":42, "second":57}]}
+
+# data_Day =  {"id":3, "type": "Active",
+# "settings":[{"dayId":1, "ScriptName":"00000A0064FF", "ScriptSelector":2, "hour":14, "minute":42, "second":57}]}
+
+data_Week = {"id":3, "type": "Active",
+        "settings":[{"WeekName":"44656661756C74",
+        "monday":1, "tuesday":1, "wednesday":1, "thursday":1, "friday":1, "saturday":1, "sunday":1}]}
+data_Week =  {"id":3, "type": "Passive",
+                  "settings":[{"WeekName":"44656661756C74",
+                  "monday":1, "tuesday":1, "wednesday":1, "thursday":1, "friday":1, "saturday":1, "sunday":1}]}
 
 
-data = {
-  "ids": [3],
-  "tags": [],
-  "measures": [
-    "ElMomentEnergy", "ElCalendarNameActive"
-  ]
-}
+data_Season = {"id":3, "type": "Active",
+               "settings":[{"SeasonName":"44656661756C74", "WeekName":"44656661756C74", "SeasonStart":2065875840000}]}
+data_Season ={"id":3, "type": "Passive",
+             "settings":[{"SeasonName":"44656661756C74", "WeekName":"44656661756C74", "SeasonStart":2065875840000}]}
+
+data_Name= {"id":3, "type": "Active", "settings":[{"CalendarName":"44656661756C74"}]}
+# data_Name = {"id":3, "type": "Passive", "settings":[{"CalendarName":"44656661756C74"}]}
 
 
-SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+data_Time = {"id":3,  "settings":[{"ActivateTime":1649082459}]}
 
-# lol = SMART.Settings.Meter.Table.Read_Settings()
-# print(lol)
-#
-# lol = SMART.Settings.Meter.Table.Rewrite_Settings()
-# print(lol)
+data_Activate = {"id":3}
+# //-------------------------------------------------------------------
+# САМ СМАРТ
+SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
 
-lol = SMART.MeterData.MeterData_Arch.Read_MeterData(data=data)
-print(lol)
+# Читаем текущие показания
+# MeterData = SMART40.MeterData.MeterData_Moment.Read_MeterData(data=data)
+# print(MeterData)
 
-lol = SMART.MeterData.MeterData_Moment.Read_MeterData(data=data)
-print(lol)
+# Задаем показания
 
-# # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
-# lol = SMART.MeterData.MeterData.Read_MeterData(data={"ids":[],"tags":[],"time":[],"measures":["mEng"]})
-# print(lol)
-#
-# print(lol)
+# Day = SMART40.MeterDeviceManagement.Calendar.Day.Set_Calendar(data=data_Day)
+# print(Day)
+# Week = SMART40.MeterDeviceManagement.Calendar.Week.Set_Calendar(data=data_Week)
+# print(Week)
+# Season = SMART40.MeterDeviceManagement.Calendar.Season.Set_Calendar(data=data_Season)
+# print(Season)
+Name = SMART40.MeterDeviceManagement.Calendar.Name.Set_Calendar(data=data_Name)
+print(Name)
+# Time = SMART40.MeterDeviceManagement.Calendar.Time.Set_Calendar(data=data_Time)
+# print(Time)
+# Activate = SMART40.MeterDeviceManagement.Calendar.Activate.Set_Calendar(data=data_Activate)
+# print(Activate)
 
-# lol = SMART.Settings.Meter.Table.Read_Settings()
-# print(lol)
-#
-#
-# SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.202.176')
-# lol = SMART.Settings.Meter.Table.Read_Settings()
-# print(lol)
-
-
-# lol = SMART.Settings.Meter.ArchInfo.read_settings()
-# print(lol)
-#
-# lol = SMART.Settings.Modem.SIM.SettingsSim.settings_Sim2()
-#
-# print(lol)
-#
-# USPD = JSON_Backend_framework.USPD.UM_40_Smart(ip_address='192.168.202.143')
-#
-#
-# print(USPD.StateInfo.Time.url_path)
-# print(USPD.StateInfo.Time.Time_USPD_Read())
 # //-------------------------------------------------------------------
 # Здесь расположим временные тестовые прогоны
 # //-------------------------------------------------------------------
