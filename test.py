@@ -103,13 +103,14 @@ data_Day  = {"id":3, "type": "Passive",
 # data_Day =  {"id":3, "type": "Active",
 # "settings":[{"dayId":1, "ScriptName":"00000A0064FF", "ScriptSelector":2, "hour":14, "minute":42, "second":57}]}
 
+
 data_Week = {"id":3, "type": "Active",
         "settings":[{"WeekName":"44656661756C74",
         "monday":1, "tuesday":1, "wednesday":1, "thursday":1, "friday":1, "saturday":1, "sunday":1}]}
-data_Week =  {"id":3, "type": "Passive",
+
+data_Week = {"id":3, "type": "Passive",
                   "settings":[{"WeekName":"44656661756C74",
                   "monday":1, "tuesday":1, "wednesday":1, "thursday":1, "friday":1, "saturday":1, "sunday":1}]}
-
 
 data_Season = {"id":3, "type": "Active",
                "settings":[{"SeasonName":"44656661756C74", "WeekName":"44656661756C74", "SeasonStart":2065875840000}]}
@@ -118,7 +119,6 @@ data_Season ={"id":3, "type": "Passive",
 
 data_Name= {"id":3, "type": "Active", "settings":[{"CalendarName":"44656661756C74"}]}
 # data_Name = {"id":3, "type": "Passive", "settings":[{"CalendarName":"44656661756C74"}]}
-
 
 data_Time = {"id":3,  "settings":[{"ActivateTime":1649082459}]}
 
