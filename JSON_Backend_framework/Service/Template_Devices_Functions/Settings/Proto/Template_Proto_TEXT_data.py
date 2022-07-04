@@ -1,21 +1,24 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                      Шаблон настроек Сообщения пользователя
+#                              Шаблон Настройки выдачи данных текстового протокола
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+
+# ЗДЕСЬ ОЧЕНЬ ВААЖНО - тут НЕ используется поле Settings
 
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
 
 
-class TemplateMessagesCustom(TemplateFunctional):
+class TemplateProtocolTextData(TemplateFunctional):
     """
-    Сообщения пользователя
+    Шаблон Настройки выдачи данных текстового протокола
 
     """
     # URL
 
-    _path_url = url_path.get("Settings_MessagesCustom")
+    _path_url = url_path.get("Protocol_TEXT_data")
 
     # хедерс - Иногда нужен
     _headers = None
@@ -24,11 +27,11 @@ class TemplateMessagesCustom(TemplateFunctional):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
     # Имя поля настроек
-    _Settings_name = 'Settings'
+    _Settings_name = None
 
     # Настройки по умолчанию
 
-    def read_settings(self):
+    def Read_Settings(self):
         """
         Читаем данные - GET
         :return:
@@ -38,7 +41,7 @@ class TemplateMessagesCustom(TemplateFunctional):
 
         return response
 
-    def write_settings(self, data=None):
+    def Write_Settings(self, data=None):
         """
         Добавляем на запись данные  - POST
 
@@ -47,8 +50,7 @@ class TemplateMessagesCustom(TemplateFunctional):
         """
 
         if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)
@@ -58,15 +60,14 @@ class TemplateMessagesCustom(TemplateFunctional):
 
         return response
 
-    def rewrite_settings(self, data=None):
+    def Rewrite_Settings(self, data=None):
         """
         Перезаписываем данные - PUT
         :param data:
         :return:
         """
         if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
+            data = self._getting_settings()
 
         # Запаковываем
         data = self._coding(data=data)
@@ -76,7 +77,7 @@ class TemplateMessagesCustom(TemplateFunctional):
 
         return response
 
-    def delete_settings(self, data=None):
+    def Delete_Settings(self, data=None):
         """
         Удаляем данные - DELETE
         :param data:
@@ -100,32 +101,29 @@ class TemplateMessagesCustom(TemplateFunctional):
     def _getting_settings(self):
 
         """
-
-        В Классе шаблоне метод получения настроек отвечает за встравку GET запроса
-
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
 
         """
         data = self._request_setting()
         return data
 
     # Запрос настроек
+    @print_log_use_GET_data
     def _request_setting(self):
         """
         Здесь запрашиваем нужные нам настройки
 
         """
-        data = []
+        data = {}
         try:
             # делаем запрос - получаем ответ
-            response = self.read_settings()
+            response = self.Read_Settings()
             # Теперь вытаскиваем нужное
             if response.get('code') == int(200):
                 answer_setting = response.get('data')
                 # Теперь заполянем наши переменные
                 if answer_setting is not None:
-                    Settings = answer_setting[self._Settings_name]
-                    if Settings is not None :
-                        data = Settings
+                    data = answer_setting
         except Exception as e:
 
             print("При считывании параметров возникла ошибка - " + str(e))
@@ -133,4 +131,6 @@ class TemplateMessagesCustom(TemplateFunctional):
         return data
 
 # -------------------------------------------------------------------------------------------------------------
+#
 # -------------------------------------------------------------------------------------------------------------
+

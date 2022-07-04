@@ -1,21 +1,19 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                     ШАБЛОН Настройки Календаря событий
+#                                      Шаблон настроек авторизации протокола RTU-327
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings
 
 
-class TemplateCalendar(TemplateDeviceFunctions_Settings):
+class TemplateProtoRTUAuth(TemplateDeviceFunctions_Settings):
     """
-    ШАБЛОН Настройки Календаря событий
+    Шаблон Настройки авторизации протокола RTU-327
 
     """
     # URL
-
-    _path_url = url_path.get("Events_Calendar")
+    _path_url = url_path.get("Protocol_RTU_auth")
 
     # хедерс - Иногда нужен
     _headers = None

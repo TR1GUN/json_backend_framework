@@ -3,21 +3,136 @@ import JSON_Backend_framework
 
 # //-------------------------------------------------------------------
 ip_smart_31 = '192.168.205.22'
-ip_smart_40 = '192.168.202.176'
-# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
-# lol = SMART.Settings.Meter.Table.Read_Settings()
+ip_smart_40 = '192.168.203.54'
+
+# ip_smart_40 = '85.115.238.210'
+# ip_smart_31 = '85.115.238.210'
+
+# САМ СМАРТ
+SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+#
+
+# SMART31 = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password='admin',ip_address=ip_smart_40)
+
+# //-------------------------------------------------------------------
+#                         Протокол 40/31 Смарта
+# //-------------------------------------------------------------------
+
+# СЧЕТЧИКИ
+
+UM_40_Meters_json = {"Meters": [{'addr': '88', 'id': 4, 'ifaceCfg': '', 'ifaceName': 'Hub', 'index': 4, 'pId': 5, 'passRd': '32323232323232323232323232323232', 'passWr': '32323232323232323232323232323232', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 36, 'typeName': 'SPODES_M2XX'}, {'addr': '192.168.205.22:5555', 'id': 5, 'ifaceCfg': '', 'ifaceName': 'Ethernet', 'index': 5, 'pId': 0, 'passRd': '', 'passWr': '', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 94, 'typeName': 'MILUR IC'}, {'addr': '192.168.202.241:5555', 'id': 6, 'ifaceCfg': '', 'ifaceName': 'Ethernet', 'index': 6, 'pId': 0, 'passRd': '', 'passWr': '', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 94, 'typeName': 'MILUR IC'}, {'addr': '141227285', 'id': 7, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Hub', 'index': 7, 'pId': 6, 'passRd': '373737373737', 'passWr': '373737373737', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 5, 'typeName': 'SE303'}, {'addr': 'ТЕСТ', 'id': 100, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface4', 'index': 8, 'pId': 0, 'passRd': '373737373737', 'passWr': '373737373737', 'rtuFider': 1, 'rtuObjNum': 1, 'rtuObjType': 1, 'type': 5, 'typeName': 'SE303'}]}
+UM_40_Meters_json = {
+    "Meters": [
+        {
+            "addr": "88",
+            "id": 1,
+            "ifaceCfg": "",
+            "ifaceName": "Iface1",
+            "index": 1,
+            "pId": 0,
+            "passRd": "32323232323232323232323232323232",
+            "passWr": "32323232323232323232323232323232",
+            "rtuFider": 0,
+            "rtuObjNum": 0,
+            "rtuObjType": 0,
+            "type": 36,
+            "typeName": "SPODES_M2XX"
+        },
+        {
+            "addr": "141227285",
+            "id": 2,
+            "ifaceCfg": "",
+            "ifaceName": "Hub",
+            "index": 2,
+            "pId": 3,
+            "passRd": "373737373737",
+            "passWr": "373737373737",
+            "rtuFider": 0,
+            "rtuObjNum": 0,
+            "rtuObjType": 0,
+            "type": 5,
+            "typeName": "SE303"
+        },
+        {
+            "addr": "192.168.202.241:5555",
+            "id": 3,
+            "ifaceCfg": "",
+            "ifaceName": "Ethernet",
+            "index": 3,
+            "pId": 0,
+            "passRd": "373737373737",
+            "passWr": "373737373737",
+            "rtuFider": 1,
+            "rtuObjNum": 1,
+            "rtuObjType": 1,
+            "type": 94,
+            "typeName": "MILUR IC"
+        },
+        {
+            "addr": "192.168.205.22:5555",
+            "id": 4,
+            "ifaceCfg": "",
+            "ifaceName": "Ethernet",
+            "index": 4,
+            "pId": 0,
+            "passRd": "",
+            "passWr": "",
+            "rtuFider": 0,
+            "rtuObjNum": 0,
+            "rtuObjType": 0,
+            "type": 94,
+            "typeName": "MILUR IC"
+        },
+        {
+            "addr": "1101",
+            "id": 5,
+            "ifaceCfg": "",
+            "ifaceName": "Hub",
+            "index": 5,
+            "pId": 4,
+            "passRd": "32323232323232323232323232323232",
+            "passWr": "32323232323232323232323232323232",
+            "rtuFider": 0,
+            "rtuObjNum": 0,
+            "rtuObjType": 0,
+            "type": 36,
+            "typeName": "SPODES_M2XX"
+        },
+        {
+            "addr": "ТЕСТ",
+            "id": 6,
+            "ifaceCfg": "9600,8n1",
+            "ifaceName": "Iface1",
+            "index": 6,
+            "pId": 0,
+            "passRd": "373737373737",
+            "passWr": "373737373737",
+            "rtuFider": 1,
+            "rtuObjNum": 1,
+            "rtuObjType": 1,
+            "type": 5,
+            "typeName": "SE303"
+        }
+    ]
+}
+#
+# lol = SMART31.Settings.Meter.Table.Read_Settings()
+#
 # print(lol)
 
-# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
-# lol = SMART.Settings.Meter.Table.Read_Settings()
+
+# lol = SMART40.Settings.Meter.Table.Rewrite_Settings(data=UM_40_Meters_json)
 # print(lol)
 
+lol = SMART40.Settings.Meter.Table.Read_Settings()
+
+print(lol)
 # //-------------------------------------------------------------------
 #                         Тарифное расписание
 # //-------------------------------------------------------------------
 # Данные что запускаем
 # data = {
-#   "ids": [3],
+#   "ids": [1],
 #   "tags": [],
 #   "measures": [
 #     "ElMomentEnergy"
@@ -25,7 +140,7 @@ ip_smart_40 = '192.168.202.176'
 # }
 # Имя календаря тарифного расписания
 # data = {
-#   "ids": [3],
+#   "ids": [1],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarNameActive"
@@ -33,15 +148,15 @@ ip_smart_40 = '192.168.202.176'
 # }
 
 # data = {
-#   "ids": [3],
+#   "ids": [1],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarNamePassive"
 #   ]
 # }
-# # Сезонный профиль тарифного расписания
+# Сезонный профиль тарифного расписания
 # data = {
-#   "ids": [3],
+#   "ids": [1],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarSeasonActive"
@@ -57,7 +172,7 @@ ip_smart_40 = '192.168.202.176'
 # }
 # # Недельный профиль тарифного расписания
 # data = {
-#   "ids": [3],
+#   "ids": [1],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarWeekActive"
@@ -80,13 +195,13 @@ ip_smart_40 = '192.168.202.176'
 #   ]
 # }
 
-# data = {
-#   "ids": [3],
-#   "tags": [],
-#   "measures": [
-#     "ElCalendarDayPassive"
-#   ]
-# }
+data = {
+  "ids": [3],
+  "tags": [],
+  "measures": [
+    "ElCalendarDayPassive"
+  ]
+}
 
 # # Дата активации тарифного расписания
 # data = {
@@ -97,38 +212,48 @@ ip_smart_40 = '192.168.202.176'
 #   ]
 # }
 
-data_Day  = {"id":3, "type": "Passive",
-"settings":[{"dayId":2, "ScriptName":"00000A0064FF", "ScriptSelector":2, "hour":14,"minute":42, "second":57}]}
+data_Day = {"id": 3, "type": "Passive",
+            "settings": [{"dayId": 2, "ScriptName": "00000A0064FF", "ScriptSelector": 2, "hour": 14, "minute": 42,
+                          "second": 57}]}
 
 # data_Day =  {"id":3, "type": "Active",
 # "settings":[{"dayId":1, "ScriptName":"00000A0064FF", "ScriptSelector":2, "hour":14, "minute":42, "second":57}]}
 
 
-data_Week = {"id":3, "type": "Active",
-        "settings":[{"WeekName":"44656661756C74",
-        "monday":1, "tuesday":1, "wednesday":1, "thursday":1, "friday":1, "saturday":1, "sunday":1}]}
+data_Week = {"id": 3, "type": "Active",
+             "settings": [{"WeekName": "44656661756C74",
+                           "monday": 1, "tuesday": 1, "wednesday": 1, "thursday": 1, "friday": 1, "saturday": 1,
+                           "sunday": 1}]}
 
-data_Week = {"id":3, "type": "Passive",
-                  "settings":[{"WeekName":"44656661756C74",
-                  "monday":1, "tuesday":1, "wednesday":1, "thursday":1, "friday":1, "saturday":1, "sunday":1}]}
+data_Week = {"id": 3, "type": "Passive",
+             "settings": [{"WeekName": "44656661756C74",
+                           "monday": 1, "tuesday": 1, "wednesday": 1, "thursday": 1, "friday": 1, "saturday": 1,
+                           "sunday": 1}]}
 
-data_Season = {"id":3, "type": "Active",
-               "settings":[{"SeasonName":"44656661756C74", "WeekName":"44656661756C74", "SeasonStart":2065875840000}]}
-data_Season ={"id":3, "type": "Passive",
-             "settings":[{"SeasonName":"44656661756C74", "WeekName":"44656661756C74", "SeasonStart":2065875840000}]}
+data_Season = {"id": 3, "type": "Active",
+               "settings": [
+                   {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
 
-data_Name= {"id":3, "type": "Active", "settings":[{"CalendarName":"44656661756C74"}]}
+data_Season = {"id": 3, "type": "Passive",
+               "settings": [
+                   {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
+
+data_Name = {"id": 3, "type": "Active", "settings": [{"CalendarName": "44656661756C74"}]}
 # data_Name = {"id":3, "type": "Passive", "settings":[{"CalendarName":"44656661756C74"}]}
 
-data_Time = {"id":3,  "settings":[{"ActivateTime":1649082459}]}
+data_Time = {"id": 3, "settings": [{"ActivateTime": 1649082459}]}
 
-data_Activate = {"id":3}
+data_Activate = {"id": 3}
 # //-------------------------------------------------------------------
 # САМ СМАРТ
-SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+# SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+# SMART31 = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password='admin',ip_address=ip_smart_40)
+# lol = SMART40.Settings.DeviceSettings.Interface_Ethernet.Read_Settings()
+#
+# print(lol)
 
 # Читаем текущие показания
-# MeterData = SMART40.MeterData.MeterData_Moment.Read_MeterData(data=data)
+# MeterData = SMART31.MeterData.MeterData.Read_MeterData(data=data)
 # print(MeterData)
 
 # Задаем показания
@@ -139,8 +264,8 @@ SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
 # print(Week)
 # Season = SMART40.MeterDeviceManagement.Calendar.Season.Set_Calendar(data=data_Season)
 # print(Season)
-Name = SMART40.MeterDeviceManagement.Calendar.Name.Set_Calendar(data=data_Name)
-print(Name)
+# Name = SMART40.MeterDeviceManagement.Calendar.Name.Set_Calendar(data=data_Name)
+# print(Name)
 # Time = SMART40.MeterDeviceManagement.Calendar.Time.Set_Calendar(data=data_Time)
 # print(Time)
 # Activate = SMART40.MeterDeviceManagement.Calendar.Activate.Set_Calendar(data=data_Activate)

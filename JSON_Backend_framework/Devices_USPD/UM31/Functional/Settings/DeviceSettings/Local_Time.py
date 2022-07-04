@@ -13,7 +13,6 @@ from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct
 class TimeZone(TemplateLocalTimeZone):
     """
     Настройки локального времени(Часовой пояс)
-
     """
 
     # хедерс - Иногда нужен

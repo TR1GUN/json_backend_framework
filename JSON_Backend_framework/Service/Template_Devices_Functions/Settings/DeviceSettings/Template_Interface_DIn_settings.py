@@ -4,14 +4,13 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
-from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings
 
 
 class TemplateInterface_DIn_DiscreteInput (TemplateDeviceFunctions_Settings):
     """
-    Настройки дискретных входов
+    Шаблон Настройки дискретных входов
 
     """
     # URL

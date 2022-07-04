@@ -10,7 +10,7 @@ from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateModem(TemplateFunctional):
     """
-    Настройки модема
+    Шаблон Настройки модема
 
     """
     # URL

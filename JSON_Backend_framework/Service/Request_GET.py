@@ -68,7 +68,7 @@ class GET(TemplateRequest):
         # Получаем наш адрес запроса
         url = self._url_collector(url=url)
         import requests
-        # print(url)
+
         # Запускаем
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):

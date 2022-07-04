@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                     ШАБЛОН Настройки Календаря событий
+#                           Шаблон Сообщения с данными приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
@@ -8,14 +8,14 @@ from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings
 
 
-class TemplateCalendar(TemplateDeviceFunctions_Settings):
+class TemplateMessagesMeter(TemplateDeviceFunctions_Settings):
     """
-    ШАБЛОН Настройки Календаря событий
+    Шаблон Сообщения с данными приборов учета
 
     """
     # URL
 
-    _path_url = url_path.get("Events_Calendar")
+    _path_url = url_path.get("Settings_MessagesMeter")
 
     # хедерс - Иногда нужен
     _headers = None

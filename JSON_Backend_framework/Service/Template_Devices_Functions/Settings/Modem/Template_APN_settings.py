@@ -7,9 +7,10 @@
 from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
+
 class TemplateAPN(TemplateFunctional):
     """
-    Настройки APN(точки доступа)
+    Шаблон Настройки APN(точки доступа)
 
     """
     # URL

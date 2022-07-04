@@ -3,7 +3,7 @@
 #                                         Шаблон Опроса приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
+
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_MeterData
 
@@ -86,31 +86,6 @@ class TemplateMeterDataMoment(TemplateDeviceFunctions_MeterData):
         'ElJrnlReverce',
         'PlsJrnlTimeCorr'
     ]
-
-    # def Read(self, data):
-    #     """
-    #     Функция для прямой отправки JSON
-    #
-    #     :param data: JSON
-    #     :return:
-    #     """
-    #     response = self._Read(data=data)
-    #
-    #     return response
-
-    # def _Read(self, data):
-    #     """
-    #     Функция для прямой отправки JSON
-    #
-    #     :param data: JSON
-    #     :return:
-    #     """
-    #     # Запаковываем бэк
-    #     data = self._coding(data=data)
-    #     # делаем запрос - получаем ответ
-    #     response = self._request_POST(JSON=data)
-    #
-    #     return response
 
 
 # -------------------------------------------------------------------------------------------------------------

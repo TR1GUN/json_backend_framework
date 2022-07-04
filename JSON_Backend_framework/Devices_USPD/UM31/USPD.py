@@ -84,6 +84,8 @@ class UM_31_SMART(Template_USPD):
                                         Headers=self._headers,
                                         Auth=True
                                     )
+
+        print(self._cookies.cookie_value)
         # # Теперь проверяем что успешно прошли авторизацию
         # from JSON_Backend_framework.Devices_USPD.Authorization import Authorization
         #

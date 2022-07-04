@@ -13,7 +13,7 @@ from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 class TemplateInterface_Ethernet(TemplateFunctional):
     """
-    Настройки Ethernet
+    Шаблон Настройки Ethernet
 
     """
     from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
