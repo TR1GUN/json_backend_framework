@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Meter_answer import TemplateJournalMeterAnswer
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Meter_Answer import TemplateJournalMeterAnswer
 
 # -------------------------------------------------------------------------------------------------------------
 

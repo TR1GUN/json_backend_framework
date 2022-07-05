@@ -15,7 +15,7 @@ class TemplateJournalTime(TemplateDeviceFunctions_Journal):
     """
     # URL
 
-    _path_url = url_path.get("Journal_time")
+    _path_url = url_path.get("Journal_Time")
 
     # хедерс - Иногда нужен
     _headers = None

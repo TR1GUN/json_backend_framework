@@ -3,160 +3,45 @@ import JSON_Backend_framework
 
 # //-------------------------------------------------------------------
 ip_smart_31 = '192.168.205.22'
-ip_smart_40 = '192.168.203.54'
-
-# ip_smart_40 = '85.115.238.210'
-# ip_smart_31 = '85.115.238.210'
-
-# САМ СМАРТ
-SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
-#
-
-# SMART31 = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password='admin',ip_address=ip_smart_40)
-
-# //-------------------------------------------------------------------
-#                         Протокол 40/31 Смарта
-# //-------------------------------------------------------------------
-
-# СЧЕТЧИКИ
-
-UM_40_Meters_json = {"Meters": [{'addr': '88', 'id': 4, 'ifaceCfg': '', 'ifaceName': 'Hub', 'index': 4, 'pId': 5, 'passRd': '32323232323232323232323232323232', 'passWr': '32323232323232323232323232323232', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 36, 'typeName': 'SPODES_M2XX'}, {'addr': '192.168.205.22:5555', 'id': 5, 'ifaceCfg': '', 'ifaceName': 'Ethernet', 'index': 5, 'pId': 0, 'passRd': '', 'passWr': '', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 94, 'typeName': 'MILUR IC'}, {'addr': '192.168.202.241:5555', 'id': 6, 'ifaceCfg': '', 'ifaceName': 'Ethernet', 'index': 6, 'pId': 0, 'passRd': '', 'passWr': '', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 94, 'typeName': 'MILUR IC'}, {'addr': '141227285', 'id': 7, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Hub', 'index': 7, 'pId': 6, 'passRd': '373737373737', 'passWr': '373737373737', 'rtuFider': 0, 'rtuObjNum': 0, 'rtuObjType': 0, 'type': 5, 'typeName': 'SE303'}, {'addr': 'ТЕСТ', 'id': 100, 'ifaceCfg': '9600,8n1', 'ifaceName': 'Iface4', 'index': 8, 'pId': 0, 'passRd': '373737373737', 'passWr': '373737373737', 'rtuFider': 1, 'rtuObjNum': 1, 'rtuObjType': 1, 'type': 5, 'typeName': 'SE303'}]}
-UM_40_Meters_json = {
-    "Meters": [
-        {
-            "addr": "88",
-            "id": 1,
-            "ifaceCfg": "",
-            "ifaceName": "Iface1",
-            "index": 1,
-            "pId": 0,
-            "passRd": "32323232323232323232323232323232",
-            "passWr": "32323232323232323232323232323232",
-            "rtuFider": 0,
-            "rtuObjNum": 0,
-            "rtuObjType": 0,
-            "type": 36,
-            "typeName": "SPODES_M2XX"
-        },
-        {
-            "addr": "141227285",
-            "id": 2,
-            "ifaceCfg": "",
-            "ifaceName": "Hub",
-            "index": 2,
-            "pId": 3,
-            "passRd": "373737373737",
-            "passWr": "373737373737",
-            "rtuFider": 0,
-            "rtuObjNum": 0,
-            "rtuObjType": 0,
-            "type": 5,
-            "typeName": "SE303"
-        },
-        {
-            "addr": "192.168.202.241:5555",
-            "id": 3,
-            "ifaceCfg": "",
-            "ifaceName": "Ethernet",
-            "index": 3,
-            "pId": 0,
-            "passRd": "373737373737",
-            "passWr": "373737373737",
-            "rtuFider": 1,
-            "rtuObjNum": 1,
-            "rtuObjType": 1,
-            "type": 94,
-            "typeName": "MILUR IC"
-        },
-        {
-            "addr": "192.168.205.22:5555",
-            "id": 4,
-            "ifaceCfg": "",
-            "ifaceName": "Ethernet",
-            "index": 4,
-            "pId": 0,
-            "passRd": "",
-            "passWr": "",
-            "rtuFider": 0,
-            "rtuObjNum": 0,
-            "rtuObjType": 0,
-            "type": 94,
-            "typeName": "MILUR IC"
-        },
-        {
-            "addr": "1101",
-            "id": 5,
-            "ifaceCfg": "",
-            "ifaceName": "Hub",
-            "index": 5,
-            "pId": 4,
-            "passRd": "32323232323232323232323232323232",
-            "passWr": "32323232323232323232323232323232",
-            "rtuFider": 0,
-            "rtuObjNum": 0,
-            "rtuObjType": 0,
-            "type": 36,
-            "typeName": "SPODES_M2XX"
-        },
-        {
-            "addr": "ТЕСТ",
-            "id": 6,
-            "ifaceCfg": "9600,8n1",
-            "ifaceName": "Iface1",
-            "index": 6,
-            "pId": 0,
-            "passRd": "373737373737",
-            "passWr": "373737373737",
-            "rtuFider": 1,
-            "rtuObjNum": 1,
-            "rtuObjType": 1,
-            "type": 5,
-            "typeName": "SE303"
-        }
-    ]
-}
-#
-# lol = SMART31.Settings.Meter.Table.Read_Settings()
-#
+ip_smart_40 = '192.168.202.197'
+# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
+# lol = SMART.Settings.Meter.Table.Read_Settings()
 # print(lol)
 
-
-# lol = SMART40.Settings.Meter.Table.Rewrite_Settings(data=UM_40_Meters_json)
+# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
+# lol = SMART.Settings.Meter.Table.Read_Settings()
 # print(lol)
 
-lol = SMART40.Settings.Meter.Table.Read_Settings()
-
-print(lol)
 # //-------------------------------------------------------------------
 #                         Тарифное расписание
 # //-------------------------------------------------------------------
 # Данные что запускаем
-# data = {
-#   "ids": [1],
-#   "tags": [],
-#   "measures": [
-#     "ElMomentEnergy"
-#   ]
-# }
+data = {
+    "ids": [3],
+    "tags": [],
+    "measures": [
+        "ElMomentEnergy"
+    ]
+}
 # Имя календаря тарифного расписания
-# data = {
-#   "ids": [1],
-#   "tags": [],
-#   "measures": [
-#     "ElCalendarNameActive"
-#   ]
-# }
+data = {
+    "ids": [3],
+    "tags": [],
+    "measures": [
+        "ElCalendarNameActive"
+    ]
+}
 
 # data = {
-#   "ids": [1],
+#   "ids": [3],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarNamePassive"
 #   ]
 # }
-# Сезонный профиль тарифного расписания
+# # Сезонный профиль тарифного расписания
 # data = {
-#   "ids": [1],
+#   "ids": [3],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarSeasonActive"
@@ -172,7 +57,7 @@ print(lol)
 # }
 # # Недельный профиль тарифного расписания
 # data = {
-#   "ids": [1],
+#   "ids": [3],
 #   "tags": [],
 #   "measures": [
 #     "ElCalendarWeekActive"
@@ -195,13 +80,13 @@ print(lol)
 #   ]
 # }
 
-data = {
-  "ids": [3],
-  "tags": [],
-  "measures": [
-    "ElCalendarDayPassive"
-  ]
-}
+# data = {
+#   "ids": [3],
+#   "tags": [],
+#   "measures": [
+#     "ElCalendarDayPassive"
+#   ]
+# }
 
 # # Дата активации тарифного расписания
 # data = {
@@ -233,7 +118,6 @@ data_Week = {"id": 3, "type": "Passive",
 data_Season = {"id": 3, "type": "Active",
                "settings": [
                    {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
-
 data_Season = {"id": 3, "type": "Passive",
                "settings": [
                    {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
@@ -247,13 +131,13 @@ data_Activate = {"id": 3}
 # //-------------------------------------------------------------------
 # САМ СМАРТ
 # SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
-# SMART31 = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password='admin',ip_address=ip_smart_40)
-# lol = SMART40.Settings.DeviceSettings.Interface_Ethernet.Read_Settings()
 #
+# lol = SMART40.Settings.DeviceSettings.Interface_Ethernet.Read_Settings()
 # print(lol)
 
+
 # Читаем текущие показания
-# MeterData = SMART31.MeterData.MeterData.Read_MeterData(data=data)
+# MeterData = SMART40.MeterData.MeterData_Moment.Read_MeterData(data=data)
 # print(MeterData)
 
 # Задаем показания
@@ -274,43 +158,45 @@ data_Activate = {"id": 3}
 # //-------------------------------------------------------------------
 # Здесь расположим временные тестовые прогоны
 # //-------------------------------------------------------------------
+SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+
 # //-------------------------------------------------------------------
 #                           Настройки
 # //-------------------------------------------------------------------
 # //---------------------- Общие настройки ----------------------------
-# DeviceSettings = SMART.Settings.DeviceSettings
+DeviceSettings = SMART.Settings.DeviceSettings
 # Настройки Ethernet
-# print('read...')
-# request = DeviceSettings.Interface_Ethernet.read_settings()
-# print(request)
-# print('write...')
+print('Ethernet read...')
+request = DeviceSettings.Interface_Ethernet.Read_Settings()
+print(request)
+# print('Ethernet write...')
 # request = DeviceSettings.Interface_Ethernet.write_settings()
 # print(request)
-# print('rewrite...')
+# print('Ethernet rewrite...')
 # request = DeviceSettings.Interface_Ethernet.rewrite_settings()
 # print(request)
-# print('delete...')
+# print('Ethernet delete...')
 # request = DeviceSettings.Interface_Ethernet.delete_settings()
 # print(request)
 
 # Настройки последовательных интерфейсов(UART)
-# print('read...')
-# request = DeviceSettings.Interface_UART.read_settings()
-# print(request)
-# print('write...')
+print('Interface_UART read...')
+request = DeviceSettings.Interface_UART.Read_Settings()
+print(request)
+# print('Interface_UART write...')
 # request = DeviceSettings.Interface_UART.write_settings()
 # print(request)
-# print('rewrite...')
+# print('Interface_UART rewrite...')
 # request = DeviceSettings.Interface_UART.rewrite_settings()
 # print(request)
-# print('delete...')
+# print('Interface_UART delete...')
 # request = DeviceSettings.Interface_UART.delete_settings()
 # print(request)
 
 # Настройки линий питания интерфейсов
-# print('read...')
-# request = DeviceSettings.Interface_DOut.read_settings()
-# print(request)
+print('Interface_DOut read...')
+request = DeviceSettings.Interface_DOut.Read_Settings()
+print(request)
 # print('write...')
 # request = DeviceSettings.Interface_DOut.write_settings()
 # print(request)
@@ -323,9 +209,9 @@ data_Activate = {"id": 3}
 
 
 # Настройки локального времени - Часовые пояса
-# print('read...')
-# request = DeviceSettings.Time_Local.read_settings()
-# print(request)
+print('Time_Local read...')
+request = DeviceSettings.Time_Local.Read_Settings()
+print(request)
 # print('write...')
 # request = DeviceSettings.Time_Local.write_settings()
 # print(request)
@@ -337,12 +223,12 @@ data_Activate = {"id": 3}
 # print(request)
 
 # //----------------    Настройки модема     ------------------------
-# Modem = SMART.Settings.Modem
+Modem = SMART.Settings.Modem
 
 # СИМ карты
-# print('read...')
-# request = Modem.SIM.read_settings()
-# print(request)
+print('read...')
+request = Modem.SIM.Read_Settings()
+print(request)
 # print('write...')
 # request = Modem.SIM.write_settings()
 # print(request)
@@ -355,20 +241,67 @@ data_Activate = {"id": 3}
 
 # //----------------    Настройки серверов     ------------------------
 
-
-# TCP Сервера
-
-# print('read...')
-# request = ServerTCP().read_settings()
+Server = SMART.Settings.Servers
+# TCP Сервер
+print('TCP read...')
+request = Server.TCP.Read_Settings()
 # print(request)
 # print('write...')
-# request = ServerTCP().write_settings()
+# request = Server.TCP.write_settings()
 # print(request)
 # print('rewrete...')
-# request = ServerTCP().rewrite_settings()
+# request = Server.TCP.rewrite_settings()
+# print(request)
+# print('delete...')
+# request = Server.TCP.delete_settings()
 # print(request)
 
 
+# SMTP Сервера
+
+print('SMTP read...')
+request = Server.SMTP.Read_Settings()
+print(request)
+# print('write...')
+# request = Server.SMTP.write_settings()
+# print(request)
+# print('rewrete...')
+# request = Server.SMTP.rewrite_settings()
+# print(request)
+# print('delete...')
+# request = Server.SMTP.delete_settings()
+# print(request)
+
+# SNTP Сервера
+
+print('SNTP read...')
+request = Server.SNTP.Read_Settings()
+print(request)
+# print('write...')
+# request = Server.SNTP.write_settings()
+# print(request)
+# print('rewrete...')
+# request = Server.SNTP.rewrite_settings()
+# print(request)
+# print('delete...')
+# request = Server.SNTP.delete_settings()
+# print(request)
+
+
+# MQTT Сервера
+
+print('MQTT read...')
+request = Server.MQTT.Read_Settings()
+print(request)
+# print('write...')
+# request = Server.MQTT.write_settings()
+# print(request)
+# print('rewrete...')
+# request = Server.MQTT.rewrite_settings()
+# print(request)
+# print('delete...')
+# request = Server.MQTT.delete_settings()
+# print(request)
 # //-------------------------------------------------------------------
 #                   Опрос приборов учета
 # //-------------------------------------------------------------------

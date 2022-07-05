@@ -169,17 +169,18 @@ url_path = {
     # //-------------------------------------------------------------------------------//
     #                                 Журналы изделия
     # //-------------------------------------------------------------------------------//
-
+    # Журнал системы событий
+    "Journal_Action": '/jrnl/action',
     # Журнал изменения времени
-    "Journal_time": '/jrnl/time',
+    "Journal_Time": '/jrnl/time',
     # Журнал сетевых подключений
-    "Journal_SRV_connections": '/jrnl/srvconn',
+    "Journal_Server_connections": '/jrnl/srvconn',
     # Журнал подключений PPP клиента (GPRS)
-    "Journal_PPP_connections": '/jrnl/ppp/clconn',
+    "Journal_PPP_Client_connections": '/jrnl/ppp/clconn',
     # Журнал поднятия PPP-сервера (CSD)
-    "Journal_PPP_SRV_connections": '/jrnl/ppp/srvconn',
+    "Journal_PPP_Server_connections": '/jrnl/ppp/srvconn',
     # Журнал входящих вызовов (CSD)
-    "Journal_CSD": '/jrnl/call',
+    "Journal_CSD_Call": '/jrnl/call',
     # Журнал изменения состояния дискретных входов
     "Journal_Sens": '/jrnl/din/sens',
 
@@ -203,7 +204,7 @@ url_path = {
     # Журнал обновления ВПО загрузчика изделия
     "Journal_Update_loader": '/jrnl/update/loader',
     # Журнал фиксации ответов приборов учета
-    "Journal_Meter_ANSW": '/jrnl/meter/answ',
+    "Journal_Meter_answer": '/jrnl/meter/answ',
     # Журнал хранилища исходящих SMS сообщений
     "Journal_SMS_message": '/jrnl/sms/msg',
     # Журнал отправки SMS сообщений
