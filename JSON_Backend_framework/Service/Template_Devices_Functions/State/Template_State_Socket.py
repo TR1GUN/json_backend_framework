@@ -1,41 +1,28 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                        Шаблон для перезагрузки
+#                                      Шаблон  - Состояние сокетов
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
 from JSON_Backend_framework.Devices_USPD.settings import url_path
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_InfoState
 
 
-class TemplateDeviceRestart(TemplateFunctional):
+class TemplateStateSocket(TemplateDeviceFunctions_InfoState):
     """
-
-    Шаблон для перезагрузки
+     Шаблон  - Состояние сокетов
 
     """
     # URL
-
-    _path_url = url_path.get("Restart")
+    _path_url = url_path.get("State_Socket")
 
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
+
     # Переопределяем чтоб можно было достать
     path_url = _path_url
-
-    def Restart(self):
-        """
-        Берем и перезагружаем устройство
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET()
-
-        return response
+    # Настройки по умолчанию
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-
-

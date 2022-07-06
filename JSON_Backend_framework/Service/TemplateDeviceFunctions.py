@@ -197,10 +197,12 @@ class TemplateDeviceFunctions_MeterManagement(TemplateFunctional):
 # -------------------------------------------------------------------------------------------------------------
 #                                         ПОЛЕ Actions
 # -------------------------------------------------------------------------------------------------------------
-class TemplateDeviceFunctions_Actions(TemplateFunctional):
+# Поскольку здесь много бывает Методов - сделаем несколько шаблонов
+# Задаем JSON
+class TemplateDeviceFunctions_Actions_Set(TemplateFunctional):
     """
 
-    Шаблон для действий
+    Шаблон для действий - Задает значение
 
     """
     # URL
@@ -216,7 +218,7 @@ class TemplateDeviceFunctions_Actions(TemplateFunctional):
 
     def Set(self, data=None):
         """
-        Перезаписываем данные - PUT
+        Задать данные - POST
 
         Формат JSON
 
@@ -230,7 +232,7 @@ class TemplateDeviceFunctions_Actions(TemplateFunctional):
         data = self._coding(data=data)
 
         # делаем запрос - получаем ответ
-        response = self._request_PUT(JSON=data)
+        response = self._request_POST(JSON=data)
 
         return response
 
@@ -243,6 +245,37 @@ class TemplateDeviceFunctions_Actions(TemplateFunctional):
         data = {}
 
         return data
+
+
+# Синхронизация
+class TemplateDeviceFunctions_Actions_Sync(TemplateFunctional):
+    """
+
+    Шаблон для действий - Задает значение
+
+    """
+    # URL
+
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+
+    def Sync(self):
+        """
+        Синхронизуем данные - POST
+
+        Формат JSON
+        """
+
+        # делаем запрос - получаем ответ
+        response = self._request_POST()
+
+        return response
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -316,3 +349,57 @@ class TemplateDeviceFunctions_Journal(TemplateFunctional):
         response = self._request_GET()
 
         return response
+
+
+# -------------------------------------------------------------------------------------------------------------
+#                                         ПОЛЕ Upload
+# -------------------------------------------------------------------------------------------------------------
+
+
+class TemplateDeviceFunctions_Upload(TemplateFunctional):
+    """
+    Шаблон Загрузки значений
+    """
+    # URL
+
+    _path_url = ''
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+
+    # Настройки по умолчанию
+
+    def Upload(self, File):
+        """
+        Загружаем данные - POST
+        :return:
+        """
+        # делаем запрос - получаем ответ
+        response = self._request_POST(File)
+
+        return response
+
+    def _request_POST(self, File):
+        """
+        Использование Метода POST
+
+        :param JSON:
+        :return:
+        """
+        from JSON_Backend_framework.Service.Request_Upload import Upload
+
+        # Делаем запрос - получаем ответ - возвращаем
+        response = Upload(url=self._path_url,
+                          file=File,
+                          cookies=self._cookies,
+                          headers=self._headers,
+                          ip_device=self._ip_address)
+        # Получаем :
+        # --->
+        response_dict = self._parser_request(response=response)
+        # --->
+        return response_dict

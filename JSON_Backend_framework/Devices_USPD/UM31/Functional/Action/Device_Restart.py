@@ -3,7 +3,7 @@
 #                                         # Перезагрузка устройства
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_DeviceRestart import TemplateDeviceRestart
+from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_DeviceRestart import TemplateDeviceRestart
 
 
 class DeviceRestart(TemplateDeviceRestart):

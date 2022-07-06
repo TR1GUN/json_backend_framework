@@ -4,8 +4,8 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Devices_USPD.settings import url_path
-
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_InfoState
+
 
 class TemplateStateTime(TemplateDeviceFunctions_InfoState):
     """
@@ -23,4 +23,3 @@ class TemplateStateTime(TemplateDeviceFunctions_InfoState):
     # Переопределяем чтоб можно было достать
     path_url = _path_url
     # Настройки по умолчанию
-

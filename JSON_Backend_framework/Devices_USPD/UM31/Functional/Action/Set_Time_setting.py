@@ -9,7 +9,7 @@
 #                                         Установка времени
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
-from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_SetTime import TemplateSetTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_Time_set import TemplateSetTime
 
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 

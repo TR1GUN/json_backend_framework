@@ -1,21 +1,20 @@
-
 from JSON_Backend_framework.Service.TemplateRequest import TemplateRequest
 
 
 # //////////////////////////////////////////////////////////////////////////////////////////
-#                 Шаблон работы с методом POST
+#                 Шаблон работы с методом POST - Загрузка файла
 # //////////////////////////////////////////////////////////////////////////////////////////
 
 
-class POST(TemplateRequest):
+class Upload(TemplateRequest):
     """
-    Класс Метода POST
+    Класс Метода POST - Загрузка файла
 
     """
     # Переменная результата
     _result = {}
 
-    def __init__(self, url: str, data: str, cookies=None, headers=None, ip_device=None):
+    def __init__(self, url: str, file, cookies=None, headers=None, ip_device=None):
 
         # обнуляем результат
         self._result = {}
@@ -27,7 +26,7 @@ class POST(TemplateRequest):
         if headers:
             try:
                 _headers_dict = headers.Get_headers()
-            except Exception as e :
+            except Exception as e:
                 print("Exception :", e)
                 _headers_dict = None
         else:
@@ -45,7 +44,7 @@ class POST(TemplateRequest):
             _cookie = None
 
         # Запускаем наш класс запроса
-        response = self._Setup(url=url, data=data, cookies=_cookie, headers=_headers_dict)
+        response = self._Setup(url=url, file=file, cookies=_cookie, headers=_headers_dict)
 
         # Переносим ответ в отдельное поле
         self._response = response
@@ -56,7 +55,7 @@ class POST(TemplateRequest):
         if self._debug:
             print(self._result)
 
-    def _Setup(self, url, data, cookies=None, headers=None):
+    def _Setup(self, url, file, cookies=None, headers=None):
         """
         Делаем сам запрос
 
@@ -73,28 +72,31 @@ class POST(TemplateRequest):
         # Получаем наш адрес запроса
         url = self._url_collector(url=url)
 
+        # Читаем файл
+        file = self._read_file(file=file)
+
         # Запускаем
 
         # ЕСли нет ни кук ни хедлесов
         if (cookies is None) and (headers is None):
 
-            response = requests.post(url, data=data)
+            response = requests.post(url, file=file)
         # Если есть куки но нет хэдерса
-        elif (cookies is not None) and (headers is None) :
+        elif (cookies is not None) and (headers is None):
 
-            response = requests.post(url, data=data, cookies=cookies)
+            response = requests.post(url, file=file, cookies=cookies)
         # Если есть хедлерс
-        elif (headers is not None) and (cookies is None) :
+        elif (headers is not None) and (cookies is None):
 
-            response = requests.post(url, data=data, headers=headers)
+            response = requests.post(url, file=file, headers=headers)
         # Если есть и то и то
 
         elif (cookies is not None) and (headers is not None):
 
-            response = requests.post(url, data=data, headers=headers, cookies=cookies)
+            response = requests.post(url, file=file, headers=headers, cookies=cookies)
         # Иначе - отправляет просто
         else:
-            response = requests.post(url, data=data)
+            response = requests.post(url, file=file)
         # --->
         # Возвращаем данные
         return response
@@ -115,13 +117,10 @@ class POST(TemplateRequest):
         :param response: Результат опроса - тип данных - HTTPResponse
         :return:
         """
-        import json
-        try:
-            self._result["data"] = response.json()
 
-        # ЕСЛИ у нас ошибка - пытаемся вытащить текстовый файл
-        except json.JSONDecodeError:
-            self._Parse_text(response)
+        try:
+            self._result["data"] = response.text
+
         except Exception as e:
             self._result["info"] = e
             self._Parse_text(response)
@@ -151,5 +150,19 @@ class POST(TemplateRequest):
             self._result["info"] = str(e) + "\n Байтовых данных нет>"
             self._result["data"] = False
 
+    def _read_file(self, file):
+        """
+        Здесь читаем наш файл
+        """
+        # Если это не байты
+        if type(file) is not bytes:
+            try:
+                # Пытаемся прочитать файл
+                upload_file = open(str(file), "rb")
+            except Exception as e:
+                print("Не удалось прочитать путь до файла.\n", " Путь до файла " + str(file) + ". \n Ошибка: " + str(e))
+                upload_file = b''
+        else:
+            upload_file = file
 
-
+        return file
