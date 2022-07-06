@@ -1,17 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнала перезагрузок
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Reset import TemplateJournalReset
+
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalReset(TemplateJournalReset):
     """
-    Получение Журнала изменения времени
+    Получение Журнала перезагрузок
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +22,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал перезагрузок
 
         :param cookies:
         :param headers:
@@ -34,7 +35,6 @@ class JournalTime(TemplateJournalTime):
         if ip_address is not None:
             self._ip_address = ip_address
 
-
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
@@ -42,9 +42,8 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-08-30T05:26:06+03:00",
+# 			"reason":				2
 # 		}
 # 	]
 # }

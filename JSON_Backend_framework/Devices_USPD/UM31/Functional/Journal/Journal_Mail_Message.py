@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнал хранилища почтовых сообщений
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Mail_Message import TemplateJournalMailMessage
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalMailMessage(TemplateJournalMailMessage):
     """
-    Получение Журнала изменения времени
+    Получение Журнал хранилища почтовых сообщений
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал хранилища почтовых сообщений
 
         :param cookies:
         :param headers:
@@ -41,10 +41,13 @@ class JournalTime(TemplateJournalTime):
 # {
 # 	"Jrnl":[
 # 		{
-# 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"id":409,
+# 			"time":"2018-09-03T04:54:58+03:00",
+# 			"idMsg":1977270037,
+# 			"idSrv":1,
+# 			"idTo":1,
+# 			"action":				2,
+# 			"res":				19
 # 		}
 # 	]
 # }

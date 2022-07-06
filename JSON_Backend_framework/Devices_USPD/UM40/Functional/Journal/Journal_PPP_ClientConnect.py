@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнала PPP подключений - Подключение клиента
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_PPP_ClientConnect import TemplateJournalPPPClientConnect
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalPPPClientConnect(TemplateJournalPPPClientConnect):
     """
-    Получение Журнала изменения времени
+    Получение Журнала PPP подключений - Подключение клиента
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал PPP подключений - Подключение клиента
 
         :param cookies:
         :param headers:
@@ -42,9 +42,8 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-08-28T10:13:42+03:00",
+# 			"res":				5
 # 		}
 # 	]
 # }

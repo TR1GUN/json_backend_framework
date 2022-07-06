@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнал входящих вызовов (CSD)
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Call import TemplateJournalCall
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalCall(TemplateJournalCall):
     """
-    Получение Журнала изменения времени
+    Получение Журнал входящих вызовов (CSD)
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал входящих вызовов (CSD)
 
         :param cookies:
         :param headers:
@@ -42,9 +42,8 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-09-03T14:17:33+03:00",
+# 			"number":"+79104515390"
 # 		}
 # 	]
 # }

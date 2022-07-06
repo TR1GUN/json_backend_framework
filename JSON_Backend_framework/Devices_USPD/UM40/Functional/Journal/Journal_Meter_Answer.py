@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнала фиксации ответов приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Meter_Answer import TemplateJournalMeterAnswer
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalMeterAnswer(TemplateJournalMeterAnswer):
     """
-    Получение Журнала изменения времени
+    Получение Журнала фиксации ответов приборов учета
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал фиксации ответов приборов учета
 
         :param cookies:
         :param headers:
@@ -42,9 +42,12 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-09-05T14:13:07+03:00",
+# 			"idMeter":1,
+# 			"type":23,
+# 			"iface":2,
+# 			"addr":"7220",
+# 			"answer":false
 # 		}
 # 	]
 # }

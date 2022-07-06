@@ -1,17 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала фиксации ответов приборов учета
+#                                         Получение Журнала обновления ВПО загрузчика
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Meter_Answer import TemplateJournalMeterAnswer
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Update_Loader import TemplateJournalUpdateLoader
+
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalMeterAnswer(TemplateJournalMeterAnswer):
+class JournalUpdateLoader(TemplateJournalUpdateLoader):
     """
-    Получение Журнала фиксации ответов приборов учета
+    Получение Журнала обновления ВПО загрузчика
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +22,7 @@ class JournalMeterAnswer(TemplateJournalMeterAnswer):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал фиксации ответов приборов учета
+        Журнал обновления ВПО загрузчика
 
         :param cookies:
         :param headers:
@@ -34,9 +35,16 @@ class JournalMeterAnswer(TemplateJournalMeterAnswer):
         if ip_address is not None:
             self._ip_address = ip_address
 
-
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
-
+# {
+# 	"Jrnl":[
+# 		{
+# 			"id":1,
+# 			"time":"2018-09-02T19:09:47+03:00",
+# 			"status":0
+# 		}
+# 	]
+# }
 # -------------------------------------------------------------------------------------------------------------

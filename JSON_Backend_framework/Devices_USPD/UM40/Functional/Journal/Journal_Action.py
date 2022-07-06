@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнал системы событий
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Action import TemplateJournalAction
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalAction(TemplateJournalAction):
     """
-    Получение Журнала изменения времени
+    Получение Журнал системы событий
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал Журнал системы событий
 
         :param cookies:
         :param headers:
@@ -41,10 +41,15 @@ class JournalTime(TemplateJournalTime):
 # {
 # 	"Jrnl":[
 # 		{
-# 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"action":{
+# 				"id":1,
+# 				"type":"Poller"
+# 			},
+# 			"event":{
+# 				"id":1,
+# 				"type":"Scheduler"
+# 			},
+# 			"time":1234567890
 # 		}
 # 	]
 # }

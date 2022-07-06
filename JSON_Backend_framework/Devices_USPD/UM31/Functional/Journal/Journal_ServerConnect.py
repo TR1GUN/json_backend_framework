@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнала сетевых подключений
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_ServerConnect import TemplateJournalServerConnect
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalServerConnect(TemplateJournalServerConnect):
     """
-    Получение Журнала изменения времени
+    Получение Журнала сетевых подключений
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал сетевых подключений
 
         :param cookies:
         :param headers:
@@ -42,9 +42,10 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-08-27T10:19:52+03:00",
+# 			"server":"192.168.202.95:80",
+# 			"client":"218.18.6.32:54221",
+# 			"iface":				2
 # 		}
 # 	]
 # }

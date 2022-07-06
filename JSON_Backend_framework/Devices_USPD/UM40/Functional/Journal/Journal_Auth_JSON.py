@@ -1,17 +1,19 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнал авторизации
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Auth_JSON import \
+    TemplateJournalAuthJSON
+
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalAuthJSON(TemplateJournalAuthJSON):
     """
-    Получение Журнала изменения времени
+    Получение Журнал авторизации
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +23,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал авторизации
 
         :param cookies:
         :param headers:
@@ -34,7 +36,6 @@ class JournalTime(TemplateJournalTime):
         if ip_address is not None:
             self._ip_address = ip_address
 
-
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
@@ -42,9 +43,9 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-08-29T07:25:02+03:00",
+# 			"login":"user",
+# 			"lvl":				2
 # 		}
 # 	]
 # }

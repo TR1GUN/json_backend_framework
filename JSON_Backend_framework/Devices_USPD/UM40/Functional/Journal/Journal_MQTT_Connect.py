@@ -1,17 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнала установки связи с MQTT-брокером
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_MQTT_Connect import TemplateJournalMQTTConnect
+
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalMQTTConnect(TemplateJournalMQTTConnect):
     """
-    Получение Журнала изменения времени
+    Получение Журнала установки связи с MQTT-брокером
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +22,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал установки связи с MQTT-брокером
 
         :param cookies:
         :param headers:
@@ -34,7 +35,6 @@ class JournalTime(TemplateJournalTime):
         if ip_address is not None:
             self._ip_address = ip_address
 
-
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
@@ -42,9 +42,11 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"connect":"2018-09-03T14:17:33+03:00",
+# 			"disconnect":"2019-09-03T14:17:33+03:00",
+# 			"address":"10.10.10.1",
+# 			"port":1883,
+# 			"res":				14
 # 		}
 # 	]
 # }

@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Журнала изменения времени
+#                                         Получение Журнала обмена сообщениями с MQTT-брокером
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_Time import TemplateJournalTime
+from JSON_Backend_framework.Service.Template_Devices_Functions.Journal.Template_Journal_MQTT_Message import TemplateJournalMQTTMessage
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class JournalTime(TemplateJournalTime):
+class JournalMQTTMessage(TemplateJournalMQTTMessage):
     """
-    Получение Журнала изменения времени
+    Получение Журнала обмена сообщениями с MQTT-брокером
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +21,7 @@ class JournalTime(TemplateJournalTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Журнал изменения времени
+        Журнал обмена сообщениями с MQTT-брокером
 
         :param cookies:
         :param headers:
@@ -42,9 +42,11 @@ class JournalTime(TemplateJournalTime):
 # 	"Jrnl":[
 # 		{
 # 			"id":1,
-# 			"oldTime":"2018-08-24T08:37:48+03:00",
-# 			"newTime":"2018-08-24T08:37:39+03:00",
-# 			"source":				3
+# 			"time":"2018-09-03T14:17:33+03:00",
+# 			"file":"1234",
+# 			"topicH":"12/34/in",
+# 			"topicL":"/state/dout/get",
+# 			"status":				1
 # 		}
 # 	]
 # }
