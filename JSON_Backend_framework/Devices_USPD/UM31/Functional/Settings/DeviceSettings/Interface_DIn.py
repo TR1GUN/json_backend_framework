@@ -7,7 +7,6 @@
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_DIn_settings import \
     TemplateInterface_DIn_DiscreteInput
 
-
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -41,6 +40,15 @@ class Interface_DIn_DiscreteInput(TemplateInterface_DIn_DiscreteInput):
 
         if ip_address is not None:
             self._ip_address = ip_address
+
+    # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+        """
+        data = self._request_setting()
+        return data
 
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON

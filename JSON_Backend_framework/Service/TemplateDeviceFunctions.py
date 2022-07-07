@@ -103,10 +103,7 @@ class TemplateDeviceFunctions_Settings(TemplateFunctional):
     def _getting_settings(self):
 
         """
-
-        В Классе шаблоне метод получения настроек отвечает за встравку GET запроса
-
-
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
         """
         data = self._request_setting()
         return data

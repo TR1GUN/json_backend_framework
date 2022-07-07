@@ -30,7 +30,8 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
     # Настройки Серверов
     Servers = None
 
-    # Настройки серверов
+    # Настройки протокола
+    Proto = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         self._cookies = cookies
@@ -50,13 +51,14 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
         self.Servers = self._Settings_Servers()
         self.EventSystem = self._Settings_EventSystem()
         self.DeviceSettings = self._Settings_DeviceSettings()
+        self.Proto = self._Settings_Proto()
 
     def _Settings_Meter(self):
         """
         Таблица приборов учета
 
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Service.Settings.Meter import SettingsMeter
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.Settings.Meter import SettingsMeter
         # Определяем настройки
         Settings_Meter = SettingsMeter(
             cookies=self._cookies,
@@ -70,7 +72,7 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
         Настройки Модема
 
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Service.Settings.Modem import SettingsModem
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.Settings.Modem import SettingsModem
         # Определяем настройки
         Modem = SettingsModem(
             cookies=self._cookies,
@@ -86,7 +88,7 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
 
         :return:
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Service.Settings.Servers import SettingsServers
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.Settings.Servers import SettingsServers
         # Определяем настройки
         Servers = SettingsServers(
             cookies=self._cookies,
@@ -102,7 +104,7 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
 
         :return:
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Service.Settings.EventSystem import SettingsEventSystem
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.Settings.EventSystem import SettingsEventSystem
         # Определяем настройки
         Servers = SettingsEventSystem(
             cookies=self._cookies,
@@ -126,3 +128,18 @@ class UM_31_SMART_Settings(Template_UM_XX_SMART_Settings):
             ip_address=self._ip_address
         )
         return Device
+
+    def _Settings_Proto(self):
+        """
+
+        Настройки протоколов обмена
+        :return:
+        """
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.Settings.Proto import SettingsProto
+        # Определяем настройки
+        Proto = SettingsProto(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return Proto

@@ -8,7 +8,7 @@ from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings
 
 
-class TemplateInterface_DIn_DiscreteInput (TemplateDeviceFunctions_Settings):
+class TemplateInterface_DIn_DiscreteInput(TemplateDeviceFunctions_Settings):
     """
     Шаблон Настройки дискретных входов
 
