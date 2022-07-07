@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                         Состояние дискретных входов УСПД
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DIn import TemplateStateDIn
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateDIn(TemplateStateDIn):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние дискретных входов УСПД
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние дискретных входов УСПД
 
         :param cookies:
         :param headers:

@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                        Состояние файловой системы
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_FileSystem import TemplateStateFileSystem
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateFileSystem(TemplateStateFileSystem):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние файловой системы
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние файловой системы
 
         :param cookies:
         :param headers:
@@ -39,10 +39,13 @@ class StateDOut(TemplateStateDOut):
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
 # {
+# 	"ssize":4096,
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"num":0,
+# 			"info":"0:fwupdate",
+# 			"size":507,
+# 			"free":507
 # 		}
 # 	]
 # }

@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                       Состояние микросхем памяти
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DataFlash import TemplateStateDataFlash
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateDataFlash(TemplateStateDataFlash):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние микросхем памяти
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние микросхем памяти
 
         :param cookies:
         :param headers:
@@ -41,8 +41,10 @@ class StateDOut(TemplateStateDOut):
 # {
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"id":0,
+# 			"sectors":2048,
+# 			"size":4096,
+# 			"type":"Adesto AT26DF"
 # 		}
 # 	]
 # }

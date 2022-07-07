@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                           Состояние сокетов
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_Socket import TemplateStateSocket
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateSocket(TemplateStateSocket):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние сокетов
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние сокетов
 
         :param cookies:
         :param headers:
@@ -39,10 +39,12 @@ class StateDOut(TemplateStateDOut):
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
 # {
+# 	"num":16,
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"id":0,
+# 			"sock":"192.168.202.95:5001",
+# 			"peer":"192.168.202.86:15540"
 # 		}
 # 	]
 # }

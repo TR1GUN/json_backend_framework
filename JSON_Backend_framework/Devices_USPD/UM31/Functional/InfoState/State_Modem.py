@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                 Состояние модема
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_Modem import TemplateStateModem
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateModem(TemplateStateModem):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние модема
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние модема
 
         :param cookies:
         :param headers:
@@ -39,11 +39,14 @@ class StateDOut(TemplateStateDOut):
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
 # {
-# 	"State":[
-# 		{
-# 			"addr":0,
-# 			"state":				1
-# 		}
-# 	]
+# 	"info":"Quectel UG95E Revision: UG95ENAR01A09E1G",
+# 	"imei":"865789025268089",
+# 	"ccid":"8970199171227055379F",
+# 	"ops":"Beeline",
+# 	"creg":		5,
+# 	"cgreg":		5,
+# 	"csq":31,
+# 	"cpin":"SIM PIN",
+# 	"pinRes":true
 # }
 # -------------------------------------------------------------------------------------------------------------

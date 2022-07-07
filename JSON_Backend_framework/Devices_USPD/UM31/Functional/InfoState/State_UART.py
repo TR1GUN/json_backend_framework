@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                   Состояние последовательных интерфейсов УСПД
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_UART import TemplateStateUART
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateUART(TemplateStateUART):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние последовательных интерфейсов УСПД
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние последовательных интерфейсов УСПД
 
         :param cookies:
         :param headers:
@@ -41,8 +41,11 @@ class StateDOut(TemplateStateDOut):
 # {
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"iface":2,
+# 			"lock":true,
+# 			"task":"MeterPollUART",
+# 			"start":"2018-09-10T03:47:05+03:00",
+# 			"end":"2018-09-10T03:47:55+03:00"
 # 		}
 # 	]
 # }

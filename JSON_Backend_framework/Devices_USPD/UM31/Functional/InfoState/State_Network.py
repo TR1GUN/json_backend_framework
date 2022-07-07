@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                 Состояние сетевых подключений
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_Network import TemplateStateNetwork
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateNetwork(TemplateStateNetwork):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние сетевых подключений
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние сетевых подключений
 
         :param cookies:
         :param headers:
@@ -41,8 +41,12 @@ class StateDOut(TemplateStateDOut):
 # {
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"name":"Ethernet",
+# 			"ipaddr":"192.168.202.95",
+# 			"netmask":"255.255.248.0",
+# 			"gateway":"192.168.200.1",
+# 			"hostname":"umrtump",
+# 			"link":true
 # 		}
 # 	]
 # }

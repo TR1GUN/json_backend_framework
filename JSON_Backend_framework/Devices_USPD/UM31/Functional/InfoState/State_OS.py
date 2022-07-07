@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                           Состояние операционной системы
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_OS import TemplateStateOS
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateOS(TemplateStateOS):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Состояние операционной системы
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Состояние операционной системы
 
         :param cookies:
         :param headers:
@@ -39,10 +39,18 @@ class StateDOut(TemplateStateDOut):
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
 # {
+# 	"osname":"FreeRTOS V9.0.0",
+# 	"heapmin":143208,
+# 	"heapfree":149088,
+# 	"osruntime":"P0DT0H0M47S",
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"id":2,
+# 			"name":"IDLE",
+# 			"state":				5,
+# 			"priority":0,
+# 			"stackmin":108,
+# 			"runtime":"P0DT0H0M44S"
 # 		}
 # 	]
 # }

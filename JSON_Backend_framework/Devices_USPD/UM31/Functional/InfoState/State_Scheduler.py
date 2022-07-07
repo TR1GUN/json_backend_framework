@@ -1,18 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Состояние линий питания интерфейсов УСПД
+#                                         Ожидаемое время срабатывания расписаний УСПД
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_DOut import TemplateStateDOut
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_Scheduler import TemplateStateScheduler
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class StateDOut(TemplateStateDOut):
+class StateScheduler(TemplateStateScheduler):
     """
 
-    Состояние линий питания интерфейсов УСПД
+    Ожидаемое время срабатывания расписаний УСПД
 
     """
     # хедерс - Иногда нужен
@@ -22,7 +22,7 @@ class StateDOut(TemplateStateDOut):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Состояние линий питания интерфейсов УСПД
+        Ожидаемое время срабатывания расписаний УСПД
 
         :param cookies:
         :param headers:
@@ -41,8 +41,8 @@ class StateDOut(TemplateStateDOut):
 # {
 # 	"State":[
 # 		{
-# 			"addr":0,
-# 			"state":				1
+# 			"id":1,
+# 			"time":"2018-09-10T03:36:00+03:00"
 # 		}
 # 	]
 # }
