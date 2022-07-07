@@ -1,19 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Шаблоны Email адресов
+#                              Настройки регулярной отправки sms сообщений
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Event_System.Template_TemplatesEmail_settings import \
-    TemplateTemplatesEmail
-
+from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Event_System.Template_Actions_SMS_settings import \
+    TemplateActionsSMS
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class TemplatesEmail(TemplateTemplatesEmail):
+class ActionsSMS(TemplateActionsSMS):
     """
-    Шаблоны Email адресов
+    Настройки регулярной отправки sms сообщений
 
     """
 
@@ -29,7 +28,7 @@ class TemplatesEmail(TemplateTemplatesEmail):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Шаблоны Email адресов
+        Настройки регулярной отправки sms сообщений
 
         :param cookies:
         :param headers:
@@ -42,8 +41,28 @@ class TemplatesEmail(TemplateTemplatesEmail):
         if ip_address is not None:
             self._ip_address = ip_address
 
+    # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+        """
+        data = self._request_setting()
+        return data
+
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-#
+# {
+# 	"Settings":[
+# 		{
+# 			"id":1,
+# 			"eventType":				1,
+# 			"eventId":32,
+# 			"msgType":				4,
+# 			"msgId":1,
+# 			"addrId":5
+# 		}
+# 	]
+# }
 # -------------------------------------------------------------------------------------------------------------

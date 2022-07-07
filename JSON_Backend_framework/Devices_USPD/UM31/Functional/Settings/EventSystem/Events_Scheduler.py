@@ -5,13 +5,12 @@
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Event_System.Template_Events_Scheduler_settings import \
-    TemplateSchedule
-
+    TemplateScheduler
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class Schedule(TemplateSchedule):
+class Scheduler(TemplateScheduler):
     """
     Настройки расписаний
 
@@ -42,8 +41,28 @@ class Schedule(TemplateSchedule):
         if ip_address is not None:
             self._ip_address = ip_address
 
+    # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+        """
+        data = self._request_setting()
+        return data
+
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-#
+# {
+# 	"Settings":[
+# 		{
+# 			"id":1,
+# 			"type":				3,
+# 			"min":5,
+# 			"hour":0,
+# 			"day":0,
+# 			"delay":0
+# 		}
+# 	]
+# }
 # -------------------------------------------------------------------------------------------------------------
