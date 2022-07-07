@@ -4,9 +4,9 @@ import JSON_Backend_framework
 # //-------------------------------------------------------------------
 ip_smart_31 = '192.168.205.22'
 ip_smart_40 = '192.168.202.197'
-# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
-# lol = SMART.Settings.Meter.Table.Read_Settings()
-# print(lol)
+SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
+lol = SMART.Settings.DeviceSettings.Interface_Ethernet.Read_Settings()
+print(lol)
 
 # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
 # lol = SMART.Settings.Meter.Table.Read_Settings()
@@ -158,17 +158,17 @@ data_Activate = {"id": 3}
 # //-------------------------------------------------------------------
 # Здесь расположим временные тестовые прогоны
 # //-------------------------------------------------------------------
-SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+# SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
 
 # //-------------------------------------------------------------------
 #                           Настройки
 # //-------------------------------------------------------------------
 # //---------------------- Общие настройки ----------------------------
-DeviceSettings = SMART.Settings.DeviceSettings
-# Настройки Ethernet
-print('Ethernet read...')
-request = DeviceSettings.Interface_Ethernet.Read_Settings()
-print(request)
+# DeviceSettings = SMART.Settings.DeviceSettings
+# # Настройки Ethernet
+# print('Ethernet read...')
+# request = DeviceSettings.Interface_Ethernet.Read_Settings()
+# print(request)
 # print('Ethernet write...')
 # request = DeviceSettings.Interface_Ethernet.write_settings()
 # print(request)
@@ -180,9 +180,9 @@ print(request)
 # print(request)
 
 # Настройки последовательных интерфейсов(UART)
-print('Interface_UART read...')
-request = DeviceSettings.Interface_UART.Read_Settings()
-print(request)
+# print('Interface_UART read...')
+# request = DeviceSettings.Interface_UART.Read_Settings()
+# print(request)
 # print('Interface_UART write...')
 # request = DeviceSettings.Interface_UART.write_settings()
 # print(request)
@@ -194,9 +194,9 @@ print(request)
 # print(request)
 
 # Настройки линий питания интерфейсов
-print('Interface_DOut read...')
-request = DeviceSettings.Interface_DOut.Read_Settings()
-print(request)
+# print('Interface_DOut read...')
+# request = DeviceSettings.Interface_DOut.Read_Settings()
+# print(request)
 # print('write...')
 # request = DeviceSettings.Interface_DOut.write_settings()
 # print(request)
@@ -209,9 +209,9 @@ print(request)
 
 
 # Настройки локального времени - Часовые пояса
-print('Time_Local read...')
-request = DeviceSettings.Time_Local.Read_Settings()
-print(request)
+# print('Time_Local read...')
+# request = DeviceSettings.Time_Local.Read_Settings()
+# print(request)
 # print('write...')
 # request = DeviceSettings.Time_Local.write_settings()
 # print(request)
@@ -223,12 +223,12 @@ print(request)
 # print(request)
 
 # //----------------    Настройки модема     ------------------------
-Modem = SMART.Settings.Modem
-
-# СИМ карты
-print('read...')
-request = Modem.SIM.Read_Settings()
-print(request)
+# Modem = SMART.Settings.Modem
+#
+# # СИМ карты
+# print('read...')
+# request = Modem.SIM.Read_Settings()
+# print(request)
 # print('write...')
 # request = Modem.SIM.write_settings()
 # print(request)
@@ -241,10 +241,10 @@ print(request)
 
 # //----------------    Настройки серверов     ------------------------
 
-Server = SMART.Settings.Servers
-# TCP Сервер
-print('TCP read...')
-request = Server.TCP.Read_Settings()
+# Server = SMART.Settings.Servers
+# # TCP Сервер
+# print('TCP read...')
+# request = Server.TCP.Read_Settings()
 # print(request)
 # print('write...')
 # request = Server.TCP.write_settings()
@@ -259,9 +259,9 @@ request = Server.TCP.Read_Settings()
 
 # SMTP Сервера
 
-print('SMTP read...')
-request = Server.SMTP.Read_Settings()
-print(request)
+# print('SMTP read...')
+# request = Server.SMTP.Read_Settings()
+# print(request)
 # print('write...')
 # request = Server.SMTP.write_settings()
 # print(request)
@@ -274,9 +274,9 @@ print(request)
 
 # SNTP Сервера
 
-print('SNTP read...')
-request = Server.SNTP.Read_Settings()
-print(request)
+# print('SNTP read...')
+# request = Server.SNTP.Read_Settings()
+# print(request)
 # print('write...')
 # request = Server.SNTP.write_settings()
 # print(request)
@@ -290,9 +290,9 @@ print(request)
 
 # MQTT Сервера
 
-print('MQTT read...')
-request = Server.MQTT.Read_Settings()
-print(request)
+# print('MQTT read...')
+# request = Server.MQTT.Read_Settings()
+# print(request)
 # print('write...')
 # request = Server.MQTT.write_settings()
 # print(request)

@@ -17,13 +17,17 @@ class SettingsMeter:
         self._headers = headers
         self._ip_address = ip_address
 
-        self.Table = self._Generate_Table()
-        self.ArchInfo = self._Generate_Arch()
+        self.Table = self._Meter_Table()
+        self.ArchInfo = self._Meter_Arch()
 
     # Здесь генерируем сам функционал :
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
-    def _Generate_Table(self):
+    def _Meter_Table(self):
+        """
+        Таблица приборов учета
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Meter.MeterTable import MeterTable
         Table = MeterTable(
             cookies=self._cookies,
@@ -33,7 +37,11 @@ class SettingsMeter:
         return Table
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
-    def _Generate_Arch(self):
+    def _Meter_Arch(self):
+        """
+        Настройки хранения архивных данных приборов учета
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Meter.MeterArchInfo import MeterArchInfo
 
         ArchInfo = MeterArchInfo(
