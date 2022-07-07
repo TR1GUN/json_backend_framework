@@ -42,8 +42,31 @@ class ServerSMTP(TemplateServer_SMTP):
         if ip_address is not None:
             self._ip_address = ip_address
 
+    # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+        """
+        data = self._request_setting()
+        return data
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-#
+# {
+# 	"Settings":[
+# 		{
+# 			"id":1,
+# 			"addr":"OSR-Test-linux.allmonitoring.local",
+# 			"port":587,
+# 			"login":"v.pupkin@dev-test.local",
+# 			"password":"password",
+# 			"auth":				3,
+# 			"crypto":				3,
+# 			"certCheck":false,
+# 			"cert":"",
+# 			"from":"v.pupkin@dev-test.local"
+# 		}
+# 	]
+# }
 # -------------------------------------------------------------------------------------------------------------

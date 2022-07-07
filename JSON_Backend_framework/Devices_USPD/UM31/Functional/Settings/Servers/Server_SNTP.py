@@ -7,7 +7,6 @@
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Servers.Template_SNTP_server_settings import \
     TemplateServer_SNTP
 
-
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -44,18 +43,25 @@ class ServerSNTP(TemplateServer_SNTP):
         if ip_address is not None:
             self._ip_address = ip_address
 
+    # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+        """
+        data = self._request_setting()
+        return data
+
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-#
+# {
+# 	"Settings":[
+# 		{
+# 			"id":1,
+# 			"addr":"ntp1.stratum2.ru",
+# 			"port":123
+# 		}
+# 	]
+# }
 # -------------------------------------------------------------------------------------------------------------
-
-# print('read...')
-# request = ServerSNTP().read_settings()
-# print(request)
-# print('write...')
-# request = ServerTCP().write_settings()
-# print(request)
-# print('rewrete...')
-# request = ServerTCP().rewrite_settings()
-# print(request)
