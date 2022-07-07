@@ -1,24 +1,18 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки последовательных интерфейсов(UART)
+#                               Настройки имени устройства
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_UART_settings import \
-    TemplateInterface_UART
+from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Name import \
+    TemplateName
 
-# from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_UART import
-# SettingsUART
 
 # -------------------------------------------------------------------------------------------------------------
-#
-# -------------------------------------------------------------------------------------------------------------
 
-
-class Interface_UART(TemplateInterface_UART):
+class Name(TemplateName):
     """
-    Настройки последовательных интерфейсов(UART)
-
+    Настройки имени устройства
     """
 
     # хедерс - Иногда нужен
@@ -33,7 +27,7 @@ class Interface_UART(TemplateInterface_UART):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки последовательных интерфейсов(UART)
+        Настройки имени устройства
 
         :param cookies:
         :param headers:
@@ -45,7 +39,7 @@ class Interface_UART(TemplateInterface_UART):
 
         if ip_address is not None:
             self._ip_address = ip_address
-        # # Обнуляем
+        # Обнуляем
         # self._define_JSON()
 
     # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
@@ -57,51 +51,10 @@ class Interface_UART(TemplateInterface_UART):
         data = self._request_setting()
         return data
 
-    # def _define_JSON(self):
-    #     """
-    #     Здесь Сбрасываем настройки
-    #     """
-    #     # Сбрасываем настройки
-    #     self.Settings = SettingsUART()
-    #
-    # def _getting_settings(self):
-    #
-    #     """
-    #
-    #     В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
-    #
-    #     """
-    #     # Читаем что задали
-    #     SettingsUART_JSON = self.Settings.get_settings()
-    #     UART = SettingsUART_JSON.get(self._Settings_name)
-    #     # Обнуляем
-    #     self._define_JSON()
-    #
-    #     if UART is not None:
-    #         # Если НИЧЕГО НЕ ДОБАВЛЯЛИ , используем из GET запроса
-    #         if len(UART) > 0:
-    #             data = UART
-    #         else:
-    #             data = self._request_setting()
-    #     else:
-    #         data = self._request_setting()
-    #     return data
-
-
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
 # {
-# 	"Settings":[
-# 		{
-# 			"id":1,
-# 			"line":0,
-# 			"iface":0,
-# 			"br":				115200,
-# 			"size":				8,
-# 			"parity":				2,
-# 			"stop":				2
-# 		}
-# 	]
+# 	"name":"vasya"
 # }
 # -------------------------------------------------------------------------------------------------------------

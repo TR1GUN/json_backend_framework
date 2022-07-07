@@ -53,7 +53,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_Calendar(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Events_Calendar import Calendar
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Events_Calendar import Calendar
 
         Events_Calendar = Calendar(
             cookies=self._cookies,
@@ -64,7 +64,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_Scheduler(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Events_Scheduler import Schedule
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Events_Scheduler import Schedule
 
         Events_Schedule = Schedule(
             cookies=self._cookies,
@@ -75,7 +75,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_Manager(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Events_Manager import EventManager
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Events_Manager import EventManager
 
         Events_EventManager = EventManager(
             cookies=self._cookies,
@@ -86,7 +86,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_TemplatesMeter(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Templates_Meter import TemplatesMeter
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Templates_Meter import TemplatesMeter
 
         Events_TemplatesMeter = TemplatesMeter(
             cookies=self._cookies,
@@ -97,7 +97,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_TemplatesMeterData(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Templates_MeterData import TemplatesMeterData
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Templates_MeterData import TemplatesMeterData
 
         Events_TemplatesMeterData = TemplatesMeterData(
             cookies=self._cookies,
@@ -108,7 +108,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_Messages(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Templates_Messages import TemplatesMessages
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Templates_Messages import TemplatesMessages
 
         Events_TemplatesMessages = TemplatesMessages(
             cookies=self._cookies,
@@ -119,7 +119,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_Email(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Templates_Email import TemplatesEmail
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Templates_Email import TemplatesEmail
 
         Events_TemplatesEmail = TemplatesEmail(
             cookies=self._cookies,
@@ -130,7 +130,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_MeterPoller(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Actions_MeterPoller import MeterPoller
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Actions_MeterPoller import MeterPoller
 
         Events_MeterPoller = MeterPoller(
             cookies=self._cookies,
@@ -141,7 +141,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_SMTP(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Actions_SMPT import ActionsSMTP
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Actions_SMPT import ActionsSMTP
 
         Events_ActionsSMTP = ActionsSMTP(
             cookies=self._cookies,
@@ -152,7 +152,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_SNTP(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Actions_SNTP import ActionsSNTP
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Actions_SNTP import ActionsSNTP
 
         Events_ActionsSNTP = ActionsSNTP(
             cookies=self._cookies,
@@ -163,7 +163,7 @@ class SettingsEventSystem:
 
     # ГЕНЕРИРУЕМ Настройки хранения архивных данных приборов учета
     def _Generate_MQTT(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.EventSystem.Actions_MQTT import ActionsMQTT
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.EventSystem.Actions_MQTT import ActionsMQTT
 
         Events_ActionsMQTT = ActionsMQTT(
             cookies=self._cookies,

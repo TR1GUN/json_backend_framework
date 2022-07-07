@@ -25,7 +25,7 @@ class SettingsModem:
 
     # ГЕНЕРИРУЕМ Таблица приборов учета
     def _Generate_SIM_card(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Modem.SIM_card_settings import SIM_card
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Modem.SIM_card_settings import SIM_card
         SIM_card = SIM_card(
             cookies=self._cookies,
             headers=self._headers,

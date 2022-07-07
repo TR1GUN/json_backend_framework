@@ -30,7 +30,7 @@ class SettingsServers:
 
     # Настройки TCP-серверов
     def _Generate_TCP(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_TCP import ServerTCP
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Servers.Server_TCP import ServerTCP
         TCP = ServerTCP(
             cookies=self._cookies,
             headers=self._headers,
@@ -40,7 +40,7 @@ class SettingsServers:
 
     # Настройки SMTP-серверов
     def _Generate_SMTP(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_SMTP import ServerSMTP
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Servers.Server_SMTP import ServerSMTP
         SMTP = ServerSMTP(
             cookies=self._cookies,
             headers=self._headers,
@@ -50,7 +50,7 @@ class SettingsServers:
 
     # Настройки SТTP-серверов
     def _Generate_SNTP(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_SNTP import ServerSNTP
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Servers.Server_SNTP import ServerSNTP
         SNTP = ServerSNTP(
             cookies=self._cookies,
             headers=self._headers,
@@ -60,7 +60,7 @@ class SettingsServers:
 
     # Настройки MQTT-серверов
     def _Generate_MQTT(self):
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_MQTT import ServerMQTT
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Servers.Server_MQTT import ServerMQTT
         MQTT = ServerMQTT(
             cookies=self._cookies,
             headers=self._headers,

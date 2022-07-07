@@ -44,7 +44,7 @@ class UM_31_SMART_Actions(Template_UM_XX_SMART_Actions):
         """
         Состояние линий питания интерфейсов
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Action.Set_Time_setting import SetTime
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Action.Set_Time_setting import SetTime
         Time = SetTime(
                         cookies=self._cookies,
                         headers=self._headers,
@@ -57,7 +57,7 @@ class UM_31_SMART_Actions(Template_UM_XX_SMART_Actions):
         Текущее время
 
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Functional.Action.Device_Restart import DeviceRestart
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Action.Device_Restart import DeviceRestart
         Restart = DeviceRestart(
                                 cookies=self._cookies,
                                 headers=self._headers,
