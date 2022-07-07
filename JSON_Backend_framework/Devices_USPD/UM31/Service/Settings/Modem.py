@@ -7,8 +7,8 @@ class SettingsModem:
     _headers = None
     _ip_address = None
 
-    # Настройки SIM-карт (Pin, APN)
-    SIM = None
+    # Настройки Модема (Pin)
+    Modem = None
     # Настройки CSD(PPP-сервер)
     CSD = None
     # Настройки APN(точки доступа)
@@ -19,16 +19,61 @@ class SettingsModem:
         self._headers = headers
         self._ip_address = ip_address
 
-        # self.SIM = self._Generate_SIM_card()
+        # Обновляем функционал
+        # ---->
+        self._define_functionality()
+
+    def _define_functionality(self):
+        """
+        Получение функционала
+        """
+        # Настройки Модема (Pin)
+        self.Modem = self._Modem_Settings()
+        # Настройки CSD(PPP-сервер)
+        self.CSD = self._Modem_CSD()
+        # Настройки APN(точки доступа)
+        self.APN = self._Modem_APN()
 
     # Здесь генерируем сам функционал :
-
-    # ГЕНЕРИРУЕМ Таблица приборов учета
-    def _Generate_SIM_card(self):
-        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Modem.SIM_card_settings import SIM_card
-        SIM_card = SIM_card(
+    # Настройки Модема (Pin)
+    def _Modem_Settings(self):
+        """
+        # Настройки Модема (Pin)
+        :return:
+        """
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Modem.Modem_SIM import ModemSIM
+        SIM_card = ModemSIM(
             cookies=self._cookies,
             headers=self._headers,
             ip_address=self._ip_address
         )
         return SIM_card
+
+    # Настройки CSD(PPP-сервер)
+    def _Modem_CSD(self):
+        """
+        Настройки CSD(PPP-сервер)
+        :return:
+        """
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Modem.Modem_CSD import ModemCSD
+        CSD = ModemCSD(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return CSD
+
+    # Настройки APN(точки доступа)
+    def _Modem_APN(self):
+        """
+        Настройки APN(точки доступа)
+        :return:
+        """
+
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.Settings.Modem.Modem_APN import ModemAPN
+        APN = ModemAPN(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return APN
