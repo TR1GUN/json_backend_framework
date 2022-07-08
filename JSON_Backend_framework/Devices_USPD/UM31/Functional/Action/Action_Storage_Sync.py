@@ -1,14 +1,15 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         # Перезагрузка устройства
+#                             # Синхронизация хранилища данных приборов учета
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_DeviceRestart import TemplateDeviceRestart
+from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_Storage_sync import \
+    TemplateActionStorageSync
 
 
-class DeviceRestart(TemplateDeviceRestart):
+class ActionStorageSync(TemplateActionStorageSync):
     """
-    Перезагрузка устройства
+    Синхронизация хранилища данных приборов учета
 
     """
     # хедерс - Иногда нужен
@@ -18,7 +19,7 @@ class DeviceRestart(TemplateDeviceRestart):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Перезагрузка устройства
+        Синхронизация хранилища данных приборов учета
 
         :param cookies:
         :param headers:
@@ -31,12 +32,6 @@ class DeviceRestart(TemplateDeviceRestart):
         if ip_address is not None:
             self._ip_address = ip_address
 
-        # print(self.headers)
-        # print(self.cookies)
-
-
 # -------------------------------------------------------------------------------------------------------------
-#                                     ПРИМЕР JSON - Здесь только чтение
+#                                     ПРИМЕР JSON - Здесь только синхронизация
 # -------------------------------------------------------------------------------------------------------------
-
-

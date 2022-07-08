@@ -1,41 +1,37 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                        Шаблон для перезагрузки
+#                                         # Обновление загрузчика
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Devices_Functions.Upload.Template_Upload_Loader import \
+    TemplateUpLoadLoader
 
-from JSON_Backend_framework.Service.Template_Functional import TemplateFunctional
-from JSON_Backend_framework.Devices_USPD.settings import url_path
 
-
-class TemplateActionDeviceRestart(TemplateFunctional):
+class UpLoadLoader(TemplateUpLoadLoader):
     """
-
-    Шаблон для перезагрузки
+    Обновление загрузчика
 
     """
-    # URL
-
-    _path_url = url_path.get("Restart")
-
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
-    # Переопределяем чтоб можно было достать
-    path_url = _path_url
 
-    def Restart(self):
+    def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Берем и перезагружаем устройство
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_POST()
+        Обновление загрузчика
 
-        return response
+        :param cookies:
+        :param headers:
+        """
+        if cookies is not None:
+            self._cookies = cookies
+        if headers is not None:
+            self._headers = headers
+
+        if ip_address is not None:
+            self._ip_address = ip_address
 
 # -------------------------------------------------------------------------------------------------------------
+#                          ПРИМЕР JSON - Здесь спускаем файл
 # -------------------------------------------------------------------------------------------------------------
-
-

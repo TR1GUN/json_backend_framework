@@ -124,7 +124,7 @@ class TemplateDeviceFunctions_Settings(TemplateFunctional):
                 answer_setting = response.get('data')
                 # Теперь заполянем наши переменные
                 if answer_setting is not None:
-                    Settings = answer_setting[self._Settings_name]
+                    Settings = answer_setting.get(self._Settings_name)
                     if Settings is not None:
                         data = Settings
         except Exception as e:

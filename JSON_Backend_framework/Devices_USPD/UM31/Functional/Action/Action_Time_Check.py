@@ -1,17 +1,15 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Получение Текущего времени УСПД
+#                                         # Поверка внешних ЧРВ
 # -------------------------------------------------------------------------------------------------------------
-# Импортируем Шаблон взаимодействия
-
-from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_Time import TemplateStateTime
-
 # -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_Time_check import \
+    TemplateActionTimeCheck
 
 
-class StateTime(TemplateStateTime):
+class ActionTimeCheck(TemplateActionTimeCheck):
     """
-    Получение Текущего времени УСПД
+    Поверка внешних ЧРВ
 
     """
     # хедерс - Иногда нужен
@@ -21,7 +19,7 @@ class StateTime(TemplateStateTime):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Текущие время УСПД
+        Поверка внешних ЧРВ
 
         :param cookies:
         :param headers:
@@ -34,14 +32,10 @@ class StateTime(TemplateStateTime):
         if ip_address is not None:
             self._ip_address = ip_address
 
-
 # -------------------------------------------------------------------------------------------------------------
-#                                     ПРИМЕР JSON - Здесь только чтение
+#                                     ПРИМЕР JSON - Здесь задаем
 # -------------------------------------------------------------------------------------------------------------
 # {
-#  'time': '2010-12-06T21:01:24+03:00',
-#  'sync': False,
-#  'intRTC': {'time': '1910-12-06T22:49:31+03:00'},
-#  'extRTC': {'type': 'DS3231M', 'verify': False, 'osc': True, 'time': '2010-12-06T21:01:24+03:00', 'temperature': 38}
-#  }
+# 	"state": false
+# }
 # -------------------------------------------------------------------------------------------------------------
