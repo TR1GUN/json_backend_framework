@@ -78,14 +78,13 @@ class UM_31_SMART(Template_USPD):
         from JSON_Backend_framework.Service.Template_Cookies import UM_Cookies
 
         self._cookies = UM_Cookies(
-                                        Login=self._Login,
-                                        Password=self._Password,
-                                        IP_address=self._ip_address,
-                                        Headers=self._headers,
-                                        Auth=True
-                                    )
+            Login=self._Login,
+            Password=self._Password,
+            IP_address=self._ip_address,
+            Headers=self._headers,
+            Auth=True
+        )
 
-        print(self._cookies.cookie_value)
         # # Теперь проверяем что успешно прошли авторизацию
         # from JSON_Backend_framework.Devices_USPD.Authorization import Authorization
         #
@@ -115,6 +114,7 @@ class UM_31_SMART(Template_USPD):
         self._Actions()
         self._MeterDeviceManagement()
         self._MeterData()
+        self._Upload()
 
     def _Settings(self):
         """
@@ -178,3 +178,16 @@ class UM_31_SMART(Template_USPD):
 
         self.MeterData = UM_31_SMART_MeterData(cookies=self._cookies, headers=self._headers,
                                                ip_address=self._ip_address)
+
+    # Обновление ВПО
+    def _Upload(self):
+        """
+
+        Получаем класс который работает с обновлением УСПД
+
+        """
+
+        from JSON_Backend_framework.Devices_USPD.UM31.Service.USPD_Upload import UM_31_SMART_UpLoad
+
+        self.Upload = UM_31_SMART_UpLoad(cookies=self._cookies, headers=self._headers,
+                                         ip_address=self._ip_address)

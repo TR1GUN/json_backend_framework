@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 
-from JSON_Backend_framework.FormJSON.UM40.UM40_FormJSON import ActionJSON , MeterDeviceManagementJSON , MeterDataJSON , SettingsJSON
+from JSON_Backend_framework.FormJSON.UM40.UM40_FormJSON import ActionJSON, MeterDeviceManagementJSON , MeterDataJSON , SettingsJSON
 # -------------------------------------------------------------------------------------------------------------
 #                                          Протокол УМ - 40 СМАРТ
 # -------------------------------------------------------------------------------------------------------------

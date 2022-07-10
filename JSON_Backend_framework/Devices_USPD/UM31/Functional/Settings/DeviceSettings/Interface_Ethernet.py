@@ -6,11 +6,6 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_Ethernet_settings import \
     TemplateInterface_Ethernet
-
-
-# from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
-# from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_Ethernet import SettingsEthernet
-
 # -------------------------------------------------------------------------------------------------------------
 
 class Interface_Ethernet(TemplateInterface_Ethernet):

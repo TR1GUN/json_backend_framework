@@ -3,10 +3,10 @@
 #                                            УМ - 31 СМАРТ - Поле Upload
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.TemplateUSPD import Template_UM_XX_SMART_Actions
+from JSON_Backend_framework.Service.TemplateUSPD import Template_UM_XX_SMART_Upload
 
 
-class UM_31_SMART_UpLoad(Template_UM_XX_SMART_Actions):
+class UM_31_SMART_UpLoad(Template_UM_XX_SMART_Upload):
     """
     Саб класс который работает с разделом УСПД : Загрузка ВПО
     """

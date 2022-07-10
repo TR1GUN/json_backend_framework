@@ -8,6 +8,8 @@
 from JSON_Backend_framework.Service.TemplateUSPD import Template_USPD
 
 from JSON_Backend_framework.Service.config import headers_protocol_UM40
+
+
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                            УМ - 40 СМАРТ
@@ -28,7 +30,7 @@ class UM_40_SMART(Template_USPD):
 
         """
         Login = 'admin'
-        Password= 'admin'
+        Password = 'admin'
 
         # Куки - Перед началом работы обнуляем их
         self._cookies = None
@@ -79,12 +81,12 @@ class UM_40_SMART(Template_USPD):
         from JSON_Backend_framework.Service.Template_Cookies import UM_Cookies
 
         self._cookies = UM_Cookies(
-                                        Login=self._Login,
-                                        Password=self._Password,
-                                        IP_address=self._ip_address,
-                                        Headers=self._headers,
-                                        Auth=True
-                                    )
+            Login=self._Login,
+            Password=self._Password,
+            IP_address=self._ip_address,
+            Headers=self._headers,
+            Auth=True
+        )
 
     def _define_functionality(self):
         """
@@ -116,11 +118,11 @@ class UM_40_SMART(Template_USPD):
         :return:
         """
         from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_StateInfo import UM_40_SMART_StateInfo
-        self.StateInfo = UM_40_SMART_StateInfo(cookies=self._cookies, headers=self._headers, ip_address=self._ip_address)
+        self.StateInfo = UM_40_SMART_StateInfo(cookies=self._cookies, headers=self._headers,
+                                               ip_address=self._ip_address)
 
     # ЖУРАНЛЫ
     def _Journal(self):
-
         """
         Получаем класс который работает с Журналами УСПД
         """
@@ -130,7 +132,6 @@ class UM_40_SMART(Template_USPD):
 
     # Действия
     def _Actions(self):
-
         """
         Получаем класс который работает с Действия УСПД
         """
@@ -140,20 +141,20 @@ class UM_40_SMART(Template_USPD):
 
     # Управление Приборами учета
     def _MeterDeviceManagement(self):
-
         """
         Получаем класс который работает с Действия УСПД
         """
-        from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_MeterDeviceManagement import UM_40_SMART_MeterDeviceManagement
+        from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_MeterDeviceManagement import \
+            UM_40_SMART_MeterDeviceManagement
 
         self.MeterDeviceManagement = UM_40_SMART_MeterDeviceManagement(
-                                                                        cookies=self._cookies,
-                                                                        headers=self._headers,
-                                                                        ip_address=self._ip_address
-                                                                       )
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+
     # Опрос Приборов Учета - Данные приборов учета
     def _MeterData(self):
-
         """
 
         Получаем класс который работает с Действия УСПД
@@ -161,4 +162,5 @@ class UM_40_SMART(Template_USPD):
         """
         from JSON_Backend_framework.Devices_USPD.UM40.Service.USPD_MeterData import UM_40_SMART_MeterData
 
-        self.MeterData = UM_40_SMART_MeterData(cookies=self._cookies, headers=self._headers,ip_address=self._ip_address)
+        self.MeterData = UM_40_SMART_MeterData(cookies=self._cookies, headers=self._headers,
+                                               ip_address=self._ip_address)

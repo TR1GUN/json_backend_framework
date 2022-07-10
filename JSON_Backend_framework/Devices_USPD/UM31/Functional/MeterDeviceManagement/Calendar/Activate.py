@@ -16,7 +16,7 @@ class CalendarActivate(TemplateCalendarActivate):
 
     """
     # Общие настройки
-    Calendar = None
+    # Calendar = None
 
     # хедерс - Иногда нужен
     _headers = None
