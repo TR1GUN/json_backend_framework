@@ -165,13 +165,6 @@ class FormJSON_MeterData:
                         if tag not in self._tags:
                             self._tags.append(tag)
 
-            # self._Settings = {
-            #     'measure': self._measure,
-            #     "ids": self._ids,
-            #     "time": self._time,
-            #     "tags": self._tags,
-            # }
-
     def get_settings(self):
         """
         Получаем наши данные что составили

@@ -1,18 +1,23 @@
-
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                  Чтение значений Электросчетчиков - Архивные
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import \
+    TemplateMeterData_Read_Measure
+
+
+# -------------------------------------------------------------------------------------------------------------
+
+class MeterData_Arch(TemplateMeterData_Read_Measure):
     """
-    Чтение значений Электросчетчиков - Архивные
+    Чтение значений Счетчиков - Архивные
     """
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Опрос зарядных станций
+        Чтение значений Счетчиков - Архивные
 
         :param cookies:
         :param headers:
@@ -26,9 +31,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def aEng(self, ids: [None, list, int] = None,
-             time_start: [int, None] = None,
-             time_end: [int, None] = None,
+    def aEng(self, ids: [None, list, str, int] = None,
+             time_start: [int, str, None] = None,
+             time_end: [int, str, None] = None,
              tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMomentEnergy - Моментная энергия
@@ -49,9 +54,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aDay(self, ids: [None, list, int] = None,
-             time_start: [int, None] = None,
-             time_end: [int, None] = None,
+    def aDay(self, ids: [None, list, str, int] = None,
+             time_start: [int, str, None] = None,
+             time_end: [int, str, None] = None,
              tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElDayEnergy -  Энергия на начало дня
@@ -72,9 +77,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aMonth(self, ids: [None, list, int] = None,
-               time_start: [int, None] = None,
-               time_end: [int, None] = None,
+    def aMonth(self, ids: [None, list, str, int] = None,
+               time_start: [int, str, None] = None,
+               time_end: [int, str, None] = None,
                tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMonthEnergy -  Энергия на начало месяца
@@ -95,9 +100,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aDayCons(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
+    def aDayCons(self, ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
                  tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElDayConsEnergy -  Потребленная энергия на начало суток.
@@ -118,9 +123,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aMonthCons(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
+    def aMonthCons(self, ids: [None, list, str, int] = None,
+                   time_start: [int, str, None] = None,
+                   time_end: [int, str, None] = None,
                    tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMonthConsEnergy -  Энергия потребленная на начало месяца
@@ -141,9 +146,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aQual(self, ids: [None, list, int] = None,
-              time_start: [int, None] = None,
-              time_end: [int, None] = None,
+    def aQual(self, ids: [None, list, str, int] = None,
+              time_start: [int, str, None] = None,
+              time_end: [int, str, None] = None,
               tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElMomentQuality - Показатели качества сети
@@ -164,9 +169,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aCons(self, ids: [None, list, int] = None,
-              time_start: [int, None] = None,
-              time_end: [int, None] = None,
+    def aCons(self, ids: [None, list, str, int] = None,
+              time_start: [int, str, None] = None,
+              time_end: [int, str, None] = None,
               tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElArr1ConsPower - Профиль мощности
@@ -187,9 +192,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aCfg(self, ids: [None, list, int] = None,
-             time_start: [int, None] = None,
-             time_end: [int, None] = None,
+    def aCfg(self, ids: [None, list, str, int] = None,
+             time_start: [int, str, None] = None,
+             time_end: [int, str, None] = None,
              tags: [None, list, str] = None):
         """
         Чтение из БД параметра ElConfig - Конфиг
@@ -211,9 +216,9 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def aHour(self, ids: [None, list, int] = None,
-              time_start: [int, None] = None,
-              time_end: [int, None] = None,
+    def aHour(self, ids: [None, list, str, int] = None,
+              time_start: [int, str, None] = None,
+              time_end: [int, str, None] = None,
               tags: [None, list, str] = None):
         """
         Чтение из БД параметра aHour - Показания на начало часа
@@ -233,4 +238,3 @@ class MeterData_Arch(TemplateMeterDataArch_Read_Measure):
         measure = 'aHour'
 
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-

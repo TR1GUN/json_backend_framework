@@ -25,66 +25,46 @@ class TemplateMeterData(TemplateDeviceFunctions_MeterData):
     path_url = _path_url
     # Доступные типы данных
     _measures = [
-        'ElConfig',
-        'PlsConfig',
-        'DigConfig',
-
-        'ElMomentEnergy',
-        'ElDayEnergy',
-        'ElMonthEnergy',
-        'ElDayConsEnergy',
-        'ElMonthConsEnergy',
-        'ElMomentQuality',
-        'ElArr1ConsPower',
-        'PlsMomentPulse',
-        'PlsDayPulse',
-        'PlsMonthPulse',
-        'PlsHourPulse',
-        'DigMomentState',
-        'DigJournalState',
-        'ElJrnlPwr',
-        'ElJrnlTimeCorr',
-        'ElJrnlReset',
-        'ElJrnlC1Init',
-        'ElJrnlC2Init',
-        'ElJrnlTrfCorr',
-        'ElJrnlOpen',
-        'ElJrnlUnAyth',
-        'ElJrnlPwrA',
-        'ElJrnlPwrB',
-        'ElJrnlPwrC',
-        'ElJrnlProg',
-        'ElJrnlRelay',
-        'ElJrnlLimESumm',
-        'ElJrnlLimETrf',
-        'ElJrnlLimETrf1',
-        'ElJrnlLimETrf2',
-        'ElJrnlLimETrf3',
-        'ElJrnlLimETrf4',
-        'ElJrnlLimUAMax',
-        'ElJrnlLimUAMin',
-        'ElJrnlLimUBMax',
-        'ElJrnlLimUBMin',
-        'ElJrnlLimUCMax',
-        'ElJrnlLimUCMin',
-        'ElJrnlLimUABMax',
-        'ElJrnlLimUABMin',
-        'ElJrnlLimUBCMax',
-        'ElJrnlLimUBCMin',
-        'ElJrnlLimUCAMax',
-        'ElJrnlLimUCAMin',
-        'ElJrnlLimIAMax',
-        'ElJrnlLimIBMax',
-        'ElJrnlLimICMax',
-        'ElJrnlLimFreqMax',
-        'ElJrnlLimFreqMin',
-        'ElJrnlLimPwr',
-        'ElJrnlLimPwrPP',
-        'ElJrnlLimPwrPM',
-        'ElJrnlLimPwrQP',
-        'ElJrnlLimPwrQM',
-        'ElJrnlReverce',
-        'PlsJrnlTimeCorr'
+        'mRelay',
+        "mTime",
+        'mQual',
+        'mEng',
+        'aCfg',
+        'aEng',
+        'aQual',
+        'aDay',
+        'aDayCons',
+        'aMonth',
+        'aMonthCons',
+        'aCons',
+        'aHour', 'jrnlPwr', 'jrnlTimeCorr', 'jrnlReset', 'jrnlC1Init', 'jrnlC2Init', 'jrnlTrfCorr', 'jrnlOpen',
+        'jrnlUnAyth', 'jrnlPwrA', 'jrnlPwrB', 'jrnlPwrC', 'jrnlProg', 'jrnlRelay', 'jrnlLimESumm', 'jrnlLimETrf',
+        'jrnlLimETrf1', 'jrnlLimETrf2', 'jrnlLimETrf3', 'jrnlLimETrf4', 'jrnlLimUAMax', 'jrnlLimUAMin', 'jrnlLimUBMax',
+        'jrnlLimUBMin', 'jrnlLimUCMax', 'jrnlLimUCMin', 'jrnlLimUABMax', 'jrnlLimUABMin', 'jrnlLimUBCMax',
+        'jrnlLimUBCMin', 'jrnlLimUCAMax', 'jrnlLimUCAMin', 'jrnlLimIAMax', 'jrnlLimIBMax', 'jrnlLimICMax',
+        'jrnlLimFreqMax', 'jrnlLimFreqMin', 'jrnlLimPwr', 'jrnlLimPwrPP', 'jrnlLimPwrPM', 'jrnlLimPwrQP',
+        'jrnlLimPwrQM', 'jrnlRvr',
+        # ---->
+        # Тарифное расписание - для счетчиков СПОДЭС
+        # ---->
+        # Запрос - Имя календаря тарифного расписания - Активный
+        "ElCalendarNameActive",
+        # Запрос - Имя календаря тарифного расписания - Пассивный
+        "ElCalendarNamePassive",
+        # Запрос -  Сезонный профиль тарифного расписания -  Активный
+        "ElCalendarSeasonActive",
+        # Запрос - Сезонный профиль тарифного расписания -  Пассивный
+        "ElCalendarSeasonPassive",
+        # Запрос - Недельный профиль тарифного расписания - Активный
+        "ElCalendarWeekActive",
+        # Запрос - Недельный профиль тарифного расписания - Пассивный
+        "ElCalendarWeekPassive",
+        # Запрос - Суточный профиль тарифного расписания - Активный
+        "ElCalendarDayActive",
+        # Запрос - Суточный профиль тарифного расписания - Пассивный
+        "ElCalendarDayPassive",
+        # Запрос - Дата активации тарифного расписания
+        "ElCalendarActivateTime",
     ]
 
 
@@ -103,17 +83,17 @@ class TemplateMeterData_Read_Measure(TemplateMeterData):
         :param data: JSON
         :return:
         """
-        from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
+        from JSON_Backend_framework.FormJSON.UM31.MeterData.FormJSON_MeterData import FormJSON_MeterData
         # Формируем наш конструктор
         MeterData_JSON_settings = FormJSON_MeterData()
 
-        MeterData_JSON_settings.add_settings(measure=measure,
-                                             ids=ids,
-                                             time_start=time_start,
-                                             time_end=time_end,
-                                             tags=tags)
+        MeterData_JSON_settings.add_Value(measure=measure,
+                                          ids=ids,
+                                          time_start=time_start,
+                                          time_end=time_end,
+                                          tags=tags)
 
-        MeterData_JSON = MeterData_JSON_settings.get_settings()
+        MeterData_JSON = MeterData_JSON_settings.get_JSON()
         # Если данных не спустили , то  определяем их
 
         response = self._Read(data=MeterData_JSON)

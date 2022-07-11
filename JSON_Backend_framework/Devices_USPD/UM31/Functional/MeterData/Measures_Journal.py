@@ -1,18 +1,21 @@
 # -------------------------------------------------------------------------------------------------------------
 #                                  Чтение Журналов
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data_arch import \
-    TemplateMeterDataArch, TemplateMeterDataArch_Read_Measure
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import \
+    TemplateMeterData_Read_Measure
+
+
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
+# -------------------------------------------------------------------------------------------------------------
+class MeterData_Journal(TemplateMeterData_Read_Measure):
     """
-    Чтение Журналов
+    Чтение Журналов счетчиков
     """
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Опрос зарядных станций
+        Чтение Журналов счетчиков
 
         :param cookies:
         :param headers:
@@ -26,11 +29,10 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlPwr(self, ids: [None, list, int] = None,
-                time_start: [int, None] = None,
-                time_end: [int, None] = None,
-                tags: [None, list, str] = None
-                ):
+    def jrnlPwr(self, ids: [None, list, str, int] = None,
+                time_start: [int, str, None] = None,
+                time_end: [int, str, None] = None,
+                tags: [None, list, str] = None):
         """
         Чтение из БД Журнала jrnlPwr - управление питанием
 
@@ -40,6 +42,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -47,9 +50,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlTimeCorr(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlTimeCorr(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -62,6 +65,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -70,9 +74,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlReset(self, ids: [None, list, int] = None,
-                  time_start: [int, None] = None,
-                  time_end: [int, None] = None,
+    def jrnlReset(self, ids: [None, list, str, int] = None,
+                  time_start: [int, str, None] = None,
+                  time_end: [int, str, None] = None,
                   tags: [None, list, str] = None
                   ):
         """
@@ -85,6 +89,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -93,9 +98,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlC1Init(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
+    def jrnlC1Init(self, ids: [None, list, str, int] = None,
+                   time_start: [int, str, None] = None,
+                   time_end: [int, str, None] = None,
                    tags: [None, list, str] = None
                    ):
         """
@@ -107,6 +112,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -114,9 +120,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlC2Init(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
+    def jrnlC2Init(self, ids: [None, list, str, int] = None,
+                   time_start: [int, str, None] = None,
+                   time_end: [int, str, None] = None,
                    tags: [None, list, str] = None
                    ):
         """
@@ -128,6 +134,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -135,9 +142,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlTrfCorr(self, ids: [None, list, int] = None,
-                    time_start: [int, None] = None,
-                    time_end: [int, None] = None,
+    def jrnlTrfCorr(self, ids: [None, list, str, int] = None,
+                    time_start: [int, str, None] = None,
+                    time_end: [int, str, None] = None,
                     tags: [None, list, str] = None
                     ):
         """
@@ -149,6 +156,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -156,9 +164,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlOpen(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
+    def jrnlOpen(self, ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
                  tags: [None, list, str] = None
                  ):
         """
@@ -170,6 +178,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -178,9 +187,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlUnAyth(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
+    def jrnlUnAyth(self, ids: [None, list, str, int] = None,
+                   time_start: [int, str, None] = None,
+                   time_end: [int, str, None] = None,
                    tags: [None, list, str] = None
                    ):
         """
@@ -192,6 +201,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -199,9 +209,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlPwrA(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
+    def jrnlPwrA(self, ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
                  tags: [None, list, str] = None
                  ):
         """
@@ -213,6 +223,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -220,9 +231,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlPwrB(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
+    def jrnlPwrB(self, ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
                  tags: [None, list, str] = None
                  ):
         """
@@ -234,6 +245,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -241,9 +253,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlPwrC(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
+    def jrnlPwrC(self, ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
                  tags: [None, list, str] = None
                  ):
         """
@@ -255,6 +267,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -262,9 +275,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlProg(self, ids: [None, list, int] = None,
-                 time_start: [int, None] = None,
-                 time_end: [int, None] = None,
+    def jrnlProg(self, ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
                  tags: [None, list, str] = None
                  ):
         """
@@ -276,6 +289,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -283,9 +297,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlRelay(self, ids: [None, list, int] = None,
-                  time_start: [int, None] = None,
-                  time_end: [int, None] = None,
+    def jrnlRelay(self, ids: [None, list, str, int] = None,
+                  time_start: [int, str, None] = None,
+                  time_end: [int, str, None] = None,
                   tags: [None, list, str] = None
                   ):
         """
@@ -297,6 +311,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -304,9 +319,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimESumm(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimESumm(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -318,6 +333,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -325,9 +341,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimETrf(self, ids: [None, list, int] = None,
-                    time_start: [int, None] = None,
-                    time_end: [int, None] = None,
+    def jrnlLimETrf(self, ids: [None, list, str, int] = None,
+                    time_start: [int, str, None] = None,
+                    time_end: [int, str, None] = None,
                     tags: [None, list, str] = None
                     ):
         """
@@ -339,6 +355,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -346,9 +363,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimETrf1(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimETrf1(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -361,6 +378,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -368,9 +386,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimETrf2(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimETrf2(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -382,6 +400,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -389,9 +408,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimETrf3(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimETrf3(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -403,6 +422,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -411,9 +431,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlLimETrf4(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimETrf4(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -425,6 +445,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -433,9 +454,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlLimUAMax(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimUAMax(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -447,6 +468,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -454,9 +476,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUAMin(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimUAMin(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -468,6 +490,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -476,9 +499,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlLimUBMax(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimUBMax(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -490,6 +513,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -497,9 +521,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUBMin(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimUBMin(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -511,6 +535,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -518,9 +543,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUCMax(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimUCMax(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -532,6 +557,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -539,9 +565,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUCMin(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimUCMin(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -553,6 +579,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -560,9 +587,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUABMax(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
+    def jrnlLimUABMax(self, ids: [None, list, str, int] = None,
+                      time_start: [int, str, None] = None,
+                      time_end: [int, str, None] = None,
                       tags: [None, list, str] = None
                       ):
         """
@@ -574,6 +601,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -581,9 +609,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUABMin(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
+    def jrnlLimUABMin(self, ids: [None, list, str, int] = None,
+                      time_start: [int, str, None] = None,
+                      time_end: [int, str, None] = None,
                       tags: [None, list, str] = None
                       ):
         """
@@ -595,6 +623,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -602,9 +631,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUBCMax(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
+    def jrnlLimUBCMax(self, ids: [None, list, str, int] = None,
+                      time_start: [int, str, None] = None,
+                      time_end: [int, str, None] = None,
                       tags: [None, list, str] = None
                       ):
         """
@@ -616,6 +645,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -623,9 +653,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUBCMin(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
+    def jrnlLimUBCMin(self, ids: [None, list, str, int] = None,
+                      time_start: [int, str, None] = None,
+                      time_end: [int, str, None] = None,
                       tags: [None, list, str] = None
                       ):
         """
@@ -637,6 +667,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -644,9 +675,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimUCAMax(self, ids: [None, list, int] = None,
-                      time_start: [int, None] = None,
-                      time_end: [int, None] = None,
+    def jrnlLimUCAMax(self, ids: [None, list, str, int] = None,
+                      time_start: [int, str, None] = None,
+                      time_end: [int, str, None] = None,
                       tags: [None, list, str] = None
                       ):
         """
@@ -658,6 +689,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -679,6 +711,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -686,9 +719,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimIAMax(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimIAMax(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -700,6 +733,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -707,9 +741,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimIBMax(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimIBMax(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -721,6 +755,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -728,9 +763,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimICMax(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimICMax(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -741,6 +776,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -748,9 +784,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimFreqMax(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
+    def jrnlLimFreqMax(self, ids: [None, list, str, int] = None,
+                       time_start: [int, str, None] = None,
+                       time_end: [int, str, None] = None,
                        tags: [None, list, str] = None
                        ):
         """
@@ -762,6 +798,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -769,9 +806,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimFreqMin(self, ids: [None, list, int] = None,
-                       time_start: [int, None] = None,
-                       time_end: [int, None] = None,
+    def jrnlLimFreqMin(self, ids: [None, list, str, int] = None,
+                       time_start: [int, str, None] = None,
+                       time_end: [int, str, None] = None,
                        tags: [None, list, str] = None
                        ):
         """
@@ -783,6 +820,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -791,9 +829,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
 
     # -------------------------------------------------------------------------------------------------------------
 
-    def jrnlLimPwr(self, ids: [None, list, int] = None,
-                   time_start: [int, None] = None,
-                   time_end: [int, None] = None,
+    def jrnlLimPwr(self, ids: [None, list, str, int] = None,
+                   time_start: [int, str, None] = None,
+                   time_end: [int, str, None] = None,
                    tags: [None, list, str] = None
                    ):
         """
@@ -805,6 +843,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -812,9 +851,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimPwrPP(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimPwrPP(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -826,6 +865,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -833,9 +873,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimPwrPM(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimPwrPM(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -847,6 +887,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -856,9 +897,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
     # -------------------------------------------------------------------------------------------------------------
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimPwrQP(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimPwrQP(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -870,6 +911,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -877,9 +919,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlLimPwrQM(self, ids: [None, list, int] = None,
-                     time_start: [int, None] = None,
-                     time_end: [int, None] = None,
+    def jrnlLimPwrQM(self, ids: [None, list, str, int] = None,
+                     time_start: [int, str, None] = None,
+                     time_end: [int, str, None] = None,
                      tags: [None, list, str] = None
                      ):
         """
@@ -891,6 +933,7 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
@@ -898,9 +941,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def jrnlRvr(self, ids: [None, list, int] = None,
-                time_start: [int, None] = None,
-                time_end: [int, None] = None,
+    def jrnlRvr(self, ids: [None, list, str, int] = None,
+                time_start: [int, str, None] = None,
+                time_end: [int, str, None] = None,
                 tags: [None, list, str] = None
                 ):
         """
@@ -912,10 +955,9 @@ class MeterData_Journal(TemplateMeterDataArch_Read_Measure):
         Если время старта не задано то поле time не формируется
         :param time_start:- int/None - Время старта считывания .
         Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :param tags:- int/None - измерения что запрашиваем .
         :return:
         """
 
         measure = 'jrnlRvr'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-

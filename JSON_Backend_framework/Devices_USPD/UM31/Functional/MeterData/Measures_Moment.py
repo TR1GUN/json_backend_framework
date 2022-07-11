@@ -2,16 +2,20 @@
 # -------------------------------------------------------------------------------------------------------------
 #                                  Чтение значений Электросчетчиков - Текущие
 # -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import \
+    TemplateMeterData_Read_Measure
+
+
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Moment(TemplateMeterDataArch_Read_Measure):
+class MeterData_Moment(TemplateMeterData_Read_Measure):
     """
-    Чтение значений Электросчетчиков - Текущие
+    Чтение значений Счетчиков - Текущие
     """
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Опрос зарядных станций
+        Чтение значений Счетчиков - Текущие
 
         :param cookies:
         :param headers:
@@ -25,9 +29,9 @@ class MeterData_Moment(TemplateMeterDataArch_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def mRelay(self, ids: [None, list, int] = None,
-               time_start: [int, None] = None,
-               time_end: [int, None] = None,
+    def mRelay(self, ids: [None, list, str, int] = None,
+               time_start: [int, str, None] = None,
+               time_end: [int, str, None] = None,
                tags: [None, list, str] = None):
         """
         Чтение из БД параметра mRelay - Текущее показание реле
@@ -48,9 +52,9 @@ class MeterData_Moment(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def mQual(self, ids: [None, list, int] = None,
-              time_start: [int, None] = None,
-              time_end: [int, None] = None,
+    def mQual(self, ids: [None, list, str, int] = None,
+              time_start: [int, str, None] = None,
+              time_end: [int, str, None] = None,
               tags: [None, list, str] = None):
         """
         Чтение из БД параметра mQual - текущие ПКЭ
@@ -71,9 +75,9 @@ class MeterData_Moment(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def mEng(self, ids: [None, list, int] = None,
-             time_start: [int, None] = None,
-             time_end: [int, None] = None,
+    def mEng(self, ids: [None, list, str, int] = None,
+             time_start: [int, str, None] = None,
+             time_end: [int, str, None] = None,
              tags: [None, list, str] = None):
         """
         Чтение из БД параметра mEng - текущие показания энергии
@@ -94,4 +98,3 @@ class MeterData_Moment(TemplateMeterDataArch_Read_Measure):
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-

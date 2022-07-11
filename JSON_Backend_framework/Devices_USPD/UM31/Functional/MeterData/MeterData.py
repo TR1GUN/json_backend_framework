@@ -4,12 +4,10 @@
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data_arch import \
-    TemplateMeterDataArch, TemplateMeterDataArch_Read_Measure
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData, \
-    TemplateMeterData_Read_Measure
 
-from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import TemplateMeterData
+from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterData.Measures import MeterData_MeasureRead
+from JSON_Backend_framework.FormJSON.UM31.MeterData.FormJSON_MeterData import FormJSON_MeterData
 
 
 # -------------------------------------------------------------------------------------------------------------
@@ -26,16 +24,17 @@ class MeterData(TemplateMeterData):
     # куки
     _cookies = None
 
-    # Настройки
-    MeterData = None
+    # Генерация JSON
+    MeterData_JSON = None
 
-    # Запрорс Отдельных Measures
+    # Запрос Отдельных Measures
 
     Measures = None
 
     # Доступные типы данных
     _measures = [
         'mRelay',
+        "mTime",
         'mQual',
         'mEng',
         'aCfg',
@@ -52,7 +51,28 @@ class MeterData(TemplateMeterData):
         'jrnlLimUBMin', 'jrnlLimUCMax', 'jrnlLimUCMin', 'jrnlLimUABMax', 'jrnlLimUABMin', 'jrnlLimUBCMax',
         'jrnlLimUBCMin', 'jrnlLimUCAMax', 'jrnlLimUCAMin', 'jrnlLimIAMax', 'jrnlLimIBMax', 'jrnlLimICMax',
         'jrnlLimFreqMax', 'jrnlLimFreqMin', 'jrnlLimPwr', 'jrnlLimPwrPP', 'jrnlLimPwrPM', 'jrnlLimPwrQP',
-        'jrnlLimPwrQM', 'jrnlRvr'
+        'jrnlLimPwrQM', 'jrnlRvr',
+        # ---->
+        # Тарифное расписание - для счетчиков СПОДЭС
+        # ---->
+        # Запрос - Имя календаря тарифного расписания - Активный
+        "ElCalendarNameActive",
+        # Запрос - Имя календаря тарифного расписания - Пассивный
+        "ElCalendarNamePassive",
+        # Запрос -  Сезонный профиль тарифного расписания -  Активный
+        "ElCalendarSeasonActive",
+        # Запрос - Сезонный профиль тарифного расписания -  Пассивный
+        "ElCalendarSeasonPassive",
+        # Запрос - Недельный профиль тарифного расписания - Активный
+        "ElCalendarWeekActive",
+        # Запрос - Недельный профиль тарифного расписания - Пассивный
+        "ElCalendarWeekPassive",
+        # Запрос - Суточный профиль тарифного расписания - Активный
+        "ElCalendarDayActive",
+        # Запрос - Суточный профиль тарифного расписания - Пассивный
+        "ElCalendarDayPassive",
+        # Запрос - Дата активации тарифного расписания
+        "ElCalendarActivateTime",
 
     ]
 
