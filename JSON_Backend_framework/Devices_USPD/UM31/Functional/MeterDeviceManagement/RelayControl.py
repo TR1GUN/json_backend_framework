@@ -16,8 +16,8 @@ class RelayControl(TemplateRelayControl):
      Управление реле
 
     """
-    # Общие настройки
-    Relay = None
+    # Генерация JSON
+    Relay_JSON = None
 
     # хедерс - Иногда нужен
     _headers = None
@@ -47,7 +47,7 @@ class RelayControl(TemplateRelayControl):
         Здесь Сбрасываем настройки
         """
         # Сбрасываем настройки
-        self.Relay = SettingsRelay()
+        self.MeterData = FormJSON_MeterData()
 
     def _getting_settings(self):
 
