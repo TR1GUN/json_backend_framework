@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------------------------------------------------
 #                                        Класс для Формирования Правильного JSON
-#                                                   Протокол УМ-31 СМАРТ
-#                                                  Чтение Данных счетчиков
+#                                                   Протокол УМ-40 СМАРТ
+#                                              Чтение Данных счетчиков Моментные
 # -------------------------------------------------------------------------------------------------------------
 from JSON_Backend_framework.Service.Template_Form_JSON.MeterData.FormJSON_MeterData import TemplateFormJSON_MeterData
 
@@ -22,25 +22,77 @@ class FormJSON_MeterData(TemplateFormJSON_MeterData):
     _tags = None
     # Доступные типы данных
     _measures = [
-        'mRelay',
-        "mTime",
-        'mQual',
-        'mEng',
-        'aCfg',
-        'aEng',
-        'aQual',
-        'aDay',
-        'aDayCons',
-        'aMonth',
-        'aMonthCons',
-        'aCons',
-        'aHour', 'jrnlPwr', 'jrnlTimeCorr', 'jrnlReset', 'jrnlC1Init', 'jrnlC2Init', 'jrnlTrfCorr', 'jrnlOpen',
-        'jrnlUnAyth', 'jrnlPwrA', 'jrnlPwrB', 'jrnlPwrC', 'jrnlProg', 'jrnlRelay', 'jrnlLimESumm', 'jrnlLimETrf',
-        'jrnlLimETrf1', 'jrnlLimETrf2', 'jrnlLimETrf3', 'jrnlLimETrf4', 'jrnlLimUAMax', 'jrnlLimUAMin', 'jrnlLimUBMax',
-        'jrnlLimUBMin', 'jrnlLimUCMax', 'jrnlLimUCMin', 'jrnlLimUABMax', 'jrnlLimUABMin', 'jrnlLimUBCMax',
-        'jrnlLimUBCMin', 'jrnlLimUCAMax', 'jrnlLimUCAMin', 'jrnlLimIAMax', 'jrnlLimIBMax', 'jrnlLimICMax',
-        'jrnlLimFreqMax', 'jrnlLimFreqMin', 'jrnlLimPwr', 'jrnlLimPwrPP', 'jrnlLimPwrPM', 'jrnlLimPwrQP',
-        'jrnlLimPwrQM', 'jrnlRvr',
+        'GetTime',
+        'PlsGetTime',
+        'ElGetTime',
+        'DigGetTime',
+
+        'GetRelay',
+        'PlsGetRelay',
+        'ElGetRelay',
+        'DigGetRelay',
+
+        'GetSerial',
+        'PlsSerial',
+        'ElSerial',
+        'DigSerial'
+
+        'ElMomentEnergy',
+        'ElDayEnergy',
+        'ElMonthEnergy',
+        'ElDayConsEnergy',
+        'ElMonthConsEnergy',
+        'ElMomentQuality',
+        'ElArr1ConsPower',
+        'PlsMomentPulse',
+        'PlsDayPulse',
+        'PlsMonthPulse',
+        'PlsHourPulse',
+        'DigMomentState',
+        'DigJournalState',
+        'ElJrnlPwr',
+        'ElJrnlTimeCorr',
+        'ElJrnlReset',
+        'ElJrnlC1Init',
+        'ElJrnlC2Init',
+        'ElJrnlTrfCorr',
+        'ElJrnlOpen',
+        'ElJrnlUnAyth',
+        'ElJrnlPwrA',
+        'ElJrnlPwrB',
+        'ElJrnlPwrC',
+        'ElJrnlProg',
+        'ElJrnlRelay',
+        'ElJrnlLimESumm',
+        'ElJrnlLimETrf',
+        'ElJrnlLimETrf1',
+        'ElJrnlLimETrf2',
+        'ElJrnlLimETrf3',
+        'ElJrnlLimETrf4',
+        'ElJrnlLimUAMax',
+        'ElJrnlLimUAMin',
+        'ElJrnlLimUBMax',
+        'ElJrnlLimUBMin',
+        'ElJrnlLimUCMax',
+        'ElJrnlLimUCMin',
+        'ElJrnlLimUABMax',
+        'ElJrnlLimUABMin',
+        'ElJrnlLimUBCMax',
+        'ElJrnlLimUBCMin',
+        'ElJrnlLimUCAMax',
+        'ElJrnlLimUCAMin',
+        'ElJrnlLimIAMax',
+        'ElJrnlLimIBMax',
+        'ElJrnlLimICMax',
+        'ElJrnlLimFreqMax',
+        'ElJrnlLimFreqMin',
+        'ElJrnlLimPwr',
+        'ElJrnlLimPwrPP',
+        'ElJrnlLimPwrPM',
+        'ElJrnlLimPwrQP',
+        'ElJrnlLimPwrQM',
+        'ElJrnlReverce',
+        'PlsJrnlTimeCorr'
         # ---->
         # Тарифное расписание - для счетчиков СПОДЭС
         # ---->
@@ -66,8 +118,21 @@ class FormJSON_MeterData(TemplateFormJSON_MeterData):
 
     # Список типов данных что не требуют тагов
     _measures_with_not_tags = [
-        'mRelay',
-        "mTime",
+        'GetTime',
+        'PlsGetTime',
+        'ElGetTime',
+        'DigGetTime',
+
+        'GetRelay',
+        'PlsGetRelay',
+        'ElGetRelay',
+        'DigGetRelay',
+
+        'GetSerial',
+        'PlsSerial',
+        'ElSerial',
+        'DigSerial'
+        
         # ---->
         # Тарифное расписание - для счетчиков СПОДЭС
         # ---->
@@ -93,10 +158,21 @@ class FormJSON_MeterData(TemplateFormJSON_MeterData):
 
     # Список моментных показателей - не требуют времени
     _measures_with_not_time = [
-        'mRelay',
-        "mTime",
-        'mQual',
-        'mEng',
+        'GetTime',
+        'PlsGetTime',
+        'ElGetTime',
+        'DigGetTime',
+
+        'GetRelay',
+        'PlsGetRelay',
+        'ElGetRelay',
+        'DigGetRelay',
+
+        'GetSerial',
+        'PlsSerial',
+        'ElSerial',
+        'DigSerial'
+        
         # ---->
         # Тарифное расписание - для счетчиков СПОДЭС
         # ---->

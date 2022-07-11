@@ -1,34 +1,28 @@
 # -------------------------------------------------------------------------------------------------------------
-#                                              Шаблон Формирования JSON
-#                                           Установка времени на Счетчике
+#                                        Класс для Формирования Правильного JSON
+#                                                   Протокол УМ-40 СМАРТ
+#                                               Установка времени на Счетчике
 # -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Form_JSON.MeterDeviceManagement.FormJSON_Time import TemplateFormJSON_MeterTimeSync
 
 # -------------------------------------------------------------------------------------------------------------
 
-class SettingsMeterTimeSync:
+
+class FormJSON_MeterTimeSync(TemplateFormJSON_MeterTimeSync):
+    """
+    Сборка JSON - Установка времени на Счетчике
+    """
+    # Готовый запрос
     _Setting_MeterTimeSync = None
 
+    # ID счетчика
+    _MeterId = None
+
     def __init__(self):
-        self._Setting_MeterTimeSync = None
-
-    def set_Meter(self, MeterIdx: int):
         """
-        Установка положения реле на счетчике по его MeterIdx
-
-        """
-
-        data = {"id": int(MeterIdx)}
-
-        self._Setting_MeterTimeSync = data
-
-    def remove_Meter(self):
-        """
-        Удаление записанного положения Реле
+        Сборка JSON - Управление реле
         """
         self._Setting_MeterTimeSync = None
 
-    def get_Meter(self):
-        """ Получаем положение что задали """
 
-        return self._Setting_MeterTimeSync
 

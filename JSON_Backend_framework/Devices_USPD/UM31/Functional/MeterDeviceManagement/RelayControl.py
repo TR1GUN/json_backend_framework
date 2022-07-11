@@ -6,7 +6,7 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.MeterManagement.Template_RelayControl import TemplateRelayControl
 
-from JSON_Backend_framework.FormJSON.UM40.MeterDeviceManagement.JSON_Construct_Management_RelayControl import SettingsRelay
+from JSON_Backend_framework.FormJSON.UM31.MeterDeviceManagement.JSON_Construct_Management_RelayControl import FormJSON_Relay
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -47,13 +47,13 @@ class RelayControl(TemplateRelayControl):
         Здесь Сбрасываем настройки
         """
         # Сбрасываем настройки
-        self.MeterData = FormJSON_MeterData()
+        self.Relay_JSON = FormJSON_Relay()
 
     def _getting_settings(self):
 
         """ Проверяем значение реле"""
 
-        data = self.Relay.get_Relay_settings()
+        data = self.Relay_JSON.get_JSON()
 
         # Обнуляем
         self._define_JSON()

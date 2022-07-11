@@ -7,7 +7,7 @@
 
 class TemplateFormJSON_MeterTimeSync:
     """
-
+    Установка времени на Счетчике
     """
     # Готовый запрос
     _Setting_MeterTimeSync = None
