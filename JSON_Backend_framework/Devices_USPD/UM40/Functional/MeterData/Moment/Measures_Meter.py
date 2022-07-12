@@ -1,21 +1,33 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                  Чтение значений Электросчетчиков - Текущие
+#                                  Чтение Импульсных значений
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import \
-    TemplateMeterData_Read_Measure
+# -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data_Moment import \
+    TemplateMeterDataMoment_Read_Measure
 
 
 # -------------------------------------------------------------------------------------------------------------
-class MeterData_Moment(TemplateMeterData_Read_Measure):
+
+
+class MeterDataMoment_Meter(TemplateMeterDataMoment_Read_Measure):
     """
-    Чтение значений Счетчиков - Текущие
+    Чтение импульсных данных счетчиков
     """
+
+    # # URL
+    # from Devices_USPD.settings import url_path
+    # _path_url = url_path.get("Meter_Data_arch")
+    # # _path_url ="/charge/data/arch"
+    # # хедерс - Иногда нужен
+    # _headers = None
+    # # куки
+    # _cookies = None
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Чтение значений Счетчиков - Текущие
+        Опрос зарядных станций
 
         :param cookies:
         :param headers:
@@ -29,71 +41,13 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def mRelay(self, ids: [None, list, str, int] = None,
-               # time_start: [int, str, None] = None,
-               # time_end: [int, str, None] = None,
-               # tags: [None, list, str] = None
-               ):
+    def GetTime(self,
+                ids: [None, list, int] = None,
+                time_start: [int, None] = None,
+                time_end: [int, None] = None,
+                tags: [None, list, str] = None):
         """
-        Чтение параметра mRelay - Текущее показание реле
-
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве. - Вырезано
-
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется - Вырезано
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется - Вырезано
-        :return:
-        """
-
-        measure = 'mRelay'
-        time_start = None
-        time_end = None
-        tags = None
-
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def mTime(self, ids: [None, list, str, int] = None,
-              # time_start: [int, str, None] = None,
-              # time_end: [int, str, None] = None,
-              # tags: [None, list, str] = None
-              ):
-        """
-        Чтение параметра mTime - Текущее показание времени приьоров учета
-
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве. - Вырезано
-
-        :param time_end: - int/None - Время конца считывания . Если None - и задано время старта - то ставиться
-        текущая дата  + 1000. Если время старта не задано то поле time не формируется - Вырезано :param time_start:-
-        int/None - Время старта считывания . Если None - и задано время конца - то ставиться 0. Если время конца не
-        задано то поле time не формируется - Вырезано
-         :return:
-        """
-
-        measure = 'mTime'
-        time_start = None
-        time_end = None
-        tags = None
-
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-
-    # -------------------------------------------------------------------------------------------------------------
-    def mQual(self, ids: [None, list, str, int] = None,
-              time_start: [int, str, None] = None,
-              time_end: [int, str, None] = None,
-              tags: [None, list, str] = None):
-        """
-        Чтение параметра mQual - текущие ПКЭ
+        Чтение параметра GetTime - Текущее показание времени прибора учета	Любое время. Одно значение
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -107,16 +61,16 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'mQual'
+        measure = 'GetTime'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def mEng(self, ids: [None, list, str, int] = None,
-             time_start: [int, str, None] = None,
-             time_end: [int, str, None] = None,
-             tags: [None, list, str] = None):
+    def GetRelay(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None):
         """
-        Чтение параметра mEng - текущие показания энергии
+        Чтение параметра GetRelay - Запрос состояний реле прибора учета
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -130,10 +84,32 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'mEng'
+        measure = 'GetRelay'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
+    def GetSerial(self, ids: [None, list, int] = None,
+                  time_start: [int, None] = None,
+                  time_end: [int, None] = None,
+                  tags: [None, list, str] = None):
+        """
+        Чтение параметра GetSerial - Запрос серийного номера
+
+        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
+                                        если строка - то тэг что указан в строке,
+                                        если список , то список тэгов что указан в массиве.
+        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
+        :param time_end: - int/None - Время конца считывания .
+        Если None - и задано время старта - то ставиться текущая дата  + 1000.
+        Если время старта не задано то поле time не формируется
+        :param time_start:- int/None - Время старта считывания .
+        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется
+        :return:
+        """
+
+        measure = 'GetSerial'
+        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
+
     # -------------------------------------------------------------------------------------------------------------
     # -------------------------------------------------------------------------------------------------------------
     def ElCalendarNameActive(self, ids: [None, list, int] = None,

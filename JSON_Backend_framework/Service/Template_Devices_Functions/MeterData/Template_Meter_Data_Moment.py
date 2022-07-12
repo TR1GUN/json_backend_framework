@@ -1,4 +1,4 @@
- # -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
 #                                         Шаблон Опроса приборов учета
 # -------------------------------------------------------------------------------------------------------------
@@ -6,11 +6,13 @@
 
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_MeterData
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
 
 
 class TemplateMeterDataMoment(TemplateDeviceFunctions_MeterData):
     """
-    Шаблон Опроса приборов учета
+    Шаблон Опроса приборов учета - Моментные данные
 
     """
     # URL
@@ -25,6 +27,23 @@ class TemplateMeterDataMoment(TemplateDeviceFunctions_MeterData):
     path_url = _path_url
     # Доступные типы данных
     _measures = [
+
+        'GetTime',
+        'PlsGetTime',
+        'ElGetTime',
+        'DigGetTime'
+
+        'GetRelay',
+        'PlsGetRelay',
+        'ElGetRelay',
+        'DigGetRelay',
+
+        'GetSerial',
+        'PlsSerial',
+        'ElSerial',
+        'DigSerial'
+
+
         'ElConfig',
         'PlsConfig',
         'DigConfig',
@@ -84,7 +103,28 @@ class TemplateMeterDataMoment(TemplateDeviceFunctions_MeterData):
         'ElJrnlLimPwrQP',
         'ElJrnlLimPwrQM',
         'ElJrnlReverce',
-        'PlsJrnlTimeCorr'
+        'PlsJrnlTimeCorr',
+        # ---->
+        # Тарифное расписание - для счетчиков СПОДЭС
+        # ---->
+        # Запрос - Имя календаря тарифного расписания - Активный
+        "ElCalendarNameActive",
+        # Запрос - Имя календаря тарифного расписания - Пассивный
+        "ElCalendarNamePassive",
+        # Запрос -  Сезонный профиль тарифного расписания -  Активный
+        "ElCalendarSeasonActive",
+        # Запрос - Сезонный профиль тарифного расписания -  Пассивный
+        "ElCalendarSeasonPassive",
+        # Запрос - Недельный профиль тарифного расписания - Активный
+        "ElCalendarWeekActive",
+        # Запрос - Недельный профиль тарифного расписания - Пассивный
+        "ElCalendarWeekPassive",
+        # Запрос - Суточный профиль тарифного расписания - Активный
+        "ElCalendarDayActive",
+        # Запрос - Суточный профиль тарифного расписания - Пассивный
+        "ElCalendarDayPassive",
+        # Запрос - Дата активации тарифного расписания
+        "ElCalendarActivateTime",
     ]
 
 
@@ -103,23 +143,22 @@ class TemplateMeterDataMoment_Read_Measure(TemplateMeterDataMoment):
         :param data: JSON
         :return:
         """
-        from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData import FormJSON_MeterData
+        from JSON_Backend_framework.FormJSON.UM40.MeterData.FormJSON_MeterData_Moment import FormJSON_MeterDataMoment
         # Формируем наш конструктор
-        MeterData_JSON_settings = FormJSON_MeterData()
+        MeterData_JSON_settings = FormJSON_MeterDataMoment()
 
-        MeterData_JSON_settings.add_settings(measure=measure,
-                                             ids=ids,
-                                             time_start=time_start,
-                                             time_end=time_end,
-                                             tags=tags)
+        MeterData_JSON_settings.add_Value(measure=measure,
+                                          ids=ids,
+                                          time_start=time_start,
+                                          time_end=time_end,
+                                          tags=tags)
 
-        MeterData_JSON = MeterData_JSON_settings.get_settings()
+        MeterData_JSON = MeterData_JSON_settings.get_JSON()
         # Если данных не спустили , то  определяем их
 
         response = self._Read(data=MeterData_JSON)
 
         return response
-
 
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------

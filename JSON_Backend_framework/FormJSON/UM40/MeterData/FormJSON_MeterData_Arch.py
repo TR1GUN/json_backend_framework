@@ -8,7 +8,7 @@ from JSON_Backend_framework.Service.Template_Form_JSON.MeterData.FormJSON_MeterD
 # -------------------------------------------------------------------------------------------------------------
 
 
-class FormJSON_MeterData(TemplateFormJSON_MeterData):
+class FormJSON_MeterDataArch(TemplateFormJSON_MeterData):
     # Готовый запрос
     _Settings = None
 
@@ -97,6 +97,44 @@ class FormJSON_MeterData(TemplateFormJSON_MeterData):
         self._time = []
         # таги
         self._tags = set()
+
+    # Формируем поле Time - Массив времени что задаем для чтения данных
+    def _form_key_Time(self, time_start, time_end):
+        """
+        Формируем поле Time - Массив времени что задаем для чтения данных
+        """
+        # Time - Массив времени что задаем для чтения данных
+        # Теперь формируем массив из времени если оно заданно
+        if (time_start is not None) or (time_end is not None):
+            # Теперь нужно сделать защиту от дебилов - проверяем на инт значение - иначе ставим значение по
+            # умолчанию для старта - 0 для финиша - текущие время + 1000
+            if type(time_start) is str:
+                start = self._convert_UTC_to_UNIXTIME(time_str=time_start)
+            elif type(time_start) is int:
+                start = time_start
+            else:
+                start = 1
+
+            if type(time_end) is str:
+                end = self._convert_UTC_to_UNIXTIME(time_str=time_end)
+
+            elif type(time_end) is int:
+                end = time_end
+
+            else:
+                from datetime import datetime
+                from time import mktime
+                # Берем текущие время
+                time_end_datatime = datetime.now()
+                # переводим в UNIX time
+                time_end = mktime(time_end_datatime.timetuple())
+                # Переводим в int
+                time_end = int(time_end) + 1000
+                # Теперь формируем все это
+                end = time_end
+
+            time_dict = {"start": start, "end": end}
+            self._time.append(time_dict)
 
     def get_JSON(self):
         """

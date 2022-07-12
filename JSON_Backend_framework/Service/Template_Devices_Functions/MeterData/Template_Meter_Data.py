@@ -8,6 +8,9 @@ from JSON_Backend_framework.Devices_USPD.settings import url_path
 from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_MeterData
 
 
+# -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+
 class TemplateMeterData(TemplateDeviceFunctions_MeterData):
     """
     Шаблон Опроса приборов учета

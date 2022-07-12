@@ -1,21 +1,22 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                  Чтение значений Электросчетчиков - Текущие
+#                                  Чтение значений Электросчетчиков
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data import \
-    TemplateMeterData_Read_Measure
+# -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Devices_Functions.MeterData.Template_Meter_Data_Moment import \
+    TemplateMeterDataMoment_Read_Measure
+# -------------------------------------------------------------------------------------------------------------
 
 
-# -------------------------------------------------------------------------------------------------------------
-class MeterData_Moment(TemplateMeterData_Read_Measure):
+class MeterDataMoment_Electric(TemplateMeterDataMoment_Read_Measure):
     """
-    Чтение значений Счетчиков - Текущие
+    Чтение значений Электросчетчиков
     """
 
     # Поскольку мы наследуемся, то делаем конструктор
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Чтение значений Счетчиков - Текущие
+        Опрос зарядных станций
 
         :param cookies:
         :param headers:
@@ -29,71 +30,13 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
             self._ip_address = ip_address
 
     # -------------------------------------------------------------------------------------------------------------
-    def mRelay(self, ids: [None, list, str, int] = None,
-               # time_start: [int, str, None] = None,
-               # time_end: [int, str, None] = None,
-               # tags: [None, list, str] = None
-               ):
+    def ElMomentEnergy(self,
+                       ids: [None, list, str, int] = None,
+                       time_start: [int, str, None] = None,
+                       time_end: [int, str, None] = None,
+                       tags: [None, list, str] = None):
         """
-        Чтение параметра mRelay - Текущее показание реле
-
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве. - Вырезано
-
-        :param time_end: - int/None - Время конца считывания .
-        Если None - и задано время старта - то ставиться текущая дата  + 1000.
-        Если время старта не задано то поле time не формируется - Вырезано
-        :param time_start:- int/None - Время старта считывания .
-        Если None - и задано время конца - то ставиться 0. Если время конца не задано то поле time не формируется - Вырезано
-        :return:
-        """
-
-        measure = 'mRelay'
-        time_start = None
-        time_end = None
-        tags = None
-
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-    def mTime(self, ids: [None, list, str, int] = None,
-              # time_start: [int, str, None] = None,
-              # time_end: [int, str, None] = None,
-              # tags: [None, list, str] = None
-              ):
-        """
-        Чтение параметра mTime - Текущее показание времени приьоров учета
-
-        :param ids: - int/list/None - ID станций - Если None, то не формируется поле ids
-        :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
-                                        если строка - то тэг что указан в строке,
-                                        если список , то список тэгов что указан в массиве. - Вырезано
-
-        :param time_end: - int/None - Время конца считывания . Если None - и задано время старта - то ставиться
-        текущая дата  + 1000. Если время старта не задано то поле time не формируется - Вырезано :param time_start:-
-        int/None - Время старта считывания . Если None - и задано время конца - то ставиться 0. Если время конца не
-        задано то поле time не формируется - Вырезано
-         :return:
-        """
-
-        measure = 'mTime'
-        time_start = None
-        time_end = None
-        tags = None
-
-        return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
-
-    # -------------------------------------------------------------------------------------------------------------
-
-    # -------------------------------------------------------------------------------------------------------------
-    def mQual(self, ids: [None, list, str, int] = None,
-              time_start: [int, str, None] = None,
-              time_end: [int, str, None] = None,
-              tags: [None, list, str] = None):
-        """
-        Чтение параметра mQual - текущие ПКЭ
+        Чтение параметра ElMomentEnergy - Моментная энергия
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -107,16 +50,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'mQual'
+        measure = 'ElMomentEnergy'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def mEng(self, ids: [None, list, str, int] = None,
-             time_start: [int, str, None] = None,
-             time_end: [int, str, None] = None,
-             tags: [None, list, str] = None):
+    def ElDayEnergy(self,
+                    ids: [None, list, str, int] = None,
+                    time_start: [int, str, None] = None,
+                    time_end: [int, str, None] = None,
+                    tags: [None, list, str] = None):
         """
-        Чтение параметра mEng - текущие показания энергии
+        Чтение параметра ElDayEnergy -  Энергия на начало дня
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -130,19 +74,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'mEng'
+        measure = 'ElDayEnergy'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    # -------------------------------------------------------------------------------------------------------------
-    # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarNameActive(self, ids: [None, list, int] = None,
-                             time_start: [int, None] = None,
-                             time_end: [int, None] = None,
-                             tags: [None, list, str] = None):
+    def ElMonthEnergy(self,
+                      ids: [None, list, str, int] = None,
+                      time_start: [int, str, None] = None,
+                      time_end: [int, str, None] = None,
+                      tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarNameActive - Тарифное расписание для счетчиков СПОДЭС - Имя календаря тарифного
-        расписания - Активный
+        Чтение параметра ElMonthEnergy -  Энергия на начало месяца
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -156,17 +98,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarNameActive'
+        measure = 'ElMonthEnergy'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarNamePassive(self, ids: [None, list, int] = None,
-                              time_start: [int, None] = None,
-                              time_end: [int, None] = None,
-                              tags: [None, list, str] = None):
+    def ElDayConsEnergy(self,
+                        ids: [None, list, str, int] = None,
+                        time_start: [int, str, None] = None,
+                        time_end: [int, str, None] = None,
+                        tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarNamePassive - Тарифное расписание для счетчиков СПОДЭС - Имя календаря тарифного
-        расписания - Пассивный
+        Чтение параметра ElDayConsEnergy -  Потребленная энергия на начало суток.
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -180,17 +122,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarNamePassive'
+        measure = 'ElDayConsEnergy'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarSeasonActive(self, ids: [None, list, int] = None,
-                               time_start: [int, None] = None,
-                               time_end: [int, None] = None,
-                               tags: [None, list, str] = None):
+    def ElMonthConsEnergy(self,
+                          ids: [None, list, str, int] = None,
+                          time_start: [int, str, None] = None,
+                          time_end: [int, str, None] = None,
+                          tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarSeasonActive - Тарифное расписание для счетчиков СПОДЭС -  Сезонный профиль
-        тарифного расписания -  Активный
+        Чтение параметра ElMonthConsEnergy -  Энергия потребленная на начало месяца
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -204,17 +146,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarSeasonActive'
+        measure = 'ElMonthConsEnergy'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarSeasonPassive(self, ids: [None, list, int] = None,
-                                time_start: [int, None] = None,
-                                time_end: [int, None] = None,
-                                tags: [None, list, str] = None):
+    def ElMomentQuality(self,
+                        ids: [None, list, str, int] = None,
+                        time_start: [int, str, None] = None,
+                        time_end: [int, str, None] = None,
+                        tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarSeasonPassive - Тарифное расписание для счетчиков СПОДЭС - Сезонный профиль
-        тарифного расписания -  Пассивный
+        Чтение параметра ElMomentQuality - Показатели качества сети
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -228,17 +170,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarSeasonPassive'
+        measure = 'ElMomentQuality'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarWeekActive(self, ids: [None, list, int] = None,
-                             time_start: [int, None] = None,
-                             time_end: [int, None] = None,
-                             tags: [None, list, str] = None):
+    def ElArr1ConsPower(self,
+                        ids: [None, list, str, int] = None,
+                        time_start: [int, str, None] = None,
+                        time_end: [int, str, None] = None,
+                        tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarWeekActive - Тарифное расписание для счетчиков СПОДЭС - Недельный профиль
-        тарифного расписания - Активный
+        Чтение параметра ElArr1ConsPower - Профиль мощности
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -252,17 +194,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarWeekActive'
+        measure = 'ElArr1ConsPower'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarWeekPassive(self, ids: [None, list, int] = None,
-                              time_start: [int, None] = None,
-                              time_end: [int, None] = None,
-                              tags: [None, list, str] = None):
+    def ElConfig(self,
+                 ids: [None, list, str, int] = None,
+                 time_start: [int, str, None] = None,
+                 time_end: [int, str, None] = None,
+                 tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarWeekPassive - Тарифное расписание для счетчиков СПОДЭС - Недельный профиль
-        тарифного расписания - Пассивный
+        Чтение из БД параметра ElConfig - Конфиг
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -276,17 +218,18 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarWeekPassive'
+        measure = 'ElConfig'
+
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarDayActive(self, ids: [None, list, int] = None,
-                            time_start: [int, None] = None,
-                            time_end: [int, None] = None,
-                            tags: [None, list, str] = None):
+    def ElGetTime(self,
+                  ids: [None, list, int] = None,
+                  time_start: [int, None] = None,
+                  time_end: [int, None] = None,
+                  tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarDayActive - Тарифное расписание для счетчиков СПОДЭС - Суточный профиль тарифного
-        расписания - Активный
+        Чтение параметра ElGetTime - Текущее показание времени Электросчетчика	Любое время. Одно значение
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -300,17 +243,17 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarDayActive'
+        measure = 'ElGetTime'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarDayPassive(self, ids: [None, list, int] = None,
-                             time_start: [int, None] = None,
-                             time_end: [int, None] = None,
-                             tags: [None, list, str] = None):
+    def ElGetRelay(self,
+                   ids: [None, list, int] = None,
+                   time_start: [int, None] = None,
+                   time_end: [int, None] = None,
+                   tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarDayPassive - Тарифное расписание для счетчиков СПОДЭС - Суточный профиль тарифного
-        расписания - Пассивный
+        Чтение параметра ElGetRelay - Запрос состояний реле Электросчетчика
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -324,17 +267,16 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarDayPassive'
+        measure = 'ElGetRelay'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
-    def ElCalendarActivateTime(self, ids: [None, list, int] = None,
-                               time_start: [int, None] = None,
-                               time_end: [int, None] = None,
-                               tags: [None, list, str] = None):
+    def ElSerial(self, ids: [None, list, int] = None,
+                 time_start: [int, None] = None,
+                 time_end: [int, None] = None,
+                 tags: [None, list, str] = None):
         """
-        Чтение параметра ElCalendarActivateTime - Тарифное расписание для счетчиков СПОДЭС - Дата активации тарифного
-        расписания
+        Чтение параметра ElSerial - Запрос серийного номера Электросчетчика
 
         :param tags: - None/list/str - Тэги что запрашиваем - Если None, то тэг не ставиться,
                                         если строка - то тэг что указан в строке,
@@ -348,7 +290,7 @@ class MeterData_Moment(TemplateMeterData_Read_Measure):
         :return:
         """
 
-        measure = 'ElCalendarActivateTime'
+        measure = 'ElSerial'
         return self._read_settings(measure=measure, ids=ids, time_start=time_start, time_end=time_end, tags=tags)
 
     # -------------------------------------------------------------------------------------------------------------
