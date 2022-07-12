@@ -6,6 +6,13 @@ ip_smart_31 = '192.168.205.22'
 ip_smart_40 = '192.168.202.197'
 SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
 lol = SMART.MeterDeviceManagement.Calendar.Activate.Set_Calendar()
+lol = SMART.Action.Time_Check.Set()
+lol = SMART.Action.Time_Set.Set()
+lol = SMART.Action.Storage_Sync.Sync()
+lol = SMART.Action.Restart.Restart()
+lol = SMART.Action.Time_Sync.Sync()
+lol = SMART.Action.Disk_Clear.Set()
+lol = SMART.Action.Disk_Clear.Set()
 
 # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
 # lol = SMART.Settings.Meter.Table.Read_Settings()
