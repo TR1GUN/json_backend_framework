@@ -18,6 +18,7 @@ class UM_31_SMART_Actions(Template_UM_XX_SMART_Actions):
     # Функционал
     # Перезагрузка
     Restart = None
+
     # Установка времени – Системное время устройства
     Time_Set = None
     # Синхронизация времени (SNTP)

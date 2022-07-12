@@ -30,19 +30,39 @@ class MeterDeviceManagementCalendar:
         self._cookies = cookies
         self._headers = headers
         self._ip_address = ip_address
+        # ---->
 
-        self.Activate = self._Generate_Activate()
-        self.Name = self._Generate_Name()
-        self.Season = self._Generate_Season()
-        self.Week = self._Generate_Week()
-        self.Day = self._Generate_Day()
-        self.Time = self._Generate_Time()
+        self._define_functionality()
+
+    def _define_functionality(self):
+        """
+
+        Получение функционала
+
+        """
+        # Активация тарифного расписания
+        self.Activate = self._Calendar_Activate()
+        # Имя календаря тарифного расписания
+        self.Name = self._Calendar_Name()
+        # Сезонный профиль тарифного расписания
+        self.Season = self._Calendar_Season()
+        # Недельный профиль тарифного расписания
+        self.Week = self._Calendar_Week()
+        # Суточный профиль тарифного расписания
+        self.Day = self._Calendar_Day()
+        # Дата активации тарифного расписания
+        self.Time = self._Calendar_Time()
 
     # Здесь генерируем сам функционал :
 
     # ГЕНЕРИРУЕМ Активация тарифного расписания
-    def _Generate_Activate(self):
-        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Activate import CalendarActivate
+    def _Calendar_Activate(self):
+        """
+        Активация тарифного расписания
+        :return:
+        """
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Activate import \
+            CalendarActivate
 
         Calendar_Activate = CalendarActivate(
             cookies=self._cookies,
@@ -52,7 +72,11 @@ class MeterDeviceManagementCalendar:
         return Calendar_Activate
 
     # ГЕНЕРИРУЕМ Имя календаря тарифного расписания
-    def _Generate_Name(self):
+    def _Calendar_Name(self):
+        """
+        Имя календаря тарифного расписания
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Name import CalendarName
 
         Calendar_Name = CalendarName(
@@ -63,8 +87,13 @@ class MeterDeviceManagementCalendar:
         return Calendar_Name
 
     # ГЕНЕРИРУЕМ Сезонный профиль тарифного расписания
-    def _Generate_Season(self):
-        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Season import CalendarSeason
+    def _Calendar_Season(self):
+        """
+        Сезонный профиль тарифного расписания
+        :return:
+        """
+        from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Season import \
+            CalendarSeason
 
         Calendar_Season = CalendarSeason(
             cookies=self._cookies,
@@ -74,7 +103,11 @@ class MeterDeviceManagementCalendar:
         return Calendar_Season
 
     # ГЕНЕРИРУЕМ Недельный профиль тарифного расписания
-    def _Generate_Week(self):
+    def _Calendar_Week(self):
+        """
+        Недельный профиль тарифного расписания
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Week import CalendarWeek
 
         Calendar_Week = CalendarWeek(
@@ -85,7 +118,11 @@ class MeterDeviceManagementCalendar:
         return Calendar_Week
 
     # ГЕНЕРИРУЕМ Суточный профиль тарифного расписания
-    def _Generate_Day(self):
+    def _Calendar_Day(self):
+        """
+        Суточный профиль тарифного расписания
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Day import CalendarDay
 
         Calendar_Day = CalendarDay(
@@ -96,7 +133,11 @@ class MeterDeviceManagementCalendar:
         return Calendar_Day
 
     # ГЕНЕРИРУЕМ Дата активации тарифного расписания
-    def _Generate_Time(self):
+    def _Calendar_Time(self):
+        """
+        Дата активации тарифного расписания
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM31.Functional.MeterDeviceManagement.Calendar.Time import CalendarTime
 
         Calendar_Time = CalendarTime(

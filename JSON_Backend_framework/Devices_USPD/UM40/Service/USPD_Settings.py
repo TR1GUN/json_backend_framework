@@ -30,6 +30,11 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
     # Настройки Серверов
     Servers = None
 
+    # Настройки протокола
+    Proto = None
+    # Настройки сообщений
+    # Messages = None
+
     # Настройки серверов
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
@@ -50,6 +55,8 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
         self.Servers = self._Settings_Servers()
         self.EventSystem = self._Settings_EventSystem()
         self.DeviceSettings = self._Settings_DeviceSettings()
+        self.Proto = self._Settings_Proto()
+        # self.Messages = self._Settings_Messages()
 
     def _Settings_Meter(self):
         """
@@ -126,3 +133,31 @@ class UM_40_SMART_Settings(Template_UM_XX_SMART_Settings):
             ip_address=self._ip_address
         )
         return Device
+
+    def _Settings_Proto(self):
+        """
+        Настройки протоколов обмена
+        :return:
+        """
+        from JSON_Backend_framework.Devices_USPD.UM40.Service.Settings.Proto import SettingsProto
+        # Определяем настройки
+        Proto = SettingsProto(
+            cookies=self._cookies,
+            headers=self._headers,
+            ip_address=self._ip_address
+        )
+        return Proto
+    #
+    # def _Settings_Messages(self):
+    #     """
+    #     Настройки сообщений
+    #     :return:
+    #     """
+    #     from JSON_Backend_framework.Devices_USPD.UM40.Service.Settings.Messages import SettingsMessages
+    #     # Определяем настройки
+    #     Messages = SettingsMessages(
+    #         cookies=self._cookies,
+    #         headers=self._headers,
+    #         ip_address=self._ip_address
+    #     )
+    #     return Messages

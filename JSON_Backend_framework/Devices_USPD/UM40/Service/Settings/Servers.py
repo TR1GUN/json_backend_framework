@@ -21,15 +21,31 @@ class SettingsServers:
         self._headers = headers
         self._ip_address = ip_address
 
-        self.TCP = self._Generate_TCP()
-        self.SMTP = self._Generate_SMTP()
-        self.SNTP = self._Generate_SNTP()
-        self.MQTT = self._Generate_MQTT()
+        # ---->
+        self._define_functionality()
+
+    def _define_functionality(self):
+        """
+        Получение функционала
+        """
+        # Настройки TCP-серверов
+        self.TCP = self._Servers_TCP()
+        # Настройки SMTP-серверов
+        self.SMTP = self._Servers_SMTP()
+        # Настройки SNTP-серверов
+        self.SNTP = self._Servers_SNTP()
+        # Настройки MQTT-серверов
+        self.MQTT = self._Servers_MQTT()
+    # Здесь генерируем сам функционал :
 
     # Здесь генерируем сам функционал :
 
     # Настройки TCP-серверов
-    def _Generate_TCP(self):
+    def _Servers_TCP(self):
+        """
+        Настройки TCP-серверов
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_TCP import ServerTCP
         TCP = ServerTCP(
             cookies=self._cookies,
@@ -39,7 +55,11 @@ class SettingsServers:
         return TCP
 
     # Настройки SMTP-серверов
-    def _Generate_SMTP(self):
+    def _Servers_SMTP(self):
+        """
+        Настройки SMTP-серверов
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_SMTP import ServerSMTP
         SMTP = ServerSMTP(
             cookies=self._cookies,
@@ -49,7 +69,11 @@ class SettingsServers:
         return SMTP
 
     # Настройки SТTP-серверов
-    def _Generate_SNTP(self):
+    def _Servers_SNTP(self):
+        """
+        Настройки SТTP-серверов
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_SNTP import ServerSNTP
         SNTP = ServerSNTP(
             cookies=self._cookies,
@@ -59,7 +83,11 @@ class SettingsServers:
         return SNTP
 
     # Настройки MQTT-серверов
-    def _Generate_MQTT(self):
+    def _Servers_MQTT(self):
+        """
+        Настройки MQTT-серверов
+        :return:
+        """
         from JSON_Backend_framework.Devices_USPD.UM40.Functional.Settings.Servers.Server_MQTT import ServerMQTT
         MQTT = ServerMQTT(
             cookies=self._cookies,

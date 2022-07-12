@@ -6,8 +6,6 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Servers.Template_MQTT_server_settings import \
     TemplateServer_MQTT
-
-
 # -------------------------------------------------------------------------------------------------------------
 
 
