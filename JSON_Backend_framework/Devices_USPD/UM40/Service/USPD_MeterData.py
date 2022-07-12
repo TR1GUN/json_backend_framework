@@ -41,23 +41,10 @@ class UM_40_SMART_MeterData(Template_UM_XX_SMART_MeterData):
 
         """
 
-        # self.MeterData = self._MeterData()
         self.MeterData_Arch = self._MeterData_Arch()
         self.MeterData_Moment = self._MeterData_Moment()
 
     # ----->
-
-    # def _MeterData(self):
-    #     """
-    #     Опрос приборов учета
-    #     """
-    #     from JSON_Backend_framework.Devices_USPD.UM40.Functional.MeterData.MeterData import MeterData
-    #     MeterData_read = MeterData(
-    #                     cookies=self._cookies,
-    #                     headers=self._headers,
-    #                     ip_address=self._ip_address
-    #                   )
-    #     return MeterData_read
 
     def _MeterData_Arch(self):
         """

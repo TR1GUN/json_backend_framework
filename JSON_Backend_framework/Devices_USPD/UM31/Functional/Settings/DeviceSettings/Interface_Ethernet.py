@@ -5,10 +5,12 @@
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_Ethernet_settings import \
-    TemplateInterface_Ethernet
+    TemplateInterface_EthernetUM31
+
+
 # -------------------------------------------------------------------------------------------------------------
 
-class Interface_Ethernet(TemplateInterface_Ethernet):
+class Interface_Ethernet(TemplateInterface_EthernetUM31):
     """
     Настройки Ethernet
 

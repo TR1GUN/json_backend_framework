@@ -6,7 +6,7 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_DOut_settings import \
     TemplateInterface_DOut_PowerLine
-from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_DOut import SettingsDOut
+# from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_DOut import SettingsDOut
 # -------------------------------------------------------------------------------------------------------------
 
 

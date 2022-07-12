@@ -1,20 +1,19 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки расписаний
+#                                         Настройки http авторизации
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Event_System.Template_Events_Scheduler_settings import \
-    TemplateScheduler
+from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Proto.Template_Proto_JSON_auth import \
+    TemplateProtoJSONAuth
 
 
 # -------------------------------------------------------------------------------------------------------------
 
 
-class Scheduler(TemplateScheduler):
+class ProtoJSONAuth(TemplateProtoJSONAuth):
     """
-    Настройки расписаний
-
+    Настройки http авторизации
     """
 
     # хедерс - Иногда нужен
@@ -29,7 +28,7 @@ class Scheduler(TemplateScheduler):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки расписаний
+        Настройки http авторизации
 
         :param cookies:
         :param headers:
@@ -42,8 +41,26 @@ class Scheduler(TemplateScheduler):
         if ip_address is not None:
             self._ip_address = ip_address
 
+    # Получение настроек если поле Data не задано - В Качестве основного используется Запрос GET
+    def _getting_settings(self):
+
+        """
+        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+        """
+        data = self._request_setting()
+        return data
+
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON
 # -------------------------------------------------------------------------------------------------------------
-#
+# {
+# 	"Settings":[
+# 		{
+# 			"id":1,
+# 			"login":"user",
+# 			"password":"user",
+# 			"lvl":				2
+# 		}
+# 	]
+# }
 # -------------------------------------------------------------------------------------------------------------

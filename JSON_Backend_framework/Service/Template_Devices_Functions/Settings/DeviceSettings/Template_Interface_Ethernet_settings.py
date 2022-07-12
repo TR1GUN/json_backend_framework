@@ -7,11 +7,15 @@
 # в 40 через поле settings
 # в 31 через простой список
 #
-from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings_WithOutDataTag
+from JSON_Backend_framework.Service.TemplateDeviceFunctions import TemplateDeviceFunctions_Settings_WithOutDataTag, \
+    TemplateDeviceFunctions_Settings
 from JSON_Backend_framework.Devices_USPD.settings import url_path
 
 
-class TemplateInterface_Ethernet(TemplateDeviceFunctions_Settings_WithOutDataTag):
+# -------------------------------------------------------------------------------------------------------------
+#                                            Для УМ 31
+# -------------------------------------------------------------------------------------------------------------
+class TemplateInterface_EthernetUM31(TemplateDeviceFunctions_Settings_WithOutDataTag):
     """
     Шаблон Настройки Ethernet
 
@@ -31,5 +35,31 @@ class TemplateInterface_Ethernet(TemplateDeviceFunctions_Settings_WithOutDataTag
     Ethernet_Settings = None
 
     _settings_to_send = {}
+
+
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------
+#                                            Для УМ 40
+# -------------------------------------------------------------------------------------------------------------
+class TemplateInterface_EthernetUM40(TemplateDeviceFunctions_Settings):
+    """
+    Шаблон Настройки Ethernet
+
+    """
+
+    # URL
+
+    _path_url = url_path.get("Settings_Ethernet")
+
+    # хедерс - Иногда нужен
+    _headers = None
+    # куки
+    _cookies = None
+    # Переопределяем чтоб можно было достать
+    path_url = _path_url
+    # Имя поля настроек
+    Ethernet_Settings = None
+    # Имя поля настроек
+    _Settings_name = 'Settings'
+    _settings_to_send = {}

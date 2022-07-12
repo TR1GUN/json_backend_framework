@@ -27,7 +27,7 @@ class MeterArchInfo(TemplateMeterArchInfo):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки SIM-карт (Pin, APN)
+        Настройки хранения архивных данных приборов учета
 
         :param cookies:
         :param headers:

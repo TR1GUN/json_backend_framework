@@ -4,13 +4,14 @@
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
-from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_Ethernet_settings import TemplateInterface_Ethernet
-from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data
-# from JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_Ethernet import SettingsEthernet
+from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.DeviceSettings.Template_Interface_Ethernet_settings import TemplateInterface_EthernetUM40
+# from JSON_Backend_framework.Service.TemplateDecorator import print_log_use_GET_data # from
+# JSON_Backend_framework.FormJSON.UM40.Settings.DeviceSettings.JSON_Construct_Settings_Interface_Ethernet import
+# SettingsEthernet
 # -------------------------------------------------------------------------------------------------------------
 
 
-class Interface_Ethernet(TemplateInterface_Ethernet):
+class Interface_Ethernet(TemplateInterface_EthernetUM40):
     """
     Настройки Ethernet
 
@@ -28,7 +29,7 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
     # # Настройки по умолчанию
     #
     # # Настройки Ethernet
-    # _Eth0 = {'iface': 'eth0', 'dhcp': False, 'ip': '192.168.0.1', 'netmask': '255.255.255.1', 'gw': '', 'dns1': '', 'dns2': ''}
+    # _Eth0 = {'iface': 'eth0', 'dhcp': False, 'ip': '192.168.0.1', 'netmask': '255.255.255.1',  'gw': '', 'dns1': '', 'dns2': ''}
     #
     # _Eth1 = {'iface': 'eth1', 'dhcp': True, 'ip': '', 'netmask': '', 'gw': '', 'dns1': '', 'dns2': ''}
 
@@ -49,109 +50,109 @@ class Interface_Ethernet(TemplateInterface_Ethernet):
         # # Обнуляем
         # self._define_JSON()
 
-    # Настройки по умолчанию
-
-    def Read_Settings(self):
-        """
-        Читаем данные - GET
-        :return:
-        """
-        # делаем запрос - получаем ответ
-        response = self._request_GET()
-
-        return response
-
-    def Write_Settings(self, data=None):
-        """
-        Добавляем на запись данные  - POST
-
-        :param data:
-        :return:
-        """
-
-        if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
-
-        # Запаковываем
-        data = self._coding(data=data)
-
-        # делаем запрос - получаем ответ
-        response = self._request_POST(JSON=data)
-
-        return response
-
-    def Rewrite_Settings(self, data=None):
-        """
-        Перезаписываем данные - PUT
-        :param data:
-        :return:
-        """
-        if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
-
-        # Запаковываем
-        data = self._coding(data=data)
-
-        # делаем запрос - получаем ответ
-        response = self._request_PUT(JSON=data)
-
-        return response
-
-    def Delete_Settings(self, data=None):
-        """
-        Удаляем данные - DELETE
-        :param data:
-        :return:
-        """
-        # Запаковываем
-        if data is not None:
-            data = self._coding(data=data)
-
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE(JSON=data)
-        else:
-            # делаем запрос - получаем ответ
-            response = self._request_DELETE()
-
-        return response
-
-    # Здесь расположим сервисные функции
-    # Первое - Получаем настройки что уже есть
-
-    def _getting_settings(self):
-
-        """
-        В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
-        """
-        data = self._request_setting()
-        return data
-
-    # Запрос настроек
-    @print_log_use_GET_data
-    def _request_setting(self):
-        """
-        Здесь запрашиваем нужные нам настройки
-
-        """
-        data = []
-        try:
-            # делаем запрос - получаем ответ
-            response = self.Read_Settings()
-            # Теперь вытаскиваем нужное
-            if response.get('code') == int(200):
-                answer_setting = response.get('data')
-                # Теперь заполянем наши переменные
-                if answer_setting is not None:
-                    Settings = answer_setting.get(self._Settings_name)
-                    if Settings is not None:
-                        data = Settings
-        except Exception as e:
-
-            print("При считывании параметров возникла ошибка - " + str(e))
-
-        return data
+    # # Настройки по умолчанию
+    #
+    # def Read_Settings(self):
+    #     """
+    #     Читаем данные - GET
+    #     :return:
+    #     """
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_GET()
+    #
+    #     return response
+    #
+    # def Write_Settings(self, data=None):
+    #     """
+    #     Добавляем на запись данные  - POST
+    #
+    #     :param data:
+    #     :return:
+    #     """
+    #
+    #     if data is None:
+    #         data_settings = self._getting_settings()
+    #         data = {self._Settings_name: data_settings}
+    #
+    #     # Запаковываем
+    #     data = self._coding(data=data)
+    #
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_POST(JSON=data)
+    #
+    #     return response
+    #
+    # def Rewrite_Settings(self, data=None):
+    #     """
+    #     Перезаписываем данные - PUT
+    #     :param data:
+    #     :return:
+    #     """
+    #     if data is None:
+    #         data_settings = self._getting_settings()
+    #         data = {self._Settings_name: data_settings}
+    #
+    #     # Запаковываем
+    #     data = self._coding(data=data)
+    #
+    #     # делаем запрос - получаем ответ
+    #     response = self._request_PUT(JSON=data)
+    #
+    #     return response
+    #
+    # def Delete_Settings(self, data=None):
+    #     """
+    #     Удаляем данные - DELETE
+    #     :param data:
+    #     :return:
+    #     """
+    #     # Запаковываем
+    #     if data is not None:
+    #         data = self._coding(data=data)
+    #
+    #         # делаем запрос - получаем ответ
+    #         response = self._request_DELETE(JSON=data)
+    #     else:
+    #         # делаем запрос - получаем ответ
+    #         response = self._request_DELETE()
+    #
+    #     return response
+    #
+    # # Здесь расположим сервисные функции
+    # # Первое - Получаем настройки что уже есть
+    #
+    # def _getting_settings(self):
+    #
+    #     """
+    #     В Классе шаблоне метод получения настроек отвечает за вставку GET запроса
+    #     """
+    #     data = self._request_setting()
+    #     return data
+    #
+    # # Запрос настроек
+    # @print_log_use_GET_data
+    # def _request_setting(self):
+    #     """
+    #     Здесь запрашиваем нужные нам настройки
+    #
+    #     """
+    #     data = []
+    #     try:
+    #         # делаем запрос - получаем ответ
+    #         response = self.Read_Settings()
+    #         # Теперь вытаскиваем нужное
+    #         if response.get('code') == int(200):
+    #             answer_setting = response.get('data')
+    #             # Теперь заполянем наши переменные
+    #             if answer_setting is not None:
+    #                 Settings = answer_setting.get(self._Settings_name)
+    #                 if Settings is not None:
+    #                     data = Settings
+    #     except Exception as e:
+    #
+    #         print("При считывании параметров возникла ошибка - " + str(e))
+    #
+    #     return data
     # def _define_JSON(self):
     #     """
     #     Здесь Сбрасываем настройки

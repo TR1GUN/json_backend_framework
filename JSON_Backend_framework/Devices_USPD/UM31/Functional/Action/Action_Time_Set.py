@@ -6,8 +6,6 @@
 # Импортируем Шаблон взаимодействия
 from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_Time_set import \
     TemplateActionTimeSet
-
-
 # -------------------------------------------------------------------------------------------------------------
 
 
