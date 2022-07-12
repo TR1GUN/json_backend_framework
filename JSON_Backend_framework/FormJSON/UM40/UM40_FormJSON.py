@@ -114,7 +114,7 @@ class ActionJSON:
 
     # Установка Времени
     def _SetTime(self):
-        from JSON_Backend_framework.FormJSON.UM40.Action.JSON_Construct_Actions_Set_Time import SettingsSetTime
+        from JSON_Backend_framework.FormJSON.UM40.Action.FormJSON_Actions_Set_Time import SettingsSetTime
 
         SetTime = SettingsSetTime()
         return SetTime

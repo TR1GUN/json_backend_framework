@@ -6,7 +6,7 @@
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.MeterManagement.Template_MeterTime import \
     TemplateTimeMeterSetting
-from JSON_Backend_framework.FormJSON.UM40.MeterDeviceManagement.JSON_Construct_Management_MeterTime import SettingsMeterTimeSync
+from JSON_Backend_framework.FormJSON.UM40.MeterDeviceManagement.JSON_Construct_Management_MeterTime import FormJSON_MeterTimeSync
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -22,8 +22,8 @@ class TimeMeterSetting(TemplateTimeMeterSetting):
     _headers = None
     # куки
     _cookies = None
-
-    Meter = None
+    # Генерация JSON
+    MeterTime_JSON = None
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
@@ -47,7 +47,7 @@ class TimeMeterSetting(TemplateTimeMeterSetting):
 
         """ Проверяем значение реле"""
 
-        data = self.Meter.get_Meter()
+        data = self.MeterTime_JSON.get_JSON()
 
         if data is None:
             data = {}
@@ -62,7 +62,7 @@ class TimeMeterSetting(TemplateTimeMeterSetting):
         Здесь Сбрасываем настройки
         """
         # Сбрасываем настройки
-        self.Meter = SettingsMeterTimeSync()
+        self.MeterTime_JSON = FormJSON_MeterTimeSync()
 
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON

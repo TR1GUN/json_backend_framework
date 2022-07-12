@@ -7,7 +7,7 @@ from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Servers.
     TemplateServer_TCP
 
 # Импортируем шаблон Настроек
-from JSON_Backend_framework.FormJSON.UM40.Settings.Servers.JSON_Construct_Settings_Server_TCP import SettingsServer
+# from JSON_Backend_framework.FormJSON.UM40.Settings.Servers.JSON_Construct_Settings_Server_TCP import SettingsServer
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -23,7 +23,7 @@ class ServerTCP(TemplateServer_TCP):
     _cookies = None
 
     # Общие настройки
-    Settings = None
+    # Settings = None
 
     # Настройки по умолчанию
 
@@ -43,43 +43,42 @@ class ServerTCP(TemplateServer_TCP):
             self._ip_address = ip_address
 
         # Обнуляем
-        self._define_JSON()
+        # self._define_JSON()
 
-    def _define_JSON(self):
-        """
-        Здесь Сбрасываем настройки
-        """
-        # Сбрасываем настройки
-        self.Settings = SettingsServer()
-    # Здесь расположим сервисные функции
-    # Первое - Получаем настройки что уже есть
+    # def _define_JSON(self):
+    #     """
+    #     Здесь Сбрасываем настройки
+    #     """
+    #     # Сбрасываем настройки
+    #     self.Settings = SettingsServer()
+    # # Здесь расположим сервисные функции
+    # # Первое - Получаем настройки что уже есть
 
-    def _getting_settings(self):
-
-        """
-        В Классе метод получения настроек отвечает за
-        Если добавлены настройки, вставляем их ,
-        Если нет, вставку GET запроса
-
-        """
-        # Сначала получаем наши данные что ввели
-        servers_data = self.Settings.get_servers()
-        # Теперь что делаем - смотрим что в дата таге
-        servers_list = servers_data.get(self._Settings_name)
-        # Если НИЧЕГО НЕ ДОБАВЛЯЛИ , используем из GET запроса
-        if servers_list is not None:
-            if len(servers_list) > 0:
-                data = servers_list
-
-                # Обнуляем
-                self._define_JSON()
-
-            else:
-                data = self._request_setting()
-        else:
-            data = self._request_setting()
-
-        return data
+    # def _getting_settings(self):
+    #
+    #     """
+    #     В Классе метод получения настроек отвечает за
+    #     Если добавлены настройки, вставляем их ,
+    #     Если нет, вставку GET запроса
+    #
+    #     """
+    #     # Сначала получаем наши данные что ввели
+    #     servers_data = self.Settings.get_servers()
+    #     # Теперь что делаем - смотрим что в дата таге
+    #     servers_list = servers_data.get(self._Settings_name)
+    #     # Если НИЧЕГО НЕ ДОБАВЛЯЛИ , используем из GET запроса
+    #     if servers_list is not None:
+    #         if len(servers_list) > 0:
+    #             data = servers_list
+    #             # Обнуляем
+    #             self._define_JSON()
+    #
+    #         else:
+    #             data = self._request_setting()
+    #     else:
+    #         data = self._request_setting()
+    #
+    #     return data
 
 # -------------------------------------------------------------------------------------------------------------
 #                                           ПРИМЕР JSON

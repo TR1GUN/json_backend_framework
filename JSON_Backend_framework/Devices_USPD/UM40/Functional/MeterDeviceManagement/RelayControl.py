@@ -1,11 +1,12 @@
-# -------------------------------------------------------------------------------------------------------------
+
 # -------------------------------------------------------------------------------------------------------------
 #                                         Управление реле
 # -------------------------------------------------------------------------------------------------------------
 # Импортируем Шаблон взаимодействия
 
 from JSON_Backend_framework.Service.Template_Devices_Functions.MeterManagement.Template_RelayControl import TemplateRelayControl
-from JSON_Backend_framework.FormJSON.UM40.MeterDeviceManagement.JSON_Construct_Management_RelayControl import SettingsRelay
+
+from JSON_Backend_framework.FormJSON.UM40.MeterDeviceManagement.JSON_Construct_Management_RelayControl import FormJSON_Relay
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -15,8 +16,8 @@ class RelayControl(TemplateRelayControl):
      Управление реле
 
     """
-    # Общие настройки
-    Relay = None
+    # Генерация JSON
+    Relay_JSON = None
 
     # хедерс - Иногда нужен
     _headers = None
@@ -46,13 +47,13 @@ class RelayControl(TemplateRelayControl):
         Здесь Сбрасываем настройки
         """
         # Сбрасываем настройки
-        self.Relay = SettingsRelay()
+        self.Relay_JSON = FormJSON_Relay()
 
     def _getting_settings(self):
 
         """ Проверяем значение реле"""
 
-        data = self.Relay.get_Relay_settings()
+        data = self.Relay_JSON.get_JSON()
 
         # Обнуляем
         self._define_JSON()
@@ -73,7 +74,7 @@ class RelayControl(TemplateRelayControl):
         data = self._coding(data=data)
 
         # делаем запрос - получаем ответ
-        response = self._request_PUT(JSON=data)
+        response = self._request_POST(JSON=data)
 
         return response
 # -------------------------------------------------------------------------------------------------------------

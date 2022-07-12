@@ -49,13 +49,3 @@ class ServerSNTP(TemplateServer_SNTP):
 # -------------------------------------------------------------------------------------------------------------
 #
 # -------------------------------------------------------------------------------------------------------------
-
-# print('read...')
-# request = ServerSNTP().read_settings()
-# print(request)
-# print('write...')
-# request = ServerTCP().write_settings()
-# print(request)
-# print('rewrete...')
-# request = ServerTCP().rewrite_settings()
-# print(request)

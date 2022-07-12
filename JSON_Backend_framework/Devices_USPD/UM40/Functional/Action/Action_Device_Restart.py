@@ -1,35 +1,24 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         Настройки MQTT-серверов
+#                                         # Перезагрузка устройства
 # -------------------------------------------------------------------------------------------------------------
-# Импортируем Шаблон взаимодействия
-
-from JSON_Backend_framework.Service.Template_Devices_Functions.Settings.Servers.Template_MQTT_server_settings import \
-    TemplateServer_MQTT
-
-
 # -------------------------------------------------------------------------------------------------------------
+from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_DeviceRestart import TemplateActionDeviceRestart
 
 
-class ServerMQTT(TemplateServer_MQTT):
+class ActionDeviceRestart(TemplateActionDeviceRestart):
     """
+    Перезагрузка устройства
 
-    Настройки MQTT-серверов
     """
-
     # хедерс - Иногда нужен
     _headers = None
     # куки
     _cookies = None
 
-    # Общие настройки
-    # Settings = None
-
-    # Настройки по умолчанию
-
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Настройки TCP-серверов
+        Перезагрузка устройства
 
         :param cookies:
         :param headers:
@@ -42,8 +31,9 @@ class ServerMQTT(TemplateServer_MQTT):
         if ip_address is not None:
             self._ip_address = ip_address
 
+
 # -------------------------------------------------------------------------------------------------------------
-#                                           ПРИМЕР JSON
+#                                     ПРИМЕР JSON - Здесь только рестарт
 # -------------------------------------------------------------------------------------------------------------
-#
-# -------------------------------------------------------------------------------------------------------------
+
+

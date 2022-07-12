@@ -1,14 +1,9 @@
 # -------------------------------------------------------------------------------------------------------------
 #                                              Шаблон Формирования JSON
-#                                     Настройки локального времени(Часовой пояс)
+#                                           Настройки локального времени(Часовой пояс)
 # -------------------------------------------------------------------------------------------------------------
-
+#                                   Вспомогательные классы что есть
 # -------------------------------------------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------------------------------------------
-#                                         Классы настроек времени
-# -------------------------------------------------------------------------------------------------------------
-
 
 # ГОД
 class SETYear:
@@ -281,19 +276,19 @@ class SETTimeZone:
         """
         return self._TimeZone
 
+
 # -------------------------------------------------------------------------------------------------------------
 #                                         Основной класс
 # -------------------------------------------------------------------------------------------------------------
 
-
-class SettingsSetTime:
+class TemplateFormJSON_ActionsTimeSet:
     """
 
     Собираем в общий JSON
 
     """
     _Time_Tag = "time"
-    _Time_Set_dict = {}
+    _Time_dict = {}
     _Time_string = None
     # Общие настройки
 
@@ -306,43 +301,117 @@ class SettingsSetTime:
     Second = SETSecond()
     TimeZone = SETTimeZone()
 
-    def __init__(self):
-        self._Settings = {}
-        self._Time_Set_dict = {}
-        self._date_time_now()
+    # def __init__(self):
+    #     self._Settings = {}
+    #     self._Time_Set_dict = {}
+    #     self._date_time_now()
 
     def _date_time_now(self):
         """
         Вспомогательный метод Получающий сегодняшние время сейчас
-        и заполняет правильно им _Time_Set_dict
+        и заполняет правильно им _Time_dict
         :return:
         """
-        # Вспомомгательный метод Получающий сегоднянее время сейчас
+        # Вспомогательный метод Получающий сегодняшнее время сейчас
 
         import datetime
         # Year Month Day Hour Minute Second Time_Zone
-        self._Time_Set_dict = {}
 
         date_now = datetime.datetime.now(datetime.timezone.utc).astimezone().replace(microsecond=0)
-        self._Time_Set_dict['Year'] = str(date_now.year)
-        self._Time_Set_dict['Month'] = str(date_now.month)
-        self._Time_Set_dict['Day'] = str(date_now.day)
-        self._Time_Set_dict['Hour'] = str(date_now.hour)
-        self._Time_Set_dict['Minute'] = str(date_now.minute)
-        self._Time_Set_dict['Second'] = str(date_now.second)
+        # Парсим ГОД
+        Year = int(date_now.year)
+        self.Year.add_Year(Year)
+        # Парсим Месяц
+        Month = int(date_now.month)
+        self.Month.add_Month(Month)
+        # Парсим День
+        Day = int(date_now.day)
+        self.Day.add_Day(Day)
+        # Парсим Час
+        Hour = int(date_now.hour)
+        self.Hour.add_Hour(Hour)
+        # Парсим Минута
+        Minute = int(date_now.minute)
+        self.Minute.add_Minute(Minute)
+        # Парсим Секунды
+        Second = int(date_now.second)
+        self.Second.add_Second(Second)
+
+        # Парсим Часовой пояс
         # self._Time_Set_dict['Time_Zone'] = str(date_now.timetz())
         Time_Zone = date_now.strftime('%z')
         # Если наша строка не пустая - разделяем точкой
         if len(Time_Zone) > 0:
             Time_Zone = Time_Zone[:3] + ':' + Time_Zone[3:]
-        self._Time_Set_dict['Time_Zone'] = str(Time_Zone)
+        Time_Zone = str(Time_Zone)
+        self.TimeZone.add_Time_Zone(Time_Zone)
 
-    def get_Time(self):
+    def _Parse_Time_UTC(self, TimeDevice):
+        """
+        Парсим время UTC
+        :param TimeDevice:
+        :return:
+        """
+
+        try:
+            import re
+            date_line = re.findall('\d{4}|\d{2}|\d{2}|\d{2}|\d{2}|\d{2}|\d{2}|\d{2}', TimeDevice)
+            # Теперь получаем все данные
+            # Парсим ГОД
+            Year = int(date_line[0])
+            self.Year.add_Year(Year)
+            # Парсим Месяц
+            Month = int(date_line[1])
+            self.Month.add_Month(Month)
+            # Парсим День
+            Day = int(date_line[2])
+            self.Day.add_Day(Day)
+            # Парсим Час
+            Hour = int( date_line[3])
+            self.Hour.add_Hour(Hour)
+            # Парсим Минута
+            Minute = int(date_line[4])
+            self.Minute.add_Minute(Minute)
+            # Парсим Секунды
+            Second = int(date_line[5])
+            self.Second.add_Second(Second)
+
+            # Парсим Часовой пояс
+            Time_Zone = "+" + date_line[6] + ":" + date_line[7]
+
+            Time_Zone = str(Time_Zone)
+            self.TimeZone.add_Time_Zone(Time_Zone)
+
+        except Exception as e:
+            error = "Error parse Time: " + str(e) + ". Use system time."
+            print(error)
+
+            self._date_time_now()
+
+    def _Parse_Time_UNIXTIME(self, TimeDevice):
+        """
+        Парсим время UNIXTIME
+        :param TimeDevice:
+        :return:
+        """
+
+        try:
+            from datetime import datetime, timezone
+
+
+            time_utc = datetime.fromtimestamp(TimeDevice, timezone.utc).astimezone().isoformat()
+            self._Parse_Time_UTC(TimeDevice=time_utc)
+        except Exception as e:
+            error = "Error parse Time: " + str(e) + ". Use system time."
+            print(error)
+
+            self._date_time_now()
+
+    def _get_Time(self):
 
         """
-        Получаем собранный JSON
+        Получаем собранное время
         """
-        SetTime = self._Time_Set_dict
 
         # Получаем наши значения
         Year = self.Year.get_Year()
@@ -354,31 +423,72 @@ class SettingsSetTime:
         Time_Zone = self.TimeZone.get_Time_Zone()
 
         # Переопределяем
-        if Year is not None:
-            SetTime['Year'] = Year
-        if Month is not None:
-            SetTime['Month'] = Month
-        if Day is not None:
+        if Year is None:
+            Year = ""
+        if Month is None:
+            Month
+        if Day is None:
             SetTime['Day'] = Day
-        if Hour is not None:
+        if Hour is None:
             SetTime['Hour'] = Hour
-        if Minute is not None:
+        if Minute is None:
             SetTime['Minute'] = Minute
-        if Second is not None:
+        if Second is None:
             SetTime['Second'] = Second
-        if Time_Zone is not None:
+        if Time_Zone is None:
             SetTime['Time_Zone'] = Time_Zone
 
-        Year = SetTime['Year']
-        Month = SetTime['Month']
-        Day = SetTime['Day']
-        Hour = SetTime['Hour']
-        Minute = SetTime['Minute']
-        Second = SetTime['Second']
-        Time_Zone = SetTime['Time_Zone']
         # Теперь собираем в единую стрингу
         self._Time_string = Year + '-' + Month + '-' + Day + 'T' + Hour + ':' + Minute + ':' + Second + Time_Zone
 
         data = {self._Time_Tag: self._Time_string}
 
         return data
+
+    # Добавляем
+    def add_Value(self, Time: [str, int, None]):
+        """
+        Добавляем время
+        :param Time: [str, int] - Время, либо str - UTC, либо  int - UNIX, либо None - Тогда используется текущее время
+
+        :return:
+        """
+        # Если у нас строка - считаем что это UTC
+        if type(Time) is str :
+            # Парсим
+        # Если у нас число - считаем что подали UNIX time
+        elif type(Time) is int :
+
+            # Парсим
+        # Иначе - Берем системное время
+        else:
+
+    # Удаляем
+    def remove_Value(self):
+        """
+        Удаление записанного прибора учета
+        """
+
+        self.Year = SETYear()
+        self.Month = SETMonth()
+        self.Day = SETDay()
+
+        self.Hour = SETHour()
+        self.Minute = SETMinute()
+        self.Second = SETSecond()
+        self.TimeZone = SETTimeZone()
+
+    def get_JSON(self):
+        """
+        Получаем наши данные что составили
+        """
+
+
+        return self._Setting_MeterTimeSync
+
+
+import datetime
+
+time = datetime.datetime.now()
+
+print(type(datetime.datetime))

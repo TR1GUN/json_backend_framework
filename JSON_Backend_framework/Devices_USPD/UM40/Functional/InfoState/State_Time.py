@@ -1,14 +1,17 @@
 # -------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------
-#                                         # Перезагрузка устройства
+#                                         Получение Текущего времени УСПД
 # -------------------------------------------------------------------------------------------------------------
+# Импортируем Шаблон взаимодействия
+
+from JSON_Backend_framework.Service.Template_Devices_Functions.State.Template_State_Time import TemplateStateTime
+
 # -------------------------------------------------------------------------------------------------------------
-from JSON_Backend_framework.Service.Template_Devices_Functions.Actions.Template_Action_DeviceRestart import TemplateDeviceRestart
 
 
-class DeviceRestart(TemplateDeviceRestart):
+class StateTime(TemplateStateTime):
     """
-    Перезагрузка устройства
+    Получение Текущего времени УСПД
 
     """
     # хедерс - Иногда нужен
@@ -18,7 +21,7 @@ class DeviceRestart(TemplateDeviceRestart):
 
     def __init__(self, cookies=None, headers=None, ip_address=None):
         """
-        Перезагрузка устройства
+        Текущие время УСПД
 
         :param cookies:
         :param headers:
@@ -31,12 +34,9 @@ class DeviceRestart(TemplateDeviceRestart):
         if ip_address is not None:
             self._ip_address = ip_address
 
-        # print(self.headers)
-        # print(self.cookies)
-
 
 # -------------------------------------------------------------------------------------------------------------
 #                                     ПРИМЕР JSON - Здесь только чтение
 # -------------------------------------------------------------------------------------------------------------
-
-
+# {'time': '2022-01-10T21:00:07+03:00', 'sync': False, 'state': True}
+# -------------------------------------------------------------------------------------------------------------
