@@ -28,8 +28,8 @@ class Interface_Ethernet(TemplateInterface_EthernetUM40):
     # _Settings_name = 'Settings'
     # # Настройки по умолчанию
     #
-    # # Настройки Ethernet
-    # _Eth0 = {'iface': 'eth0', 'dhcp': False, 'ip': '192.168.0.1', 'netmask': '255.255.255.1',  'gw': '', 'dns1': '', 'dns2': ''}
+    # # Настройки Ethernet _Eth0 = {'iface': 'eth0', 'dhcp': False, 'ip': '192.168.0.1', 'netmask': '255.255.255.1',
+    # 'gw': '', 'dns1': '', 'dns2': ''}
     #
     # _Eth1 = {'iface': 'eth1', 'dhcp': True, 'ip': '', 'netmask': '', 'gw': '', 'dns1': '', 'dns2': ''}
 

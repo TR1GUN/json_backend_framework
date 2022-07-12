@@ -49,8 +49,9 @@ class TemplateDeviceFunctions_Settings_WithOutDataTag(TemplateFunctional):
         """
 
         if data is None:
-            data = self._getting_settings()
 
+            # data = self._getting_settings()
+            data = {}
         # Запаковываем
         data = self._coding(data=data)
 
@@ -169,9 +170,9 @@ class TemplateDeviceFunctions_Settings(TemplateFunctional):
         """
 
         if data is None:
-            data_settings = self._getting_settings()
-            data = {self._Settings_name: data_settings}
-
+            # data_settings = self._getting_settings()
+            # data = {self._Settings_name: data_settings}
+            data = {}
         # Запаковываем
         data = self._coding(data=data)
 
