@@ -5,14 +5,27 @@ import JSON_Backend_framework
 ip_smart_31 = '192.168.205.22'
 ip_smart_40 = '192.168.202.197'
 SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
-lol = SMART.MeterDeviceManagement.Calendar.Activate.Set_Calendar()
-lol = SMART.Action.Time_Check.Set()
-lol = SMART.Action.Time_Set.Set()
-lol = SMART.Action.Storage_Sync.Sync()
-lol = SMART.Action.Restart.Restart()
-lol = SMART.Action.Time_Sync.Sync()
-lol = SMART.Action.Disk_Clear.Set()
-lol = SMART.Action.Disk_Clear.Set()
+lol = SMART.Settings.Meter.Table.Read_Settings().get('data', {})
+
+# lol = SMART.Settings.Meter.Table.Read_Settings().get('data', {})
+# print(lol)
+
+lol2= {'Meters': [{'id': 2, 'pId': 0, 'archId': 2, 'type': 36, 'addr': '88', 'passRd': '32323232323232323232323232323232', 'passWr': '32323232323232323232323232323232', 'line': 0, 'iface': 4, 'br': 0}, {'id': 1, 'pId': 0, 'archId': 1, 'type': 1, 'addr': '15', 'passRd': '010101010101', 'passWr': '020202020202', 'line': 0, 'iface': 0, 'br': 0}]}
+
+lol = SMART.Settings.Meter.Table.Write_Settings(lol2)
+print(lol)
+lol = SMART.Action
+print(lol)
+
+SMART.Upload.Loader
+SMART.StateInfo
+# lol = SMART.Action.Time_Check.Set()
+# lol = SMART.Action.Time_Set.Set()
+# lol = SMART.Action.Storage_Sync.Sync()
+# lol = SMART.Action.Restart.Restart()
+# lol = SMART.Action.Time_Sync.Sync()
+# lol = SMART.Action.Disk_Clear.Set()
+# lol = SMART.Action.Disk_Clear.Set()
 
 # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
 # lol = SMART.Settings.Meter.Table.Read_Settings()
@@ -161,15 +174,15 @@ data_Activate = {"id": 3}
 # Activate = SMART40.MeterDeviceManagement.Calendar.Activate.Set_Calendar(data=data_Activate)
 # print(Activate)
 
-# //-------------------------------------------------------------------
-# Здесь расположим временные тестовые прогоны
-# //-------------------------------------------------------------------
+# # //-------------------------------------------------------------------
+# # Здесь расположим временные тестовые прогоны
+# # //-------------------------------------------------------------------
 # SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
-
-# //-------------------------------------------------------------------
-#                           Настройки
-# //-------------------------------------------------------------------
-# //---------------------- Общие настройки ----------------------------
+#
+# # //-------------------------------------------------------------------
+# #                           Настройки
+# # //-------------------------------------------------------------------
+# # //---------------------- Общие настройки ----------------------------
 # DeviceSettings = SMART.Settings.DeviceSettings
 # # Настройки Ethernet
 # print('Ethernet read...')
@@ -184,8 +197,8 @@ data_Activate = {"id": 3}
 # print('Ethernet delete...')
 # request = DeviceSettings.Interface_Ethernet.delete_settings()
 # print(request)
-
-# Настройки последовательных интерфейсов(UART)
+#
+# # Настройки последовательных интерфейсов(UART)
 # print('Interface_UART read...')
 # request = DeviceSettings.Interface_UART.Read_Settings()
 # print(request)
@@ -198,8 +211,8 @@ data_Activate = {"id": 3}
 # print('Interface_UART delete...')
 # request = DeviceSettings.Interface_UART.delete_settings()
 # print(request)
-
-# Настройки линий питания интерфейсов
+#
+# # Настройки линий питания интерфейсов
 # print('Interface_DOut read...')
 # request = DeviceSettings.Interface_DOut.Read_Settings()
 # print(request)
@@ -212,9 +225,9 @@ data_Activate = {"id": 3}
 # print('delete...')
 # request = DeviceSettings.Interface_DOut.delete_settings()
 # print(request)
-
-
-# Настройки локального времени - Часовые пояса
+#
+#
+# # Настройки локального времени - Часовые пояса
 # print('Time_Local read...')
 # request = DeviceSettings.Time_Local.Read_Settings()
 # print(request)
@@ -227,9 +240,9 @@ data_Activate = {"id": 3}
 # print('delete...')
 # request = DeviceSettings.Time_Local.delete_settings()
 # print(request)
-
-# //----------------    Настройки модема     ------------------------
-# Modem = SMART.Settings.Modem
+#
+# # //----------------    Настройки модема     ------------------------
+# # Modem = SMART.Settings.Modem
 #
 # # СИМ карты
 # print('read...')
@@ -244,9 +257,9 @@ data_Activate = {"id": 3}
 # print('delete...')
 # request = Modem.SIM.delete_settings()
 # print(request)
-
-# //----------------    Настройки серверов     ------------------------
-
+#
+# # //----------------    Настройки серверов     ------------------------
+#
 # Server = SMART.Settings.Servers
 # # TCP Сервер
 # print('TCP read...')
@@ -261,10 +274,10 @@ data_Activate = {"id": 3}
 # print('delete...')
 # request = Server.TCP.delete_settings()
 # print(request)
-
-
-# SMTP Сервера
-
+#
+#
+# # SMTP Сервера
+#
 # print('SMTP read...')
 # request = Server.SMTP.Read_Settings()
 # print(request)
@@ -277,9 +290,9 @@ data_Activate = {"id": 3}
 # print('delete...')
 # request = Server.SMTP.delete_settings()
 # print(request)
-
-# SNTP Сервера
-
+#
+# # SNTP Сервера
+#
 # print('SNTP read...')
 # request = Server.SNTP.Read_Settings()
 # print(request)
@@ -292,10 +305,10 @@ data_Activate = {"id": 3}
 # print('delete...')
 # request = Server.SNTP.delete_settings()
 # print(request)
-
-
-# MQTT Сервера
-
+#
+#
+# # MQTT Сервера
+#
 # print('MQTT read...')
 # request = Server.MQTT.Read_Settings()
 # print(request)
@@ -312,37 +325,37 @@ data_Activate = {"id": 3}
 #                   Опрос приборов учета
 # //-------------------------------------------------------------------
 # Опрос приборов учета
-
+#
 # Опрос приборов учета – Архивные записи
-
+#
 # Опрос приборов учета – Моментные показатели
-
+#
 # //-------------------------------------------------------------------
 #                   Управление приборами учета
 # //-------------------------------------------------------------------
 # Установка времени – Системное время счетчика
-
+#
 # Управление реле
-
+#
 # //-------------------------------------------------------------------
 #                           Действия
 # //-------------------------------------------------------------------
 # Перезагрузка
-
-
+#
+#
 # Установка времени – Системное время устройства
-
+#
 # //-------------------------------------------------------------------
 # Журналы изделия
 # //-------------------------------------------------------------------
 # Журнал изменения времени
 # result = SMART.Journal.Time.read_Journal()
 # print(result)
-
+#
 # Журнал фиксации ответов приборов учета
 # result = SMART.Journal.Meter_answer.read_Journal()
 # print(result)
-
+#
 # //-------------------------------------------------------------------
 # Информация о состоянии изделия
 # //-------------------------------------------------------------------

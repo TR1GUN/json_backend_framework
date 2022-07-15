@@ -40,8 +40,8 @@ class TemplateFunctional:
     }
 
     # КОД Операции
-    result_code = None
-    data = None
+    _result_code = None
+    _data = None
 
     def _parser_request(self, response):
         """
@@ -50,9 +50,9 @@ class TemplateFunctional:
         :return: Возвращаем response_dict
         """
         # Код операции
-        self.result_code = response.GET_result_code()
+        self._result_code = response.GET_result_code()
         # Текстовые данные , если есть
-        self.data = response.GET_data()
+        self._data = response.GET_data()
         # куки
         cookies = response.get_cookies()
         # headers
