@@ -54,11 +54,10 @@ class UM_Cookies:
                                              )
 
         # Если авториазия была успешна
-        print("Authorization_cookie.result_code", Authorization_cookie.result_code, type(Authorization_cookie.result_code))
         if Authorization_cookie.result_code == 200:
             self.cookie_value = Authorization_cookie.get_cookies()
         else:
-            print('Авторизация - не выполнено')
+            print('Авторизация - не выполнено', 'Код ошибки : '+ str(Authorization_cookie.result_code))
             # Прерываем работу
             # assert Authorization_cookie.result_code == 200, Authorization_cookie.get_result()
             self.cookie_value = None
