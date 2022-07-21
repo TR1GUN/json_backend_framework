@@ -54,7 +54,7 @@ class UM_Cookies:
                                              )
 
         # Если авториазия была успешна
-
+        print("Authorization_cookie.result_code", Authorization_cookie.result_code, type(Authorization_cookie.result_code))
         if Authorization_cookie.result_code == 200:
             self.cookie_value = Authorization_cookie.get_cookies()
         else:
