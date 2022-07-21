@@ -1,11 +1,11 @@
 #
-import JSON_Backend_framework
-
-# # //-------------------------------------------------------------------
-ip_smart_31 = '192.168.205.22'
-ip_smart_40 = '192.168.202.197'
-SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
-SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
+# import JSON_Backend_framework
+#
+# # # //-------------------------------------------------------------------
+# ip_smart_31 = '192.168.205.22'
+# ip_smart_40 = '192.168.202.197'
+# SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
+# SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
 
 # lol = SMART.Settings.Proto.Text_Auth.Read_Settings()
 #
