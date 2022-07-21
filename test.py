@@ -1,31 +1,26 @@
 #
 import JSON_Backend_framework
 
-# //-------------------------------------------------------------------
+# # //-------------------------------------------------------------------
 ip_smart_31 = '192.168.205.22'
 ip_smart_40 = '192.168.202.197'
 SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_31)
-lol = SMART.Settings.Meter.Table.Read_Settings().get('data', {})
+SMART = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)
 
-# lol = SMART.Settings.Meter.Table.Read_Settings().get('data', {})
+# lol = SMART.Settings.Proto.Text_Auth.Read_Settings()
+#
 # print(lol)
+# lol2 = SMART.Settings.Proto.Text_Auth.Delete_Settings()
+#
+# print(lol2)
+#
+# lol2 = SMART.Settings.Proto.Text_Auth.Read_Settings()
+#
+# print(lol2)
+#
+# # Мои счетчики
+# {'Meters': [{'id': 1, 'pId': 0, 'archId': 1, 'type': 5, 'addr': '1', 'passRd': '373737373737', 'passWr': '373737373737', 'line': 0, 'iface': 0, 'br': 0}, {'id': 2, 'pId': 0, 'archId': 1, 'type': 32, 'addr': '1', 'passRd': '', 'passWr': '', 'line': 0, 'iface': 0, 'br': 0}, {'id': 3, 'pId': 0, 'archId': 1, 'type': 3, 'addr': '1', 'passRd': '010101010101', 'passWr': '020202020202', 'line': 0, 'iface': 0, 'br': 0}, {'id': 4, 'pId': 0, 'archId': 1, 'type': 10, 'addr': '1', 'passRd': '303030303030', 'passWr': '303030303030', 'line': 0, 'iface': 0, 'br': 0}]}}
 
-lol2= {'Meters': [{'id': 2, 'pId': 0, 'archId': 2, 'type': 36, 'addr': '88', 'passRd': '32323232323232323232323232323232', 'passWr': '32323232323232323232323232323232', 'line': 0, 'iface': 4, 'br': 0}, {'id': 1, 'pId': 0, 'archId': 1, 'type': 1, 'addr': '15', 'passRd': '010101010101', 'passWr': '020202020202', 'line': 0, 'iface': 0, 'br': 0}]}
-
-lol = SMART.Settings.Meter.Table.Write_Settings(lol2)
-print(lol)
-lol = SMART.Action
-print(lol)
-
-SMART.Upload.Loader
-SMART.StateInfo
-# lol = SMART.Action.Time_Check.Set()
-# lol = SMART.Action.Time_Set.Set()
-# lol = SMART.Action.Storage_Sync.Sync()
-# lol = SMART.Action.Restart.Restart()
-# lol = SMART.Action.Time_Sync.Sync()
-# lol = SMART.Action.Disk_Clear.Set()
-# lol = SMART.Action.Disk_Clear.Set()
 
 # SMART = JSON_Backend_framework.USPD.UM_31_Smart(Login='admin', Password="admin", ip_address=ip_smart_40)
 # lol = SMART.Settings.Meter.Table.Read_Settings()
@@ -35,21 +30,21 @@ SMART.StateInfo
 #                         Тарифное расписание
 # //-------------------------------------------------------------------
 # Данные что запускаем
-data = {
-    "ids": [3],
-    "tags": [],
-    "measures": [
-        "ElMomentEnergy"
-    ]
-}
-# Имя календаря тарифного расписания
-data = {
-    "ids": [3],
-    "tags": [],
-    "measures": [
-        "ElCalendarNameActive"
-    ]
-}
+# data = {
+#     "ids": [3],
+#     "tags": [],
+#     "measures": [
+#         "ElMomentEnergy"
+#     ]
+# }
+# # Имя календаря тарифного расписания
+# data = {
+#     "ids": [3],
+#     "tags": [],
+#     "measures": [
+#         "ElCalendarNameActive"
+#     ]
+# }
 
 # data = {
 #   "ids": [3],
@@ -115,38 +110,38 @@ data = {
 #     "ElCalendarActivateTime"
 #   ]
 # }
-
-data_Day = {"id": 3, "type": "Passive",
-            "settings": [{"dayId": 2, "ScriptName": "00000A0064FF", "ScriptSelector": 2, "hour": 14, "minute": 42,
-                          "second": 57}]}
+#
+# data_Day = {"id": 3, "type": "Passive",
+#             "settings": [{"dayId": 2, "ScriptName": "00000A0064FF", "ScriptSelector": 2, "hour": 14, "minute": 42,
+#                           "second": 57}]}
 
 # data_Day =  {"id":3, "type": "Active",
 # "settings":[{"dayId":1, "ScriptName":"00000A0064FF", "ScriptSelector":2, "hour":14, "minute":42, "second":57}]}
 
-
-data_Week = {"id": 3, "type": "Active",
-             "settings": [{"WeekName": "44656661756C74",
-                           "monday": 1, "tuesday": 1, "wednesday": 1, "thursday": 1, "friday": 1, "saturday": 1,
-                           "sunday": 1}]}
-
-data_Week = {"id": 3, "type": "Passive",
-             "settings": [{"WeekName": "44656661756C74",
-                           "monday": 1, "tuesday": 1, "wednesday": 1, "thursday": 1, "friday": 1, "saturday": 1,
-                           "sunday": 1}]}
-
-data_Season = {"id": 3, "type": "Active",
-               "settings": [
-                   {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
-data_Season = {"id": 3, "type": "Passive",
-               "settings": [
-                   {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
-
-data_Name = {"id": 3, "type": "Active", "settings": [{"CalendarName": "44656661756C74"}]}
-# data_Name = {"id":3, "type": "Passive", "settings":[{"CalendarName":"44656661756C74"}]}
-
-data_Time = {"id": 3, "settings": [{"ActivateTime": 1649082459}]}
-
-data_Activate = {"id": 3}
+#
+# data_Week = {"id": 3, "type": "Active",
+#              "settings": [{"WeekName": "44656661756C74",
+#                            "monday": 1, "tuesday": 1, "wednesday": 1, "thursday": 1, "friday": 1, "saturday": 1,
+#                            "sunday": 1}]}
+#
+# data_Week = {"id": 3, "type": "Passive",
+#              "settings": [{"WeekName": "44656661756C74",
+#                            "monday": 1, "tuesday": 1, "wednesday": 1, "thursday": 1, "friday": 1, "saturday": 1,
+#                            "sunday": 1}]}
+#
+# data_Season = {"id": 3, "type": "Active",
+#                "settings": [
+#                    {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
+# data_Season = {"id": 3, "type": "Passive",
+#                "settings": [
+#                    {"SeasonName": "44656661756C74", "WeekName": "44656661756C74", "SeasonStart": 2065875840000}]}
+#
+# data_Name = {"id": 3, "type": "Active", "settings": [{"CalendarName": "44656661756C74"}]}
+# # data_Name = {"id":3, "type": "Passive", "settings":[{"CalendarName":"44656661756C74"}]}
+#
+# data_Time = {"id": 3, "settings": [{"ActivateTime": 1649082459}]}
+#
+# data_Activate = {"id": 3}
 # //-------------------------------------------------------------------
 # САМ СМАРТ
 # SMART40 = JSON_Backend_framework.USPD.UM_40_Smart(ip_address=ip_smart_40)

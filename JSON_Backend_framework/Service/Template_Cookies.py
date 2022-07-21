@@ -5,7 +5,6 @@
 # -------------------------------------------------------------------------------------------------------------
 
 class UM_Cookies:
-
     """
     Этот класс отвечает за куки в том или ином их виде -
     Что здесь производиться - Авторизация
@@ -22,7 +21,7 @@ class UM_Cookies:
     # Наш Хэдерс
     Headers = None
 
-    def __init__(self, Login : str, Password : str , IP_address : str , Headers = None, Auth : bool = False):
+    def __init__(self, Login: str, Password: str, IP_address: str, Headers=None, Auth: bool = False):
         """
         Здесь храниться то что нам так необходимо -
         :param Login:  - str  - Наш логин
@@ -38,7 +37,7 @@ class UM_Cookies:
         self.Headers = Headers
 
         # Если авторизация разрешена - Авторизируемся
-        if Auth :
+        if Auth:
             self.Authorization()
 
     def Authorization(self):
@@ -51,7 +50,7 @@ class UM_Cookies:
         Authorization_cookie = Authorization(Login=str(self.Login),
                                              Password=str(self.Password),
                                              ip_address=str(self.IP_address),
-                                             headers = self.Headers
+                                             headers=self.Headers
                                              )
 
         # Если авториазия была успешна

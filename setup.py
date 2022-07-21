@@ -1,11 +1,4 @@
 
-# def setup():
-#     """
-#
-#     """
-#
-#     print("UM-40 SMART Framework")
-
 import setuptools
 
 # with open("README.md", "r") as fh:
@@ -13,7 +6,7 @@ import setuptools
 
 setuptools.setup(
     name="JSON_Backend_Framework",
-    version="0.6.1",
+    version="0.6.2",
     author="Buslin Nicolay",
     author_email="n.Buslin@allmonitoring.ru",
     description="Package to eaZZZy work with JSON_Backend_framework.",
